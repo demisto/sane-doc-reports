@@ -73,7 +73,7 @@ def insert_from_markdowm(cell_object: dict, markdown_string: str) -> None:
 
     is_first = True
     # We need to reverse the sane list because adding paragraphs is adding them
-    # before and not after.
+    # before and not after (python-docx).
     for elem in markdown.renderer.sane[::-1]:
         text.insert(cell_object, elem, is_first)
         is_first = False

@@ -1,0 +1,18 @@
+[
+  {
+    "type": "text",
+    "data": {
+      "text": "Critical and High incidents",
+      "groups": [{ "name": "", "data": [2], "groups": null }]
+    },
+    "query": {
+      "type": "incident",
+      "filter": {
+        "query": "-status:Closed and (severity:High or severity:Critical)",
+        "period": { "byFrom": "days", "fromValue": null, "by": "day" }
+      }
+    },
+    "automation": { "name": "", "id": "", "args": null, "noEvent": false },
+    "title": "criticalAndHighIncidents Headline"
+  }
+]

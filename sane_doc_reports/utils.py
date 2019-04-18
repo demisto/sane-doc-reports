@@ -1,4 +1,5 @@
 import base64
+import re
 from io import BytesIO
 
 from docx.shared import RGBColor
@@ -16,7 +17,8 @@ def open_b64_image(image_base64):
     """
     Open a virtual image file for base64 format of image.
     """
-    raw_base64 = image_base64[image_base64.index(";base64,") + 8:]
+    prefix_regex = r'^data:.*?;base64,'
+    raw_base64 = re.sub(prefix_regex, '', image_base64)
     f = BytesIO()
     f.write(base64.b64decode(raw_base64))
     f.seek(0)

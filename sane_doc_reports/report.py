@@ -43,7 +43,8 @@ class Report:
                 }
                 self._insert_section(cell_object, section)
 
-    def _insert_section(self, cell_object: dict, section: dict) -> None:
+    @staticmethod
+    def _insert_section(cell_object: dict, section: dict) -> None:
         section_type = section['type']
 
         # Fix the chart name

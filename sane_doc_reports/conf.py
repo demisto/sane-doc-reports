@@ -2,7 +2,6 @@ from os import getenv
 
 # Environment
 DEBUG = getenv('SANE_DOCX_DEBUG', 'False') == 'True'
-DOMAIN = getenv('SANE_DOCX_DOMAIN', 'localhost')
 
 # Constants
 DATA_KEY = 'data'

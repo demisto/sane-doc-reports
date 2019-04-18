@@ -21,7 +21,8 @@ class Page:
 
         # Negate the minimal position from each section,
         # So when we are "normalized" each page vertical position starts form 0
-        # I.e. sometimes rowPos can be something like
+        # I.e. sometimes rowPos can be something initially like 1180, and we
+        # want it to be 1 (if it's the second row in that page).
         for i, section in enumerate(self.sections_list):
             self.sections_list[i][LAYOUT_KEY][ROW_POSITION_KEY] = row_pos(
                 section) - min_pos

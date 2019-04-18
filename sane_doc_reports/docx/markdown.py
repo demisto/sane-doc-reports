@@ -1,5 +1,6 @@
 from typing import Dict
 
+<<<<<<< HEAD
 import mistune
 
 from sane_doc_reports.conf import DEBUG, DOMAIN, DATA_KEY, LAYOUT_KEY, STYLE_KEY
@@ -77,11 +78,18 @@ def insert_from_markdowm(cell_object: dict, markdown_string: str) -> None:
     for elem in markdown.renderer.sane[::-1]:
         text.insert(cell_object, elem, is_first)
         is_first = False
+=======
+from sane_doc_reports.conf import DEBUG
+>>>>>>> 6a28b00b4bb74461766a48e8308d553ca0cdaccd
 
 
 def insert(cell_object: Dict, section: Dict) -> None:
     if DEBUG:
+<<<<<<< HEAD
         print("Yo Im markdown")
 
     markdown_string = section[DATA_KEY]['text']
     insert_from_markdowm(cell_object, markdown_string)
+=======
+        print("Yo Im markdown chart")
+>>>>>>> 6a28b00b4bb74461766a48e8308d553ca0cdaccd

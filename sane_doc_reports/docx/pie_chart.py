@@ -8,6 +8,8 @@ from sane_doc_reports.conf import DEBUG, DATA_KEY, LAYOUT_KEY
 # Plot
 import matplotlib.pyplot as plt
 
+from sane_doc_reports.docx import image
+
 
 def insert(cell_object: Dict, section: Dict) -> None:
     if DEBUG:
@@ -46,12 +48,13 @@ def insert(cell_object: Dict, section: Dict) -> None:
     ax.add_artist(circle)
 
     path = Path(tempfile.mkdtemp()) / Path(
-        next(tempfile._get_candidate_names()))
+        next(tempfile._get_candidate_names()) + '.png')
 
-    plt.savefig(str(path))
+    print(str(path))
+    plt.savefig(str(path), format='png', bbox_inches='tight')
 
     with open(str(path), "rb") as f:
-        img_base64 = base64.b64encode(f.read())
+        img_base64 = base64.b64encode(f.read()).decode("utf-8", "ignore")
         b64 = f'data:image/png;base64,{img_base64}'
 
     s = {

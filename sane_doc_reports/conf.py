@@ -15,7 +15,6 @@ PAGE_GRID_HEIGHT = 12
 STYLE_KEY = 'style'
 PAGEBREAK_KEY = 'pageBreakBefore'
 
-
 # Page margin constants
 TOP_MARGIN_PT = 10
 BOTTOM_MARGIN_PT = 10

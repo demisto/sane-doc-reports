@@ -74,16 +74,33 @@ def get_cell_wrappers(cell: _Cell) -> Tuple[Paragraph, Run]:
 
 def get_vtable_merged(table: Table) -> List[List]:
     """
-    Return a virtual representation of a table, and make merged cells  0
+    Return a virtual representation of a table. Make merged cells  0
     and normal cells 1.
 
-    Notes: this will put a zero without regard to row span or col span (!)
-    Note 2: If you are trying to understand this, good luck! :O
-    JK, You should probably create a table via python-docx and try to use this
-    on it, also to trigger the `1 not in vtables` you need to fully merge 2
-    rows.
-    Note 3: ._tc is the original object, it helps us find out if 2 cells are
-    the same cells or not (after merging them).
+    For example:
+    +-----+--+--+
+    |     |  |  |
+    +     +--+--+
+    |     |  |  |
+    +-----+--+--+
+    |  |  |     |
+    +--+--+-----+
+    Will result:
+    [
+        [1, 0, 1, 1],
+        [0, 0, 1, 1],
+        [1, 1, 1, 0]
+    ]
+    (<0,0> up to <2,2,> are merged as well as <3,3> up to <4,3>)
+
+    Note 1: To understand this:
+        You should probably create a table via `python-docx` and try to use this
+        on it, also to trigger the `1 not in vtables` you need to fully merge 2
+        rows.
+
+    Note 2: ._tc is the original object in python-docx, it helps us find out
+        if 2 cells are the same cells or not (after merging them). So we will
+        know
     """
     vtable = []
     last_cells = []

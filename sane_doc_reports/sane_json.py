@@ -27,8 +27,6 @@ class SaneJson:
         self.pages = self._separate_pages()
 
     def _verify_sane_json(self):
-        print(self.json_data)
-        print("Validation: ", validate(self.json_data))
         return validate(self.json_data)
 
     def _separate_pages(self) -> List[List[Page]]:
@@ -44,7 +42,6 @@ class SaneJson:
         # Let's split by any page break
         pages = []
         current_page = Page()
-        should_break_page = False
 
         # Split the sections into pages
         for index, json_section in enumerate(report_json_sorted):
@@ -57,7 +54,7 @@ class SaneJson:
 
             current_page.add_section(json_section)
 
-            # Check if we git the end of the sections
+            # Check if we get the end of the sections
             if index == len(report_json_sorted) - 1:
                 pages.append(current_page)
                 continue
@@ -65,8 +62,7 @@ class SaneJson:
         # Normalize all of the vertical positions
         # and fix order for merge, see @merge_cells
         for page in pages:
-            if isinstance(page, Page):
-                page.normalize_row_positions()
+            page.normalize_row_positions()
 
         return pages
 

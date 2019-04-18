@@ -3,7 +3,8 @@ import importlib
 import docx
 from docx import Document
 from typing import Any, Callable, Dict, List, Optional, Type, Union, Tuple
-from sane_doc_reports.conf import DEBUG, LAYOUT_KEY
+from sane_doc_reports.conf import DEBUG, LAYOUT_KEY, A4_MM_HEIGHT, A4_MM_WIDTH, \
+    TOP_MARGIN_PT, BOTTOM_MARGIN_PT, LEFT_MARGIN_PT, RIGHT_MARGIN_PT
 from sane_doc_reports.sane_json import SaneJson
 from sane_doc_reports.grid import get_cell, merge_cells, get_cell_wrappers
 from docx.shared import Pt, Mm
@@ -61,13 +62,13 @@ class Report:
         if paper_size == 'A4':
             sections = self.document.sections
             for section in sections:
-                section.page_height = Mm(297)
-                section.page_width = Mm(210)
+                section.page_height = Mm(A4_MM_HEIGHT)
+                section.page_width = Mm(A4_MM_WIDTH)
 
     def _decrease_layout_margins(self) -> None:
         sections = self.document.sections
         for section in sections:
-            section.top_margin = Pt(10)
-            section.bottom_margin = Pt(10)
-            section.left_margin = Pt(25)
-            section.right_margin = Pt(15)
+            section.top_margin = Pt(TOP_MARGIN_PT)
+            section.bottom_margin = Pt(BOTTOM_MARGIN_PT)
+            section.left_margin = Pt(LEFT_MARGIN_PT)
+            section.right_margin = Pt(RIGHT_MARGIN_PT)

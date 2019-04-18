@@ -94,3 +94,15 @@ def test_markdown_and_text():
     # Find two H2
     assert len(d.element.xpath("//w:sz[@w:val='28']")) == 1
 
+
+def test_picture_in_report():
+    report = Report(get_mock('picture.json'))
+    report.populate_report()
+    d = report.document
+    table = next(utils.iter_block_items(d))
+    assert isinstance(table, Table)
+    assert len(table.columns) == 1
+    assert len(table.rows) == 1
+
+    # Check that there is indeed an image
+    assert len(d.element.xpath('//pic:pic')) == 1

@@ -64,7 +64,11 @@ def get_cell(table: Table, section: dict) -> _Cell:
 def get_cell_wrappers(cell: _Cell) -> Tuple[Paragraph, Run]:
     """
     Return the cell's paragraph and create a run object too, return them
-    both
+    both. They are used to inject elements into the table cell.
+    Run object:
+    - https://python-docx.readthedocs.io/en/latest/api/text.html#run-objects
+    Paragraph Object:
+    - https://python-docx.readthedocs.io/en/latest/api/text.html#paragraph-objects
     """
     paragraphs = cell.paragraphs
     paragraph = paragraphs[0]

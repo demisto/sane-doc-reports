@@ -1,5 +1,4 @@
 from docx.document import Document
-from docx.image.image import Image
 from docx.oxml.table import CT_Tbl
 from docx.oxml.text.paragraph import CT_P
 from docx.table import _Cell, Table

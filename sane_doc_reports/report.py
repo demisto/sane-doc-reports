@@ -1,6 +1,8 @@
 import importlib
 
+import docx
 from docx import Document
+from typing import Any, Callable, Dict, List, Optional, Type, Union, Tuple
 from sane_doc_reports.conf import DEBUG, LAYOUT_KEY, A4_MM_HEIGHT, A4_MM_WIDTH, \
     TOP_MARGIN_PT, BOTTOM_MARGIN_PT, LEFT_MARGIN_PT, RIGHT_MARGIN_PT
 from sane_doc_reports.sane_json import SaneJson

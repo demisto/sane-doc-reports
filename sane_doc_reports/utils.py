@@ -1,3 +1,5 @@
+import tempfile
+
 from docx.shared import RGBColor
 
 

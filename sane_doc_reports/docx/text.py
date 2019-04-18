@@ -1,6 +1,5 @@
 from typing import Dict
 
-<<<<<<< HEAD
 from sane_doc_reports.conf import LAYOUT_KEY, STYLE_KEY, DATA_KEY
 from sane_doc_reports.utils import hex_to_rgb
 from docx.shared import Pt
@@ -49,11 +48,3 @@ def insert(cell_object: Dict, section: Dict, is_addition=False) -> None:
     elif style['textAlign'] == 'right':
         cell.alignment = 1
         paragraph.paragraph_format.alignment = 2
-=======
-from sane_doc_reports.conf import DEBUG
-
-
-def insert(cell_object: Dict, section: Dict) -> None:
-    if DEBUG:
-        print("Yo Im text")
->>>>>>> 6a28b00b4bb74461766a48e8308d553ca0cdaccd

@@ -1,6 +1,8 @@
 import pytest
 import json
 
+from fastjsonschema import JsonSchemaException
+
 from sane_doc_reports.sane_json import SaneJson
 from tests.utils import get_mock
 from sane_doc_reports.page import Page
@@ -24,57 +26,58 @@ def test_sane_json_invalid_json():
 
 
 def test_sane_json_invalid_not_list():
-    with pytest.raises(ValueError) as e:
+    with pytest.raises(JsonSchemaException) as e:
         SaneJson(get_mock('invalid/bad_sane_json_1.json'))
-    assert 'report json is not a list' in str(e.value)
+    assert 'data must be array' in str(e.value)
 
 
 def test_sane_json_invalid_no_layout():
-    with pytest.raises(ValueError) as e:
+    with pytest.raises(JsonSchemaException) as e:
         SaneJson(get_mock('invalid/bad_sane_json_2.json'))
-    assert 'report has one or more sections without a layout' in str(e.value)
+
+    assert "data[0] must contain ['type', 'data', 'layout'] properties" in str(
+        e.value)
 
 
 def test_sane_json_invalid_no_col_key():
-    with pytest.raises(ValueError) as e:
+    with pytest.raises(JsonSchemaException) as e:
         SaneJson(get_mock('invalid/bad_sane_json_3.json'))
-    assert 'report has one or more sections without a layout>columnPos' in str(
-        e.value)
+    assert "data[0].layout must contain ['rowPos', 'columnPos', 'h', 'w']" + \
+           " properties" in str(e.value)
 
 
 def test_sane_json_invalid_no_row_key():
-    with pytest.raises(ValueError) as e:
+    with pytest.raises(JsonSchemaException) as e:
         SaneJson(get_mock('invalid/bad_sane_json_4.json'))
-    assert 'report has one or more sections without a layout>rowPos' in str(
-        e.value)
+    assert "data[0].layout must contain ['rowPos', 'columnPos', 'h', 'w']" + \
+           " properties" in str(e.value)
 
 
 def test_sane_json_invalid_no_width_key():
-    with pytest.raises(ValueError) as e:
+    with pytest.raises(JsonSchemaException) as e:
         SaneJson(get_mock('invalid/bad_sane_json_5.json'))
-    assert 'report has one or more sections without a layout>w' in str(
-        e.value)
+    assert "data[0].layout must contain ['rowPos', 'columnPos', 'h', 'w']" + \
+           " properties" in str(e.value)
 
 
 def test_sane_json_invalid_no_height_key():
-    with pytest.raises(ValueError) as e:
+    with pytest.raises(JsonSchemaException) as e:
         SaneJson(get_mock('invalid/bad_sane_json_6.json'))
-    assert 'report has one or more sections without a layout>h' in str(
-        e.value)
+    assert "data[0].layout must contain ['rowPos', 'columnPos', 'h', 'w']" + \
+           " properties" in str(e.value)
 
 
 def test_sane_json_invalid_2ndpage_no_height_key():
-    with pytest.raises(ValueError) as e:
+    with pytest.raises(JsonSchemaException) as e:
         SaneJson(get_mock('invalid/bad_sane_json_7.json'))
-    assert 'report has one or more sections without a layout>rowPos,h' in str(
-        e.value)
+    assert "data[1].layout must contain ['rowPos', 'columnPos', 'h', 'w']" + \
+           " properties" in str(e.value)
 
 
-def test_sane_json_invalid_not_list():
-    with pytest.raises(ValueError) as e:
+def test_sane_json_invalid_layout_keys():
+    with pytest.raises(JsonSchemaException) as e:
         SaneJson(get_mock('invalid/invalid_layout_keys.json'))
-    assert 'report has a section with a bad value layout key layout>h' in str(
-        e.value)
+    assert 'data[0].layout.h must be bigger than or equal to 1' in str(e.value)
 
 
 def test__separate_pages():

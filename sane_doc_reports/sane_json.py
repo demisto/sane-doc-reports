@@ -1,6 +1,7 @@
 import json
 from typing import Any, Callable, Dict, List, Optional, Type, Union, Tuple
 
+from sane_doc_reports.json_schema import validate
 from sane_doc_reports.positioning import *
 from sane_doc_reports.page import Page
 
@@ -26,39 +27,9 @@ class SaneJson:
         self.pages = self._separate_pages()
 
     def _verify_sane_json(self):
-        if not isinstance(self.json_data, list):
-            raise ValueError('report json is not a list')
-
-        for section in self.json_data:
-            if LAYOUT_KEY not in section:
-                raise ValueError(
-                    f'report has one or more sections without a {LAYOUT_KEY}')
-
-            # Check that we have all of the layout required keys
-            # (defined in consts)
-            required_keys = [ROW_POSITION_KEY, COL_POSITION_KEY,
-                             HEIGHT_POSITION_KEY, WIDTH_POSITION_KEY]
-            key_doesnt_exist = [i for i in required_keys if
-                                i not in section[LAYOUT_KEY]]
-            if len(key_doesnt_exist) > 0:
-                raise ValueError(
-                    'report has one or more sections without a' +
-                    f' {LAYOUT_KEY}>{",".join(key_doesnt_exist)}')
-
-            # Check that each key for width/height is reasonable
-            for key in [HEIGHT_POSITION_KEY, WIDTH_POSITION_KEY]:
-                if int(section[LAYOUT_KEY][key]) <= 0:
-                    raise ValueError(
-                        'report has a section with a bad value' +
-                        f' layout key {LAYOUT_KEY}>{key}')
-
-            # Check that each key for rowPos/columnPos is reasonable
-            for key in [ROW_POSITION_KEY, COL_POSITION_KEY]:
-                if int(section[LAYOUT_KEY][key]) < 0:
-                    raise ValueError(
-                        'report has a section with a bad value' +
-                        f' layout key {LAYOUT_KEY}>{key}')
-        return True
+        print(self.json_data)
+        print("Validation: ", validate(self.json_data))
+        return validate(self.json_data)
 
     def _separate_pages(self) -> List[List[Page]]:
         """

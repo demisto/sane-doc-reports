@@ -1,0 +1,122 @@
+[
+    {
+        "type": "markdown",
+        "data": {
+            "text": "# **Critical and High incidents**\n\nThu, 18 Apr 2019 19:02:22 IDT\n\n---",
+            "groups": [
+                {
+                    "name": "",
+                    "data": [
+                        2
+                    ],
+                    "groups": null
+                }
+            ]
+        },
+        "layout": {
+            "columnPos": 0,
+            "h": 1,
+            "i": "8cdc9e20-005c-11e8-831f-e7429aff1c69",
+            "rowPos": 0,
+            "w": 12
+        },
+        "query": {
+            "type": "incident",
+            "filter": {
+                "query": "-status:Closed and (severity:High or severity:Critical)",
+                "period": {
+                    "byFrom": "days",
+                    "fromValue": null,
+                    "by": "day"
+                }
+            }
+        },
+        "automation": {
+            "name": "",
+            "id": "",
+            "args": null,
+            "noEvent": false
+        },
+        "title": "criticalAndHighIncidents Headline"
+    },
+    {
+        "type": "markdown",
+        "data": {
+            "text": "# Total open incidents: 2",
+            "groups": [
+                {
+                    "name": "",
+                    "data": [
+                        2
+                    ],
+                    "groups": null
+                }
+            ]
+        },
+        "layout": {
+            "columnPos": 0,
+            "h": 1,
+            "i": "ab2a8d40-00ea-11e8-9b6f-436025e19450",
+            "rowPos": 1,
+            "w": 12
+        },
+        "query": {
+            "type": "incident",
+            "filter": {
+                "query": "-status:Closed and (severity:High or severity:Critical)",
+                "period": {
+                    "byFrom": "days",
+                    "fromValue": null,
+                    "by": "day"
+                }
+            }
+        },
+        "automation": {
+            "name": "",
+            "id": "",
+            "args": null,
+            "noEvent": false
+        },
+        "title": "criticalAndHighIncidents Headline"
+    },
+    {
+        "type": "markdown",
+        "data": {
+            "text": "testa\n~~testb~~\n_testc_\n- test0\n- test 1\n- test 2\n1. test 3\n2. test 4\n3. test 5\n[example.com](https://example.com)\n```\nCOde\n```\n\u003e  QUote\n",
+            "groups": [
+                {
+                    "name": "",
+                    "data": [
+                        5
+                    ],
+                    "groups": null
+                }
+            ]
+        },
+        "layout": {
+            "columnPos": 0,
+            "h": 3,
+            "i": "52fefaa0-61f3-11e9-a6c1-c5cf4739ba8a",
+            "rowPos": 2,
+            "w": 12
+        },
+        "query": {
+            "type": "incident",
+            "filter": {
+                "query": "-status:closed -category:job",
+                "period": {
+                    "byFrom": "days",
+                    "fromValue": null,
+                    "by": "day"
+                }
+            }
+        },
+        "automation": {
+            "name": "",
+            "id": "",
+            "args": null,
+            "noEvent": false
+        },
+        "title": "test markdown"
+    }
+]

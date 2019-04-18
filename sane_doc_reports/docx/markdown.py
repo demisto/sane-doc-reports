@@ -63,6 +63,23 @@ class DocxRenderer(mistune.Renderer):
         self.sane.append(section)
         return ''
 
+    def image(self, src, title, alt_text):
+        section = {
+            'type': 'image',
+            f'{DATA_KEY}': '',
+            f'{LAYOUT_KEY}': {
+                f'{STYLE_KEY}': {
+                    'name': 'Arial',
+                    'fontSize': 14,
+                    'color': '#6c6c6c',
+                    'textAlign': 'left'
+                }
+            }
+        }
+        self.sane.append(section)
+        return ''
+
+
 
 def insert_from_markdowm(cell_object: dict, markdown_string: str) -> None:
     renderer = DocxRenderer()

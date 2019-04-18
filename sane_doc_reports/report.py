@@ -19,7 +19,7 @@ class Report:
         self.sane_json = SaneJson(json_file_path)
 
     def populate_report(self) -> None:
-        self._change_page_size()
+        self.change_page_size('A4')
         self._decrease_layout_margins()
         for page_num, page in enumerate(self.sane_json.get_pages()):
             cols, rows = page.calculate_page_grid()
@@ -56,12 +56,12 @@ class Report:
     def save(self, output_file_path: str):
         self.document.save(output_file_path)
 
-    def _change_page_size(self) -> None:
-        """ Will change to A4 """
-        sections = self.document.sections
-        for section in sections:
-            section.page_height = Mm(297)
-            section.page_width = Mm(210)
+    def change_page_size(self, paper_size: str, direction=None) -> None:
+        if paper_size == 'A4':
+            sections = self.document.sections
+            for section in sections:
+                section.page_height = Mm(297)
+                section.page_width = Mm(210)
 
     def _decrease_layout_margins(self) -> None:
         sections = self.document.sections

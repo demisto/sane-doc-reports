@@ -84,6 +84,8 @@ def test_markdown_and_text():
 
     # Find 4 fonts
     assert len(d.element.xpath('//w:rFonts')) == 4
+
+    # Check with Arial font too
     assert len(d.element.xpath('//w:rFonts[@w:ascii="Arial"]')) == 4
 
     # Find one H1

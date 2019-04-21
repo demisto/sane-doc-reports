@@ -82,7 +82,7 @@
     {
         "type": "markdown",
         "data": {
-            "text": "testa\n~~testb~~\n_testc_\n- test0\n- test 1\n- test 2\n1. test 3\n2. test 4\n3. test 5\n[example.com](https://example.com)\n```\nCOde\n```\n\u003e  QUote\n",
+            "text": "testa\n~~testb~~\n_testc_\n- test0\n- test 1\n- test 2\n1. test 3\n2. test 4\n3. test 5\n[example.com](https://example.com)\n![alt text](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png \"Logo Title Text 1\")\n```\nCOde\n```\n\u003e  QUote\n",
             "groups": [
                 {
                     "name": "",

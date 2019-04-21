@@ -8,4 +8,6 @@ def insert(cell_object: Dict, section: Dict) -> None:
     if DEBUG:
         print("Yo Im image")
 
-    cell_object['run'].add_picture(open_b64_image(section['data']))
+    cell = cell_object['run']
+
+    cell.add_picture(open_b64_image(section['data']))

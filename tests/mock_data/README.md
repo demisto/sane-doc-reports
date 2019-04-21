@@ -3,6 +3,8 @@
 ### General:
 1) `basic.json` - A basic title and test 2 rows.
 2) `three_pages.json` - A stripped down version just to check that we separate 3 pages
+3) `markdown.json` - A more rich markdown example
+4) `picture.json` - An inline picture example
 
 ### Invalid
 3) `empty.json` - An empty json file
@@ -20,3 +22,4 @@
 1) `fullgrid` - a page with a full 12x12 grid.
 7) `onecellgrid.json` - only one cell.
 8) `mergegrid.json` - a full page grid with strange merged cells.
+

@@ -7,6 +7,8 @@ from sane_doc_reports.sane_json import SaneJson
 from sane_doc_reports.grid import get_cell, merge_cells, get_cell_wrappers
 from docx.shared import Pt, Mm
 
+from sane_doc_reports.utils import insert_by_type
+
 
 class Report:
     """
@@ -50,8 +52,7 @@ class Report:
         if section_type == 'chart':
             section_type = section[LAYOUT_KEY]['chartType'] + '_chart'
 
-        func = importlib.import_module(f'sane_doc_reports.docx.{section_type}')
-        func.insert(cell_object, section)
+        insert_by_type(section_type, cell_object, section)
 
     def save(self, output_file_path: str):
         self.document.save(output_file_path)

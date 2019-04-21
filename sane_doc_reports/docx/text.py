@@ -6,15 +6,11 @@ from docx.shared import Pt
 import webcolors
 
 
-def insert(cell_object: Dict, section: Dict, is_addition=False) -> None:
+def insert(cell_object: Dict, section: Dict) -> None:
     cell = cell_object['run']
     paragraph = cell_object['paragraph']
 
-    if is_addition:
-        cell = cell_object['cell'].add_paragraph().add_run()
-        cell.text = section[DATA_KEY]['text']
-    else:
-        cell.text = section[DATA_KEY]['text']
+    cell.text = section[DATA_KEY]['text']
 
     if STYLE_KEY not in section[LAYOUT_KEY]:
         return
@@ -33,6 +29,8 @@ def insert(cell_object: Dict, section: Dict, is_addition=False) -> None:
     # Other characteristics
     if 'bold' in style:
         font.bold = style['bold']
+    if 'strikethrough' in style:
+        font.strike = style['strikethrough']
 
     # Font color
     if 'color' in style:

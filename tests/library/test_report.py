@@ -71,16 +71,3 @@ def test_creation_of_report_layout_merged():
         [1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1],
     ]
     assert get_vtable_merged(table) == vtable
-
-
-def test_picture_in_report():
-    report = Report(get_mock('picture.json'))
-    report.populate_report()
-    d = report.document
-    table = next(utils.iter_block_items(d))
-    assert isinstance(table, Table)
-    assert len(table.columns) == 1
-    assert len(table.rows) == 1
-
-    # Check that there is indeed an image
-    assert len(d.element.xpath('//pic:pic')) == 1

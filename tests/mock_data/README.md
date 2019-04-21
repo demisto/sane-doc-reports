@@ -5,6 +5,7 @@
 2) `three_pages.json` - A stripped down version just to check that we separate 3 pages
 3) `markdown.json` - A more rich markdown example
 4) `picture.json` - An inline picture example
+5) `md_basic.json` - Basic markdown of text
 
 ### Invalid
 3) `empty.json` - An empty json file

@@ -1,8 +1,5 @@
 import base64
-<<<<<<< HEAD
-=======
 import re
->>>>>>> 5bdec9ab1dc26aa52c0b1a5146c96bd6b63cbd28
 from io import BytesIO
 
 from docx.shared import RGBColor

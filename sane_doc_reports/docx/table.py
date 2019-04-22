@@ -5,7 +5,7 @@ from sane_doc_reports.conf import DEBUG, LAYOUT_KEY
 
 def insert(cell_object: Dict, section: Dict) -> None:
     if DEBUG:
-        print('Yo Im table')
+        print('Yo I am a table')
 
     table_data = section['data']
 
@@ -13,7 +13,6 @@ def insert(cell_object: Dict, section: Dict) -> None:
         table_columns = list(section[LAYOUT_KEY]['readableHeaders'].values())
     else:
         table_columns = section[LAYOUT_KEY]['tableColumns']
-        table_columns = [c[0].upper() + c[1:] for c in table_columns]
 
     table = cell_object['cell'].add_table(rows=1, cols=len(table_columns))
     table.style = 'Light Shading'

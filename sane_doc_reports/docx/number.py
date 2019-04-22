@@ -13,7 +13,6 @@ def insert(cell_object: Dict, section: Dict) -> None:
         print("Yo I am a number")
 
     table = cell_object['cell'].add_table(rows=1, cols=1)
-    # table.style = 'Light Grid Accent 1'
 
     # Add the main number
     inner_cell = table.cell(0, 0)

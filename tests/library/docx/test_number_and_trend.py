@@ -7,7 +7,7 @@ from tests.utils import get_mock
 
 
 def test_number_and_trend_in_report():
-    report = Report(get_mock('docx/number.json'))
+    report = Report(get_mock('docx/number_and_trend.json'))
     report.populate_report()
     d = report.document
     table = next(utils.iter_block_items(d))

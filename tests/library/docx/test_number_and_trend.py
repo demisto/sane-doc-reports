@@ -6,8 +6,8 @@ from tests import utils
 from tests.utils import get_mock
 
 
-def test_picture_in_report():
-    report = Report(get_mock('docx/image.json'))
+def test_number_and_trend_in_report():
+    report = Report(get_mock('docx/number.json'))
     report.populate_report()
     d = report.document
     table = next(utils.iter_block_items(d))
@@ -15,10 +15,13 @@ def test_picture_in_report():
 
     if SHOULD_HAVE_12_GRID:
         assert len(table.columns) == 12
-        assert len(table.rows) == 1
+        assert len(table.rows) == 4
     else:
-        assert len(table.columns) == 1
-        assert len(table.rows) == 1
+        assert len(table.columns) == 9
+        assert len(table.rows) == 4
 
     # Check that there is indeed an image
-    assert len(d.element.xpath('//pic:pic')) == 1
+    assert len(d.element.xpath('//w:tbl//w:tbl')) == 2
+
+    # Check that it has the right amount of rows
+    assert len(d.element.xpath('//w:tbl//w:tbl//w:t')) == 5

@@ -11,7 +11,7 @@ from sane_doc_reports.docx import image
 @utils.plot
 def insert(cell_object: Dict, section: Dict) -> None:
     if DEBUG:
-        print("Yo I am bar chart!")
+        print("Yo I am column chart!")
 
     bar_width = 0.35
 
@@ -21,24 +21,13 @@ def insert(cell_object: Dict, section: Dict) -> None:
     y_axis = [i for i, _ in enumerate(objects)]
     x_axis = [i['data'][0] for i in data]
 
-    # Colors:
-    colors = [c for c in utils.get_saturated_colors()[:len(objects)]]
-
-    rects = plt.barh(y_axis, x_axis, align='center', alpha=0.5, color=colors)
+    plt.bar(y_axis, x_axis, align='center', alpha=0.5, width=bar_width)
 
     ax = plt.gca()
-    ax.set_yticks(y_axis)
-    ax.set_yticklabels([])
-    ax.invert_yaxis()  # labels read top-to-bottom
-    ax.set_xlabel('')
-
     ax.set_xlim(-len(objects), len(objects))
 
-    # Remove the bottom labels
-    plt.tick_params(bottom='off')
+    plt.xticks(y_axis, objects)
     plt.title(section['title'])
-
-    ax.legend((rects), (objects))
 
     plt_b64 = utils.plt_t0_b64(plt)
     s = {

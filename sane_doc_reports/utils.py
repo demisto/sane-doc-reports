@@ -1,7 +1,12 @@
 import base64
 import re
+import tempfile
 from io import BytesIO
+from pathlib import Path
+from types import ModuleType
 
+from matplotlib import pyplot as plt
+from matplotlib import colors as mcolors
 from docx.shared import RGBColor
 
 
@@ -23,3 +28,37 @@ def open_b64_image(image_base64):
     f.write(base64.b64decode(raw_base64))
     f.seek(0)
     return f
+
+
+def get_saturated_colors():
+    """ Return named colors that are clearly visible on a white background """
+    colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS)
+
+    return [name for name, _ in colors.items()
+            if 'light' not in name and 'white' not in name]
+
+
+def plt_t0_b64(plt: ModuleType):
+    """ Matplotlib to base64 url """
+    path = Path(tempfile.mkdtemp()) / Path(
+        next(tempfile._get_candidate_names()) + '.png')
+
+
+    plt.savefig(str(path), format='png', bbox_inches='tight', figsize=(1, 1),
+                dpi=80)
+
+    with open(str(path), "rb") as f:
+        img_base64 = base64.b64encode(f.read()).decode("utf-8", "ignore")
+        b64 = f'data:image/png;base64,{img_base64}'
+
+    path.unlink()
+    return b64
+
+
+def plot(func):
+    def wrapper(*args, **kwargs):
+        plt.figure(figsize=(4, 3))
+        plt.clf()
+        func(*args, **kwargs)
+
+    return wrapper

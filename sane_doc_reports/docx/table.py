@@ -8,7 +8,13 @@ def insert(cell_object: Dict, section: Dict) -> None:
         print('Yo Im table')
 
     table_data = section['data']
-    table_columns = list(section[LAYOUT_KEY]['readableHeaders'].values())
+
+    if 'readableHeaders' in section[LAYOUT_KEY]:
+        table_columns = list(section[LAYOUT_KEY]['readableHeaders'].values())
+    else:
+        table_columns = section[LAYOUT_KEY]['tableColumns']
+        table_columns = [c[0].upper() + c[1:] for c in table_columns]
+
     table = cell_object['cell'].add_table(rows=1, cols=len(table_columns))
     table.style = 'Light Shading'
     hdr_cells = table.rows[0].cells

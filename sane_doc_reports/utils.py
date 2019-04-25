@@ -5,6 +5,20 @@ import importlib
 
 from docx.shared import RGBColor
 
+from matplotlib import colors as mcolors
+
+colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS)
+
+
+def name_to_rgb(color_name: str):
+    hex_color = name_to_hex(color_name)
+    return hex_to_rgb(hex_color)
+
+
+def name_to_hex(color_name: str):
+    """ Get the hex representation of a color name (CSS4) """
+    return colors[color_name]
+
 
 def hex_to_rgb(hex_color: str):
     """

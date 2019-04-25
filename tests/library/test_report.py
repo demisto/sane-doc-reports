@@ -1,4 +1,3 @@
-import pytest
 from docx.table import Table
 
 from sane_doc_reports.grid import get_vtable_merged

@@ -1,6 +1,7 @@
 import base64
 import re
 from io import BytesIO
+import importlib
 
 from docx.shared import RGBColor
 
@@ -23,3 +24,9 @@ def open_b64_image(image_base64):
     f.write(base64.b64decode(raw_base64))
     f.seek(0)
     return f
+
+
+def insert_by_type(type: str, cell_object: dict, section: dict):
+    """ Call a docx elemnt's insert method """
+    func = importlib.import_module(f'sane_doc_reports.docx.{type}')
+    func.insert(cell_object, section)

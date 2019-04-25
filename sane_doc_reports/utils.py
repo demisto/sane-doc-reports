@@ -3,8 +3,8 @@ import re
 import tempfile
 from io import BytesIO
 from pathlib import Path
-from types import ModuleType
 
+import matplotlib
 from matplotlib import pyplot as plt
 from matplotlib import colors as mcolors
 from docx.shared import RGBColor
@@ -38,11 +38,10 @@ def get_saturated_colors():
             if 'light' not in name and 'white' not in name]
 
 
-def plt_t0_b64(plt: ModuleType):
+def plt_t0_b64(plt: matplotlib.pyplot):
     """ Matplotlib to base64 url """
     path = Path(tempfile.mkdtemp()) / Path(
         next(tempfile._get_candidate_names()) + '.png')
-
 
     plt.savefig(str(path), format='png', bbox_inches='tight', figsize=(1, 1),
                 dpi=80)
@@ -56,6 +55,7 @@ def plt_t0_b64(plt: ModuleType):
 
 
 def plot(func):
+    """ A decorator used to clear and resize each chart """
     def wrapper(*args, **kwargs):
         plt.figure(figsize=(4, 3))
         plt.clf()

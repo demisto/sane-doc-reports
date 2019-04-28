@@ -24,7 +24,6 @@ def test_text():
     assert len(d.element.xpath('//w:sz[@w:val="32"]')) == 1
 
     # Find styles
-
     assert len(d.element.xpath('//w:i')) == 1
     assert len(d.element.xpath('//w:strike')) == 1
     assert len(d.element.xpath('//w:u')) == 1

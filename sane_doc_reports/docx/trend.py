@@ -12,9 +12,11 @@ def insert(cell_object: Dict, section: Dict) -> None:
     if DEBUG:
         print("Yo I am a trend!")
 
-    wt = cell_object['cell'].add_table(rows=1, cols=1)
-    wt.style = 'Table Grid'
-    table = wt.cell(0, 0).add_table(rows=2, cols=4)
+    # Used for debugging:
+    # table.style = 'Table Grid'
+    # wt = cell_object['cell'].add_table(rows=1, cols=1)
+    # wt.style = 'Table Grid'
+    table = cell_object['cell'].add_table(rows=2, cols=4)
 
     # Add the main number
     current_sum = section[f'{DATA_KEY}']['currSum']

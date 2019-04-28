@@ -23,3 +23,4 @@ RIGHT_MARGIN_PT = 15
 # Page size constants
 A4_MM_HEIGHT = 297
 A4_MM_WIDTH = 210
+SHOULD_HAVE_12_GRID = False

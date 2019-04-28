@@ -22,7 +22,7 @@ def insert(cell_object: Dict, section: Dict) -> None:
     inner_cell_run.font.bold = True
     inner_cell_paragraph.alignment = 1
 
-    # Add the second number
+    # Add the title
     inner_2nd_paragraph = inner_cell.add_paragraph()
     inner_2nd_run = inner_2nd_paragraph.add_run()
     inner_2nd_run.text = str(section['title'])
@@ -31,7 +31,8 @@ def insert(cell_object: Dict, section: Dict) -> None:
     inner_2nd_paragraph.alignment = 1
 
     # Add background color
-    color_str = 'f3f3f3'
-    shading_elm_1 = parse_xml(
-        (r'<w:shd {} w:fill="' + color_str + '"/>').format(nsdecls('w')))
-    inner_cell._tc.get_or_add_tcPr().append(shading_elm_1)
+    # TODO: add background color later on.
+    # color_str = 'f3f3f3'
+    # shading_elm_1 = parse_xml(
+    #     (r'<w:shd {} w:fill="' + color_str + '"/>').format(nsdecls('w')))
+    # inner_cell._tc.get_or_add_tcPr().append(shading_elm_1)

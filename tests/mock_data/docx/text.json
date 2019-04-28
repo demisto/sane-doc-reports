@@ -11,7 +11,8 @@
         "name": "Arial",
         "bold": true,
         "color": "royalblue",
-        "textAlign": "left"
+        "textAlign": "left",
+        "underline": true
       },
       "columnPos": 0,
       "h": 1,
@@ -40,7 +41,8 @@
         "fontSize": 16,
         "strikethrough": true,
         "color": "black",
-        "textAlign": "right"
+        "textAlign": "right",
+        "italic": true
       },
       "columnPos": 0,
       "h": 1,

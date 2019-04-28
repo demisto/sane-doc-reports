@@ -34,6 +34,10 @@ def insert(cell_object: Dict, section: Dict) -> None:
         font.bold = style['bold']
     if 'strikethrough' in style:
         font.strike = style['strikethrough']
+    if 'underline' in style:
+        font.underline = style['underline']
+    if 'italic' in style:
+        font.italic = style['italic']
 
     # Font color
     if 'color' in style:

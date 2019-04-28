@@ -12,7 +12,9 @@ def insert(cell_object: Dict, section: Dict) -> None:
     if DEBUG:
         print("Yo I am a trend!")
 
-    table = cell_object['cell'].add_table(rows=2, cols=4)
+    wt = cell_object['cell'].add_table(rows=1, cols=1)
+    wt.style = 'Table Grid'
+    table = wt.cell(0, 0).add_table(rows=2, cols=4)
 
     # Add the main number
     current_sum = section[f'{DATA_KEY}']['currSum']
@@ -31,9 +33,9 @@ def insert(cell_object: Dict, section: Dict) -> None:
 
     change = (current_sum * 100) / previous_sum
     if change < 0:
-        direction = '⏷' # Down arrow
+        direction = '⏷'  # Down arrow
     else:
-        direction = '⏶' # Up arrow
+        direction = '⏶'  # Up arrow
 
     value_percent = f'{direction}{change}%'
     inner_cell = table.cell(0, 2)

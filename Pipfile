@@ -13,8 +13,9 @@ pytest-cov = "*"
 click = "*"
 python-docx = "*"
 webcolors = "*"
-mistune = "*"
 fastjsonschema = "*"
+markdown2 = "*"
+markdown = "*"
 
 [requires]
 python_version = "3.7"

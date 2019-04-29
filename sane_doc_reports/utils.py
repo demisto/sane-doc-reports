@@ -23,7 +23,7 @@ def name_to_rgb(color_name: str):
 
 def name_to_hex(color_name: str):
     """ Get the hex representation of a color name (CSS4) """
-    return colors[color_name]
+    return colors[color_name].lower()
 
 
 def hex_to_rgb(hex_color: str):

@@ -1,7 +1,7 @@
 from typing import Dict
 
 from sane_doc_reports.conf import DEBUG, DATA_KEY, LAYOUT_KEY, STYLE_KEY
-from sane_doc_reports.docx import text, md_hr, md_quote
+from sane_doc_reports.docx import text, md_hr, md_quote, md_code
 from sane_doc_reports.style import apply_styling
 from sane_doc_reports.utils import markdown_to_list, add_run
 
@@ -42,7 +42,15 @@ def paragraph(section):
 def quote(cell_object, section):
     new_cell_object = md_quote.insert(cell_object, None)
 
-    # I'm a genius, you need to clap now :)
+    insert(new_cell_object, section['contents'], recursive=True)
+
+
+def code(cell_object, section):
+    if isinstance(section, dict) and section['type'] == 'code':
+        insert(cell_object, section, recursive=True)
+        return
+
+    new_cell_object = md_code.insert(cell_object, None)
     insert(new_cell_object, section['contents'], recursive=True)
 
 
@@ -56,7 +64,15 @@ def fix_attrs(attrs):
     return {k: True for k in attrs}
 
 
-def insert(cell_object: Dict, section: Dict, recursive=False) -> None:
+def insert(cell_object: Dict, section: Dict, recursive=False, meta={}) -> None:
+    """
+
+    :param cell_object:
+    :param section:
+    :param recursive: if we should create a new paragraph / run
+    :param meta:
+    :return:
+    """
     if DEBUG:
         print("Yo Im markdown chart")
 
@@ -81,7 +97,7 @@ def insert(cell_object: Dict, section: Dict, recursive=False) -> None:
             continue
 
         # P <> Normal text
-        if s['type'] == 'p':
+        if s['type'] in ['p', 'code']:
             if not recursive:
                 cell_object = add_run(cell_object)
 
@@ -90,6 +106,12 @@ def insert(cell_object: Dict, section: Dict, recursive=False) -> None:
                 apply_styling(cell_object, section[LAYOUT_KEY][STYLE_KEY])
 
             text.insert(cell_object, section)
+            continue
+
+        # Pre <> Code
+        if s['type'] in 'pre':
+            cell_object = add_run(cell_object)
+            code(cell_object, s)
             continue
 
         # Blockquote <> Quote
@@ -107,4 +129,4 @@ def insert(cell_object: Dict, section: Dict, recursive=False) -> None:
             md_hr.insert(cell_object, section)
             continue
 
-        print(s['type'])
+        print(s['type'], s)

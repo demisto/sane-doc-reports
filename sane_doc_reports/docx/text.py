@@ -8,6 +8,4 @@ def insert(cell_object: Dict, section: Dict) -> None:
         print("Yo I am text!")
 
     cell = cell_object['run']
-    paragraph = cell_object['paragraph']
-
     cell.text = section[DATA_KEY]['text']

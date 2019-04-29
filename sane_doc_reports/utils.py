@@ -1,11 +1,14 @@
 import base64
 import re
-from io import BytesIO
+from io import BytesIO, StringIO
 import xml.etree.cElementTree as ET
 import importlib
 
 import mistune
+from docx.oxml import OxmlElement
 from docx.shared import RGBColor
+from docx.text.paragraph import Paragraph
+from lxml.html import soupparser
 
 from sane_doc_reports.markdown_utils import build_dict, collapse_attrs
 from matplotlib import colors as mcolors
@@ -62,10 +65,7 @@ def markdown_to_list(markdown_string):
         ]
     """
     html = mistune.markdown(markdown_string).strip()
-
-    # Etree needs a wrapping element to function correctly
-    fixed_html = f'<root>{html}</root>'
-    etree_root = ET.fromstring(fixed_html)
+    etree_root = soupparser.parse(StringIO(html)).getroot()
     html_list = list(map(build_dict, [c for c in list(etree_root)]))
     return collapse_attrs(html_list)
 
@@ -74,3 +74,19 @@ def insert_by_type(type: str, cell_object: dict, section: dict):
     """ Call a docx elemnt's insert method """
     func = importlib.import_module(f'sane_doc_reports.docx.{type}')
     func.insert(cell_object, section)
+
+
+def _insert_paragraph_after(paragraph):
+    """Insert a new paragraph after the given paragraph."""
+    new_p = OxmlElement("w:p")
+    paragraph._p.addnext(new_p)
+    new_para = Paragraph(new_p, paragraph._parent)
+
+    return new_para
+
+
+def add_run(cell_object):
+    """ Insert a paragraph so we could add a new element"""
+    cell_object['paragraph'] = _insert_paragraph_after(cell_object['paragraph'])
+    cell_object['run'] = cell_object['paragraph'].add_run()
+    return cell_object

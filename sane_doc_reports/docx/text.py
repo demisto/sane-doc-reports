@@ -1,6 +1,6 @@
 from typing import Dict
 
-from sane_doc_reports.conf import DEBUG, DATA_KEY, LAYOUT_KEY, STYLE_KEY
+from sane_doc_reports.conf import DEBUG, DATA_KEY
 
 
 def insert(cell_object: Dict, section: Dict) -> None:

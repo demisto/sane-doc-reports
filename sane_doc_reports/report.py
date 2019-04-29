@@ -38,14 +38,15 @@ class Report:
                 merge_cells(grid, section)
                 cell_paragraph, cell_run = get_cell_wrappers(cell)
 
-                if STYLE_KEY in section[LAYOUT_KEY]:
-                    apply_styling(cell_run, cell_paragraph,
-                                  section[LAYOUT_KEY][STYLE_KEY])
                 cell_object = {
                     'cell': cell,
                     'paragraph': cell_paragraph,
                     'run': cell_run
                 }
+
+                if STYLE_KEY in section[LAYOUT_KEY]:
+                    apply_styling(cell_object, section[LAYOUT_KEY][STYLE_KEY])
+
                 self._insert_section(cell_object, section)
 
     @staticmethod

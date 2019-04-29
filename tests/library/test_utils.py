@@ -8,7 +8,7 @@ def test_markdown_to_list():
     expected = [
         {
             'type': 'p',
-            'attrs': ['del', 'strong'],
+            'attrs': ['bold', 'strikethrough'],
             'contents': '123'
         }
     ]
@@ -26,7 +26,7 @@ def test_markdown_to_list_ul():
             'contents': [
                 {
                     'type': 'li',
-                    'attrs': ['del', 'strong'],
+                    'attrs': ['bold', 'strikethrough'],
                     'contents': '123'
 
                 },
@@ -51,7 +51,7 @@ def test_markdown_to_list_ul_header():
             'contents': [
                 {
                     'type': 'li',
-                    'attrs': ['del', 'strong'],
+                    'attrs': ['bold', 'strikethrough'],
                     'contents': '123'
 
                 },
@@ -85,13 +85,13 @@ def test_markdown_to_list_complex():
             'contents': [
                 {
                     'type': 'li',
-                    'attrs': ['strong'],
+                    'attrs': ['bold'],
                     'contents': 'a'
 
                 },
                 {
                     'type': 'li',
-                    'attrs': ['em'],
+                    'attrs': ['italic'],
                     'contents': 'b'
                 }
             ]
@@ -102,7 +102,7 @@ def test_markdown_to_list_complex():
             'contents': [
                 {
                     'type': 'li',
-                    'attrs': ['del'],
+                    'attrs': ['strikethrough'],
                     'contents': 'c'
 
                 },
@@ -142,7 +142,7 @@ def test_markdown_to_list_complex():
                 },
             ]
         },
-        {'attrs': ['del', 'em', 'strong'], 'contents': 'test', 'type': 'h2'}
+        {'attrs': ['bold', 'italic', 'strikethrough'], 'contents': 'test', 'type': 'h2'}
     ]
     assert md_list == expected
 

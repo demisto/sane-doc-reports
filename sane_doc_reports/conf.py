@@ -27,3 +27,4 @@ SHOULD_HAVE_12_GRID = False
 
 # Others
 HTML_ATTRIBUTES = ['em', 'strong', 'del']
+HTML_MARKDOWN_MAP = {'em': 'italic', 'strong': 'bold', 'del': 'strikethrough'}

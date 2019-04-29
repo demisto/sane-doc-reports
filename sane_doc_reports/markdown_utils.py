@@ -1,6 +1,6 @@
 import json
 
-from sane_doc_reports.conf import HTML_ATTRIBUTES
+from sane_doc_reports.conf import HTML_ATTRIBUTES, HTML_MARKDOWN_MAP
 
 
 def should_collapse(has_siblings, section_type):
@@ -40,7 +40,8 @@ def collapse(section, has_siblings):
             collapsible = collapse(child, True)
             if collapsible:
                 child.collapse()
-
+            else:
+                child.swap_attr()
     return False
 
 
@@ -58,7 +59,10 @@ class Section:
     def add_attr(self, attrs):
         new_attributes = set(self.attrs)
         for attr in attrs:
-            new_attributes.add(attr)
+            mapped_attr = attr
+            if attr in HTML_MARKDOWN_MAP:
+                mapped_attr = HTML_MARKDOWN_MAP[attr]
+            new_attributes.add(mapped_attr)
         self.attrs = sorted(list(new_attributes))
 
     def collapse(self):
@@ -67,6 +71,13 @@ class Section:
             child = self.contents[0]
             self.add_attr(child.attrs + [child.type])
             self.contents = child.contents
+
+    def swap_attr(self):
+        """ Swap element type to be textual and move type to be an attr """
+        if self.type in HTML_ATTRIBUTES:
+            t = self.type
+            self.type = 'p'
+            self.add_attr([t])
 
     def has_children(self):
         return isinstance(self.contents, list) and len(self.contents) > 1

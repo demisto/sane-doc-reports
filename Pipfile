@@ -14,8 +14,7 @@ click = "*"
 python-docx = "*"
 webcolors = "*"
 fastjsonschema = "*"
-markdown2 = "*"
-markdown = "*"
+mistune = "*"
 
 [requires]
 python_version = "3.7"

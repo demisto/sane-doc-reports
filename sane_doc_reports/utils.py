@@ -3,11 +3,10 @@ import re
 from io import BytesIO
 import xml.etree.cElementTree as ET
 
-import markdown
+import mistune
 from docx.shared import RGBColor
 
-from sane_doc_reports.markdown_utils import build_dict, collapse_attrs, \
-    StrikeExtension
+from sane_doc_reports.markdown_utils import build_dict, collapse_attrs
 
 
 def hex_to_rgb(hex_color: str):
@@ -48,9 +47,7 @@ def markdown_to_list(markdown_string):
           }
         ]
     """
-    html = markdown.markdown(markdown_string,
-                             extensions=['extra',
-                                         StrikeExtension()]).strip()
+    html = mistune.markdown(markdown_string).strip()
 
     # Etree needs a wrapping element to function correctly
     fixed_html = f'<root>{html}</root>'

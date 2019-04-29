@@ -8,7 +8,7 @@ def test_markdown_to_list():
     expected = [
         {
             'type': 'p',
-            'attrs': ['strike', 'strong'],
+            'attrs': ['del', 'strong'],
             'contents': '123'
         }
     ]
@@ -26,7 +26,7 @@ def test_markdown_to_list_ul():
             'contents': [
                 {
                     'type': 'li',
-                    'attrs': ['strike', 'strong'],
+                    'attrs': ['del', 'strong'],
                     'contents': '123'
 
                 },
@@ -51,7 +51,7 @@ def test_markdown_to_list_ul_header():
             'contents': [
                 {
                     'type': 'li',
-                    'attrs': ['strike', 'strong'],
+                    'attrs': ['del', 'strong'],
                     'contents': '123'
 
                 },
@@ -71,14 +71,12 @@ def test_markdown_to_list_complex():
     markdown = '''- **a**
 - _b_
 1. ~~c~~
-2. # d 
-3. ```print('hi')```
-4. [url](url)
-5. > Some Quote
+2. ```print('hi')```
+3. [url](url)
+4. > Some Quote
 
-~~**# _test_**~~
---- 
-test'''
+~~**# _test_**~~ 
+'''
     md_list = markdown_to_list(markdown)
     expected = [
         {
@@ -104,7 +102,7 @@ test'''
             'contents': [
                 {
                     'type': 'li',
-                    'attrs': ['strike'],
+                    'attrs': ['del'],
                     'contents': 'c'
 
                 },
@@ -112,15 +110,40 @@ test'''
                     'type': 'li',
                     'attrs': [],
                     'contents': [{
-                        'type': 'h1',
+                        'type': 'code',
                         'attrs': [],
-                        'contents': 'd'
+                        'contents': "print('hi')"
+
                     }]
-                }
+                },
+                {
+                    'type': 'li',
+                    'attrs': [],
+                    'contents': [{
+                        'type': 'a',
+                        'attrs': [],
+                        'contents': 'url'
+                    }]
+                },
+                {
+                    'type': 'li',
+                    'attrs': [],
+                    'contents': [
+                        {
+                            'type': 'blockquote',
+                            'attrs': [],
+                            'contents': [{
+                                'type': 'p',
+                                'attrs': [],
+                                'contents': 'Some Quote'
+                            }]
+                        }
+                    ]
+                },
             ]
-        }
+        },
+        {'attrs': ['del', 'em', 'strong'], 'contents': 'test', 'type': 'h2'}
     ]
     assert md_list == expected
 
-
-    #TODO: table
+    # TODO: table

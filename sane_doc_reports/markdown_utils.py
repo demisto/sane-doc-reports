@@ -1,8 +1,4 @@
 import json
-import markdown
-from markdown.extensions import Extension
-from markdown.inlinepatterns import SimpleTagPattern
-
 
 from sane_doc_reports.conf import HTML_ATTRIBUTES
 
@@ -107,11 +103,3 @@ def build_dict(elem):
     return {'type': elem.tag, 'attrs': [], 'contents': contents}
 
 
-class StrikeExtension(Extension):
-    DEL_RE = r'(~~)(.*?)~~'
-
-    def extendMarkdown(self, md):
-        # Create the del pattern
-        del_tag = SimpleTagPattern(self.DEL_RE, 'strike')
-        # Insert del pattern into markdown parser
-        md.inlinePatterns.add('strike', del_tag, '>not_strong')

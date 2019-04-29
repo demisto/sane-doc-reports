@@ -1,11 +1,11 @@
-import importlib
-
 from docx import Document
 from docx.shared import Pt, Mm
 
+from sane_doc_reports.style import apply_styling
 from sane_doc_reports.utils import insert_by_type
-from sane_doc_reports.conf import DEBUG, LAYOUT_KEY, A4_MM_HEIGHT, A4_MM_WIDTH, \
-    TOP_MARGIN_PT, BOTTOM_MARGIN_PT, LEFT_MARGIN_PT, RIGHT_MARGIN_PT
+from sane_doc_reports.conf import DEBUG, LAYOUT_KEY, STYLE_KEY, \
+    A4_MM_HEIGHT, A4_MM_WIDTH, TOP_MARGIN_PT, BOTTOM_MARGIN_PT, \
+    LEFT_MARGIN_PT, RIGHT_MARGIN_PT
 from sane_doc_reports.sane_json import SaneJson
 from sane_doc_reports.grid import get_cell, merge_cells, get_cell_wrappers
 
@@ -37,6 +37,10 @@ class Report:
                 cell = get_cell(grid, section)
                 merge_cells(grid, section)
                 cell_paragraph, cell_run = get_cell_wrappers(cell)
+
+                if STYLE_KEY in section[LAYOUT_KEY]:
+                    apply_styling(cell_run, cell_paragraph,
+                                  section[LAYOUT_KEY][STYLE_KEY])
                 cell_object = {
                     'cell': cell,
                     'paragraph': cell_paragraph,

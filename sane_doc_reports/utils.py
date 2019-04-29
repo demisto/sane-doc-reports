@@ -51,7 +51,6 @@ def markdown_to_list(markdown_string):
 
     # Etree needs a wrapping element to function correctly
     fixed_html = f'<root>{html}</root>'
-    print(fixed_html)
     etree_root = ET.fromstring(fixed_html)
     html_list = list(map(build_dict, [c for c in list(etree_root)]))
     return collapse_attrs(html_list)

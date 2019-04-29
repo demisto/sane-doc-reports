@@ -76,6 +76,7 @@ def test_markdown_to_list_complex():
 4. > Some Quote
 
 ~~**# _test_**~~ 
+---
 '''
     md_list = markdown_to_list(markdown)
     expected = [

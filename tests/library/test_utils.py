@@ -75,9 +75,8 @@ def test_markdown_to_list_complex():
 3. [url](url)
 4. > Some Quote
 
-~~**# _test_**~~ 
----
-'''
+~~**# _test_**~~
+---'''
     md_list = markdown_to_list(markdown)
     expected = [
         {
@@ -147,4 +146,3 @@ def test_markdown_to_list_complex():
     ]
     assert md_list == expected
 
-    # TODO: table

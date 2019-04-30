@@ -34,7 +34,14 @@ def insert(cell_object: Dict, section: Dict) -> None:
     data = [int(i['data'][0]) for i in section[DATA_KEY]]
     keys = [i['name'] for i in section[DATA_KEY]]
 
+    # Fix unassigned
+    keys = [i if i != "" else "Unassigned" for i in keys]
+
+    # Generate the colors
     colors = [c for c in utils.get_saturated_colors()[:len(keys)]]
+    if "Unassigned" in keys:
+        colors[keys.index("Unassigned")] = 'darkgrey'
+
     if 'legend' in section[LAYOUT_KEY] and section[LAYOUT_KEY]['legend']:
         colors = [i['color'] for i in section[LAYOUT_KEY]['legend']]
 

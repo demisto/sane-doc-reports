@@ -1,5 +1,6 @@
 from typing import Dict
 
+from sane_doc_reports import CellObject, Section
 from sane_doc_reports.Wrapper import Wrapper
 from sane_doc_reports.conf import DEBUG, DATA_KEY, LAYOUT_KEY, STYLE_KEY
 from sane_doc_reports.docx import text, md_hr, md_quote, md_code
@@ -11,9 +12,9 @@ class MarkdownWrapper(Wrapper):
 
     def insert(self):
         print("Wazzap, creating markdown")
+        print(self.section)
 
-
-def invoke(cell_object, section):
+def invoke(cell_object: CellObject, section: Section):
     MarkdownWrapper(cell_object, section).insert()
 
 

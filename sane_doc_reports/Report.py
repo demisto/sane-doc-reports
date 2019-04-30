@@ -2,7 +2,7 @@ from docx import Document
 from docx.shared import Pt, Mm
 
 from sane_doc_reports.CellObject import CellObject
-from sane_doc_reports.Section import sane_to_section
+from sane_doc_reports.Section import sane_to_section, Section
 from sane_doc_reports.style import apply_styling
 from sane_doc_reports.utils import insert_by_type
 from sane_doc_reports.conf import DEBUG, LAYOUT_KEY, STYLE_KEY, \
@@ -41,18 +41,18 @@ class Report:
                 cell_object = CellObject(cell)
                 section = sane_to_section(section)
 
-                if STYLE_KEY in section[LAYOUT_KEY]:
-                    apply_styling(cell_object, section[LAYOUT_KEY][STYLE_KEY])
+                if section.layout:
+                    apply_styling(cell_object, section.layout)
 
                 self._insert_section(cell_object, section)
 
     @staticmethod
-    def _insert_section(cell_object: CellObject, section: dict) -> None:
-        section_type = section['type']
+    def _insert_section(cell_object: CellObject, section: Section) -> None:
+        section_type = section.type
 
         # Fix the chart name
         if section_type == 'chart':
-            section_type = section[LAYOUT_KEY]['chartType'] + '_chart'
+            section_type = section.layout['chartType'] + '_chart'
 
         insert_by_type(section_type, cell_object, section)
 

@@ -11,7 +11,7 @@ from docx.text.paragraph import Paragraph
 from lxml.html import soupparser
 
 from sane_doc_reports import CellObject
-from sane_doc_reports.markdown_utils import build_dict, collapse_attrs
+from sane_doc_reports.markdown_utils import build_dict, collapse_attrs, Section
 from matplotlib import colors as mcolors
 
 colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS)
@@ -71,7 +71,7 @@ def markdown_to_list(markdown_string):
     return collapse_attrs(html_list)
 
 
-def insert_by_type(type: str, cell_object: CellObject, section: dict):
+def insert_by_type(type: str, cell_object: CellObject, section: Section):
     """ Call a docx elemnt's insert method """
     func = importlib.import_module(f'sane_doc_reports.docx.{type}')
     func.invoke(cell_object, section)

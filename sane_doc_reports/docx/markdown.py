@@ -105,6 +105,7 @@ def insert(cell_object: Dict, section: Dict, recursive=False, meta={}) -> None:
             if STYLE_KEY in section[LAYOUT_KEY]:
                 apply_styling(cell_object, section[LAYOUT_KEY][STYLE_KEY])
 
+            print(section)
             text.insert(cell_object, section)
             continue
 
@@ -129,4 +130,4 @@ def insert(cell_object: Dict, section: Dict, recursive=False, meta={}) -> None:
             md_hr.insert(cell_object, section)
             continue
 
-        print(s['type'], s)
+        print(s['type'])

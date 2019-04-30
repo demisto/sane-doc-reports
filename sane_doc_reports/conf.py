@@ -26,5 +26,7 @@ A4_MM_WIDTH = 210
 SHOULD_HAVE_12_GRID = False
 
 # Others
+HTML_MAP = {'pre': 'p'}
 HTML_ATTRIBUTES = ['em', 'strong', 'del']
-HTML_MARKDOWN_MAP = {'em': 'italic', 'strong': 'bold', 'del': 'strikethrough'}
+HTML_ATTR_MARKDOWN_MAP = {'em': 'italic', 'strong': 'bold',
+                          'del': 'strikethrough'}

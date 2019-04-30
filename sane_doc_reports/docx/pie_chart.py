@@ -1,8 +1,11 @@
-from typing import Dict
-
-from sane_doc_reports.conf import DEBUG
+from sane_doc_reports.Element import Element
 
 
-def insert(cell_object: Dict, section: Dict) -> None:
-    if DEBUG:
-        print("Yo Im pie chart")
+class PieChartElement(Element):
+
+    def insert(self):
+        print("Adding pie chart: ", self.section.contents)
+
+
+def invoke(cell_object, section):
+    return PieChartElement(cell_object, section).insert()

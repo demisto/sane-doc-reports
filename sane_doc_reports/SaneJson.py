@@ -3,7 +3,7 @@ from typing import Any, Callable, Dict, List, Optional, Type, Union, Tuple
 
 from sane_doc_reports.json_schema import validate
 from sane_doc_reports.positioning import *
-from sane_doc_reports.page import Page
+from sane_doc_reports.Page import Page
 
 
 def _is_page_separator(json_section: dict):

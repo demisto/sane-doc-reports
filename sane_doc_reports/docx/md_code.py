@@ -1,4 +1,18 @@
+from sane_doc_reports.Wrapper import Wrapper
 
+
+class CodeWrapper(Wrapper):
+
+    def wrap(self):
+        print(self)
+        print("Wrapping code: ", self.section.contents)
+
+
+def invoke(cell_object, section):
+    if section.type != 'code':
+        raise ValueError('Called code but not code - ', section)
+
+    return CodeWrapper(cell_object, section).wrap()
 
 '''
 def insert(cell_object: Dict, section) -> Dict:

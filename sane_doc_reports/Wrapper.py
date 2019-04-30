@@ -9,7 +9,11 @@ class Wrapper(ABC):
         self.section = section
 
     @abstractmethod
-    def insert(self):
+    def wrap(self):
+        """
+        Inserts the start of the wrapping element, in a way that inserted
+         Elements will be inside the wrapping element
+        """
         pass
 
     def __str__(self):

@@ -2,24 +2,20 @@ from typing import Dict
 
 from sane_doc_reports import CellObject, Section
 from sane_doc_reports.Wrapper import Wrapper
-from sane_doc_reports.conf import DEBUG, DATA_KEY, LAYOUT_KEY, STYLE_KEY
-from sane_doc_reports.docx import text, md_hr, md_quote, md_code
-from sane_doc_reports.style import apply_styling
-from sane_doc_reports.utils import markdown_to_list, add_run
 
 
 class MarkdownWrapper(Wrapper):
 
-    def insert(self):
+    def wrap(self):
         print("Wazzap, creating markdown")
         print(self.section)
 
+
 def invoke(cell_object: CellObject, section: Section):
-    MarkdownWrapper(cell_object, section).insert()
+    if section.type != 'markdown':
+        raise ValueError('Called markdown but not markdown - ', section)
 
-
-
-
+    MarkdownWrapper(cell_object, section).wrap()
 
 # # TODO: move these to a transformers module?
 # def header(section):

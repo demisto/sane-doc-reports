@@ -54,6 +54,20 @@ def test_sane_to_section_table():
                  WIDTH_POSITION_KEY]])
 
 
+def test_sane_to_section_quote():
+    # TODO: make sure that quote contents has a list
+    json = get_mock('docx/quote.json', ret_dict=True)
+
+    s = sane_to_section(json[0])
+    assert isinstance(s, Section)
+    assert s.type == 'markdown'
+    assert isinstance(s.contents, str)
+    assert isinstance(s.contents[0], dict)
+    assert all([i in s.layout for i in
+                [ROW_POSITION_KEY, COL_POSITION_KEY, HEIGHT_POSITION_KEY,
+                 WIDTH_POSITION_KEY]])
+
+
 def test_sane_to_section_number_trend():
     json = get_mock('docx/number_and_trend.json', ret_dict=True)
 

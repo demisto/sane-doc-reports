@@ -1,8 +1,9 @@
+from __future__ import annotations  # Used to fix the __init__ of same type
+
 import json
 from typing import Union
 
 from sane_doc_reports.conf import LAYOUT_KEY, DATA_KEY
-from sane_doc_reports.markdown_utils import Section as SectionClass
 
 
 class Section(object):
@@ -12,14 +13,14 @@ class Section(object):
      elements.
     """
 
-    def __init__(self, type, contents: Union[SectionClass, str], layout, extra):
+    def __init__(self, type, contents: Union[Section, str], layout, extra):
         self.type = type
 
         # Text contents / or could have children
         # (markdown has children still as str)
         self.contents = contents
 
-        # All of the layout properties, like font/aligment/colors etc...
+        # All of the layout properties, like font/alignment/colors etc...
         self.layout = layout
 
         # Extra relevant information usually title

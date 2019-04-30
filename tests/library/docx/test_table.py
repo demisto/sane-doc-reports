@@ -1,6 +1,6 @@
 from docx.table import Table
 
-from sane_doc_reports.report import Report
+from sane_doc_reports.Report import Report
 from tests import utils
 from tests.utils import get_mock
 

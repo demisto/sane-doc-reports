@@ -61,21 +61,6 @@ def get_cell(table: Table, section: dict) -> _Cell:
     return table.rows[row].cells[col]
 
 
-def get_cell_wrappers(cell: _Cell) -> Tuple[Paragraph, Run]:
-    """
-    Return the cell's paragraph and create a run object too, return them
-    both. They are used to inject elements into the table cell.
-    Run object:
-    - https://python-docx.readthedocs.io/en/latest/api/text.html#run-objects
-    Paragraph Object:
-    - https://python-docx.readthedocs.io/en/latest/api/text.html#paragraph-objects
-    """
-    paragraphs = cell.paragraphs
-    paragraph = paragraphs[0]
-    run = paragraph.add_run()
-    return paragraph, run
-
-
 def get_vtable_merged(table: Table) -> List[List]:
     """
     Return a virtual representation of a table. Make merged cells  0

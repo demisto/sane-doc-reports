@@ -4,8 +4,8 @@ from sane_doc_reports.utils import name_to_rgb, hex_to_rgb
 
 
 def apply_styling(cell_object, style):
-    apply_cell_styling(cell_object['run'], style)
-    apply_paragraph_styling(cell_object['paragraph'], style)
+    apply_cell_styling(cell_object.run, style)
+    apply_paragraph_styling(cell_object.paragraph, style)
 
 
 def apply_cell_styling(run, style):

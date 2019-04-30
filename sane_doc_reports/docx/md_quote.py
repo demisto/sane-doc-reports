@@ -3,11 +3,18 @@ from typing import Dict
 from docx.oxml import parse_xml
 from docx.oxml.ns import nsdecls
 
+from sane_doc_reports.Wrapper import Wrapper
 from sane_doc_reports.conf import DEBUG
 from sane_doc_reports.grid import get_cell_wrappers
 from sane_doc_reports.utils import name_to_hex
 
 
+class QuoteWrapper(Wrapper):
+    def insert(self):
+        print("inserting a quote wrapper")
+
+
+'''
 def insert(cell_object: Dict, section) -> Dict:
     """ This is a special function, we only make the cell background and
      continue to add elements here """
@@ -29,3 +36,4 @@ def insert(cell_object: Dict, section) -> Dict:
         'run': cell_run
     }
     return new_cell_object
+'''

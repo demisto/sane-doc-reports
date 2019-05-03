@@ -53,7 +53,7 @@ def insert_by_type(type: str, cell_object: CellObject,
     """ Call a docx elemnt's insert method """
     func = importlib.import_module(f'sane_doc_reports.docx.{type}')
 
-    if section.layout:
+    if section.layout and STYLE_KEY in section.layout:
         apply_styling(cell_object, section.layout[STYLE_KEY])
 
     func.invoke(cell_object, section)

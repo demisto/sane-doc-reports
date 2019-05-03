@@ -11,7 +11,7 @@ from docx.shared import RGBColor
 from matplotlib import pyplot as plt
 from matplotlib import colors as mcolors
 
-from sane_doc_reports.conf import LAYOUT_KEY
+from sane_doc_reports.conf import LAYOUT_KEY, SIZE_H_INCHES, SIZE_W_INCHES, DPI
 
 colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS)
 
@@ -78,8 +78,9 @@ def plt_t0_b64(plt: matplotlib.pyplot):
     return b64
 
 
-def get_plt_size(section):
-    size_w, size_h, dpi = (6, 3, 80)
+def convert_plt_size(section):
+    """ Convert the plot size from pixels to word """
+    size_w, size_h, dpi = (SIZE_W_INCHES, SIZE_H_INCHES, DPI)
     if 'dimensions' in section[LAYOUT_KEY]:
         h = section[LAYOUT_KEY]['dimensions']['height'] / 100.0
         w = section[LAYOUT_KEY]['dimensions']['width'] / 100.0

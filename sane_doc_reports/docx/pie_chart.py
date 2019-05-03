@@ -27,7 +27,7 @@ def insert(cell_object: Dict, section: Dict) -> None:
     if DEBUG:
         print("I'm a pie chart")
 
-    size_w, size_h, dpi = utils.get_plt_size(section)
+    size_w, size_h, dpi = utils.convert_plt_size(section)
     fig, ax = plt.subplots(figsize=(size_w, size_h), dpi=dpi,
                            subplot_kw=dict(aspect="equal"))
 

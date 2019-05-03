@@ -4,7 +4,7 @@ from sane_doc_reports.Element import Element
 class LineChartElement(Element):
 
     def insert(self):
-        print("Adding text: ", self.section.contents)
+        print("Adding text...")
 
 
 def invoke(cell_object, section):

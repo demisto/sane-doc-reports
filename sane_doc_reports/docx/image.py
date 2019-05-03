@@ -15,9 +15,3 @@ def invoke(cell_object, section):
         raise ValueError('Called image but not image - ', section)
 
     return ImageElement(cell_object, section).insert()
-
-# def insert(cell_object: Dict, section: Dict) -> None:
-#     if DEBUG:
-#         print("Yo Im image")
-#
-#     cell_object['run'].add_picture(open_b64_image(section['data']))

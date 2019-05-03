@@ -53,6 +53,7 @@ class Report:
         # Fix the chart name
         if section_type == 'chart':
             section_type = section.layout['chartType'] + '_chart'
+            section.type = section_type
 
         insert_by_type(section_type, cell_object, section)
 

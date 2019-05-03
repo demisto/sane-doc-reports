@@ -4,7 +4,7 @@ from sane_doc_reports.Element import Element
 class BarChartElement(Element):
 
     def insert(self):
-        print("Adding barchart: ", self.section.contents)
+        print("Adding barchart...")
 
 
 def invoke(cell_object, section):

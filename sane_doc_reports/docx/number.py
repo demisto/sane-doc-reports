@@ -2,6 +2,7 @@ from docx.shared import Pt
 
 from sane_doc_reports.CellObject import CellObject
 from sane_doc_reports.Element import Element
+from sane_doc_reports.conf import DEBUG
 
 
 class NumberElement(Element):
@@ -10,8 +11,8 @@ class NumberElement(Element):
         print("Adding number: ", self.section.contents)
         table = self.cell_object.cell.add_table(rows=1, cols=1)
 
-        # Used for debugging:
-        # table.style = 'Table Grid'
+        if DEBUG:
+            table.style = 'Table Grid'
 
         # Add the main number
         inner_cell = table.cell(0, 0)

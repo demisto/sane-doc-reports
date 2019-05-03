@@ -5,7 +5,6 @@ from sane_doc_reports.Element import Element
 class HorizontalLineElement(Element):
 
     def insert(self):
-        print(self)
         print("Adding horizontal line")
 
 

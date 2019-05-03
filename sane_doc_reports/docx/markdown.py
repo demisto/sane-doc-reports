@@ -7,8 +7,7 @@ from sane_doc_reports.Wrapper import Wrapper
 class MarkdownWrapper(Wrapper):
 
     def wrap(self):
-        print("Wazzap, creating markdown")
-        print(self.section)
+        print("Wrapping markdown")
 
 
 def invoke(cell_object: CellObject, section: Section):

@@ -4,7 +4,6 @@ from sane_doc_reports.Wrapper import Wrapper
 class CodeWrapper(Wrapper):
 
     def wrap(self):
-        print(self)
         print("Wrapping code: ", self.section.contents)
 
 

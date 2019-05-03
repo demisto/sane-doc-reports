@@ -1,4 +1,5 @@
 from sane_doc_reports import utils
+from sane_doc_reports.Section import Section
 from sane_doc_reports.conf import DATA_KEY, LAYOUT_KEY
 
 # Plot
@@ -23,8 +24,8 @@ class PieChartElement(Element):
         fig, ax = plt.subplots(figsize=(size_w, size_h), dpi=dpi,
                                subplot_kw=dict(aspect="equal"))
 
-        data = [int(i['data'][0]) for i in self.section[DATA_KEY]]
-        keys = [i['name'] for i in self.section[DATA_KEY]]
+        data = [int(i['data'][0]) for i in self.section.contents]
+        keys = [i['name'] for i in self.section.contents]
 
         # Fix the unassigned key:
         keys = [i if i != "" else "Unassigned" for i in keys]
@@ -34,9 +35,9 @@ class PieChartElement(Element):
         unassigned_color = 'darkgrey'
 
         # If we have predefined colors, use them
-        if 'legend' in self.section[LAYOUT_KEY] and self.section[LAYOUT_KEY][
+        if 'legend' in self.section.layout and self.section.layout[
            'legend']:
-            colors = [i['color'] for i in self.section[LAYOUT_KEY]['legend']]
+            colors = [i['color'] for i in self.section.layout['legend']]
 
         color_keys = {}
         for i, k in enumerate(keys):
@@ -51,7 +52,7 @@ class PieChartElement(Element):
                                startangle=90, pctdistance=0.85,
                                textprops=dict(color="w"))
 
-        legend_style = self.section[LAYOUT_KEY]['legendStyle']
+        legend_style = self.section.layout['legendStyle']
 
         keys_with_numbers = ['{}: {}'.format(k, data[i]) for i, k in
                              enumerate(keys)]
@@ -62,16 +63,13 @@ class PieChartElement(Element):
                   bbox_to_anchor=(1, 0, 0.5, 1)
                   )
 
-        ax.set_title(self.section['title'])
+        ax.set_title(self.section.extra['title'])
         circle = plt.Circle((0, 0), 0.5, fc='white')
         ax.add_artist(circle)
 
         plt_b64 = utils.plt_t0_b64(plt)
 
-        s = {
-            'type': 'image',
-            'data': plt_b64
-        }
+        s = Section('image', plt_b64, {}, {})
         image.invoke(self.cell_object, s)
 
 

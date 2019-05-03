@@ -97,12 +97,12 @@ def plt_t0_b64(plt: matplotlib.pyplot):
     return b64
 
 
-def convert_plt_size(section):
+def convert_plt_size(section: Section):
     """ Convert the plot size from pixels to word """
     size_w, size_h, dpi = (SIZE_W_INCHES, SIZE_H_INCHES, DPI)
-    if 'dimensions' in section[LAYOUT_KEY]:
-        h = section[LAYOUT_KEY]['dimensions']['height'] / 100.0
-        w = section[LAYOUT_KEY]['dimensions']['width'] / 100.0
+    if 'dimensions' in section.layout:
+        h = section.layout['dimensions']['height'] / 100.0
+        w = section.layout['dimensions']['width'] / 100.0
         size_w, size_h, dpi = (w, h, 100)
     return size_w, size_h, dpi
 

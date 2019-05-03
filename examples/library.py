@@ -34,7 +34,7 @@ def example_pie_chart():
 
 def main():
     # Gets the json form tests/mock_data
-    example_basic()
+    example_pie_chart()
 
 if __name__ == '__main__':
     main()

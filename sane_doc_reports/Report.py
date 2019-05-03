@@ -3,7 +3,6 @@ from docx.shared import Pt, Mm
 
 from sane_doc_reports.CellObject import CellObject
 from sane_doc_reports.Section import sane_to_section, Section
-from sane_doc_reports.style import apply_styling
 from sane_doc_reports.utils import insert_by_type
 from sane_doc_reports.conf import DEBUG, LAYOUT_KEY, STYLE_KEY, \
     A4_MM_HEIGHT, A4_MM_WIDTH, TOP_MARGIN_PT, BOTTOM_MARGIN_PT, \
@@ -40,9 +39,6 @@ class Report:
                 merge_cells(grid, section)
                 cell_object = CellObject(cell)
                 section = sane_to_section(section)
-
-                if section.layout:
-                    apply_styling(cell_object, section.layout)
 
                 self._insert_section(cell_object, section)
 

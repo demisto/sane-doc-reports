@@ -11,7 +11,7 @@ class TrendElement(Element):
         table = self.cell_object.cell.add_table(rows=2, cols=4)
 
         # Add the main number
-        current_sum = self.section['contents']['currSum']
+        current_sum = self.section.contents['currSum']
         inner_cell = table.cell(0, 1)
         main_number = CellObject(inner_cell)
         main_number.run.text = str(current_sum)
@@ -20,7 +20,7 @@ class TrendElement(Element):
         main_number.paragraph.alignment = 1
 
         # Add the trend number
-        previous_sum = self.section['contents']['prevSum']
+        previous_sum = self.section.contents['prevSum']
         # Fix for the percentages
         if previous_sum == 0:
             previous_sum = 1

@@ -7,13 +7,13 @@ from pathlib import Path
 
 from docx.oxml import OxmlElement
 import matplotlib
-from docx.shared import RGBColor
+from docx.shared import RGBColor, Pt
 from docx.text.paragraph import Paragraph
 from matplotlib import pyplot as plt
 from matplotlib import colors as mcolors
 
 from sane_doc_reports import CellObject, Section
-from sane_doc_reports.conf import LAYOUT_KEY, SIZE_H_INCHES, SIZE_W_INCHES, DPI
+from sane_doc_reports.conf import SIZE_H_INCHES, SIZE_W_INCHES, DPI, STYLE_KEY
 
 colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS)
 
@@ -52,6 +52,10 @@ def insert_by_type(type: str, cell_object: CellObject,
                    section: Section):
     """ Call a docx elemnt's insert method """
     func = importlib.import_module(f'sane_doc_reports.docx.{type}')
+
+    if section.layout:
+        apply_styling(cell_object, section.layout[STYLE_KEY])
+
     func.invoke(cell_object, section)
 
 
@@ -66,8 +70,8 @@ def _insert_paragraph_after(paragraph):
 
 def add_run(cell_object):
     """ Insert a paragraph so we could add a new element"""
-    cell_object['paragraph'] = _insert_paragraph_after(cell_object['paragraph'])
-    cell_object['run'] = cell_object['paragraph'].add_run()
+    cell_object.paragraph = _insert_paragraph_after(cell_object.paragraph)
+    cell_object.run = cell_object.paragraph.add_run()
     return cell_object
 
 
@@ -111,3 +115,46 @@ def get_saturated_colors():
     """ Return named colors that are clearly visible on a white background """
     return [name for name, _ in colors.items()
             if 'light' not in name and 'white' not in name]
+
+
+def apply_styling(cell_object, style):
+    apply_cell_styling(cell_object, style)
+    apply_paragraph_styling(cell_object, style)
+
+
+def apply_cell_styling(cell_object, style):
+    # Font size
+    if 'fontSize' in style:
+        cell_object.run.font.size = Pt(style['fontSize'])
+
+    # Font family
+    if 'name' in style:
+        cell_object.run.font.name = style['name']
+
+    # Other characteristics
+    if 'bold' in style:
+        cell_object.run.font.bold = style['bold']
+    if 'strikethrough' in style:
+        cell_object.run.font.strike = style['strikethrough']
+    if 'underline' in style:
+        cell_object.run.font.underline = style['underline']
+    if 'italic' in style:
+        cell_object.run.font.italic = style['italic']
+
+    # Font color
+    if 'color' in style:
+        if style['color'][0] != '#':
+            cell_object.run.font.color.rgb = name_to_rgb(style['color'])
+        else:
+            cell_object.run.font.color.rgb = hex_to_rgb(style['color'])
+
+
+def apply_paragraph_styling(cell_object, style):
+    if 'textAlign' in style:
+        # text align
+        if style['textAlign'] == 'left':
+            # cell.alignment = 0
+            cell_object.paragraph.paragraph_format.alignment = 0
+        elif style['textAlign'] == 'right':
+            # cell.alignment = 1
+            cell_object.paragraph.paragraph_format.alignment = 2

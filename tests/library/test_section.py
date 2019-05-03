@@ -62,7 +62,6 @@ def test_sane_to_section_quote():
     assert isinstance(s, Section)
     assert s.type == 'markdown'
     assert isinstance(s.contents, str)
-    assert isinstance(s.contents[0], dict)
     assert all([i in s.layout for i in
                 [ROW_POSITION_KEY, COL_POSITION_KEY, HEIGHT_POSITION_KEY,
                  WIDTH_POSITION_KEY]])

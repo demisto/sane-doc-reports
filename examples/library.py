@@ -26,8 +26,8 @@ def example_text():
     report.save('example.docx')
 
 
-def example_markdown():
-    report = Report(get_mock('docx/deleteme.json'))
+def example_pie_chart():
+    report = Report(get_mock('docx/pie_chart.json'))
     report.populate_report()
     report.save('example.docx')
 
@@ -35,7 +35,6 @@ def example_markdown():
 def main():
     # Gets the json form tests/mock_data
     example_basic()
-
 
 if __name__ == '__main__':
     main()

@@ -14,8 +14,12 @@ click = "*"
 python-docx = "*"
 webcolors = "*"
 fastjsonschema = "*"
+<<<<<<< HEAD
 mistune = "*"
 beautifulsoup4 = "*"
+=======
+matplotlib = "*"
+>>>>>>> 2a3a3394ded86fce998e5ee649ab977935c3fbef
 
 [requires]
 python_version = "3.7"

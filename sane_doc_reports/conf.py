@@ -30,3 +30,8 @@ HTML_MAP = {'pre': 'p'}
 HTML_ATTRIBUTES = ['em', 'strong', 'del']
 HTML_ATTR_MARKDOWN_MAP = {'em': 'italic', 'strong': 'bold',
                           'del': 'strikethrough'}
+
+# Sizes:
+SIZE_W_INCHES = 6
+SIZE_H_INCHES = 3
+DPI = 80

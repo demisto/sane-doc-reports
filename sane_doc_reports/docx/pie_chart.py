@@ -12,9 +12,6 @@ import matplotlib.pyplot as plt
 from sane_doc_reports.docx import image
 
 
-def autopct_format(percent, total):
-    return "{:.1f}%".format(percent, 100)
-
 
 def get_ax_location(align, vertical_align):
     vertical_align = vertical_align.replace('top', 'upper').replace(
@@ -51,30 +48,22 @@ def insert(cell_object: Dict, section: Dict) -> None:
         if k == 'Unassigned':
             color_keys['Unassigned'] = unassigned_color
 
-
     final_colors = [color_keys[k] for k in keys]
 
-    wedges, texts, autotexts = ax.pie(data,
-                                      autopct=lambda percent: autopct_format(
-                                          percent,
-                                          data),
-                                      colors=final_colors,
-                                      startangle=90, pctdistance=0.85,
-                                      textprops=dict(color="w"))
-
-    # Fix the autopct text color
-    for autotext in autotexts:
-        autotext.set_color('black')
+    wedges, texts = ax.pie(data,
+                           colors=final_colors,
+                           startangle=90, pctdistance=0.85,
+                           textprops=dict(color="w"))
 
     legend_style = section[LAYOUT_KEY]['legendStyle']
-    ax.legend(wedges, keys,
+
+    keys_with_numbers = ['{}: {}'.format(k, data[i]) for i, k in enumerate(keys)]
+    ax.legend(wedges, keys_with_numbers,
               title="",
               loc=get_ax_location(legend_style['align'],
                                   legend_style['verticalAlign']),
               bbox_to_anchor=(1, 0, 0.5, 1)
               )
-
-    plt.setp(autotexts, size=8, weight="bold")
 
     ax.set_title(section['title'])
     circle = plt.Circle((0, 0), 0.5, fc='white')

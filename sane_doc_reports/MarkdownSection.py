@@ -115,8 +115,12 @@ class MarkdownSection(Section):
 def _collapse_attrs(section_list):
     ret = []
     for section in section_list:
-        s = MarkdownSection(section['type'], section['contents'],
-                            section['layout'], section['extra'])
+        if isinstance(section, Section):
+            s = MarkdownSection(section.type, section.contents,
+                                section.layout, section.extra)
+        else:
+            s = MarkdownSection(section['type'], section['contents'],
+                                section['layout'], section['extra'])
         s.collapse(False)
         ret.append(s)
     return ret

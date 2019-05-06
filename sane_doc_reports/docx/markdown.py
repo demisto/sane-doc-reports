@@ -1,37 +1,39 @@
-from typing import Dict
+from docx.shared import Pt
 
-from sane_doc_reports import CellObject, Section
-from sane_doc_reports.MarkdownSection import markdown_to_section_list
+from sane_doc_reports import CellObject
+from sane_doc_reports.Section import Section
+from sane_doc_reports.MarkdownSection import markdown_to_section_list, \
+    MarkdownSection
 from sane_doc_reports.Wrapper import Wrapper
 from sane_doc_reports.docx import text
-from sane_doc_reports.styles import header
+
+import sane_doc_reports.styles.text as text_style
+import sane_doc_reports.styles.header as header_style
 
 
 class MarkdownWrapper(Wrapper):
 
     def wrap(self):
 
-        md_section_ist = markdown_to_section_list(self.section.contents)
+        if isinstance(self.section.contents, list):
+            md_section_list = self.section.contents
+        else:
+            md_section_list = markdown_to_section_list(self.section.contents)
 
-        if not isinstance(md_section_ist, list):
+        if not isinstance(md_section_list, list):
             raise ValueError('Markdown section does not have valid contents ' +
                              '(must be a list)')
 
-        for section in md_section_ist:
+        for section in md_section_list:
 
+            self.cell_object.add_run()
             section_type = section.type
 
-            if section_type in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
-                header.apply_style(self.cell_object, section)
-                text.invoke(self.cell_object, section)
-                continue
-
-            if section_type in ['p']:
-                # Call text.invoke with normal styling
-                continue
-
-            if section_type == 'a':
-                # Call link.invoke with normal styling
+            # Start wrappers
+            if section_type == 'div':
+                temp_section = MarkdownSection('markdown', section.contents,
+                                               {}, {})
+                invoke(self.cell_object, temp_section)
                 continue
 
             if section_type == 'pre':
@@ -56,6 +58,31 @@ class MarkdownWrapper(Wrapper):
 
             if section_type == 'li':
                 # Call md_li.invoke
+                continue
+
+            # End wrappers
+
+
+
+            # Fix wrapped
+            if not isinstance(section.contents, str):
+                temp_section = MarkdownSection('markdown', section.contents,
+                                               {}, {})
+                invoke(self.cell_object, temp_section)
+                continue
+
+            if section_type in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
+                header_style.apply_style(self.cell_object, section)
+                text.invoke(self.cell_object, section)
+                continue
+
+            if section_type in ['p', 'span']:
+                text_style.apply_style(self.cell_object, section)
+                text.invoke(self.cell_object, section)
+                continue
+
+            if section_type == 'a':
+                # Call link.invoke with normal styling
                 continue
 
             raise ValueError(f'Section type is not defined: {section_type}')

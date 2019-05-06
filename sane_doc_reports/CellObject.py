@@ -33,3 +33,6 @@ class CellObject(object):
         if add_run:
             run = paragraph.add_run()
         return paragraph, run
+
+    def add_run(self):
+        self.run = self.paragraph.add_run()

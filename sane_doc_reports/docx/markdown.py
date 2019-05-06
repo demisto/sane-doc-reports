@@ -7,7 +7,54 @@ from sane_doc_reports.Wrapper import Wrapper
 class MarkdownWrapper(Wrapper):
 
     def wrap(self):
-        print("Wrapping markdown")
+
+        md_section_ist = self.section.contents
+
+        if not isinstance(md_section_ist, list):
+            raise ValueError('Markdown section does not have valid contents ' +
+                             '(must be a list)')
+
+        for section in md_section_ist:
+
+            section_type = section['type']
+
+            if section_type in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
+                # Call text.invoke with header styling
+                continue
+
+            if section_type in ['p']:
+                # Call text.invoke with normal styling
+                continue
+
+            if section_type == 'a':
+                # Call link.invoke with normal styling
+                continue
+
+            if section_type == 'pre':
+                # Call md_code.invoke
+                continue
+
+            if section_type == 'blockquote':
+                # Call md_quote.invoke
+                continue
+
+            if section_type == 'hr':
+                # Call md_hr.invoke
+                continue
+
+            if section_type == 'ul':
+                # Call md_ul.invoke
+                continue
+
+            if section_type == 'ol':
+                # Call md_ol.invoke
+                continue
+
+            if section_type == 'li':
+                # Call md_li.invoke
+                continue
+
+            raise ValueError(f'Section type is not defined: {section_type}')
 
 
 def invoke(cell_object: CellObject, section: Section):

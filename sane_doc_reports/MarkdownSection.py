@@ -3,12 +3,13 @@ from __future__ import annotations  # Used to fix the __init__ of same type
 import json
 from typing import Union, List
 
-from pyquery import PyQuery as PyQuery
+import mistune
+from lxml.etree import _ElementUnicodeResult
+from pyquery import PyQuery as pq, PyQuery
 
 from sane_doc_reports.Section import Section
 from sane_doc_reports.conf import HTML_ATTRIBUTES, HTML_ATTR_MARKDOWN_MAP, \
-    HTML_MAP
-from sane_doc_reports.md_html_fixer import fix_unwrapped_text, markdown_to_html
+    HTML_MAP, HTML_NOT_WRAPABLES
 
 
 def _should_collapse(has_siblings, section_type):
@@ -121,9 +122,78 @@ def _collapse_attrs(section_list):
     return ret
 
 
-def _build_dict(elem: PyQuery, already_wrapped=False) -> dict:
+def _wrap(elem):
+    span = pq('<span></span>')
+    span.html(elem)
+    return span
+
+
+def get_html(children: List) -> str:
+    ret = ""
+    for child in children:
+        if isinstance(child, str):
+            ret += child
+        else:
+            ret += child.outer_html()
+
+    return ret
+
+
+def fix_unwrapped_text(root_elem):
+    tag = root_elem[0].tag
+    should_not_wrap = tag in HTML_NOT_WRAPABLES
+    children = root_elem.contents()
+    fixed_children = _fix_unwrapped_text(children, do_not_wrap=should_not_wrap)
+    fixed_element = pq(f'<{tag}></{tag}>')
+    fixed_element.html(get_html(fixed_children))
+    return fixed_element
+
+
+def _fix_unwrapped_text(children: PyQuery, do_not_wrap=False) -> List[PyQuery]:
+    """ Add spans over all elements and their sub elements except other spans"""
+    ret = []
+    if do_not_wrap:
+        for i in children:
+            if isinstance(i, str):
+                ret.append(i)
+            else:
+                for fixed in fix_unwrapped_text(pq(i)):
+                    ret.append(pq(fixed))  # pq(i).outer_html())
+            return ret
+
+    if len(children) == 1 and isinstance(children[0], str):
+        return [children[0]]
+
+    for child in children:
+        if isinstance(child, str) and len(children) > 1:
+            ret.append(_wrap(child))
+            continue
+
+        tag = child.tag
+        attribs = "".join([f'{k}="{v}" ' for k, v in child.attrib.items()])
+        child = pq(child)
+        descendants = _fix_unwrapped_text(child.contents(),
+                                          do_not_wrap=tag in HTML_NOT_WRAPABLES)
+        descendants_html = ""
+        for i in descendants:
+            if isinstance(i, str):
+                descendants_html += i
+            else:
+                descendants_html += i.outer_html()
+
+        if tag == 'span':
+            child.html(descendants_html)
+            ret.append(child)
+        else:
+            child = pq(f'<{tag} {attribs}>{descendants_html}</{tag}>')
+            ret.append(_wrap(child))
+
+    return ret
+
+
+def _build_dict(elem: PyQuery, already_wrapped=False):
     # Find if has children
-    elem = PyQuery(elem)
+    elem = pq(elem)
     children = list(elem.contents())
     has_children = len(elem.children()) > 0
 
@@ -131,9 +201,9 @@ def _build_dict(elem: PyQuery, already_wrapped=False) -> dict:
     if has_children:
         # Fix unwrapped children
         if not already_wrapped:
-            children = []
-            for child in children:
-                child.append(fix_unwrapped_text(PyQuery(child).outer_html()))
+            children = fix_unwrapped_text(elem).contents()
+            # children = _fix_unwrapped_text(children, do_not_wrap= \
+            #     elem[0].tag in HTML_NOT_WRAPABLES)
 
         for child in children:
             child_dict = _build_dict(child, already_wrapped=True)
@@ -154,7 +224,25 @@ def _build_dict(elem: PyQuery, already_wrapped=False) -> dict:
 
 
 def markdown_to_section_list(markdown_string) -> List[MarkdownSection]:
-    html = markdown_to_html(markdown_string)
-    etree_root = PyQuery(html)
+    """ Convert markdown to HTML->Python list,
+        This will be a readable list of dicts containing:
+            - Type: type of html element
+            - Contents: text content or list of other dicts
+            - Attrs (any defined sane_doc_reports.conf.HTML_ATTRIBUTES)
+
+        For example:
+        markdown = '**~~123~~**'
+        -> <p><strong><strike>123</strike></strong></p>
+        ->[
+          {
+            "type": "p",
+            "attrs": ["strong","strike"],
+            "contents": "123"
+          }
+        ]
+        -> [Section Object]
+    """
+    html = mistune.markdown(markdown_string).strip()
+    etree_root = pq(html)
     html_list = list(map(_build_dict, [c for c in list(etree_root)]))
     return _collapse_attrs(html_list)

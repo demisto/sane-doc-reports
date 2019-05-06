@@ -27,6 +27,7 @@ SHOULD_HAVE_12_GRID = False
 
 # Others
 HTML_MAP = {'pre': 'p'}
+HTML_NOT_WRAPABLES = ['span', 'li', 'ul', 'ol']
 HTML_ATTRIBUTES = ['em', 'strong', 'del']
 HTML_ATTR_MARKDOWN_MAP = {'em': 'italic', 'strong': 'bold',
                           'del': 'strikethrough'}

@@ -1,13 +1,7 @@
 from pyquery import PyQuery
 
-from sane_doc_reports.MarkdownConverter import markdown_to_html, \
+from sane_doc_reports.md_html_fixer import markdown_to_html, \
     fix_unwrapped_text
-
-
-#
-# def pq_object: PyQuery -> str:
-#     return str(pq_object).replace('<hr/>', '<hr>').replace('<div>', '').replace(
-#         '</div>', '')
 
 
 def test_markdown_to_html_default():
@@ -120,7 +114,7 @@ def test_fix_unwrapped_text_basic_p():
 
 def test_fix_unwrapped_text_basic_attrib():
     html_input = '<p><strong attr="123">test</strong> unwrapped</p>'
-    ex_output = '<p><span><strong attr="123">test</strong></span><span>' +\
+    ex_output = '<p><span><strong attr="123">test</strong></span><span>' + \
                 ' unwrapped</span></p>'
     assert fix_unwrapped_text(html_input) == ex_output
 
@@ -144,5 +138,33 @@ def test_fix_unwrapped_text_unchanged_deep_other_tags():  # MAY allow inner span
     assert fix_unwrapped_text(html_input) == ex_output
 
 
-def test_html_to_section():
-    pass
+def test_fix_unwrapped_text_complex_deep():
+    html_input = '<p>aaa <em>bbb <i>ccc<q>zzz</q>ddd</i></em> ddd <del>' + \
+                 'eee</del> fff</p>'
+    ex_output = '<p><span>aaa </span><span><em><span>bbb </span>' + \
+                '<span><i><span>ccc</span><span><q><span>zzz</span></q>' + \
+                '</span><span>ddd</span></i></span></em></span><span> ddd ' + \
+                '</span><span><del>eee</del></span><span> fff</span></p>'
+    assert fix_unwrapped_text(html_input) == ex_output
+
+
+def test_fix_unwrapped_text_complex_deep_elements():
+    html_input = '<p>aaa <em>bbb <i>ccc<span><p>zzz</p></span>ddd</i>' + \
+                 '</em> ddd <del>eee</del> fff</p>'
+    ex_output = '<p><span>aaa </span><span><em><span>bbb </span>' + \
+                '<span><i><span>ccc</span><span><p>zzz</p>' + \
+                '</span><span>ddd</span></i></span></em></span><span> ddd ' + \
+                '</span><span><del>eee</del></span><span> fff</span></p>'
+    assert fix_unwrapped_text(html_input) == ex_output
+
+
+# def test_fix_unwrapped_text_unchanged_complex():
+#     html_input = '<p><span>aaa </span><span><em><span>bbb </span>' + \
+#                 '<span><i><span>ccc</span><span><p>zzz</p>' + \
+#                 '</span><span>ddd</span></i></span></em></span><span> ddd ' + \
+#                 '</span><span><del>eee</del></span><span> fff</span></p>'
+#     ex_output = '<p><span>aaa </span><span><em><span>bbb </span>' + \
+#                 '<span><i><span>ccc</span><span><p>zzz</p>' + \
+#                 '</span><span>ddd</span></i></span></em></span><span> ddd ' + \
+#                 '</span><span><del>eee</del></span><span> fff</span></p>'
+#     assert fix_unwrapped_text(html_input) == ex_output

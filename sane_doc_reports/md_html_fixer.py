@@ -7,9 +7,9 @@ from lxml.etree import tostring, _Element
 from sane_doc_reports.conf import HTML_ATTRIBUTES
 
 
-def markdown_to_html(markdown_string: str) -> PyQuery:
+def markdown_to_html(markdown_string: str) -> str:
     html = mistune.markdown(markdown_string).strip()
-    return PyQuery(html)
+    return html
 
 
 def create_tag(tag_name, html_contents, attribs: dict):
@@ -39,6 +39,12 @@ def _has_children(elem: PyQuery) -> bool:
 
 
 def fix_unwrapped_text(elem_str: str, already_wrapped=False) -> str:
+    return _fix_unwrapped_text(elem_str, already_wrapped=already_wrapped,
+                               first_call=True)
+
+
+def _fix_unwrapped_text(elem_str: str, already_wrapped=False,
+                        first_call=False) -> str:
     elem = PyQuery(elem_str)
     has_children = _has_children(elem)
 
@@ -50,7 +56,7 @@ def fix_unwrapped_text(elem_str: str, already_wrapped=False) -> str:
                 if isinstance(c, str):
                     ret.append(fix_unwrapped_text(c))
                     continue
-                ret.append(fix_unwrapped_text(PyQuery(c).outer_html()))
+                ret.append(_fix_unwrapped_text(PyQuery(c).outer_html()))
             return "".join(ret)
         return elem_str
 
@@ -64,13 +70,13 @@ def fix_unwrapped_text(elem_str: str, already_wrapped=False) -> str:
     ret = []
     for child in elem.contents():
         if isinstance(child, str):
-            ret.append(fix_unwrapped_text(child))
+            ret.append(_fix_unwrapped_text(child))
             continue
 
-        should_wrap_inner = child.tag in ['span'] + HTML_ATTRIBUTES
-        new_child = create_tag(child.tag, fix_unwrapped_text(
+        shouldnot_wrap_inner = child.tag in ['span'] + HTML_ATTRIBUTES
+        new_child = create_tag(child.tag, _fix_unwrapped_text(
             get_inner_html(PyQuery(child)),
-            already_wrapped=should_wrap_inner), child.attrib)
+            already_wrapped=shouldnot_wrap_inner), child.attrib)
 
         # We didn't wrap the next level but we should wrap this one if it's
         # not a span.
@@ -80,4 +86,6 @@ def fix_unwrapped_text(elem_str: str, already_wrapped=False) -> str:
             ret.append(new_child.outer_html())
 
     elem.html("".join(ret))
+    if not already_wrapped and not first_call:
+        return '<span>{}</span>'.format(elem.outer_html())
     return elem.outer_html()

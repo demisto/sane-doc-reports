@@ -1,7 +1,20 @@
 from typing import Tuple, Union
 
+from docx.oxml import OxmlElement
 from docx.text.paragraph import Paragraph
 from docx.text.run import Run
+
+
+def insert_paragraph_after(paragraph, text=None, style=None):
+    """Insert a new paragraph after the given paragraph."""
+    new_p = OxmlElement("w:p")
+    paragraph._p.addnext(new_p)
+    new_para = Paragraph(new_p, paragraph._parent)
+    if text:
+        new_para.add_run(text)
+    if style is not None:
+        new_para.style = style
+    return new_para
 
 
 class CellObject(object):
@@ -35,4 +48,11 @@ class CellObject(object):
         return paragraph, run
 
     def add_run(self):
+        self.run = self.paragraph.add_run()
+
+    def get_last_pagraph(self):
+        return self.cell.paragraphs[-1]
+
+    def add_paragraph(self):
+        self.paragraph = insert_paragraph_after(self.paragraph)
         self.run = self.paragraph.add_run()

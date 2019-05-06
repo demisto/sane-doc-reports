@@ -5,7 +5,7 @@ from sane_doc_reports.Section import Section
 from sane_doc_reports.MarkdownSection import markdown_to_section_list, \
     MarkdownSection
 from sane_doc_reports.Wrapper import Wrapper
-from sane_doc_reports.docx import text
+from sane_doc_reports.docx import text, md_code
 
 import sane_doc_reports.styles.text as text_style
 import sane_doc_reports.styles.header as header_style
@@ -13,10 +13,13 @@ import sane_doc_reports.styles.header as header_style
 
 class MarkdownWrapper(Wrapper):
 
-    def wrap(self):
+    def wrap(self, invoked_from_wrapper=False):
 
         if isinstance(self.section.contents, list):
             md_section_list = self.section.contents
+        elif invoked_from_wrapper and isinstance(self.section.contents.contents, str):
+            print('wowowow')
+            md_section_list = [self.section.contents]
         else:
             md_section_list = markdown_to_section_list(self.section.contents)
 
@@ -24,20 +27,22 @@ class MarkdownWrapper(Wrapper):
             raise ValueError('Markdown section does not have valid contents ' +
                              '(must be a list)')
 
-        for section in md_section_list:
 
+        for section in md_section_list:
             self.cell_object.add_run()
             section_type = section.type
 
             # Start wrappers
+            # Each wrapper must return a newly created paragraph
             if section_type == 'div':
                 temp_section = MarkdownSection('markdown', section.contents,
                                                {}, {})
                 invoke(self.cell_object, temp_section)
                 continue
 
-            if section_type == 'pre':
-                # Call md_code.invoke
+            if section_type == 'code':
+                md_code.invoke(self.cell_object, section)
+                self.cell_object.paragraph = self.cell_object.get_last_pagraph()
                 continue
 
             if section_type == 'blockquote':
@@ -88,11 +93,11 @@ class MarkdownWrapper(Wrapper):
             raise ValueError(f'Section type is not defined: {section_type}')
 
 
-def invoke(cell_object: CellObject, section: Section):
+def invoke(cell_object: CellObject, section: Section, invoked_from_wrapper=False):
     if section.type != 'markdown':
         raise ValueError('Called markdown but not markdown - ', section)
 
-    MarkdownWrapper(cell_object, section).wrap()
+    MarkdownWrapper(cell_object, section).wrap(invoked_from_wrapper=invoked_from_wrapper)
 
 # # TODO: move these to a transformers module?
 # def header(section):

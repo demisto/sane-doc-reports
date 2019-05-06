@@ -4,7 +4,8 @@ import mistune
 from pyquery import PyQuery as pq
 
 from sane_doc_reports.MarkdownSection import markdown_to_section_list, \
-    MarkdownSection, _build_dict, _fix_unwrapped_text, fix_unwrapped_text
+    MarkdownSection, _build_dict, _fix_unwrapped_text, fix_unwrapped_text, \
+    markdown_to_html
 from sane_doc_reports.conf import HTML_NOT_WRAPABLES
 
 
@@ -135,7 +136,7 @@ def test_no_change_fix_unwrapped_text_complex():
 
 def test_build_dict_basic():
     markdown_string = 'some string'  # 'tes *can **also*** be ~~the~~ nested...'
-    html = mistune.markdown(markdown_string).strip()
+    html = markdown_to_html(markdown_string).strip()
     root_elem = pq(html)
     res = _build_dict(root_elem)
     expected = {'type': 'p', 'contents': 'some string', 'attrs': [],
@@ -145,7 +146,7 @@ def test_build_dict_basic():
 
 def test_build_dict_basic_element():
     markdown_string = 'some **string**'
-    html = mistune.markdown(markdown_string).strip()
+    html = markdown_to_html(markdown_string).strip()
     root_elem = pq(html)
     res = _build_dict(root_elem)
     expected = {'type': 'p', 'contents': [
@@ -160,9 +161,29 @@ def test_build_dict_basic_element():
     assert res == expected
 
 
+def test_build_dict_deep_ul():
+    markdown_string = '- parent\n\t- child'
+    html = markdown_to_html(markdown_string).strip()
+    root_elem = pq(html)
+    res = _build_dict(root_elem)
+    expected = {'type': 'ul', 'contents': [
+        {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},
+         'contents': [
+             {'type': 'span', 'contents': 'parent', 'attrs': [], 'layout': {},
+              'extra': {}},
+             {'type': 'ul', 'contents': [
+                 {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},
+                  'contents': 'child'}
+             ], 'attrs': [], 'layout': {}, 'extra': {}}
+         ]
+         }], 'attrs': [], 'layout': {}, 'extra': {}
+                }
+    assert res == expected
+
+
 def test_build_dict_basic_element_attribute():
     markdown_string = 'some [string](url)'
-    html = mistune.markdown(markdown_string).strip()
+    html = markdown_to_html(markdown_string).strip()
     root_elem = pq(html)
     res = _build_dict(root_elem)
     expected = {'type': 'p', 'contents': [
@@ -179,7 +200,7 @@ def test_build_dict_basic_element_attribute():
 
 def test_build_dict_text_and_elements():
     markdown_string = 'some **string** and more strings'
-    html = mistune.markdown(markdown_string).strip()
+    html = markdown_to_html(markdown_string).strip()
     root_elem = pq(html)
     res = _build_dict(root_elem)
     expected = {'type': 'p', 'contents': [

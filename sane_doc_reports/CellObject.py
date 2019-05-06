@@ -56,3 +56,4 @@ class CellObject(object):
     def add_paragraph(self):
         self.paragraph = insert_paragraph_after(self.paragraph)
         self.run = self.paragraph.add_run()
+        return self.paragraph

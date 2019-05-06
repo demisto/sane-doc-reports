@@ -143,10 +143,14 @@ def get_html(children: List) -> str:
     return ret
 
 
+def check_wrap(tag, children):
+    return tag in HTML_NOT_WRAPABLES and len(children) == 1
+
+
 def fix_unwrapped_text(root_elem):
     tag = root_elem[0].tag
-    should_not_wrap = tag in HTML_NOT_WRAPABLES
     children = root_elem.contents()
+    should_not_wrap = check_wrap(tag, children)
     fixed_children = _fix_unwrapped_text(children, do_not_wrap=should_not_wrap)
     fixed_element = pq(f'<{tag}></{tag}>')
     fixed_element.html(get_html(fixed_children))
@@ -185,7 +189,7 @@ def _fix_unwrapped_text(children: PyQuery, do_not_wrap=False) -> List[PyQuery]:
             else:
                 descendants_html += i.outer_html()
 
-        if tag == 'span':
+        if tag in ['ul', 'span']:
             child.html(descendants_html)
             ret.append(child)
         else:
@@ -227,6 +231,12 @@ def _build_dict(elem: PyQuery, already_wrapped=False):
             'extra': extra}
 
 
+def markdown_to_html(markdown_string):
+    html = mistune.markdown(markdown_string).strip()
+    html = html.replace('\n', '')  # TODO: fix
+    return html
+
+
 def markdown_to_section_list(markdown_string) -> List[MarkdownSection]:
     """ Convert markdown to HTML->Python list,
         This will be a readable list of dicts containing:
@@ -246,8 +256,10 @@ def markdown_to_section_list(markdown_string) -> List[MarkdownSection]:
         ]
         -> [Section Object]
     """
-    html = mistune.markdown(markdown_string).strip()
+    html = markdown_to_html(markdown_string)
+    print(html)
     etree_root = pq(html)
     html_list = list(map(_build_dict, [c for c in list(etree_root)]))
     collapsed = _collapse_attrs(html_list)
+    print(",".join([str(i) for i in collapsed]))
     return collapsed

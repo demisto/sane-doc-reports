@@ -52,7 +52,7 @@ class MarkdownSection(Section):
 
         # Recursively go through all the section.
         if self.has_children():
-            for child in self.contents and isinstance(self.contents, list):
+            for child in self.contents:
                 collapsible = child.collapse(True)
                 if collapsible:
                     child.collapse_child()
@@ -245,4 +245,5 @@ def markdown_to_section_list(markdown_string) -> List[MarkdownSection]:
     html = mistune.markdown(markdown_string).strip()
     etree_root = pq(html)
     html_list = list(map(_build_dict, [c for c in list(etree_root)]))
-    return _collapse_attrs(html_list)
+    collapsed = _collapse_attrs(html_list)
+    return collapsed

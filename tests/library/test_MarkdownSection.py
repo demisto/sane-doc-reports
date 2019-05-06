@@ -244,8 +244,12 @@ def test_markdown_to_section_list_quote():
 
     assert isinstance(s, list)
     assert isinstance(s[0], MarkdownSection)
+    assert s[0].type == 'blockquote'
     assert isinstance(s[0].contents, list)
-
-    # print('*', str(s[0]))
-    # assert False
-    # assert isinstance(s[0].contents[0], MarkdownSection)
+    assert isinstance(s[0].contents[0], MarkdownSection)
+    assert isinstance(s[0].contents[0].contents[0], MarkdownSection)
+    assert s[0].contents[0].contents[0].contents[0].type == 'span'
+    assert s[0].contents[0].contents[0].contents[1].type == 'span'
+    assert s[0].contents[0].contents[0].contents[2].type == 'span'
+    assert s[0].contents[0].contents[0].contents[3].type == 'span'
+    assert s[0].contents[0].contents[0].contents[4].type == 'span'

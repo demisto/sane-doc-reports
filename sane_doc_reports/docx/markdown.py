@@ -1,14 +1,17 @@
 from typing import Dict
 
 from sane_doc_reports import CellObject, Section
+from sane_doc_reports.MarkdownSection import markdown_to_section_list
 from sane_doc_reports.Wrapper import Wrapper
+from sane_doc_reports.docx import text
+from sane_doc_reports.styles import header
 
 
 class MarkdownWrapper(Wrapper):
 
     def wrap(self):
 
-        md_section_ist = self.section.contents
+        md_section_ist = markdown_to_section_list(self.section.contents)
 
         if not isinstance(md_section_ist, list):
             raise ValueError('Markdown section does not have valid contents ' +
@@ -16,10 +19,11 @@ class MarkdownWrapper(Wrapper):
 
         for section in md_section_ist:
 
-            section_type = section['type']
+            section_type = section.type
 
             if section_type in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
-                # Call text.invoke with header styling
+                header.apply_style(self.cell_object, section)
+                text.invoke(self.cell_object, section)
                 continue
 
             if section_type in ['p']:

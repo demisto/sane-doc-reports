@@ -32,9 +32,15 @@ def example_pie_chart():
     report.save('example.docx')
 
 
+def example_markdown():
+    report = Report(get_mock('docx/temp.json'))
+    report.populate_report()
+    report.save('example.docx')
+
+
 def main():
     # Gets the json form tests/mock_data
-    example_text()
+    example_markdown()
 
 
 if __name__ == '__main__':

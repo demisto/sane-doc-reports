@@ -9,7 +9,8 @@ class TextElement(Element):
 
 
 def invoke(cell_object, section) -> None:
-    if section.type != 'text':
+    if section.type not in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'paragraph',
+                            'span']:
         raise ValueError('Called text but not text - ', section)
 
     TextElement(cell_object, section).insert()

@@ -4,7 +4,7 @@ from sane_doc_reports.Element import Element
 class TableElement(Element):
 
     def insert(self):
-        print("Adding table: ", self.section.contents)
+        print("Adding table: ...")
         table_data = self.section.contents
 
         if 'readableHeaders' in self.section.layout:

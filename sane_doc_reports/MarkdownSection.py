@@ -8,7 +8,7 @@ from pyquery import PyQuery as PyQuery
 from sane_doc_reports.Section import Section
 from sane_doc_reports.conf import HTML_ATTRIBUTES, HTML_ATTR_MARKDOWN_MAP, \
     HTML_MAP
-from sane_doc_reports.md_html_fixer import fix_unwrapped_text
+from sane_doc_reports.md_html_fixer import fix_unwrapped_text, markdown_to_html
 
 
 def _should_collapse(has_siblings, section_type):
@@ -154,3 +154,7 @@ def _build_dict(elem: PyQuery, already_wrapped=False) -> dict:
 
 
 def markdown_to_section_list(markdown_string) -> List[MarkdownSection]:
+    html = markdown_to_html(markdown_string)
+    etree_root = PyQuery(html)
+    html_list = list(map(_build_dict, [c for c in list(etree_root)]))
+    return _collapse_attrs(html_list)

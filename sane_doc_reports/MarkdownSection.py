@@ -108,6 +108,16 @@ class MarkdownSection(Section):
     def get_dict(self):
         return json.loads(self.toJSON())
 
+    def propagate_extra(self, key, value):
+        """ propagate an extra down to all children """
+        self.extra[key] = value
+
+        if not isinstance(self.contents, list):
+            return
+
+        for child in self.contents:
+            child.propagate_extra(key, value)
+
     def __str__(self):
         return self.toJSON()
 
@@ -257,7 +267,6 @@ def markdown_to_section_list(markdown_string) -> List[MarkdownSection]:
         -> [Section Object]
     """
     html = markdown_to_html(markdown_string)
-    print(html)
     etree_root = pq(html)
     html_list = list(map(_build_dict, [c for c in list(etree_root)]))
     collapsed = _collapse_attrs(html_list)

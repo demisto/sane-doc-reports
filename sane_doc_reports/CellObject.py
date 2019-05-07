@@ -53,7 +53,7 @@ class CellObject(object):
     def get_last_pagraph(self):
         return self.cell.paragraphs[-1]
 
-    def add_paragraph(self):
-        self.paragraph = insert_paragraph_after(self.paragraph)
+    def add_paragraph(self, style=None):
+        self.paragraph = insert_paragraph_after(self.paragraph, style=style)
         self.run = self.paragraph.add_run()
         return self.paragraph

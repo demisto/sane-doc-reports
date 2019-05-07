@@ -167,7 +167,7 @@ def test_build_dict_deep_ul():
     root_elem = pq(html)
     res = _build_dict(root_elem)
     expected = {'type': 'ul', 'contents': [
-        {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},
+        {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {}, # 0
          'contents': [
              {'type': 'span', 'contents': 'parent', 'attrs': [], 'layout': {},
               'extra': {}},

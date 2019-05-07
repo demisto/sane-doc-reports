@@ -2,7 +2,7 @@
   {
     "type": "markdown",
     "data": {
-      "text": "> Blockquote **test**\n\n`test`",
+      "text": "\n---\n---\n",
       "groups": []
     },
     "layout": {

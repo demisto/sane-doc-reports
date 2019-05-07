@@ -243,6 +243,10 @@ def _build_dict(elem: PyQuery, already_wrapped=False):
 
 
 def markdown_to_html(markdown_string):
+    if markdown_string is None:
+        return '<span> </span>'
+    if not isinstance(markdown_string, str):
+        raise ValueError('Called markdown_to_html without a markdown string.')
     html = mistune.markdown(markdown_string).strip()
     html = html.replace('\n', '')  # TODO: fix
     return html

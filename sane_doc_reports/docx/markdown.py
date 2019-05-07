@@ -5,7 +5,8 @@ from sane_doc_reports.Section import Section
 from sane_doc_reports.MarkdownSection import markdown_to_section_list, \
     MarkdownSection
 from sane_doc_reports.Wrapper import Wrapper
-from sane_doc_reports.docx import text, md_code, md_ul, md_li, md_blockquote
+from sane_doc_reports.docx import text, md_code, md_ul, md_li, md_blockquote, \
+    md_hr
 
 import sane_doc_reports.styles.text as text_style
 import sane_doc_reports.styles.header as header_style
@@ -30,7 +31,6 @@ class MarkdownWrapper(Wrapper):
         for section in md_section_list:
             self.cell_object.add_run()
             section_type = section.type
-
             # === Start wrappers ===
             if section_type == 'div':
                 temp_section = MarkdownSection('markdown', section.contents,
@@ -48,9 +48,6 @@ class MarkdownWrapper(Wrapper):
                 self.cell_object.paragraph = self.cell_object.get_last_paragraph()
                 continue
 
-            if section_type == 'hr':
-                # Call md_hr.invoke
-                continue
 
             if section_type == 'ul':
                 md_ul.invoke(self.cell_object, section)
@@ -66,7 +63,7 @@ class MarkdownWrapper(Wrapper):
                 continue
 
             # === Fix wrapped ===
-            if not isinstance(section.contents, str):
+            if isinstance(section.contents, list):
                 temp_section = MarkdownSection('markdown', section.contents,
                                                {}, {}, section.attrs)
                 invoke(self.cell_object, temp_section)
@@ -85,6 +82,11 @@ class MarkdownWrapper(Wrapper):
 
             if section_type == 'a':
                 # Call link.invoke with normal styling
+                continue
+
+            if section_type == 'hr':
+                # Call md_hr.invoke
+                md_hr.invoke(self.cell_object, section)
                 continue
 
             raise ValueError(f'Section type is not defined: {section_type}')

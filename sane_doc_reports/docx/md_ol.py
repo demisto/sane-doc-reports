@@ -5,7 +5,7 @@ from sane_doc_reports import utils
 from sane_doc_reports.CellObject import CellObject
 from sane_doc_reports.MarkdownSection import MarkdownSection
 from sane_doc_reports.Wrapper import Wrapper
-from sane_doc_reports.conf import UNORDERED_LIST_NAME
+from sane_doc_reports.conf import ORDERED_LIST_NAME
 from sane_doc_reports.docx import markdown
 from sane_doc_reports.utils import name_to_hex, get_current_li
 
@@ -13,12 +13,13 @@ from sane_doc_reports.utils import name_to_hex, get_current_li
 class UlWrapper(Wrapper):
 
     def wrap(self):
-        print("Ul code...")
+        print("Ol code...")
 
         temp_section = MarkdownSection('markdown', self.section.contents, {},
                                        {})
+
         p_style, list_level, list_type = get_current_li(self.section.extra,
-                                                        UNORDERED_LIST_NAME)
+                                                        ORDERED_LIST_NAME)
         temp_section.propagate_extra('list_level', list_level)
         temp_section.propagate_extra('list_type', list_type)
 
@@ -27,7 +28,7 @@ class UlWrapper(Wrapper):
 
 
 def invoke(cell_object, section):
-    if section.type != 'ul':
-        raise ValueError('Called ul but not ul - ', section)
+    if section.type != 'ol':
+        raise ValueError('Called ol but not ol - ', section)
 
     return UlWrapper(cell_object, section).wrap()

@@ -1,17 +1,20 @@
-from docx.oxml import parse_xml
-from docx.oxml.ns import nsdecls
-
-from sane_doc_reports.CellObject import CellObject
+from sane_doc_reports import utils
 from sane_doc_reports.MarkdownSection import MarkdownSection
 from sane_doc_reports.Wrapper import Wrapper
 from sane_doc_reports.docx import markdown
-from sane_doc_reports.utils import name_to_hex
+from sane_doc_reports.utils import get_current_li
 
 
 class LiWrapper(Wrapper):
 
     def wrap(self):
         print("Li...")
+        p_style, list_level, list_type = get_current_li(self.section.extra, 'List Number')
+        self.cell_object.add_paragraph(style=p_style)
+        ordered = list_type == 'L'
+        utils.list_number(self.cell_object.cell, self.cell_object.paragraph,
+                          level=list_level, num=True)
+
         if isinstance(self.section.contents, str):
             self.cell_object.run.add_text(self.section.contents)
             return

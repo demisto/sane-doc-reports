@@ -12,7 +12,10 @@ class CodeWrapper(Wrapper):
 
     def wrap(self):
         print("Wrapping code...")
-        self.cell_object.add_paragraph()
+        if 'inline' not in self.section.extra:
+            self.cell_object.add_paragraph()
+            # TODO: remove newlines from OXML
+
         new_cell = self.cell_object.cell.add_table(1, 1).cell(0, 0)
         shading_elm_1 = parse_xml(
             f'<w:shd {{}} w:fill="{name_to_hex("whitesmoke")}"/>'.format(
@@ -24,11 +27,12 @@ class CodeWrapper(Wrapper):
         contents = self.section.contents
         if isinstance(contents, str):
             temp_section = MarkdownSection('markdown',
-                                   [MarkdownSection('span', contents, {}, {})]
-                                   , {}, {})
+                                           [MarkdownSection('span', contents,
+                                                            {}, {})]
+                                           , {}, {})
         else:
             temp_section = MarkdownSection('markdown',
-                                   contents, {}, {})
+                                           contents, {}, {})
         markdown.invoke(self.cell_object, temp_section,
                         invoked_from_wrapper=True)
 

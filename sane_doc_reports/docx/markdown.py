@@ -6,7 +6,7 @@ from sane_doc_reports.MarkdownSection import markdown_to_section_list, \
     MarkdownSection
 from sane_doc_reports.Wrapper import Wrapper
 from sane_doc_reports.docx import text, md_code, md_ul, md_li, md_blockquote, \
-    md_hr
+    md_hr, md_ol
 
 import sane_doc_reports.styles.text as text_style
 import sane_doc_reports.styles.header as header_style
@@ -48,14 +48,14 @@ class MarkdownWrapper(Wrapper):
                 self.cell_object.paragraph = self.cell_object.get_last_paragraph()
                 continue
 
-
             if section_type == 'ul':
                 md_ul.invoke(self.cell_object, section)
                 self.cell_object.paragraph = self.cell_object.get_last_paragraph()
                 continue
 
             if section_type == 'ol':
-                # Call md_ol.invoke
+                md_ol.invoke(self.cell_object, section)
+                self.cell_object.paragraph = self.cell_object.get_last_paragraph()
                 continue
 
             if section_type == 'li':
@@ -64,6 +64,9 @@ class MarkdownWrapper(Wrapper):
 
             # === Fix wrapped ===
             if isinstance(section.contents, list):
+                if section_type == 'span':
+                    section.propagate_extra('inline', True)
+
                 temp_section = MarkdownSection('markdown', section.contents,
                                                {}, {}, section.attrs)
                 invoke(self.cell_object, temp_section)
@@ -85,7 +88,6 @@ class MarkdownWrapper(Wrapper):
                 continue
 
             if section_type == 'hr':
-                # Call md_hr.invoke
                 md_hr.invoke(self.cell_object, section)
                 continue
 
@@ -101,80 +103,8 @@ def invoke(cell_object: CellObject, section: Section,
         invoked_from_wrapper=invoked_from_wrapper)
 
 # # TODO: move these to a transformers module?
-# def header(section):
-#     level = int(section['type'].replace('h', ''))
-#     computed_style = {"fontSize": 34 - level * 2}
-#     computed_style = {**computed_style, **section['attrs']}
-#
-#     return {
-#         "type": "text",
-#         f'{DATA_KEY}': {
-#             "text": section['contents'],
-#         },
-#         f'{LAYOUT_KEY}': {
-#             f'{STYLE_KEY}': computed_style
-#         }
-#     }
-#
-#
-# def paragraph(section):
-#     computed_style = {**section['attrs']}
-#     if 'fontSize' not in computed_style:
-#         computed_style['fontSize'] = 14
-#
-#     return {
-#         "type": "text",
-#         f'{DATA_KEY}': {
-#             "text": section['contents'],
-#         },
-#         f'{LAYOUT_KEY}': {
-#             f'{STYLE_KEY}': computed_style
-#         }
-#     }
-#
-#
-# def quote(cell_object, section):
-#     new_cell_object = md_quote.insert(cell_object, None)
-#
-#     insert(new_cell_object, section['contents'], recursive=True)
-#
-#
-# def code(cell_object, section):
-#     if isinstance(section, dict) and section['type'] == 'code':
-#         insert(cell_object, section, recursive=True)
-#         return
-#
-#     new_cell_object = md_code.insert(cell_object, None)
-#     insert(new_cell_object, section['contents'], recursive=True)
-#
-#
-# def hr():
-#     return {
-#         "type": "md_hr"
-#     }
-#
-#
-# def fix_attrs(attrs):
-#     return {k: True for k in attrs}
-#
-#
-# def insert(cell_object: Dict, section: Dict, recursive=False, meta={}) -> None:
-#     """
-#
-#     :param cell_object:
-#     :param section:
-#     :param recursive: if we should create a new paragraph / run
-#     :param meta:
-#     :return:
-#     """
-#     if DEBUG:
-#         print("Yo Im markdown chart")
-#
-#     if not recursive:
-#         section_list = markdown_to_list(section[DATA_KEY]['text'])
-#     else:
-#         section_list = section
-#
+
+
 #     for s in section_list:
 #         s['attrs'] = fix_attrs(s['attrs'])
 #

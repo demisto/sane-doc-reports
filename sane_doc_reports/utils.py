@@ -4,6 +4,7 @@ import tempfile
 from io import BytesIO
 import importlib
 from pathlib import Path
+from typing import Tuple
 
 from docx.oxml import OxmlElement
 import matplotlib
@@ -158,6 +159,17 @@ def apply_paragraph_styling(cell_object, style):
         elif style['textAlign'] == 'right':
             # cell.alignment = 1
             cell_object.paragraph.paragraph_format.alignment = 2
+
+
+def get_current_li(extra, list_type) -> Tuple[str, int, str]:
+    """ Return the current list item style and indent level """
+    list_level = 1
+    list_type = list_type if 'list_type' not in extra else extra['list_type']
+    p_style = list_type
+    if 'list_level' in extra:
+        list_level = int(extra['list_level']) + 1
+        p_style = f'{list_type} {list_level}'
+    return p_style, list_level, list_type
 
 
 def list_number(doc, par, prev=None, level=None, num=True):

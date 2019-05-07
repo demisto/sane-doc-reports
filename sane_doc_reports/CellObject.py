@@ -50,7 +50,7 @@ class CellObject(object):
     def add_run(self):
         self.run = self.paragraph.add_run()
 
-    def get_last_pagraph(self):
+    def get_last_paragraph(self):
         return self.cell.paragraphs[-1]
 
     def add_paragraph(self, style=None):

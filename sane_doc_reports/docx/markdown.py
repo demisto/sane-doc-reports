@@ -5,7 +5,7 @@ from sane_doc_reports.Section import Section
 from sane_doc_reports.MarkdownSection import markdown_to_section_list, \
     MarkdownSection
 from sane_doc_reports.Wrapper import Wrapper
-from sane_doc_reports.docx import text, md_code, md_ul, md_li
+from sane_doc_reports.docx import text, md_code, md_ul, md_li, md_blockquote
 
 import sane_doc_reports.styles.text as text_style
 import sane_doc_reports.styles.header as header_style
@@ -31,8 +31,7 @@ class MarkdownWrapper(Wrapper):
             self.cell_object.add_run()
             section_type = section.type
 
-            # Start wrappers
-            # Each wrapper must return a newly created paragraph
+            # === Start wrappers ===
             if section_type == 'div':
                 temp_section = MarkdownSection('markdown', section.contents,
                                                {}, {})
@@ -41,11 +40,12 @@ class MarkdownWrapper(Wrapper):
 
             if section_type == 'code':
                 md_code.invoke(self.cell_object, section)
-                self.cell_object.paragraph = self.cell_object.get_last_pagraph()
+                self.cell_object.paragraph = self.cell_object.get_last_paragraph()
                 continue
 
             if section_type == 'blockquote':
-                # Call md_quote.invoke
+                md_blockquote.invoke(self.cell_object, section)
+                self.cell_object.paragraph = self.cell_object.get_last_paragraph()
                 continue
 
             if section_type == 'hr':
@@ -54,7 +54,7 @@ class MarkdownWrapper(Wrapper):
 
             if section_type == 'ul':
                 md_ul.invoke(self.cell_object, section)
-                self.cell_object.paragraph = self.cell_object.get_last_pagraph()
+                self.cell_object.paragraph = self.cell_object.get_last_paragraph()
                 continue
 
             if section_type == 'ol':
@@ -65,15 +65,14 @@ class MarkdownWrapper(Wrapper):
                 md_li.invoke(self.cell_object, section)
                 continue
 
-            # End wrappers
-
-            # Fix wrapped
+            # === Fix wrapped ===
             if not isinstance(section.contents, str):
                 temp_section = MarkdownSection('markdown', section.contents,
-                                               {}, {})
+                                               {}, {}, section.attrs)
                 invoke(self.cell_object, temp_section)
                 continue
 
+            # === Elements ===
             if section_type in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
                 header_style.apply_style(self.cell_object, section)
                 text.invoke(self.cell_object, section)

@@ -8,14 +8,14 @@ from sane_doc_reports.docx import markdown
 from sane_doc_reports.utils import name_to_hex
 
 
-class CodeWrapper(Wrapper):
+class QuoteWrapper(Wrapper):
 
     def wrap(self):
-        print("Wrapping code...")
+        print('Wrapping quote...')
         self.cell_object.add_paragraph()
         new_cell = self.cell_object.cell.add_table(1, 1).cell(0, 0)
         shading_elm_1 = parse_xml(
-            f'<w:shd {{}} w:fill="{name_to_hex("whitesmoke")}"/>'.format(
+            f'<w:shd {{}} w:fill="{name_to_hex("cornsilk")}"/>'.format(
                 nsdecls('w')))
         new_cell._tc.get_or_add_tcPr().append(shading_elm_1)
 
@@ -24,17 +24,19 @@ class CodeWrapper(Wrapper):
         contents = self.section.contents
         if isinstance(contents, str):
             temp_section = MarkdownSection('markdown',
-                                   [MarkdownSection('span', contents, {}, {})]
-                                   , {}, {})
+                                           [MarkdownSection('span', contents,
+                                                            {}, {})]
+                                           , {}, {})
         else:
             temp_section = MarkdownSection('markdown',
-                                   contents, {}, {})
+                                           contents, {}, {})
         markdown.invoke(self.cell_object, temp_section,
                         invoked_from_wrapper=True)
 
 
 def invoke(cell_object, section):
-    if section.type != 'code':
-        raise ValueError('Called code but not code - ', section)
+    if section.type != 'blockquote':
+        raise ValueError('Called blockquote but not blockquote (quote) - ',
+                         section)
 
-    return CodeWrapper(cell_object, section).wrap()
+    return QuoteWrapper(cell_object, section).wrap()

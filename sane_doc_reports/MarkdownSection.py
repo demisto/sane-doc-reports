@@ -9,7 +9,7 @@ from pyquery import PyQuery as pq, PyQuery
 
 from sane_doc_reports.Section import Section
 from sane_doc_reports.conf import HTML_ATTRIBUTES, HTML_ATTR_MARKDOWN_MAP, \
-    HTML_MAP, HTML_NOT_WRAPABLES
+    HTML_MAP, HTML_NOT_WRAPABLES, DEBUG
 
 
 def _should_collapse(has_siblings, section_type):
@@ -18,12 +18,12 @@ def _should_collapse(has_siblings, section_type):
 
 class MarkdownSection(Section):
     def __init__(self, type, contents: Union[List[Section], str],
-                 layout, extra):
+                 layout, extra, attrs=[]):
 
         super().__init__(type, contents, layout, extra)
         self.type = type
         self.__map_types()
-        self.attrs = []
+        self.attrs = attrs
 
         if isinstance(contents, list):
             self.contents = _collapse_attrs(contents)
@@ -125,12 +125,13 @@ class MarkdownSection(Section):
 def _collapse_attrs(section_list):
     ret = []
     for section in section_list:
-        if isinstance(section, Section):
+        if isinstance(section, MarkdownSection):
             s = MarkdownSection(section.type, section.contents,
-                                section.layout, section.extra)
+                                section.layout, section.extra, section.attrs)
         else:
             s = MarkdownSection(section['type'], section['contents'],
-                                section['layout'], section['extra'])
+                                section['layout'], section['extra'],
+                                section['attrs'])
         s.collapse(False)
         ret.append(s)
     return ret
@@ -270,5 +271,8 @@ def markdown_to_section_list(markdown_string) -> List[MarkdownSection]:
     etree_root = pq(html)
     html_list = list(map(_build_dict, [c for c in list(etree_root)]))
     collapsed = _collapse_attrs(html_list)
-    print(",".join([str(i) for i in collapsed]))
+
+    if DEBUG:
+        print(",".join([str(i) for i in collapsed]))
+
     return collapsed

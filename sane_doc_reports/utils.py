@@ -168,6 +168,10 @@ def get_current_li(extra, list_type) -> Tuple[str, int, str]:
     p_style = list_type
     if 'list_level' in extra:
         list_level = int(extra['list_level']) + 1
+
+        # Word doesn't have more than 3 levels of indentation
+        if list_level >= 4:
+            list_level = 3
         p_style = f'{list_type} {list_level}'
     return p_style, list_level, list_type
 

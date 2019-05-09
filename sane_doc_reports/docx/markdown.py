@@ -74,6 +74,10 @@ class MarkdownWrapper(Wrapper):
                 continue
 
             # === Elements ===
+            # Add a block
+            if not invoked_from_wrapper:
+                self.cell_object.add_paragraph() #TODO: make sure this is correct
+
             if section_type in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
                 header_style.apply_style(self.cell_object, section)
                 text.invoke(self.cell_object, section)

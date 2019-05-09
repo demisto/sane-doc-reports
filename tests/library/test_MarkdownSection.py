@@ -13,7 +13,7 @@ def test_fix_unwrapped_text_basic():
     html = '<p>1<b>2</b>3</p>'
     root_elem = pq(html)
     res = fix_unwrapped_text(root_elem)
-    res_check = res.outer_html()  # "".join([i.outerHtml() for i in res])
+    res_check = res.outer_html()
     expected = pq('<p><span>1</span><span><b>2</b></span><span>3</span></p>')
     assert res_check == expected.outer_html()
 
@@ -23,7 +23,7 @@ def test_fix_unwrapped_text_deep():
     root_elem = pq(html)
 
     res = fix_unwrapped_text(root_elem)
-    res_check = res.outer_html()  # "".join([i.outerHtml() for i in res])
+    res_check = res.outer_html()
     expected = pq('<p><span><strong><span>12</span><span><b>3</b></span>' +
                   '</strong></span></p>')
     assert res_check == expected.html()
@@ -33,7 +33,7 @@ def test_fix_unwrapped_text_unwrapped():
     html = '<p><i>a</i><b>b</b><c>c</c></p>'
     root_elem = pq(html)
     res = fix_unwrapped_text(root_elem)
-    res_check = res.outer_html()  # "".join([i.outerHtml() for i in res])
+    res_check = res.outer_html()
     expected = pq('<p><span><i>a</i></span><span><b>b</b></span><span><c>c' +
                   '</c></span></p>')
     assert res_check == expected.outer_html()
@@ -43,7 +43,7 @@ def test_fix_unwrapped_text_no_unwrapped_basic():
     html = '<span><strong>123</strong></span>'
     root_elem = pq(html)
     res = fix_unwrapped_text(root_elem)
-    res_check = res.outer_html()  # "".join([i.outerHtml() for i in res])
+    res_check = res.outer_html()
     expected = pq('<p><span><strong>123</strong></span></p>')
     assert res_check == expected.html()
 
@@ -52,7 +52,7 @@ def test_fix_unwrapped_text_no_unwrapped_basic2():
     html = '<p><span>123</span></p>'
     root_elem = pq(html)
     res = fix_unwrapped_text(root_elem)
-    res_check = res.outer_html()  # "".join([i.outerHtml() for i in res])
+    res_check = res.outer_html()
     expected = pq('<p><span>123</span></p>')
     assert res_check == expected.outer_html()
 
@@ -61,7 +61,7 @@ def test_fix_unwrapped_text_no_unwrapped_complex():
     html = '<p><span><i>a</i></span><span><b>b</b></span></p>'
     root_elem = pq(html)
     res = fix_unwrapped_text(root_elem)
-    res_check = res.outer_html()  # "".join([i.outerHtml() for i in res])
+    res_check = res.outer_html()
     expected = pq('<p><span><i>a</i></span><span><b>b</b></span></p>')
     assert res_check == expected.outer_html()
 
@@ -70,7 +70,7 @@ def test_fix_unwrapped_text_basic2():
     html = '<p><b>2</b>3</p>'
     root_elem = pq(html)
     res = fix_unwrapped_text(root_elem)
-    res_check = res.outer_html()  # "".join([i.outerHtml() for i in res])
+    res_check = res.outer_html()
     expected = pq('<p><span><b>2</b></span><span>3</span></p>')
     assert res_check == expected.outer_html()
 
@@ -79,7 +79,7 @@ def test_fix_unwrapped_text_basic_3():
     html = '<ul><li>123</li></ul>'
     root_elem = pq(html)
     res = fix_unwrapped_text(root_elem)
-    res_check = res.outer_html()  # "".join([i.outerHtml() for i in res])
+    res_check = res.outer_html()
     expected = pq('<ul><li>123</li></ul>')
     assert res_check == expected.outer_html()
 
@@ -91,7 +91,8 @@ def test_build_dict_ol_with_nesting():
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
     expected = pq(
-        '<ol><li>parent</li><li><span>child</span><ol><li>nested</li></ol></li></ol>')
+        '<ol><li>parent</li><li><span>child</span><ol><li>nested</li>' +
+        '</ol></li></ol>')
     assert res_check == expected.outer_html()
 
 
@@ -99,7 +100,7 @@ def test_fix_unwrapped_text_complex():
     html = '<p>aaa <em>bbb <i>ccc</i></em> ddd <del>eee</del> fff</p>'
     root_elem = pq(html)
     res = fix_unwrapped_text(root_elem)
-    res_check = res.outer_html()  # "".join([i.outerHtml() for i in res])
+    res_check = res.outer_html()
     expected = pq('<p><span>aaa </span><span><em><span>bbb </span><span>' +
                   '<i>ccc</i></span></em></span><span> ddd </span><span>' +
                   '<del>eee</del></span><span> fff</span></p>')
@@ -110,7 +111,7 @@ def test_fix_unwrapped_text_complex2():
     html = '<p>aaa <em>bbb <i>ccc<q>zzz</q>ddd</i></em> ddd <del>eee</del> fff</p>'
     root_elem = pq(html)
     res = fix_unwrapped_text(root_elem)
-    res_check = res.outer_html()  # "".join([i.outerHtml() for i in res])
+    res_check = res.outer_html()
     expected = pq('<p><span>aaa </span><span><em><span>bbb </span><span>' +
                   '<i><span>ccc</span><span><q>zzz</q></span><span>ddd' +
                   '</span></i></span></em></span><span> ddd </span><span>' +
@@ -119,10 +120,11 @@ def test_fix_unwrapped_text_complex2():
 
 
 def test_fix_unwrapped_text_complex3():
-    html = '<p>aaa <em>bbb <i>ccc<span><p>zzz</p></span>ddd</i></em> ddd <del>eee</del> fff</p>'
+    html = '<p>aaa <em>bbb <i>ccc<span><p>zzz</p></span>ddd</i>' + \
+           '</em> ddd <del>eee</del> fff</p>'
     root_elem = pq(html)
     res = fix_unwrapped_text(root_elem)
-    res_check = res.outer_html()  # "".join([i.outerHtml() for i in res])
+    res_check = res.outer_html()
     expected = pq('<p><span>aaa </span><span><em><span>bbb </span><span>' +
                   '<i><span>ccc</span><span><p>zzz</p></span><span>ddd' +
                   '</span></i></span></em></span><span> ddd </span><span>' +
@@ -137,7 +139,7 @@ def test_no_change_fix_unwrapped_text_complex():
            '<del>eee</del></span><span> fff</span></p>'
     root_elem = pq(html)
     res = fix_unwrapped_text(root_elem)
-    res_check = res.outer_html()  # "".join([i.outerHtml() for i in res])
+    res_check = res.outer_html()
     expected = pq('<p><span>aaa </span><span><em><span>bbb </span><span>' +
                   '<i><span>ccc</span><span><p>zzz</p></span><span>ddd' +
                   '</span></i></span></em></span><span> ddd </span><span>' +

@@ -5,7 +5,7 @@ from pyquery import PyQuery as pq
 
 from sane_doc_reports.MarkdownSection import markdown_to_section_list, \
     MarkdownSection, _build_dict, _fix_unwrapped_text, fix_unwrapped_text, \
-    markdown_to_html
+    markdown_to_html, _collapse_attrs
 from sane_doc_reports.conf import HTML_NOT_WRAPABLES
 
 
@@ -81,6 +81,17 @@ def test_fix_unwrapped_text_basic_3():
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()  # "".join([i.outerHtml() for i in res])
     expected = pq('<ul><li>123</li></ul>')
+    assert res_check == expected.outer_html()
+
+
+def test_build_dict_ol_with_nesting():
+    markdown_string = '1. parent\n2. child\n\t1. nested'
+    html = markdown_to_html(markdown_string).strip()
+    root_elem = pq(html)
+    res = fix_unwrapped_text(root_elem)
+    res_check = res.outer_html()
+    expected = pq(
+        '<ol><li>parent</li><li><span>child</span><ol><li>nested</li></ol></li></ol>')
     assert res_check == expected.outer_html()
 
 
@@ -167,7 +178,7 @@ def test_build_dict_deep_ul():
     root_elem = pq(html)
     res = _build_dict(root_elem)
     expected = {'type': 'ul', 'contents': [
-        {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {}, # 0
+        {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},  # 0
          'contents': [
              {'type': 'span', 'contents': 'parent', 'attrs': [], 'layout': {},
               'extra': {}},
@@ -179,6 +190,73 @@ def test_build_dict_deep_ul():
          }], 'attrs': [], 'layout': {}, 'extra': {}
                 }
     assert res == expected
+
+
+def test_build_dict_ol():
+    markdown_string = '1. parent\n\t1. child'
+    html = markdown_to_html(markdown_string).strip()
+    root_elem = pq(html)
+    res = _build_dict(root_elem)
+    expected = {'type': 'ol', 'contents': [
+        {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},  # 0
+         'contents': [
+             {'type': 'span', 'contents': 'parent', 'attrs': [], 'layout': {},
+              'extra': {}},
+             {'type': 'ol', 'contents': [
+                 {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},
+                  'contents': 'child'}
+             ], 'attrs': [], 'layout': {}, 'extra': {}}
+         ]
+         }], 'attrs': [], 'layout': {}, 'extra': {}
+                }
+    assert res == expected
+
+
+def test_build_dict_deep_ol():
+    markdown_string = '1. parent\n\t1. child\n\t\t1. deep child'
+    html = markdown_to_html(markdown_string).strip()
+    root_elem = pq(html)
+    res = _build_dict(root_elem)
+    expected = {'type': 'ol', 'contents': [
+        {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},  # 0
+         'contents': [
+             {'type': 'span', 'contents': 'parent', 'attrs': [], 'layout': {},
+              'extra': {}},
+             {'type': 'ol', 'contents': [
+                 {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},
+                  'contents': [
+                      {'type': 'span', 'contents': 'child', 'attrs': [],
+                       'layout': {},
+                       'extra': {}},
+                      {'type': 'ol', 'contents': [
+                          {'type': 'li', 'contents': 'deep child', 'attrs': [],
+                           'layout': {},
+                           'extra': {}},
+                      ], 'attrs': [],
+                       'layout': {},
+                       'extra': {}},
+                  ]}
+             ], 'attrs': [], 'layout': {}, 'extra': {}}
+         ]
+         }], 'attrs': [], 'layout': {}, 'extra': {}
+                }
+    assert res == expected
+
+
+def test_collapse_attrs_ol_deep():
+    markdown_string = '1. parent\n\t1. child\n\t\t1. deep child'
+    html = markdown_to_html(markdown_string).strip()
+    root_elem = pq(html)
+    res = _build_dict(root_elem)
+    res = _collapse_attrs([res])
+
+    assert isinstance(res, list)
+    assert res[0].type == 'ol'
+    assert res[0].contents[0].type == 'li'
+    assert res[0].contents[0].contents[1].type == 'ol'
+    #       ol      li          ol        li            ol          li
+    assert res[0].contents[0].contents[1].contents[0].contents[1].contents[
+               0].contents == 'deep child'
 
 
 def test_build_dict_basic_element_attribute():

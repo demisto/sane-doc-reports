@@ -2,7 +2,7 @@
   {
     "type": "markdown",
     "data": {
-      "text": "- test\n- test2",
+      "text": "1. test\n2. test2\n\t3. test 3",
       "groups": []
     },
     "layout": {

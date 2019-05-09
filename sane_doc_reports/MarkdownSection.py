@@ -171,14 +171,14 @@ def fix_unwrapped_text(root_elem):
 def _fix_unwrapped_text(children: PyQuery, do_not_wrap=False) -> List[PyQuery]:
     """ Add spans over all elements and their sub elements except other spans"""
     ret = []
-    if do_not_wrap:
+    if do_not_wrap and len(children) == 1:
         for i in children:
             if isinstance(i, str):
                 ret.append(i)
             else:
                 for fixed in fix_unwrapped_text(pq(i)):
                     ret.append(pq(fixed))  # pq(i).outer_html())
-            return ret
+        return ret
 
     if len(children) == 1 and isinstance(children[0], str):
         return [children[0]]
@@ -200,7 +200,7 @@ def _fix_unwrapped_text(children: PyQuery, do_not_wrap=False) -> List[PyQuery]:
             else:
                 descendants_html += i.outer_html()
 
-        if tag in ['ul', 'span']:
+        if tag in HTML_NOT_WRAPABLES:
             child.html(descendants_html)
             ret.append(child)
         else:
@@ -277,6 +277,6 @@ def markdown_to_section_list(markdown_string) -> List[MarkdownSection]:
     collapsed = _collapse_attrs(html_list)
 
     if DEBUG:
-        print(",".join([str(i) for i in collapsed]))
+        print(">", "".join([str(i) for i in collapsed]))
 
     return collapsed

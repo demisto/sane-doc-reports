@@ -16,10 +16,11 @@ class MarkdownWrapper(Wrapper):
 
     def wrap(self, invoked_from_wrapper=False):
 
+        # Handle called from another wrapper.
         if isinstance(self.section.contents, list):
             md_section_list = self.section.contents
-        elif invoked_from_wrapper and isinstance(self.section.contents.contents,
-                                                 str):
+        elif invoked_from_wrapper and \
+                isinstance(self.section.contents.contents, str):
             md_section_list = [self.section.contents]
         else:
             md_section_list = markdown_to_section_list(self.section.contents)

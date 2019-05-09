@@ -6,7 +6,7 @@ from sane_doc_reports.MarkdownSection import markdown_to_section_list, \
     MarkdownSection
 from sane_doc_reports.Wrapper import Wrapper
 from sane_doc_reports.docx import text, md_code, md_ul, md_li, md_blockquote, \
-    md_hr, md_ol, md_link
+    md_hr, md_ol, md_link, md_image
 
 import sane_doc_reports.styles.text as text_style
 import sane_doc_reports.styles.header as header_style
@@ -91,6 +91,10 @@ class MarkdownWrapper(Wrapper):
 
             if section_type == 'a':
                 md_link.invoke(self.cell_object, section)
+                continue
+
+            if section_type == 'img':
+                md_image.invoke(self.cell_object, section)
                 continue
 
             if section_type == 'hr':

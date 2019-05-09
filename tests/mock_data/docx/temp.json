@@ -2,7 +2,7 @@
   {
     "type": "markdown",
     "data": {
-      "text": "\n\n## Links\n\n[link text](http://dev.nodeca.com)",
+      "text": "\n\n\n## Images\n\n![Dummy](https://dummyimage.com/100x100/000/fff.png)\n\n",
       "groups": []
     },
     "layout": {

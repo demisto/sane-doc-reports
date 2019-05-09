@@ -5,3 +5,5 @@
 - tests attrs in wrappers
 - Test hr newlines
 - Test inline code
+- Test links
+- 

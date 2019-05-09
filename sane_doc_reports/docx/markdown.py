@@ -6,7 +6,7 @@ from sane_doc_reports.MarkdownSection import markdown_to_section_list, \
     MarkdownSection
 from sane_doc_reports.Wrapper import Wrapper
 from sane_doc_reports.docx import text, md_code, md_ul, md_li, md_blockquote, \
-    md_hr, md_ol
+    md_hr, md_ol, md_link
 
 import sane_doc_reports.styles.text as text_style
 import sane_doc_reports.styles.header as header_style
@@ -74,9 +74,10 @@ class MarkdownWrapper(Wrapper):
                 continue
 
             # === Elements ===
+
             # Add a block
             if not invoked_from_wrapper:
-                self.cell_object.add_paragraph() #TODO: make sure this is correct
+                self.cell_object.add_paragraph()  # TODO: make sure this is correct
 
             if section_type in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
                 header_style.apply_style(self.cell_object, section)
@@ -89,7 +90,7 @@ class MarkdownWrapper(Wrapper):
                 continue
 
             if section_type == 'a':
-                # Call link.invoke with normal styling
+                md_link.invoke(self.cell_object, section)
                 continue
 
             if section_type == 'hr':
@@ -106,57 +107,3 @@ def invoke(cell_object: CellObject, section: Section,
 
     MarkdownWrapper(cell_object, section).wrap(
         invoked_from_wrapper=invoked_from_wrapper)
-
-# # TODO: move these to a transformers module?
-
-
-#     for s in section_list:
-#         s['attrs'] = fix_attrs(s['attrs'])
-#
-#         # H1 <> Header
-#         if s['type'] in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
-#             if not recursive:
-#                 cell_object = add_run(cell_object)
-#
-#             section = header(s)
-#             if STYLE_KEY in section[LAYOUT_KEY]:
-#                 apply_styling(cell_object, section[LAYOUT_KEY][STYLE_KEY])
-#
-#             text.insert(cell_object, section)
-#             continue
-#
-#         # P <> Normal text
-#         if s['type'] in ['p', 'code']:
-#             if not recursive:
-#                 cell_object = add_run(cell_object)
-#
-#             section = paragraph(s)
-#             if STYLE_KEY in section[LAYOUT_KEY]:
-#                 apply_styling(cell_object, section[LAYOUT_KEY][STYLE_KEY])
-#
-#             print(section)
-#             text.insert(cell_object, section)
-#             continue
-#
-#         # Pre <> Code
-#         if s['type'] in 'pre':
-#             cell_object = add_run(cell_object)
-#             code(cell_object, s)
-#             continue
-#
-#         # Blockquote <> Quote
-#         if s['type'] == 'blockquote':
-#             cell_object = add_run(cell_object)
-#             quote(cell_object, s)
-#             continue
-#
-#         # HR <> HorizontalLine
-#         if s['type'] == 'hr':
-#             if not recursive:
-#                 cell_object = add_run(cell_object)
-#             cell_object = add_run(cell_object)  # Bug fix, for multiple hrs
-#             section = hr()
-#             md_hr.insert(cell_object, section)
-#             continue
-#
-#         print(s['type'])

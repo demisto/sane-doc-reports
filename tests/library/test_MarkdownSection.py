@@ -1,12 +1,8 @@
-from io import StringIO
-
-import mistune
 from pyquery import PyQuery as pq
 
 from sane_doc_reports.MarkdownSection import markdown_to_section_list, \
-    MarkdownSection, _build_dict, _fix_unwrapped_text, fix_unwrapped_text, \
+    MarkdownSection, _build_dict, fix_unwrapped_text, \
     markdown_to_html, _collapse_attrs
-from sane_doc_reports.conf import HTML_NOT_WRAPABLES
 
 
 def test_fix_unwrapped_text_basic():
@@ -338,19 +334,59 @@ def test_markdown_to_section_wrapped():
     assert res == expected
 
 
+def test_markdown_to_section_pre_code():
+    markdown = '\n```\ncode\n```\n'
+    md_list = markdown_to_section_list(markdown)
+
+    res = [i.get_dict() for i in md_list]
+    expected = [{
+        'type': 'pre',
+        'contents': [
+            {
+                'type': 'code',
+                'attrs': [],
+                'extra': {},
+                'contents': 'code',
+                'layout': {}
+            }
+        ], 'attrs': [], 'extra': {}, 'layout': {}
+    }]
+    assert res == expected
+
+
 def test_markdown_to_section_list_quote():
-    markdown_string = "> Blockquotes *can also* be ~~the~~ nested..."
+    markdown_string = "> Blockquotes *can also* have ~~the~~ nested..."
 
-    s = markdown_to_section_list(markdown_string)
+    md_list = markdown_to_section_list(markdown_string)
 
-    assert isinstance(s, list)
-    assert isinstance(s[0], MarkdownSection)
-    assert s[0].type == 'blockquote'
-    assert isinstance(s[0].contents, list)
-    assert isinstance(s[0].contents[0], MarkdownSection)
-    assert isinstance(s[0].contents[0].contents[0], MarkdownSection)
-    assert s[0].contents[0].contents[0].contents[0].type == 'span'
-    assert s[0].contents[0].contents[0].contents[1].type == 'span'
-    assert s[0].contents[0].contents[0].contents[2].type == 'span'
-    assert s[0].contents[0].contents[0].contents[3].type == 'span'
-    assert s[0].contents[0].contents[0].contents[4].type == 'span'
+    assert isinstance(md_list, list)
+    assert isinstance(md_list[0], MarkdownSection)
+    assert md_list[0].type == 'blockquote'
+
+    res = [i.get_dict() for i in md_list]
+    expected = [{
+        'type': 'blockquote',
+        'contents': [
+            {
+                'type': 'span', 'attrs': [], 'extra': {},
+                'contents': 'Blockquotes ', 'layout': {}
+            },
+            {
+                'type': 'span', 'attrs': ['italic'], 'extra': {},
+                'contents': 'can also', 'layout': {}
+            },
+            {
+                'type': 'span', 'attrs': [], 'extra': {},
+                'contents': ' have ', 'layout': {}
+            },
+            {
+                'type': 'span', 'attrs': ['strikethrough'], 'extra': {},
+                'contents': 'the', 'layout': {}
+            },
+            {
+                'type': 'span', 'attrs': [], 'extra': {},
+                'contents': ' nested...', 'layout': {}
+            }
+        ], 'attrs': [], 'extra': {}, 'layout': {}
+    }]
+    assert res == expected

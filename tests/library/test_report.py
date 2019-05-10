@@ -25,8 +25,6 @@ def test_creation_of_report_layout_basic():
 
 
 def test_creation_of_report_layout_full():
-    #TODO: fix
-    return
     report = Report(get_mock('grid_checks/fullgrid.json'))
     report.populate_report()
 
@@ -50,8 +48,6 @@ def test_creation_of_report_layout_full():
 
 
 def test_creation_of_report_layout_merged():
-    # TODO: fix
-    return
     report = Report(get_mock('grid_checks/mergegrid.json'))
     report.populate_report()
 

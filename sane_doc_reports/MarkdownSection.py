@@ -4,16 +4,16 @@ import json
 from typing import Union, List
 
 import mistune
-from lxml.etree import _ElementUnicodeResult
 from pyquery import PyQuery as pq, PyQuery
 
 from sane_doc_reports.Section import Section
 from sane_doc_reports.conf import HTML_ATTRIBUTES, HTML_ATTR_MARKDOWN_MAP, \
-    HTML_MAP, HTML_NOT_WRAPABLES, DEBUG
+    HTML_NOT_WRAPABLES, DEBUG, HTML_REDUNDANT_COLLAPSIBLE
 
 
 def _should_collapse(has_siblings, section_type):
-    return not has_siblings and section_type in HTML_ATTRIBUTES
+    return not has_siblings and section_type in HTML_ATTRIBUTES \
+           or section_type in HTML_REDUNDANT_COLLAPSIBLE
 
 
 class MarkdownSection(Section):
@@ -22,7 +22,6 @@ class MarkdownSection(Section):
 
         super().__init__(type, contents, layout, extra)
         self.type = type
-        self.__map_types()
         self.attrs = attrs
 
         if isinstance(contents, list):
@@ -59,10 +58,6 @@ class MarkdownSection(Section):
                 else:
                     child.swap_attr()
         return False
-
-    def __map_types(self):
-        if self.type in HTML_MAP:
-            self.type = HTML_MAP[self.type]
 
     def add_attr(self, attrs):
         new_attributes = set(self.attrs)
@@ -248,7 +243,7 @@ def markdown_to_html(markdown_string):
     if not isinstance(markdown_string, str):
         raise ValueError('Called markdown_to_html without a markdown string.')
     html = mistune.markdown(markdown_string).strip()
-    html = html.replace('\n', '')  # TODO: fix
+    html = html.replace('\n', '')  # mistune adds unnecessary newlines
     return html
 
 

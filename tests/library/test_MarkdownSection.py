@@ -1,10 +1,7 @@
 from pyquery import PyQuery as pq
 
 from sane_doc_reports.MarkdownSection import markdown_to_section_list, \
-    MarkdownSection, _build_dict, fix_unwrapped_text, \
-    markdown_to_html, _collapse_attrs
-
-
+    MarkdownSection, _build_dict, markdown_to_html, _collapse_attrs
 
 
 def test_build_dict_basic():
@@ -213,6 +210,52 @@ def test_markdown_to_section_pre_code():
                 'contents': 'code',
                 'layout': {}
             }
+        ], 'attrs': [], 'extra': {}, 'layout': {}
+    }]
+    assert res == expected
+
+
+def test_markdown_to_section_ul():
+    markdown = '- one\n- *two*'
+    md_list = markdown_to_section_list(markdown)
+
+    res = [i.get_dict() for i in md_list]
+    expected = [{
+        'type': 'ul',
+        'contents': [
+            {'type': 'li', 'attrs': [], 'extra': {}, 'contents': 'one',
+             'layout': {}},
+            {'type': 'li', 'attrs': ['italic'], 'extra': {}, 'contents': 'two',
+             'layout': {}}
+        ], 'attrs': [], 'extra': {}, 'layout': {}
+    }]
+    assert res == expected
+
+
+def test_markdown_to_section_ul_ol_complex():
+    markdown = '- one\n- two\n\t1. nested\n\t2. nested deep'
+    md_list = markdown_to_section_list(markdown)
+
+    res = [i.get_dict() for i in md_list]
+    expected = [{
+        'type': 'ul',
+        'contents': [
+            {'type': 'li', 'attrs': [], 'extra': {}, 'contents': 'one',
+             'layout': {}},
+            {'type': 'li', 'attrs': [], 'extra': {}, 'contents': [
+                {'type': 'span', 'attrs': [], 'extra': {}, 'contents': 'two',
+                 'layout': {}},
+                {'type': 'ol', 'attrs': [], 'extra': {}, 'contents': [
+                    {'type': 'li', 'attrs': [], 'extra': {},
+                     'contents': 'nested',
+                     'layout': {}},
+                    {'type': 'li', 'attrs': [], 'extra': {},
+                     'contents': 'nested deep',
+                     'layout': {}}
+                ],
+                 'layout': {}}
+            ],
+             'layout': {}},
         ], 'attrs': [], 'extra': {}, 'layout': {}
     }]
     assert res == expected

@@ -30,7 +30,7 @@ class CellObject(object):
         self.paragraph = cell_paragraph
         self.run = cell_run
 
-    def _get_cell_wrappers(self, add_run=True) -> Tuple[Paragraph,
+    def _get_cell_wrappers(self) -> Tuple[Paragraph,
                                                         Union[Run, None]]:
         """
         Return the cell's paragraph and create a run object too, return them
@@ -42,9 +42,7 @@ class CellObject(object):
         """
         paragraphs = self.cell.paragraphs
         paragraph = paragraphs[0]
-        run = None
-        if add_run:
-            run = paragraph.add_run()
+        run = paragraph.add_run()
         return paragraph, run
 
     def add_run(self):

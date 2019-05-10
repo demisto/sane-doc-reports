@@ -46,3 +46,10 @@ def test_markdown():
     # Find OLs
     assert len(
         d.element.xpath('//w:p//w:pStyle[contains(@w:val,"ListNumber")]')) == 4
+
+    # Find one link
+    assert len(d.element.xpath("//w:hyperlink//w:t[text()='link text']")) == 1
+
+    # Find one image
+    assert len(
+        d.element.xpath("//w:drawing//pic:cNvPr[@name='image.png']")) == 1

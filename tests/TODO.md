@@ -1,8 +1,2 @@
-- Test add paragraph in cell object
 - Test propagate in 
-- md objects(header, test)
 - tests attrs in wrappers
-- Test hr newlines
-- Test inline code
-- Test links
-- 

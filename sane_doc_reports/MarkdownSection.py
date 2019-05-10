@@ -3,12 +3,12 @@ from __future__ import annotations  # Used to fix the __init__ of same type
 import json
 from typing import Union, List
 
-import mistune
 from pyquery import PyQuery as pq, PyQuery
 
 from sane_doc_reports.Section import Section
 from sane_doc_reports.conf import HTML_ATTRIBUTES, HTML_ATTR_MARKDOWN_MAP, \
-    HTML_NOT_WRAPABLES, DEBUG, HTML_REDUNDANT_COLLAPSIBLE
+    DEBUG, HTML_REDUNDANT_COLLAPSIBLE
+from sane_doc_reports.md_helpers import fix_unwrapped_text, markdown_to_html
 
 
 def _should_collapse(has_siblings, section_type):
@@ -117,7 +117,10 @@ class MarkdownSection(Section):
         return self.toJSON()
 
 
-def _collapse_attrs(section_list):
+def _collapse_attrs(section_list: List[Section]) -> List[
+                                            Union[Section, MarkdownSection]]:
+    """ Collapse all of the sections
+    (moving em as attributes or removing redundant elements like <p>) """
     ret = []
     for section in section_list:
         if isinstance(section, MarkdownSection):
@@ -132,80 +135,7 @@ def _collapse_attrs(section_list):
     return ret
 
 
-def _wrap(elem):
-    span = pq('<span></span>')
-    span.html(elem)
-    return span
-
-
-def get_html(children: List) -> str:
-    ret = ""
-    for child in children:
-        if isinstance(child, str):
-            ret += child
-        else:
-            ret += child.outer_html()
-
-    return ret
-
-
-def check_wrap(tag, children):
-    return tag in HTML_NOT_WRAPABLES and len(children) == 1
-
-
-def fix_unwrapped_text(root_elem):
-    tag = root_elem[0].tag
-    children = root_elem.contents()
-    should_not_wrap = check_wrap(tag, children)
-    fixed_children = _fix_unwrapped_text(children, do_not_wrap=should_not_wrap)
-    fixed_element = pq(f'<{tag}></{tag}>')
-    fixed_element.html(get_html(fixed_children))
-    return fixed_element
-
-
-def _fix_unwrapped_text(children: PyQuery, do_not_wrap=False) -> List[PyQuery]:
-    """ Add spans over all elements and their sub elements except other spans"""
-    ret = []
-    if do_not_wrap and len(children) == 1:
-        for i in children:
-            if isinstance(i, str):
-                ret.append(i)
-            else:
-                for fixed in fix_unwrapped_text(pq(i)):
-                    ret.append(pq(fixed))  # pq(i).outer_html())
-        return ret
-
-    if len(children) == 1 and isinstance(children[0], str):
-        return [children[0]]
-
-    for child in children:
-        if isinstance(child, str) and len(children) > 1:
-            ret.append(_wrap(child))
-            continue
-
-        tag = child.tag
-        attribs = "".join([f'{k}="{v}" ' for k, v in child.attrib.items()])
-        child = pq(child)
-        descendants = _fix_unwrapped_text(child.contents(),
-                                          do_not_wrap=tag in HTML_NOT_WRAPABLES)
-        descendants_html = ""
-        for i in descendants:
-            if isinstance(i, str):
-                descendants_html += i
-            else:
-                descendants_html += i.outer_html()
-
-        if tag in HTML_NOT_WRAPABLES:
-            child.html(descendants_html)
-            ret.append(child)
-        else:
-            child = pq(f'<{tag} {attribs}>{descendants_html}</{tag}>')
-            ret.append(_wrap(child))
-
-    return ret
-
-
-def _build_dict(elem: PyQuery, already_wrapped=False):
+def _build_dict(elem: PyQuery, already_wrapped=False) -> dict:
     # Find if has children
     elem = pq(elem)
     children = list(elem.contents())
@@ -216,8 +146,6 @@ def _build_dict(elem: PyQuery, already_wrapped=False):
         # Fix unwrapped children
         if not already_wrapped:
             children = fix_unwrapped_text(elem).contents()
-            # children = _fix_unwrapped_text(children, do_not_wrap= \
-            #     elem[0].tag in HTML_NOT_WRAPABLES)
 
         for child in children:
             child_dict = _build_dict(child, already_wrapped=True)
@@ -235,16 +163,6 @@ def _build_dict(elem: PyQuery, already_wrapped=False):
     return {'type': list(elem)[0].tag, 'attrs': [], 'layout': {},
             'contents': contents,
             'extra': extra}
-
-
-def markdown_to_html(markdown_string):
-    if markdown_string is None:
-        return '<span> </span>'
-    if not isinstance(markdown_string, str):
-        raise ValueError('Called markdown_to_html without a markdown string.')
-    html = mistune.markdown(markdown_string).strip()
-    html = html.replace('\n', '')  # mistune adds unnecessary newlines
-    return html
 
 
 def markdown_to_section_list(markdown_string) -> List[MarkdownSection]:

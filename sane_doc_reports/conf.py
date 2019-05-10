@@ -37,7 +37,6 @@ SIZE_W_INCHES = 6
 SIZE_H_INCHES = 3
 DPI = 80
 
-
 # List constants
 ORDERED_LIST_NAME = 'List Number'
 UNORDERED_LIST_NAME = 'List Bullet'

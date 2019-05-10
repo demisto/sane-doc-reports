@@ -9,6 +9,8 @@ from sane_doc_reports.docx import image
 
 
 def image_contents_from_url(url):
+    requests.packages.urllib3.disable_warnings()
+
     r = requests.get(url, verify=False)
     return "data:" + \
            r.headers['Content-Type'] + ";" + \

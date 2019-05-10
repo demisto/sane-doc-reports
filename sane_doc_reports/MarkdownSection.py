@@ -185,8 +185,6 @@ def markdown_to_section_list(markdown_string) -> List[MarkdownSection]:
         -> [Section Object]
     """
     html = markdown_to_html(markdown_string)
-    print(html)
-
     etree_root = pq(html)
     html_list = list(map(_build_dict, [c for c in list(etree_root)]))
     collapsed = _collapse_attrs(html_list)

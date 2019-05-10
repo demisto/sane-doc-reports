@@ -8,7 +8,9 @@ from sane_doc_reports.conf import DEBUG
 class NumberElement(Element):
 
     def insert(self):
-        print("Adding number: ", self.section.contents)
+        if DEBUG:
+            print("Adding number: ", self.section.contents)
+
         table = self.cell_object.cell.add_table(rows=1, cols=1)
 
         if DEBUG:

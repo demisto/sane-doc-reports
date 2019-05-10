@@ -2,12 +2,14 @@ from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 
 from sane_doc_reports.Element import Element
+from sane_doc_reports.conf import DEBUG
 
 
 class HorizontalLineElement(Element):
 
     def insert(self):
-        print('Adding horizontal line...')
+        if DEBUG:
+            print('Adding horizontal line...')
 
         self.cell_object.add_paragraph()
         self.cell_object.add_paragraph() # TODO: fix this double spacing

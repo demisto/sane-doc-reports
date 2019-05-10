@@ -4,6 +4,7 @@ from docx.oxml.ns import nsdecls
 from sane_doc_reports.CellObject import CellObject
 from sane_doc_reports.MarkdownSection import MarkdownSection
 from sane_doc_reports.Wrapper import Wrapper
+from sane_doc_reports.conf import DEBUG
 from sane_doc_reports.docx import markdown
 from sane_doc_reports.utils import name_to_hex
 
@@ -11,7 +12,9 @@ from sane_doc_reports.utils import name_to_hex
 class CodeWrapper(Wrapper):
 
     def wrap(self):
-        print("Wrapping code...")
+        if DEBUG:
+            print("Wrapping code...")
+
         if 'inline' not in self.section.extra:
             self.cell_object.add_paragraph()
             # TODO: remove newlines from OXML

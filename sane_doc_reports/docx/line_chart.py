@@ -1,10 +1,12 @@
 from sane_doc_reports.Element import Element
+from sane_doc_reports.conf import DEBUG
 
 
 class LineChartElement(Element):
 
     def insert(self):
-        print("Adding text...")
+        if DEBUG:
+            print("Adding text...")
 
 
 def invoke(cell_object, section):

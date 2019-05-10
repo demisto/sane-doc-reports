@@ -1,6 +1,6 @@
 from sane_doc_reports.MarkdownSection import MarkdownSection
 from sane_doc_reports.Wrapper import Wrapper
-from sane_doc_reports.conf import UNORDERED_LIST_NAME
+from sane_doc_reports.conf import UNORDERED_LIST_NAME, DEBUG
 from sane_doc_reports.docx import markdown
 from sane_doc_reports.utils import get_current_li
 
@@ -8,7 +8,8 @@ from sane_doc_reports.utils import get_current_li
 class UlWrapper(Wrapper):
 
     def wrap(self):
-        print("Ul code...")
+        if DEBUG:
+            print("Ul code...")
 
         temp_section = MarkdownSection('markdown', self.section.contents, {},
                                        {})

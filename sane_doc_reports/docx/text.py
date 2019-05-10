@@ -1,10 +1,13 @@
 from sane_doc_reports.Element import Element
+from sane_doc_reports.conf import DEBUG
 
 
 class TextElement(Element):
 
     def insert(self):
-        print('Adding text...')
+        if DEBUG:
+            print('Adding text...')
+
         self.cell_object.run.text = self.section.contents
 
 

@@ -1,6 +1,6 @@
 from sane_doc_reports import utils
 from sane_doc_reports.Section import Section
-from sane_doc_reports.conf import DATA_KEY, LAYOUT_KEY
+from sane_doc_reports.conf import DATA_KEY, LAYOUT_KEY, DEBUG
 
 # Plot
 import matplotlib.pyplot as plt
@@ -19,7 +19,9 @@ class PieChartElement(Element):
 
     @utils.plot
     def insert(self):
-        print("Adding pie chart: ", self.section.contents)
+        if DEBUG:
+            print("Adding pie chart: ", self.section.contents)
+
         size_w, size_h, dpi = utils.convert_plt_size(self.section)
         fig, ax = plt.subplots(figsize=(size_w, size_h), dpi=dpi,
                                subplot_kw=dict(aspect="equal"))

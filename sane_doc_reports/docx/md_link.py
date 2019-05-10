@@ -3,6 +3,7 @@ from docx.enum.dml import MSO_THEME_COLOR_INDEX
 
 from sane_doc_reports.Element import Element
 import sane_doc_reports.styles.text as text_style
+from sane_doc_reports.conf import DEBUG
 
 
 def add_hyperlink_into_run(paragraph, run, url):
@@ -27,11 +28,12 @@ def add_hyperlink_into_run(paragraph, run, url):
     run.font.underline = True
 
 
-
 class LinkElement(Element):
 
     def insert(self):
-        print('Adding link...')
+        if DEBUG:
+            print('Adding link...')
+
         self.cell_object.add_run()
         self.cell_object.run.text = self.section.contents
 

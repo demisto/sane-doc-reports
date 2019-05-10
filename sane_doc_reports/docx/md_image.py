@@ -4,6 +4,7 @@ import requests
 
 from sane_doc_reports.Element import Element
 from sane_doc_reports.Section import Section
+from sane_doc_reports.conf import DEBUG
 from sane_doc_reports.docx import image
 
 
@@ -17,7 +18,8 @@ def image_contents_from_url(url):
 class ExternalImageElement(Element):
 
     def insert(self):
-        print('Adding md image...')
+        if DEBUG:
+            print('Adding md image...')
 
         url = self.section.extra['src']
         image_data = image_contents_from_url(url)

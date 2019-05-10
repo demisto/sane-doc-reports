@@ -2,12 +2,15 @@ from docx.shared import Pt
 
 from sane_doc_reports.CellObject import CellObject
 from sane_doc_reports.Element import Element
+from sane_doc_reports.conf import DEBUG
 
 
 class TrendElement(Element):
 
     def insert(self):
-        print("Adding trend...")
+        if DEBUG:
+            print("Adding trend...")
+
         table = self.cell_object.cell.add_table(rows=2, cols=4)
 
         # Add the main number

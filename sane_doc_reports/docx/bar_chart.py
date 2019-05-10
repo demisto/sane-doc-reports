@@ -1,10 +1,12 @@
 from sane_doc_reports.Element import Element
+from sane_doc_reports.conf import DEBUG
 
 
 class BarChartElement(Element):
 
     def insert(self):
-        print("Adding barchart...")
+        if DEBUG:
+            print("Adding barchart...")
 
 
 def invoke(cell_object, section):

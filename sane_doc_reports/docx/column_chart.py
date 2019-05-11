@@ -15,15 +15,20 @@ def insert(cell_object: Dict, section: Dict) -> None:
 
     bar_width = 0.35
 
+    # Fix sizing
+    size_w, size_h, dpi = utils.convert_plt_size(section)
+    plt.figure(figsize=(size_w, size_h), dpi=dpi)
+
     data = section[f'{DATA_KEY}']
     objects = [i['name'] for i in data]
 
     y_axis = [i for i, _ in enumerate(objects)]
     x_axis = [i['data'][0] for i in data]
 
-    plt.bar(y_axis, x_axis, align='center', alpha=0.5, width=bar_width)
+    rects = plt.bar(y_axis, x_axis, align='center', alpha=0.5, width=bar_width)
 
     ax = plt.gca()
+    ax.legend(rects, objects, loc='best').get_frame().set_alpha(0.4)
     ax.set_xlim(-len(objects), len(objects))
 
     plt.xticks(y_axis, objects)

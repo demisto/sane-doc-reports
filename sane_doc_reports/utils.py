@@ -85,6 +85,7 @@ def convert_plt_size(section):
         h = section[LAYOUT_KEY]['dimensions']['height'] / 100.0
         w = section[LAYOUT_KEY]['dimensions']['width'] / 100.0
         size_w, size_h, dpi = (w, h, 100)
+
     return size_w, size_h, dpi
 
 

@@ -1,6 +1,3 @@
-import base64
-import tempfile
-from pathlib import Path
 from typing import Dict
 
 from sane_doc_reports import utils
@@ -10,7 +7,6 @@ from sane_doc_reports.conf import DEBUG, DATA_KEY, LAYOUT_KEY
 import matplotlib.pyplot as plt
 
 from sane_doc_reports.docx import image
-
 
 
 def get_ax_location(align, vertical_align):
@@ -57,7 +53,8 @@ def insert(cell_object: Dict, section: Dict) -> None:
 
     legend_style = section[LAYOUT_KEY]['legendStyle']
 
-    keys_with_numbers = ['{}: {}'.format(k, data[i]) for i, k in enumerate(keys)]
+    keys_with_numbers = ['{}: {}'.format(k, data[i]) for i, k in
+                         enumerate(keys)]
     ax.legend(wedges, keys_with_numbers,
               title="",
               loc=get_ax_location(legend_style['align'],

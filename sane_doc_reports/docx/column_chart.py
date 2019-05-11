@@ -13,9 +13,9 @@ def insert(cell_object: Dict, section: Dict) -> None:
     if DEBUG:
         print("Yo I am column chart!")
 
-    bar_width = 0.35
 
     # Fix sizing
+    bar_width = 0.35
     size_w, size_h, dpi = utils.convert_plt_size(section)
     plt.figure(figsize=(size_w, size_h), dpi=dpi)
 

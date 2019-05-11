@@ -14,6 +14,7 @@ def insert(cell_object: Dict, section: Dict) -> None:
         print("Yo I am bar chart!")
 
     # Fix sizing
+    bar_width = 0.35
     size_w, size_h, dpi = utils.convert_plt_size(section)
     plt.figure(figsize=(size_w, size_h), dpi=dpi)
 
@@ -26,7 +27,8 @@ def insert(cell_object: Dict, section: Dict) -> None:
     # Colors:
     colors = [c for c in utils.get_saturated_colors()[:len(objects)]]
 
-    rects = plt.barh(y_axis, x_axis, align='center', alpha=0.5, color=colors)
+    rects = plt.barh(y_axis, width=x_axis, align='center', alpha=0.5, color=colors,
+                     height=bar_width)
 
     ax = plt.gca()
     # Create and move the legend outside

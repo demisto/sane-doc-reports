@@ -40,7 +40,7 @@ def example_markdown():
 
 def main():
     # Gets the json form tests/mock_data
-    example_markdown()
+    example_basic()
 
 
 if __name__ == '__main__':

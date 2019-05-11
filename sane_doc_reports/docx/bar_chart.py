@@ -10,6 +10,10 @@ from sane_doc_reports.docx import image
 
 @utils.plot
 def insert(cell_object: Dict, section: Dict) -> None:
+    """
+    This is a bar chart on the side (bar goes right)
+    """
+
     if DEBUG:
         print("Yo I am bar chart!")
 
@@ -32,7 +36,8 @@ def insert(cell_object: Dict, section: Dict) -> None:
 
     ax = plt.gca()
     # Create and move the legend outside
-    ax.legend(rects, objects, loc='upper right',
+    fixed_legends = [f'{v} ({x_axis[i]})' for i, v in enumerate(objects)]
+    ax.legend(rects, fixed_legends, loc='upper right',
               bbox_to_anchor=(1.75, 1)).get_frame().set_alpha(0.5)
     ax.set_yticks(y_axis)
     ax.set_yticklabels([])

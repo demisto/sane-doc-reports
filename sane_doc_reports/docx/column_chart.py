@@ -10,9 +10,11 @@ from sane_doc_reports.docx import image
 
 @utils.plot
 def insert(cell_object: Dict, section: Dict) -> None:
+    """
+    This is a standing barchart (bar goes up)
+    """
     if DEBUG:
         print("Yo I am column chart!")
-
 
     # Fix sizing
     bar_width = 0.35

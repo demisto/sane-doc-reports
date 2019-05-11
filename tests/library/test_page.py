@@ -21,7 +21,10 @@ def test_no_second_page_exception():
 def test_calculate_page_grid_empty():
     sane_json = SaneJson(get_mock('grid_checks/onecellgrid.json'))
     page = sane_json.get_page(0)
-    assert page.calculate_page_grid() == (1, 1)
+    if SHOULD_HAVE_12_GRID:
+        assert page.calculate_page_grid() == (12, 1)
+    else:
+        assert page.calculate_page_grid() == (1, 1)
 
 
 def test_calculate_page_grid_full():

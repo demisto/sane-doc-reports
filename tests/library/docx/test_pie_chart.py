@@ -7,7 +7,7 @@ from tests.utils import get_mock
 
 
 def test_picture_in_report():
-    report = Report(get_mock('docx/image.json'))
+    report = Report(get_mock('docx/pie_chart.json'))
     report.populate_report()
     d = report.document
     table = next(utils.iter_block_items(d))
@@ -17,8 +17,8 @@ def test_picture_in_report():
         assert len(table.columns) == 12
         assert len(table.rows) == 1
     else:
-        assert len(table.columns) == 1
-        assert len(table.rows) == 1
+        assert len(table.columns) == 12
+        assert len(table.rows) == 5
 
     # Check that there is indeed an image
-    assert len(d.element.xpath('//pic:pic')) == 1
+    assert len(d.element.xpath('//pic:pic')) == 3

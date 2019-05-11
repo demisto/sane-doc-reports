@@ -46,6 +46,11 @@ class Page:
                           ), section_list), 1)
 
     def get_max_horizontal_position(self) -> int:
+
+        # If we want to have a constant sized grid
+        if SHOULD_HAVE_12_GRID:
+            return 12
+
         # Note: we max with 1, in case there is an section without a height,
         # we still want a table with a size of 1 at least.
 

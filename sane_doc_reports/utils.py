@@ -2,12 +2,28 @@ import base64
 import re
 import tempfile
 from io import BytesIO
+import importlib
 from pathlib import Path
 
 import matplotlib
+from docx.shared import RGBColor
+
 from matplotlib import pyplot as plt
 from matplotlib import colors as mcolors
-from docx.shared import RGBColor
+
+from sane_doc_reports.conf import LAYOUT_KEY, SIZE_H_INCHES, SIZE_W_INCHES, DPI
+
+colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS)
+
+
+def name_to_rgb(color_name: str):
+    hex_color = name_to_hex(color_name)
+    return hex_to_rgb(hex_color)
+
+
+def name_to_hex(color_name: str):
+    """ Get the hex representation of a color name (CSS4) """
+    return colors[color_name]
 
 
 def hex_to_rgb(hex_color: str):
@@ -30,12 +46,20 @@ def open_b64_image(image_base64):
     return f
 
 
-def get_saturated_colors():
-    """ Return named colors that are clearly visible on a white background """
-    colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS)
+def insert_by_type(type: str, cell_object: dict, section: dict):
+    """ Call a docx elemnt's insert method """
+    func = importlib.import_module(f'sane_doc_reports.docx.{type}')
+    func.insert(cell_object, section)
 
-    return [name for name, _ in colors.items()
-            if 'light' not in name and 'white' not in name]
+
+def plot(func):
+    """ A decorator used to clear and resize each chart """
+
+    def wrapper(*args, **kwargs):
+        plt.clf()
+        func(*args, **kwargs)
+
+    return wrapper
 
 
 def plt_t0_b64(plt: matplotlib.pyplot):
@@ -54,11 +78,17 @@ def plt_t0_b64(plt: matplotlib.pyplot):
     return b64
 
 
-def plot(func):
-    """ A decorator used to clear and resize each chart """
-    def wrapper(*args, **kwargs):
-        plt.figure(figsize=(4, 3))
-        plt.clf()
-        func(*args, **kwargs)
+def convert_plt_size(section):
+    """ Convert the plot size from pixels to word """
+    size_w, size_h, dpi = (SIZE_W_INCHES, SIZE_H_INCHES, DPI)
+    if 'dimensions' in section[LAYOUT_KEY]:
+        h = section[LAYOUT_KEY]['dimensions']['height'] / 100.0
+        w = section[LAYOUT_KEY]['dimensions']['width'] / 100.0
+        size_w, size_h, dpi = (w, h, 100)
+    return size_w, size_h, dpi
 
-    return wrapper
+
+def get_saturated_colors():
+    """ Return named colors that are clearly visible on a white background """
+    return [name for name, _ in colors.items()
+            if 'light' not in name and 'white' not in name]

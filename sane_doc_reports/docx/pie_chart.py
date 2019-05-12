@@ -31,7 +31,7 @@ def insert(cell_object: Dict, section: Dict) -> None:
     keys = [i if i != "" else "Unassigned" for i in keys]
 
     # Generate the default colors
-    colors = [c for c in utils.get_saturated_colors()[:len(keys)]]
+    colors = [utils.get_chart_color(i) for i in keys]
     unassigned_color = 'darkgrey'
 
     # If we have predefined colors, use them

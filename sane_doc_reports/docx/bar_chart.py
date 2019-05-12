@@ -29,7 +29,7 @@ def insert(cell_object: Dict, section: Dict) -> None:
     x_axis = [i['data'][0] for i in data]
 
     # Colors:
-    colors = [c for c in utils.get_saturated_colors()[:len(objects)]]
+    colors = [utils.get_chart_color(i) for i in objects]
 
     rects = plt.barh(y_axis, width=x_axis, align='center', alpha=0.5, color=colors,
                      height=bar_width)

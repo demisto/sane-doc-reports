@@ -14,6 +14,22 @@ from matplotlib import colors as mcolors
 from sane_doc_reports.conf import LAYOUT_KEY, SIZE_H_INCHES, SIZE_W_INCHES, DPI
 
 colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS)
+DEFAULT_BAR_COLOR = '#999999'
+CHART_COLORS = ['#E57373', '#FF1D1E', '#FF5000', '#E55100', '#D74315',
+                '#F06292', '#FF3F81', '#F50057', '#C2195B', '#E91D63',
+                '#AD1457', '#CE93D8', '#EA80FC', '#FA99D0', '#FD5BDE',
+                '#D500F9', '#AA00FF', '#BA68C8', '#B287FE', '#9575CD',
+                '#AB47BC', '#8E24AA', '#8052F3', '#9FA8DA', '#7C71F5',
+                '#536DFE', '#5C6BC0', '#3F51B5', '#6200EA', '#A3C9FF',
+                '#64B5F6', '#03B0FF', '#2196F3', '#2979FF', '#295AFF',
+                '#B7E7FF', '#81D4FA', '#80DEEA', '#00B8D4', '#039BE5',
+                '#0277BD', '#1AEADE', '#18DEE5', '#00E5FF', '#4DD0E1',
+                '#4DB6AC', '#0097A7', '#0097A7', '#64DC17', '#00E676',
+                '#00C853', '#20B358', '#4CAF50', '#C5FE01', '#ADE901',
+                '#50EB07', '#AED581', '#8BC34A', '#69A636', '#EDFE41',
+                '#FFEA00', '#FFD740', '#F9A825', '#FB8C00', '#FF7500',
+                '#DBDBDB', '#CFD8DC', '#9EB6C3', '#B2B7B9', '#989898',
+                '#90A4AE']
 
 
 def name_to_rgb(color_name: str):
@@ -89,7 +105,32 @@ def convert_plt_size(section):
     return size_w, size_h, dpi
 
 
-def get_saturated_colors():
-    """ Return named colors that are clearly visible on a white background """
-    return [name for name, _ in colors.items()
-            if 'light' not in name and 'white' not in name]
+def _hash_simple_value(string):
+    str_value = '' + string
+    hash_value = 5381
+    i = len(str_value)
+
+    while i > 1:
+        i = i - 1
+        hash_value = (hash_value * 33) ^ ord(str_value[i])
+
+    return hash_value
+
+
+def _hash_string(list_or_value):
+    if not list_or_value:
+        return list_or_value
+
+    if isinstance(list_or_value, list):
+        return list(map(list_or_value, _hash_string))
+
+    return _hash_simple_value(list_or_value)
+
+
+def get_chart_color(value):
+    """ Trying to copy the sane-report color scheme """
+    if not value:
+        return DEFAULT_BAR_COLOR
+
+    index = _hash_string(value) % len(CHART_COLORS)
+    return CHART_COLORS[index]

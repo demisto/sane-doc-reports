@@ -38,10 +38,16 @@ def example_markdown():
     report.save('example.docx')
 
 
+def example_investigation():
+    report = Report(get_mock('docx/markdown.json'))
+    report.populate_report()
+    report.save('example.docx')
+
 def main():
     # Gets the json form tests/mock_data
+    # example_investigation()
+    # example_markdown()
     example_basic()
-
 
 if __name__ == '__main__':
     main()

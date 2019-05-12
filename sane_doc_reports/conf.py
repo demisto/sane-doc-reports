@@ -3,7 +3,7 @@ from os import getenv
 # Environment
 DEBUG = getenv('SANE_DOCX_DEBUG', 'False') == 'True'
 
-# Constants
+# Grid Constants
 DATA_KEY = 'data'
 LAYOUT_KEY = 'layout'
 ROW_POSITION_KEY = 'rowPos'
@@ -29,3 +29,9 @@ SHOULD_HAVE_12_GRID = False
 SIZE_W_INCHES = 6
 SIZE_H_INCHES = 3
 DPI = 80
+
+# Chart constants
+DEFAULT_ALPHA = 0.5
+DEFAULT_BAR_WIDTH = 0.35
+DEFAULT_BAR_ALPHA = 0.8
+DEFAULT_DPI = 100.0

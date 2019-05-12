@@ -11,7 +11,8 @@ from docx.shared import RGBColor
 from matplotlib import pyplot as plt
 from matplotlib import colors as mcolors
 
-from sane_doc_reports.conf import LAYOUT_KEY, SIZE_H_INCHES, SIZE_W_INCHES, DPI
+from sane_doc_reports.conf import LAYOUT_KEY, SIZE_H_INCHES, SIZE_W_INCHES, DPI, \
+    DEFAULT_DPI
 
 colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS)
 DEFAULT_BAR_COLOR = '#999999'
@@ -98,33 +99,21 @@ def convert_plt_size(section):
     """ Convert the plot size from pixels to word """
     size_w, size_h, dpi = (SIZE_W_INCHES, SIZE_H_INCHES, DPI)
     if 'dimensions' in section[LAYOUT_KEY]:
-        h = section[LAYOUT_KEY]['dimensions']['height'] / 100.0
-        w = section[LAYOUT_KEY]['dimensions']['width'] / 100.0
-        size_w, size_h, dpi = (w, h, 100)
+        h = section[LAYOUT_KEY]['dimensions']['height'] / DEFAULT_DPI
+        w = section[LAYOUT_KEY]['dimensions']['width'] / DEFAULT_DPI
+        size_w, size_h, dpi = (w, h, DEFAULT_DPI)
 
     return size_w, size_h, dpi
 
 
-def _hash_simple_value(string):
-    str_value = '' + string
-    hash_value = 5381
-    i = len(str_value)
-
-    while i > 1:
+def _hash_simple_value(s):
+    """ djb2 """
+    hash = 5381
+    i = len(s)
+    for _ in s:
         i = i - 1
-        hash_value = (hash_value * 33) ^ ord(str_value[i])
-
-    return hash_value
-
-
-def _hash_string(list_or_value):
-    if not list_or_value:
-        return list_or_value
-
-    if isinstance(list_or_value, list):
-        return list(map(list_or_value, _hash_string))
-
-    return _hash_simple_value(list_or_value)
+        hash = (hash * 33) ^ ord(s[i])
+    return hash & 0xFFFFFFFF
 
 
 def get_chart_color(value):
@@ -132,5 +121,37 @@ def get_chart_color(value):
     if not value:
         return DEFAULT_BAR_COLOR
 
-    index = _hash_string(value) % len(CHART_COLORS)
+    index = _hash_simple_value(value) % len(CHART_COLORS)
     return CHART_COLORS[index]
+
+
+def get_ax_location(legend_style):
+    align = legend_style.get('align', None)
+    vertical_align = legend_style.get('verticalAlign', None)
+
+    if not align or not vertical_align:
+        return 'best'
+
+    vertical_align = vertical_align.replace('top', 'upper').replace(
+        'bottom', 'lower')
+    return f'{vertical_align} {align}'
+
+
+def get_colors(section_layout, objects):
+    """ Return the chart colors and replace the default colors if they
+    are hardcoded """
+    default_colors = [get_chart_color(i) for i in objects]
+    if not "legend" in section_layout or not isinstance(
+            section_layout['legend'], list):
+        return default_colors
+
+    legend_colors = section_layout['legend']
+    defined_colors = [i['name'] for i in legend_colors]
+    ret_colors = []
+    for name in objects:
+        if name in defined_colors:
+            ret_colors.append(
+                legend_colors[defined_colors.index(name)]['color'])
+        else:
+            ret_colors.append(default_colors.pop())
+    return ret_colors

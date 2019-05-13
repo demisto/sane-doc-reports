@@ -96,7 +96,8 @@ def plot(func):
     """ A decorator used to clear and resize each chart """
 
     def wrapper(*args, **kwargs):
-        plt.clf()
+        if plt.get_fignums():
+            plt.clf()
         func(*args, **kwargs)
 
     return wrapper

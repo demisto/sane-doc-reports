@@ -1,0 +1,268 @@
+[
+  {
+    "type": "chart",
+    "data": [
+      {
+        "name": "2019-04-08",
+        "data": [
+          5
+        ],
+        "groups": [
+          {
+            "name": "Unclassified",
+            "data": [
+              1
+            ],
+            "groups": null
+          },
+          {
+            "name": "DoS",
+            "data": [
+              2
+            ],
+            "groups": null
+          },
+          {
+            "name": "DeviceLost",
+            "data": [
+              1
+            ],
+            "groups": null
+          },
+          {
+            "name": "Exploit",
+            "data": [
+              1
+            ],
+            "groups": null
+          }
+        ]
+      },
+      {
+        "name": "2019-04-09",
+        "data": [
+          0
+        ],
+        "groups": [
+          {
+            "name": "Unclassified",
+            "data": [
+              0
+            ],
+            "groups": null
+          },
+          {
+            "name": "DoS",
+            "data": [
+              0
+            ],
+            "groups": null
+          },
+          {
+            "name": "DeviceLost",
+            "data": [
+              0
+            ],
+            "groups": null
+          },
+          {
+            "name": "Exploit",
+            "data": [
+              0
+            ],
+            "groups": null
+          }
+        ]
+      },
+      {
+        "name": "2019-04-10",
+        "data": [
+          3
+        ],
+        "groups": [
+          {
+            "name": "Unclassified",
+            "data": [
+              3
+            ],
+            "groups": null
+          },
+          {
+            "name": "DoS",
+            "data": [
+              0
+            ],
+            "groups": null
+          },
+          {
+            "name": "DeviceLost",
+            "data": [
+              0
+            ],
+            "groups": null
+          },
+          {
+            "name": "Exploit",
+            "data": [
+              0
+            ],
+            "groups": null
+          }
+        ]
+      },
+      {
+        "name": "2019-04-11",
+        "data": [
+          0
+        ],
+        "groups": [
+          {
+            "name": "Unclassified",
+            "data": [
+              0
+            ],
+            "groups": null
+          },
+          {
+            "name": "DoS",
+            "data": [
+              0
+            ],
+            "groups": null
+          },
+          {
+            "name": "DeviceLost",
+            "data": [
+              0
+            ],
+            "groups": null
+          },
+          {
+            "name": "Exploit",
+            "data": [
+              0
+            ],
+            "groups": null
+          }
+        ]
+      },
+      {
+        "name": "2019-04-12",
+        "data": [
+          0
+        ],
+        "groups": [
+          {
+            "name": "Unclassified",
+            "data": [
+              0
+            ],
+            "groups": null
+          },
+          {
+            "name": "DoS",
+            "data": [
+              0
+            ],
+            "groups": null
+          },
+          {
+            "name": "DeviceLost",
+            "data": [
+              0
+            ],
+            "groups": null
+          },
+          {
+            "name": "Exploit",
+            "data": [
+              0
+            ],
+            "groups": null
+          }
+        ]
+      }
+    ],
+    "layout": {
+      "chartProperties": {
+        "format": "DD MMM Y",
+        "isDatesChart": true,
+        "layout": "vertical",
+        "margin": {
+          "bottom": 0,
+          "left": -20,
+          "right": 0,
+          "top": 5
+        },
+        "timeFrame": "days"
+      },
+      "chartType": "line",
+      "columnPos": 0,
+      "dimensions": {
+        "height": 288,
+        "width": 738
+      },
+      "h": 3,
+      "i": "0b7aca60-7490-11e9-9f8c-f5da913431a6",
+      "legend": [
+        {
+          "color": "#03B0FF",
+          "name": "Unclassified"
+        },
+        {
+          "color": "#00C853",
+          "name": "DoS"
+        },
+        {
+          "color": "#ADE901",
+          "name": "DeviceLost"
+        },
+        {
+          "color": "#2979FF",
+          "name": "Exploit"
+        }
+      ],
+      "legendStyle": {
+        "align": "center",
+        "iconSize": 8,
+        "iconType": "square",
+        "verticalAlign": "top",
+        "width": 738,
+        "wrapperStyle": {
+          "maxHeight": 72
+        }
+      },
+      "rowPos": 0,
+      "w": 12
+    },
+    "query": {
+      "type": "incident",
+      "groupBy": [
+        "occurred(d)",
+        "type"
+      ],
+      "filter": {
+        "query": "-category:job and -status:archived and -status:closed",
+        "fromDate": "0001-01-01T00:00:00Z",
+        "toDate": "0001-01-01T00:00:00Z",
+        "period": {
+          "by": "day",
+          "byTo": "",
+          "byFrom": "days",
+          "toValue": null,
+          "fromValue": 20,
+          "field": ""
+        },
+        "fromDateLicense": "0001-01-01T00:00:00Z"
+      }
+    },
+    "automation": {
+      "name": "",
+      "id": "",
+      "args": null,
+      "noEvent": false
+    },
+    "fromDate": "2018-11-14T15:55:19+02:00",
+    "title": "Active Incidents - Line chart"
+  }
+]

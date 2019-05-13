@@ -2,12 +2,14 @@ from typing import Dict
 
 from sane_doc_reports import CellObject, Section
 from sane_doc_reports.Wrapper import Wrapper
+from sane_doc_reports.conf import DEBUG
 
 
 class MarkdownWrapper(Wrapper):
 
     def wrap(self):
-        print("Wrapping markdown")
+        if DEBUG:
+            print("Wrapping markdown")
 
 
 def invoke(cell_object: CellObject, section: Section):

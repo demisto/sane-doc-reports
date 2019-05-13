@@ -1,11 +1,13 @@
 from sane_doc_reports.Element import Element
+from sane_doc_reports.conf import DEBUG
 from sane_doc_reports.utils import open_b64_image
 
 
 class ImageElement(Element):
 
     def insert(self):
-        print("Adding image...")
+        if DEBUG:
+            print("Adding image...")
         self.cell_object.run.add_picture(
             open_b64_image(self.section.contents))
 

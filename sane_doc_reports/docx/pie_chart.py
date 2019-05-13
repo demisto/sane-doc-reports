@@ -1,66 +1,63 @@
-from sane_doc_reports import utils
-from sane_doc_reports.Section import Section
-from sane_doc_reports.conf import DATA_KEY, LAYOUT_KEY
-
 # Plot
 import matplotlib.pyplot as plt
 
+from sane_doc_reports import utils
+from sane_doc_reports.Section import Section
+from sane_doc_reports.conf import DATA_KEY, LAYOUT_KEY, DEBUG
+
 from sane_doc_reports.docx import image
 from sane_doc_reports.Element import Element
-
-
-def get_ax_location(align, vertical_align):
-    vertical_align = vertical_align.replace('top', 'upper').replace(
-        'bottom', 'lower')
-    return f'{vertical_align} {align}'
+from sane_doc_reports.utils import get_ax_location, get_colors
 
 
 class PieChartElement(Element):
 
     @utils.plot
     def insert(self):
-        print("Adding pie chart: ", self.section.contents)
+        if DEBUG:
+            print("I'm a pie chart")
+
         size_w, size_h, dpi = utils.convert_plt_size(self.section)
         fig, ax = plt.subplots(figsize=(size_w, size_h), dpi=dpi,
                                subplot_kw=dict(aspect="equal"))
 
         data = [int(i['data'][0]) for i in self.section.contents]
-        keys = [i['name'] for i in self.section.contents]
+        objects = [i['name'] for i in self.section.contents]
 
         # Fix the unassigned key:
-        keys = [i if i != "" else "Unassigned" for i in keys]
+        objects = [i if i != "" else "Unassigned" for i in objects]
 
         # Generate the default colors
-        colors = [c for c in utils.get_saturated_colors()[:len(keys)]]
+        colors = get_colors(self.section.layout, objects)
         unassigned_color = 'darkgrey'
 
         # If we have predefined colors, use them
         if 'legend' in self.section.layout and self.section.layout[
-           'legend']:
+            'legend']:
             colors = [i['color'] for i in self.section.layout['legend']]
 
         color_keys = {}
-        for i, k in enumerate(keys):
+        for i, k in enumerate(objects):
             color_keys[k] = colors[i]
             if k == 'Unassigned':
                 color_keys['Unassigned'] = unassigned_color
 
-        final_colors = [color_keys[k] for k in keys]
+        final_colors = [color_keys[k] for k in objects]
 
         wedges, texts = ax.pie(data,
                                colors=final_colors,
                                startangle=90, pctdistance=0.85,
                                textprops=dict(color="w"))
 
-        legend_style = self.section.layout['legendStyle']
-
         keys_with_numbers = ['{}: {}'.format(k, data[i]) for i, k in
-                             enumerate(keys)]
+                             enumerate(objects)]
+
+        legend_location_relative_to_graph = (1, 0, 0.5, 1)
+        legend_style = self.section.layout['legendStyle']
         ax.legend(wedges, keys_with_numbers,
                   title="",
-                  loc=get_ax_location(legend_style['align'],
-                                      legend_style['verticalAlign']),
-                  bbox_to_anchor=(1, 0, 0.5, 1)
+                  loc=get_ax_location(legend_style),
+                  bbox_to_anchor=legend_location_relative_to_graph
                   )
 
         ax.set_title(self.section.extra['title'])
@@ -74,4 +71,6 @@ class PieChartElement(Element):
 
 
 def invoke(cell_object, section):
+    if section.type != 'pie_chart':
+        raise ValueError('Called pie_chart but not pie_chart - ', section)
     return PieChartElement(cell_object, section).insert()

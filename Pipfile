@@ -12,7 +12,7 @@ pytest-cov = "*"
 [packages]
 click = "*"
 python-docx = "*"
-webcolors = "*"
+mistune = "*"
 fastjsonschema = "*"
 matplotlib = "*"
 

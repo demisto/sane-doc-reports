@@ -5,6 +5,13 @@ from sane_doc_reports.Element import Element
 from sane_doc_reports.conf import DEBUG
 
 
+def _remove_paragraph(p):
+    p_elem = p._element
+    if p_elem is not None and p_elem.getparent() is not None:
+        p_elem.getparent().remove(p_elem)
+        p_elem._p = p_elem._element = None
+
+
 class HorizontalLineElement(Element):
 
     def insert(self):
@@ -14,12 +21,10 @@ class HorizontalLineElement(Element):
         tc = self.cell_object.cell._tc
 
         # Remove extra paragraphs:
-        p = self.cell_object.paragraph._element
-        p.getparent().remove(p)
-        p._p = p._element = None
-        p = self.cell_object.get_last_paragraph()._element
-        p.getparent().remove(p)
-        p._p = p._element = None
+        p = self.cell_object.paragraph
+        _remove_paragraph(p)
+        p = self.cell_object.get_last_paragraph()
+        _remove_paragraph(p)
 
         w_para = OxmlElement('w:p')
         w_ppr = OxmlElement('w:pPr')
@@ -35,6 +40,7 @@ class HorizontalLineElement(Element):
         w_para.append(w_ppr)
 
         tc.append(w_para)
+
 
 def invoke(cell_object, section):
     if section.type != 'hr':

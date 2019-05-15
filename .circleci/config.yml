@@ -1,0 +1,28 @@
+version: 2 # use CircleCI 2.0
+jobs:
+  build:
+    working_directory: ~/circleci-python
+    docker:
+      - image: circleci/python:3.7.3
+        environment:
+          PIPENV_VENV_IN_PROJECT: true
+    steps:
+      - checkout # check out source code to working directory
+      - run: sudo chown -R circleci:circleci /usr/local/bin
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
+      - restore_cache:
+      # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+      - run:
+          command: |
+            sudo pip install pipenv
+            pipenv install --dev
+      - save_cache: # cache Python dependencies using checksum of Pipfile as the cache-key
+          key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
+          paths:
+            - ".venv"
+            - "/usr/local/bin"
+            - "/usr/local/lib/python3.7/site-packages"
+      - run:
+          command: |
+            pipenv run pytest

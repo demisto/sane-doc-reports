@@ -44,16 +44,21 @@ def example_investigation():
     report.save('example.docx')
 
 
-def example_junk():
+def _example_junk():
+    # Generate a big docx file for testing
     report = Report(get_mock('junkbig.json'))
+    report.populate_report()
+    report.save('example.docx')
+
+
+def example_bar_chart():
+    report = Report(get_mock('docx/bar_chart.json'))
     report.populate_report()
     report.save('example.docx')
 
 
 def main():
     # Gets the json form tests/mock_data
-    # example_investigation()
-    # example_markdown()
     example_markdown()
 
 

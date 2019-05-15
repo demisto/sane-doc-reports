@@ -3,7 +3,7 @@ from os import getenv
 # Environment
 DEBUG = getenv('SANE_DOCX_DEBUG', 'False') == 'True'
 
-# Constants
+# Grid Constants
 DATA_KEY = 'data'
 LAYOUT_KEY = 'layout'
 ROW_POSITION_KEY = 'rowPos'
@@ -40,3 +40,9 @@ DPI = 80
 # List constants
 ORDERED_LIST_NAME = 'List Number'
 UNORDERED_LIST_NAME = 'List Bullet'
+
+# Chart constants
+DEFAULT_ALPHA = 0.5
+DEFAULT_BAR_WIDTH = 0.35
+DEFAULT_BAR_ALPHA = 0.8
+DEFAULT_DPI = 100.0

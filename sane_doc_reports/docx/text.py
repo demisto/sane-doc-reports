@@ -5,7 +5,6 @@ from sane_doc_reports.docx import error
 class TextElement(Element):
 
     def insert(self):
-        print("Adding text: ", self.section.contents)
         self.cell_object.run.text = self.section.contents
 
 

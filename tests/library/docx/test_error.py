@@ -9,7 +9,7 @@ def test_text():
 
     # NOTE: UN COMMENT THIS WHEN YOU HAVE ACTIVE WRAPPERS THAT
     # CAN BREAK THE TYPES
-    
+
     # report = Report(get_mock('docx/error.json'))
     # report.populate_report()
     #

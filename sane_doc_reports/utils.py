@@ -14,7 +14,9 @@ from matplotlib import colors as mcolors
 
 from sane_doc_reports import CellObject, Section
 from sane_doc_reports.conf import STYLE_KEY, SIZE_H_INCHES, SIZE_W_INCHES, DPI, \
-    LAYOUT_KEY, DEFAULT_DPI
+    LAYOUT_KEY, DEFAULT_DPI, PYDOCX_FONT_SIZE, PYDOCX_FONT_NAME, \
+    PYDOCX_FONT_BOLD, PYDOCX_FONT_STRIKE, PYDOCX_FONT_UNDERLINE, \
+    PYDOCX_FONT_ITALIC, PYDOCX_FONT_COLOR, PYDOCX_TEXT_ALIGN
 
 colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS)
 DEFAULT_BAR_COLOR = '#999999'
@@ -142,38 +144,38 @@ def apply_styling(cell_object, style):
 
 def apply_cell_styling(cell_object, style):
     # Font size
-    if 'fontSize' in style:
-        cell_object.run.font.size = Pt(style['fontSize'])
+    if PYDOCX_FONT_SIZE in style:
+        cell_object.run.font.size = Pt(style[PYDOCX_FONT_SIZE])
 
     # Font family
-    if 'name' in style:
-        cell_object.run.font.name = style['name']
+    if PYDOCX_FONT_NAME in style:
+        cell_object.run.font.name = style[PYDOCX_FONT_NAME]
 
     # Other characteristics
-    if 'bold' in style:
-        cell_object.run.font.bold = style['bold']
-    if 'strikethrough' in style:
-        cell_object.run.font.strike = style['strikethrough']
-    if 'underline' in style:
-        cell_object.run.font.underline = style['underline']
-    if 'italic' in style:
-        cell_object.run.font.italic = style['italic']
+    if PYDOCX_FONT_BOLD in style:
+        cell_object.run.font.bold = style[PYDOCX_FONT_BOLD]
+    if PYDOCX_FONT_STRIKE in style:
+        cell_object.run.font.strike = style[PYDOCX_FONT_STRIKE]
+    if PYDOCX_FONT_UNDERLINE in style:
+        cell_object.run.font.underline = style[PYDOCX_FONT_UNDERLINE]
+    if PYDOCX_FONT_ITALIC in style:
+        cell_object.run.font.italic = style[PYDOCX_FONT_ITALIC]
 
     # Font color
-    if 'color' in style:
-        if style['color'][0] != '#':
-            cell_object.run.font.color.rgb = name_to_rgb(style['color'])
+    if PYDOCX_FONT_COLOR in style:
+        if style[PYDOCX_FONT_COLOR][0] != '#':
+            cell_object.run.font.color.rgb = name_to_rgb(style[PYDOCX_FONT_COLOR])
         else:
-            cell_object.run.font.color.rgb = hex_to_rgb(style['color'])
+            cell_object.run.font.color.rgb = hex_to_rgb(style[PYDOCX_FONT_COLOR])
 
 
 def apply_paragraph_styling(cell_object, style):
-    if 'textAlign' in style:
+    if PYDOCX_TEXT_ALIGN in style:
         # text align
-        if style['textAlign'] == 'left':
+        if style[PYDOCX_TEXT_ALIGN] == 'left':
             # cell.alignment = 0
             cell_object.paragraph.paragraph_format.alignment = 0
-        elif style['textAlign'] == 'right':
+        elif style[PYDOCX_TEXT_ALIGN] == 'right':
             # cell.alignment = 1
             cell_object.paragraph.paragraph_format.alignment = 2
 

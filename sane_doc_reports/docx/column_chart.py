@@ -8,7 +8,7 @@ from sane_doc_reports.conf import DEBUG, DATA_KEY, DEFAULT_BAR_WIDTH, \
 
 import matplotlib.pyplot as plt
 
-from sane_doc_reports.docx import image
+from sane_doc_reports.docx import image, error
 from sane_doc_reports.utils import get_ax_location, get_colors
 
 
@@ -60,6 +60,7 @@ class ColumnChartElement(Element):
 
 def invoke(cell_object, section):
     if section.type != 'column_chart':
-        raise ValueError('Called column_chart but not column_chart - ', section)
+        section.contents = f'Called column_chart but not column_chart -  [{section}]'
+        return error.invoke(cell_object,  section)
 
-    return ColumnChartElement(cell_object, section).insert()
+    ColumnChartElement(cell_object, section).insert()

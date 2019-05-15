@@ -3,6 +3,7 @@ from docx.shared import Pt
 from sane_doc_reports.CellObject import CellObject
 from sane_doc_reports.Element import Element
 from sane_doc_reports.conf import DEBUG
+from sane_doc_reports.docx import error
 
 
 class NumberElement(Element):
@@ -34,6 +35,7 @@ class NumberElement(Element):
 
 def invoke(cell_object, section):
     if section.type != 'number':
-        raise ValueError('Called number but not number - ', section)
+        section.contents = f'Called number but not number -  [{section}]'
+        return error.invoke(cell_object,  section)
 
-    return NumberElement(cell_object, section).insert()
+    NumberElement(cell_object, section).insert()

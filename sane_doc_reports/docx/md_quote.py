@@ -3,6 +3,7 @@ from docx.oxml.ns import nsdecls
 
 from sane_doc_reports.CellObject import CellObject
 from sane_doc_reports.Wrapper import Wrapper
+from sane_doc_reports.docx import error
 from sane_doc_reports.utils import name_to_hex
 
 
@@ -26,6 +27,7 @@ class QuoteWrapper(Wrapper):
 
 def invoke(cell_object, section):
     if section.type != 'quote':
-        raise ValueError('Called quote but not quote - ', section)
+        section.contents = f'Called quote but not quote -  [{section}]'
+        return error.invoke(cell_object,  section)
 
-    return QuoteWrapper(cell_object, section).wrap()
+    QuoteWrapper(cell_object, section).wrap()

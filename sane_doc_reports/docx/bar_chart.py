@@ -6,7 +6,7 @@ from sane_doc_reports.conf import DEBUG, DATA_KEY, DEFAULT_ALPHA, \
 
 import matplotlib.pyplot as plt
 
-from sane_doc_reports.docx import image
+from sane_doc_reports.docx import image, error
 from sane_doc_reports.utils import get_colors
 
 
@@ -15,7 +15,7 @@ class BarChartElement(Element):
     def insert(self):
         """
             This is a bar chart on the side (bar goes right)
-            """
+        """
 
         if DEBUG:
             print("Yo I am bar chart!")
@@ -70,6 +70,7 @@ class BarChartElement(Element):
 
 def invoke(cell_object, section):
     if section.type != 'bar_chart':
-        raise ValueError('Called bar_chart but not bar_chart - ', section)
+        section.contents = f'Called bar_chart but not bar_chart -  [{section}]'
+        return error.invoke(cell_object,  section)
 
-    return BarChartElement(cell_object, section).insert()
+    BarChartElement(cell_object, section).insert()

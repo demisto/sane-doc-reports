@@ -5,7 +5,7 @@ from sane_doc_reports import utils
 from sane_doc_reports.Section import Section
 from sane_doc_reports.conf import DATA_KEY, LAYOUT_KEY, DEBUG
 
-from sane_doc_reports.docx import image
+from sane_doc_reports.docx import image, error
 from sane_doc_reports.Element import Element
 from sane_doc_reports.utils import get_ax_location, get_colors
 
@@ -72,5 +72,7 @@ class PieChartElement(Element):
 
 def invoke(cell_object, section):
     if section.type != 'pie_chart':
-        raise ValueError('Called pie_chart but not pie_chart - ', section)
-    return PieChartElement(cell_object, section).insert()
+        section.contents = f'Called pie_chart but not pie_chart - [{section}]'
+        return error.invoke(cell_object, section)
+
+    PieChartElement(cell_object, section).insert()

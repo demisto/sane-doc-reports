@@ -1,5 +1,6 @@
 
 from sane_doc_reports.Element import Element
+from sane_doc_reports.docx import error
 
 
 class HorizontalLineElement(Element):
@@ -10,9 +11,10 @@ class HorizontalLineElement(Element):
 
 def invoke(cell_object, section):
     if section.type != 'hr':
-        raise ValueError('Called hr but not hr - ', section)
+        section.contents = f'Called hr but not hr -  [{section}]'
+        return error.invoke(cell_object,  section)
 
-    return HorizontalLineElement(cell_object, section).insert()
+    HorizontalLineElement(cell_object, section).insert()
 
 # def insert(cell_object: Dict, section: Dict) -> None:
 #     if DEBUG:

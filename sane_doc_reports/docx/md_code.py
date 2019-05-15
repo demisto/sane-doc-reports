@@ -1,4 +1,5 @@
 from sane_doc_reports.Wrapper import Wrapper
+from sane_doc_reports.docx import error
 
 
 class CodeWrapper(Wrapper):
@@ -9,9 +10,10 @@ class CodeWrapper(Wrapper):
 
 def invoke(cell_object, section):
     if section.type != 'code':
-        raise ValueError('Called code but not code - ', section)
+        section.contents = f'Called code but not code -  [{section}]'
+        return error.invoke(cell_object,  section)
 
-    return CodeWrapper(cell_object, section).wrap()
+    CodeWrapper(cell_object, section).wrap()
 
 '''
 def insert(cell_object: Dict, section) -> Dict:

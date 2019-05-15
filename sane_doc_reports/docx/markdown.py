@@ -2,6 +2,7 @@ from typing import Dict
 
 from sane_doc_reports import CellObject, Section
 from sane_doc_reports.Wrapper import Wrapper
+from sane_doc_reports.docx import error
 
 
 class MarkdownWrapper(Wrapper):
@@ -12,7 +13,8 @@ class MarkdownWrapper(Wrapper):
 
 def invoke(cell_object: CellObject, section: Section):
     if section.type != 'markdown':
-        raise ValueError('Called markdown but not markdown - ', section)
+        section.contents = f'Called markdown but not markdown -  [{section}]'
+        error.invoke(cell_object,  section)
 
     MarkdownWrapper(cell_object, section).wrap()
 

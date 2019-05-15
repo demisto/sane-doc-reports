@@ -8,7 +8,6 @@ from sane_doc_reports.docx import error
 class TrendElement(Element):
 
     def insert(self):
-        print("Adding trend: ", self.section.contents)
         table = self.cell_object.cell.add_table(rows=2, cols=4)
 
         # Add the main number

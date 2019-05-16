@@ -4,6 +4,7 @@ from docx.enum.dml import MSO_THEME_COLOR_INDEX
 from sane_doc_reports.Element import Element
 import sane_doc_reports.styles.text as text_style
 from sane_doc_reports.conf import DEBUG
+from sane_doc_reports.docx import error
 
 
 def add_hyperlink_into_run(paragraph, run, url):
@@ -12,7 +13,8 @@ def add_hyperlink_into_run(paragraph, run, url):
         if runs[i].text == run.text:
             break
 
-    # This gets access to the document.xml.rels file and gets a new relation id value
+    # This gets access to the document.xml.rels file and gets a new
+    #  relation id value
     part = paragraph.part
     r_id = part.relate_to(url, docx.opc.constants.RELATIONSHIP_TYPE.HYPERLINK,
                           is_external=True)
@@ -37,7 +39,7 @@ class LinkElement(Element):
         self.cell_object.add_run()
         self.cell_object.run.text = self.section.contents
 
-        # Add more text styling
+        # Add more text styling so it will look like a link
         text_style.apply_style(self.cell_object, self.section)
 
         add_hyperlink_into_run(self.cell_object.paragraph, self.cell_object.run,
@@ -46,6 +48,7 @@ class LinkElement(Element):
 
 def invoke(cell_object, section) -> None:
     if section.type not in ['a']:
-        raise ValueError('Called link but not link - ', section)
+        section.contents = f'Called link but not link -  [{section}]'
+        return error.invoke(cell_object, section)
 
     LinkElement(cell_object, section).insert()

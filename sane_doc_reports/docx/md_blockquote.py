@@ -5,7 +5,7 @@ from sane_doc_reports.CellObject import CellObject
 from sane_doc_reports.MarkdownSection import MarkdownSection
 from sane_doc_reports.Wrapper import Wrapper
 from sane_doc_reports.conf import DEBUG
-from sane_doc_reports.docx import markdown
+from sane_doc_reports.docx import markdown, error
 from sane_doc_reports.utils import name_to_hex
 
 
@@ -39,7 +39,8 @@ class QuoteWrapper(Wrapper):
 
 def invoke(cell_object, section):
     if section.type != 'blockquote':
-        raise ValueError('Called blockquote but not blockquote (quote) - ',
-                         section)
+        section.contents = 'Called blockquote but not blockquote (quote) -' + \
+                           f' [{section}]'
+        return error.invoke(cell_object, section)
 
-    return QuoteWrapper(cell_object, section).wrap()
+    QuoteWrapper(cell_object, section).wrap()

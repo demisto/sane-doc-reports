@@ -1,12 +1,13 @@
 from sane_doc_reports.Element import Element
 from sane_doc_reports.conf import DEBUG
+from sane_doc_reports.docx import error
 
 
 class TableElement(Element):
 
     def insert(self):
         if DEBUG:
-            print("Adding table: ...")
+            print("Adding table...")
 
         table_data = self.section.contents
 
@@ -32,6 +33,7 @@ class TableElement(Element):
 
 def invoke(cell_object, section):
     if section.type != 'table':
-        raise ValueError('Called table but not table - ', section)
+        section.contents = f'Called table but not table -  [{section}]'
+        return error.invoke(cell_object, section)
 
-    return TableElement(cell_object, section).insert()
+    TableElement(cell_object, section).insert()

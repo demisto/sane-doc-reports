@@ -1,5 +1,6 @@
 from sane_doc_reports.Element import Element
 from sane_doc_reports.conf import DEBUG
+from sane_doc_reports.docx import error
 from sane_doc_reports.utils import open_b64_image
 
 
@@ -15,6 +16,7 @@ class ImageElement(Element):
 
 def invoke(cell_object, section):
     if section.type != 'image':
-        raise ValueError('Called image but not image - ', section)
+        section.contents = f'Called image but not image -  [{section}]'
+        return error.invoke(cell_object,  section)
 
-    return ImageElement(cell_object, section).insert()
+    ImageElement(cell_object, section).insert()

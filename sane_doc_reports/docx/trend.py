@@ -3,6 +3,7 @@ from docx.shared import Pt
 from sane_doc_reports.CellObject import CellObject
 from sane_doc_reports.Element import Element
 from sane_doc_reports.conf import DEBUG
+from sane_doc_reports.docx import error
 
 
 class TrendElement(Element):
@@ -54,5 +55,7 @@ class TrendElement(Element):
 
 def invoke(cell_object, section):
     if section.type != 'trend':
-        raise ValueError('Called trend but not trend - ', section)
-    return TrendElement(cell_object, section).insert()
+        section.contents = f'Called trend but not trend -  [{section}]'
+        return error.invoke(cell_object,  section)
+
+    TrendElement(cell_object, section).insert()

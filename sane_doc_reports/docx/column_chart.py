@@ -1,56 +1,64 @@
-from typing import Dict
-
-from sane_doc_reports import utils
-from sane_doc_reports.conf import DEBUG, DATA_KEY, DEFAULT_BAR_WIDTH, \
-    DEFAULT_ALPHA, LAYOUT_KEY, DEFAULT_BAR_ALPHA
-
 import matplotlib.pyplot as plt
 
-from sane_doc_reports.docx import image
+from sane_doc_reports import utils
+from sane_doc_reports.Element import Element
+from sane_doc_reports.Section import Section
+from sane_doc_reports.conf import DEBUG, DEFAULT_BAR_WIDTH, \
+    DEFAULT_ALPHA, DEFAULT_BAR_ALPHA
+from sane_doc_reports.docx import image, error
 from sane_doc_reports.utils import get_ax_location, get_colors
 
 
-@utils.plot
-def insert(cell_object: Dict, section: Dict) -> None:
-    """
-    This is a standing barchart (bar goes up)
-    """
-    if DEBUG:
-        print("Yo I am column chart!")
+class ColumnChartElement(Element):
 
-    # Fix sizing
-    size_w, size_h, dpi = utils.convert_plt_size(section)
-    plt.figure(figsize=(size_w, size_h), dpi=dpi)
+    @utils.plot
+    def insert(self) -> None:
+        """
+        This is a standing barchart (bar goes up)
+        """
+        if DEBUG:
+            print("Yo I am column chart!")
 
-    data = section.get(DATA_KEY, [])
-    objects = [i['name'] for i in data]
+        # Fix sizing
+        size_w, size_h, dpi = utils.convert_plt_size(self.section)
+        plt.figure(figsize=(size_w, size_h), dpi=dpi)
 
-    y_axis = [i for i in range(len(objects))]
-    x_axis = [i['data'][0] for i in data]
+        data = self.section.contents
+        objects = [i['name'] for i in data]
 
-    colors = get_colors(section[LAYOUT_KEY], objects)
+        y_axis = [i for i in range(len(objects))]
+        x_axis = [i['data'][0] for i in data]
 
-    rects = plt.bar(y_axis, x_axis, align='center', alpha=DEFAULT_BAR_ALPHA,
-                    width=DEFAULT_BAR_WIDTH, color=colors)
+        colors = get_colors(self.section.layout, objects)
 
-    ax = plt.gca()
+        rects = plt.bar(y_axis, x_axis, align='center', alpha=DEFAULT_BAR_ALPHA,
+                        width=DEFAULT_BAR_WIDTH, color=colors)
 
-    # Fix the legend values to be "some_value (some_number)" instead of
-    # just "some_value"
-    fixed_legends = [f'{v} ({x_axis[i]})' for i, v in enumerate(objects)]
+        ax = plt.gca()
 
-    legend_style = section[LAYOUT_KEY]['legendStyle']
-    ax.legend(rects, fixed_legends,
-              loc=get_ax_location(legend_style)).get_frame().set_alpha(
-        DEFAULT_ALPHA)
-    ax.set_xlim(-len(objects), len(objects))
+        # Fix the legend values to be "some_value (some_number)" instead of
+        # just "some_value"
+        fixed_legends = [f'{v} ({x_axis[i]})' for i, v in enumerate(objects)]
 
-    plt.xticks(y_axis, objects)
-    plt.title(section['title'])
+        legend_style = self.section.layout['legendStyle']
+        ax.legend(rects, fixed_legends,
+                  loc=get_ax_location(legend_style)).get_frame().set_alpha(
+            DEFAULT_ALPHA)
+        ax.set_xlim(-len(objects), len(objects))
 
-    plt_b64 = utils.plt_t0_b64(plt)
-    s = {
-        'type': 'image',
-        'data': plt_b64
-    }
-    image.insert(cell_object, s)
+        plt.xticks(y_axis, objects)
+        plt.title(self.section.extra['title'])
+
+        plt_b64 = utils.plt_t0_b64(plt)
+
+        s = Section('image', plt_b64, {}, {})
+        image.invoke(self.cell_object, s)
+
+
+def invoke(cell_object, section):
+    if section.type != 'column_chart':
+        section.contents = 'Called column_chart but not column_chart - ' + \
+                           f'[{section}]'
+        return error.invoke(cell_object, section)
+
+    ColumnChartElement(cell_object, section).insert()

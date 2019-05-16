@@ -5,7 +5,7 @@ from docx.text.paragraph import Paragraph
 from docx.text.run import Run
 
 
-def insert_paragraph_after(paragraph, text=None, style=None):
+def _insert_paragraph_after(paragraph, text=None, style=None):
     """Insert a new paragraph after the given paragraph."""
     new_p = OxmlElement("w:p")
     paragraph._p.addnext(new_p)
@@ -30,8 +30,7 @@ class CellObject(object):
         self.paragraph = cell_paragraph
         self.run = cell_run
 
-    def _get_cell_wrappers(self) -> Tuple[Paragraph,
-                                                        Union[Run, None]]:
+    def _get_cell_wrappers(self) -> Tuple[Paragraph, Union[Run, None]]:
         """
         Return the cell's paragraph and create a run object too, return them
         both. They are used to inject elements into the table cell.
@@ -45,13 +44,13 @@ class CellObject(object):
         run = paragraph.add_run()
         return paragraph, run
 
-    def add_run(self):
+    def add_run(self) -> None:
         self.run = self.paragraph.add_run()
 
-    def get_last_paragraph(self):
+    def get_last_paragraph(self) -> Paragraph:
         return self.cell.paragraphs[-1]
 
-    def add_paragraph(self, style=None):
-        self.paragraph = insert_paragraph_after(self.paragraph, style=style)
+    def add_paragraph(self, style=None) -> Paragraph:
+        self.paragraph = _insert_paragraph_after(self.paragraph, style=style)
         self.run = self.paragraph.add_run()
         return self.paragraph

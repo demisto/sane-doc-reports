@@ -1,4 +1,3 @@
-from sane_doc_reports import MarkdownSection
 from sane_doc_reports.conf import ROW_POSITION_KEY, COL_POSITION_KEY, \
     HEIGHT_POSITION_KEY, WIDTH_POSITION_KEY
 from tests.utils import get_mock

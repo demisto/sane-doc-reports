@@ -1,13 +1,10 @@
-from docx.shared import Pt
-
-from sane_doc_reports import CellObject
-from sane_doc_reports.Section import Section
 from sane_doc_reports.MarkdownSection import markdown_to_section_list, \
     MarkdownSection
-from sane_doc_reports.Wrapper import Wrapper
 from sane_doc_reports.docx import text, md_code, md_ul, md_li, md_blockquote, \
     md_hr, md_ol, md_link, md_image
-
+from sane_doc_reports import CellObject, Section
+from sane_doc_reports.Wrapper import Wrapper
+from sane_doc_reports.docx import error
 import sane_doc_reports.styles.text as text_style
 import sane_doc_reports.styles.header as header_style
 
@@ -64,6 +61,8 @@ class MarkdownWrapper(Wrapper):
                 continue
 
             # === Fix wrapped ===
+            # (Some times there are elements which contain other elements,
+            #  but are not considered one of the declared wrappers)
             if isinstance(section.contents, list):
                 if section_type == 'span':
                     section.propagate_extra('inline', True)
@@ -75,9 +74,9 @@ class MarkdownWrapper(Wrapper):
 
             # === Elements ===
 
-            # Add a block
+            # Add a block (newline) if not called from a wrapper
             if not invoked_from_wrapper:
-                self.cell_object.add_paragraph()  # TODO: make sure this is correct
+                self.cell_object.add_paragraph()
 
             if section_type in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
                 header_style.apply_style(self.cell_object, section)
@@ -107,7 +106,8 @@ class MarkdownWrapper(Wrapper):
 def invoke(cell_object: CellObject, section: Section,
            invoked_from_wrapper=False):
     if section.type != 'markdown':
-        raise ValueError('Called markdown but not markdown - ', section)
+        section.contents = f'Called markdown but not markdown -  [{section}]'
+        return error.invoke(cell_object, section)
 
     MarkdownWrapper(cell_object, section).wrap(
         invoked_from_wrapper=invoked_from_wrapper)

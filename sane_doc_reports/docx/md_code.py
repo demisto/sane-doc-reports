@@ -3,10 +3,10 @@ from docx.oxml.ns import nsdecls
 
 from sane_doc_reports.CellObject import CellObject
 from sane_doc_reports.MarkdownSection import MarkdownSection
-from sane_doc_reports.Wrapper import Wrapper
 from sane_doc_reports.conf import DEBUG
-from sane_doc_reports.docx import markdown
+from sane_doc_reports.docx import markdown, error
 from sane_doc_reports.utils import name_to_hex
+from sane_doc_reports.Wrapper import Wrapper
 
 
 class CodeWrapper(Wrapper):
@@ -36,12 +36,14 @@ class CodeWrapper(Wrapper):
         else:
             temp_section = MarkdownSection('markdown',
                                            contents, {}, {})
+
         markdown.invoke(self.cell_object, temp_section,
                         invoked_from_wrapper=True)
 
 
 def invoke(cell_object, section):
     if section.type != 'code':
-        raise ValueError('Called code but not code - ', section)
+        section.contents = f'Called code but not code -  [{section}]'
+        return error.invoke(cell_object, section)
 
-    return CodeWrapper(cell_object, section).wrap()
+    CodeWrapper(cell_object, section).wrap()

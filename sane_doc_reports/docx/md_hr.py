@@ -1,8 +1,9 @@
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
 
-from sane_doc_reports.Element import Element
 from sane_doc_reports.conf import DEBUG
+from sane_doc_reports.Element import Element
+from sane_doc_reports.docx import error
 
 
 def _remove_paragraph(p):
@@ -44,6 +45,7 @@ class HorizontalLineElement(Element):
 
 def invoke(cell_object, section):
     if section.type != 'hr':
-        raise ValueError('Called hr but not hr - ', section)
+        section.contents = f'Called hr but not hr -  [{section}]'
+        return error.invoke(cell_object, section)
 
-    return HorizontalLineElement(cell_object, section).insert()
+    HorizontalLineElement(cell_object, section).insert()

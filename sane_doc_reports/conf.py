@@ -25,6 +25,12 @@ A4_MM_HEIGHT = 297
 A4_MM_WIDTH = 210
 SHOULD_HAVE_12_GRID = False
 
+# Others
+HTML_MAP = {'pre': 'p'}
+HTML_ATTRIBUTES = ['em', 'strong', 'del']
+HTML_ATTR_MARKDOWN_MAP = {'em': 'italic', 'strong': 'bold',
+                          'del': 'strikethrough'}
+
 # Sizes:
 SIZE_W_INCHES = 6
 SIZE_H_INCHES = 3
@@ -35,3 +41,13 @@ DEFAULT_ALPHA = 0.5
 DEFAULT_BAR_WIDTH = 0.35
 DEFAULT_BAR_ALPHA = 0.8
 DEFAULT_DPI = 100.0
+
+# PYTHON-DOCX constants
+PYDOCX_FONT_SIZE = 'fontSize'
+PYDOCX_FONT_NAME = 'name'
+PYDOCX_FONT_BOLD = 'bold'
+PYDOCX_FONT_STRIKE = 'strikethrough'
+PYDOCX_FONT_UNDERLINE = 'underline'
+PYDOCX_FONT_ITALIC = 'italic'
+PYDOCX_FONT_COLOR = 'color'
+PYDOCX_TEXT_ALIGN = 'textAlign'

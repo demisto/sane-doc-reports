@@ -44,5 +44,8 @@ document.body.innerHTML += "<style>.report-layout .react-grid-layout .react-grid
 ### How to add new docx elements (text, tables, charts...)
 1) Create a file in the sane_doc_reports/docx folder with the same name as the 
 type in the sane json file.
-2) Every docx element should implement a `insert(cell_object, section):` function.
-The function needs to create the elements into the cell_object file.
+2) Every docx element/wrapper should implement a `invoke(cell_object, section):` function.  
+The function needs to create an instance of the same class in the file (see the docx/text.py file for example).  
+You can create an Element (text, hr...) or a Wrapper (which holds other elements, quote, ul...).  
+Wrappers usually call markdown again (to create more wrappers/elements inside the same cell object).
+

@@ -1,4 +1,4 @@
-from sane_doc_reports.report import Report
+from sane_doc_reports.Report import Report
 from tests.utils import get_mock
 
 
@@ -40,7 +40,7 @@ def example_bar_chart():
 
 def main():
     # Gets the json form tests/mock_data
-    example_bar_chart()
+    example_text()
 
 
 if __name__ == '__main__':

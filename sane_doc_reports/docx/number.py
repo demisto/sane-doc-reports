@@ -1,41 +1,41 @@
-from typing import Dict
-
-from docx.oxml import parse_xml
-from docx.oxml.ns import nsdecls
 from docx.shared import Pt
 
-from sane_doc_reports.conf import DEBUG, DATA_KEY
-from sane_doc_reports.grid import get_cell_wrappers
+from sane_doc_reports.CellObject import CellObject
+from sane_doc_reports.Element import Element
+from sane_doc_reports.conf import DEBUG
+from sane_doc_reports.docx import error
 
 
-def insert(cell_object: Dict, section: Dict) -> None:
-    if DEBUG:
-        print("Yo I am a number")
+class NumberElement(Element):
 
-    table = cell_object['cell'].add_table(rows=1, cols=1)
+    def insert(self):
+        print("Adding number: ", self.section.contents)
+        table = self.cell_object.cell.add_table(rows=1, cols=1)
 
-    # Used for debugging:
-    # table.style = 'Table Grid'
+        if DEBUG:
+            table.style = 'Table Grid'
 
-    # Add the main number
-    inner_cell = table.cell(0, 0)
-    inner_cell_paragraph, inner_cell_run = get_cell_wrappers(inner_cell)
-    inner_cell_run.text = str(section[f'{DATA_KEY}'])
-    inner_cell_run.font.size = Pt(24)
-    inner_cell_run.font.bold = True
-    inner_cell_paragraph.alignment = 1
+        # Add the main number
+        inner_cell = table.cell(0, 0)
 
-    # Add the title
-    inner_2nd_paragraph = inner_cell.add_paragraph()
-    inner_2nd_run = inner_2nd_paragraph.add_run()
-    inner_2nd_run.text = str(section['title'])
-    inner_2nd_run.font.size = Pt(14)
-    inner_2nd_run.font.bold = False
-    inner_2nd_paragraph.alignment = 1
+        main_number = CellObject(inner_cell)
+        main_number.run.text = str(self.section.contents)
+        main_number.run.font.size = Pt(24)
+        main_number.run.font.bold = True
+        main_number.paragraph.alignment = 1
 
-    # Add background color
-    # TODO: add background color later on.
-    # color_str = 'f3f3f3'
-    # shading_elm_1 = parse_xml(
-    #     (r'<w:shd {} w:fill="' + color_str + '"/>').format(nsdecls('w')))
-    # inner_cell._tc.get_or_add_tcPr().append(shading_elm_1)
+        # Add the title
+        title_paragraph = inner_cell.add_paragraph()
+        title_run = title_paragraph.add_run()
+        title_run.text = str(self.section.extra['title'])
+        title_run.font.size = Pt(14)
+        title_run.font.bold = False
+        title_paragraph.alignment = 1
+
+
+def invoke(cell_object, section):
+    if section.type != 'number':
+        section.contents = f'Called number but not number -  [{section}]'
+        return error.invoke(cell_object,  section)
+
+    NumberElement(cell_object, section).insert()

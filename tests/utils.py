@@ -1,3 +1,5 @@
+import json
+
 from docx.document import Document
 from docx.oxml.table import CT_Tbl
 from docx.oxml.text.paragraph import CT_P
@@ -8,9 +10,14 @@ from pathlib import Path
 MOCK_DIR = 'tests/mock_data'
 
 
-def get_mock(file_name):
+def get_mock(file_name, ret_dict=False):
     package_path = Path(__file__).parent.parent
-    return package_path / Path(MOCK_DIR) / Path(file_name)
+    path = package_path / Path(MOCK_DIR) / Path(file_name)
+
+    if ret_dict:
+        return json.loads(open(path, 'r').read())
+
+    return path
 
 
 def iter_block_items(parent):

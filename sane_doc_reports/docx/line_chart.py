@@ -1,8 +1,16 @@
-from typing import Dict
+from sane_doc_reports.Element import Element
+from sane_doc_reports.docx import error
 
-from sane_doc_reports.conf import DEBUG
+
+class LineChartElement(Element):
+
+    def insert(self):
+        print("Adding text...")
 
 
-def insert(cell_object: Dict, section: Dict) -> None:
-    if DEBUG:
-        print("Yo Im line chart")
+def invoke(cell_object, section):
+    if section.type != 'line_chart':
+        section.contents = f'Called line_chart but not line_chart -  [{section}]'
+        return error.invoke(cell_object,  section)
+
+    LineChartElement(cell_object, section).insert()

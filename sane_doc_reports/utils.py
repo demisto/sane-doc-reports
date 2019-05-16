@@ -5,14 +5,18 @@ from io import BytesIO
 import importlib
 from pathlib import Path
 
+from docx.oxml import OxmlElement
 import matplotlib
-from docx.shared import RGBColor
-
+from docx.shared import RGBColor, Pt
+from docx.text.paragraph import Paragraph
 from matplotlib import pyplot as plt
 from matplotlib import colors as mcolors
 
-from sane_doc_reports.conf import LAYOUT_KEY, SIZE_H_INCHES, SIZE_W_INCHES, DPI, \
-    DEFAULT_DPI
+from sane_doc_reports import CellObject, Section
+from sane_doc_reports.conf import STYLE_KEY, SIZE_H_INCHES, SIZE_W_INCHES, DPI, \
+    LAYOUT_KEY, DEFAULT_DPI, PYDOCX_FONT_SIZE, PYDOCX_FONT_NAME, \
+    PYDOCX_FONT_BOLD, PYDOCX_FONT_STRIKE, PYDOCX_FONT_UNDERLINE, \
+    PYDOCX_FONT_ITALIC, PYDOCX_FONT_COLOR, PYDOCX_TEXT_ALIGN
 
 colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS)
 DEFAULT_BAR_COLOR = '#999999'
@@ -40,7 +44,7 @@ def name_to_rgb(color_name: str):
 
 def name_to_hex(color_name: str):
     """ Get the hex representation of a color name (CSS4) """
-    return colors[color_name]
+    return colors[color_name].lower()
 
 
 def hex_to_rgb(hex_color: str):
@@ -63,10 +67,31 @@ def open_b64_image(image_base64):
     return f
 
 
-def insert_by_type(type: str, cell_object: dict, section: dict):
+def insert_by_type(type: str, cell_object: CellObject,
+                   section: Section):
     """ Call a docx elemnt's insert method """
     func = importlib.import_module(f'sane_doc_reports.docx.{type}')
-    func.insert(cell_object, section)
+
+    if section.layout and STYLE_KEY in section.layout:
+        apply_styling(cell_object, section.layout[STYLE_KEY])
+
+    func.invoke(cell_object, section)
+
+
+def _insert_paragraph_after(paragraph):
+    """Insert a new paragraph after the given paragraph."""
+    new_p = OxmlElement("w:p")
+    paragraph._p.addnext(new_p)
+    new_para = Paragraph(new_p, paragraph._parent)
+
+    return new_para
+
+
+def add_run(cell_object):
+    """ Insert a paragraph so we could add a new element"""
+    cell_object.paragraph = _insert_paragraph_after(cell_object.paragraph)
+    cell_object.run = cell_object.paragraph.add_run()
+    return cell_object
 
 
 def plot(func):
@@ -95,15 +120,64 @@ def plt_t0_b64(plt: matplotlib.pyplot):
     return b64
 
 
-def convert_plt_size(section):
+def convert_plt_size(section: Section):
     """ Convert the plot size from pixels to word """
     size_w, size_h, dpi = (SIZE_W_INCHES, SIZE_H_INCHES, DPI)
-    if 'dimensions' in section[LAYOUT_KEY]:
-        h = section[LAYOUT_KEY]['dimensions']['height'] / DEFAULT_DPI
-        w = section[LAYOUT_KEY]['dimensions']['width'] / DEFAULT_DPI
+    if 'dimensions' in section.layout:
+        h = section.layout['dimensions']['height'] / DEFAULT_DPI
+        w = section.layout['dimensions']['width'] / DEFAULT_DPI
         size_w, size_h, dpi = (w, h, DEFAULT_DPI)
 
     return size_w, size_h, dpi
+
+
+def get_saturated_colors():
+    """ Return named colors that are clearly visible on a white background """
+    return [name for name, _ in colors.items()
+            if 'light' not in name and 'white' not in name]
+
+
+def apply_styling(cell_object, style):
+    apply_cell_styling(cell_object, style)
+    apply_paragraph_styling(cell_object, style)
+
+
+def apply_cell_styling(cell_object, style):
+    # Font size
+    if PYDOCX_FONT_SIZE in style:
+        cell_object.run.font.size = Pt(style[PYDOCX_FONT_SIZE])
+
+    # Font family
+    if PYDOCX_FONT_NAME in style:
+        cell_object.run.font.name = style[PYDOCX_FONT_NAME]
+
+    # Other characteristics
+    if PYDOCX_FONT_BOLD in style:
+        cell_object.run.font.bold = style[PYDOCX_FONT_BOLD]
+    if PYDOCX_FONT_STRIKE in style:
+        cell_object.run.font.strike = style[PYDOCX_FONT_STRIKE]
+    if PYDOCX_FONT_UNDERLINE in style:
+        cell_object.run.font.underline = style[PYDOCX_FONT_UNDERLINE]
+    if PYDOCX_FONT_ITALIC in style:
+        cell_object.run.font.italic = style[PYDOCX_FONT_ITALIC]
+
+    # Font color
+    if PYDOCX_FONT_COLOR in style:
+        if style[PYDOCX_FONT_COLOR][0] != '#':
+            cell_object.run.font.color.rgb = name_to_rgb(style[PYDOCX_FONT_COLOR])
+        else:
+            cell_object.run.font.color.rgb = hex_to_rgb(style[PYDOCX_FONT_COLOR])
+
+
+def apply_paragraph_styling(cell_object, style):
+    if PYDOCX_TEXT_ALIGN in style:
+        # text align
+        if style[PYDOCX_TEXT_ALIGN] == 'left':
+            # cell.alignment = 0
+            cell_object.paragraph.paragraph_format.alignment = 0
+        elif style[PYDOCX_TEXT_ALIGN] == 'right':
+            # cell.alignment = 1
+            cell_object.paragraph.paragraph_format.alignment = 2
 
 
 def _hash_simple_value(s):

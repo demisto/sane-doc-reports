@@ -1,70 +1,78 @@
-from typing import Dict
-
-from sane_doc_reports import utils
-from sane_doc_reports.conf import DEBUG, DATA_KEY, LAYOUT_KEY
-
 # Plot
 import matplotlib.pyplot as plt
 
-from sane_doc_reports.docx import image
+from sane_doc_reports import utils
+from sane_doc_reports.Section import Section
+from sane_doc_reports.conf import DATA_KEY, LAYOUT_KEY, DEBUG
+
+from sane_doc_reports.docx import image, error
+from sane_doc_reports.Element import Element
 from sane_doc_reports.utils import get_ax_location, get_colors
 
 
-@utils.plot
-def insert(cell_object: Dict, section: Dict) -> None:
-    if DEBUG:
-        print("I'm a pie chart")
+class PieChartElement(Element):
 
-    size_w, size_h, dpi = utils.convert_plt_size(section)
-    fig, ax = plt.subplots(figsize=(size_w, size_h), dpi=dpi,
-                           subplot_kw=dict(aspect="equal"))
+    @utils.plot
+    def insert(self):
+        if DEBUG:
+            print("I'm a pie chart")
 
-    data = [int(i['data'][0]) for i in section[DATA_KEY]]
-    objects = [i['name'] for i in section[DATA_KEY]]
+        size_w, size_h, dpi = utils.convert_plt_size(self.section)
+        fig, ax = plt.subplots(figsize=(size_w, size_h), dpi=dpi,
+                               subplot_kw=dict(aspect="equal"))
 
-    # Fix the unassigned key:
-    objects = [i if i != "" else "Unassigned" for i in objects]
+        data = [int(i['data'][0]) for i in self.section.contents]
+        objects = [i['name'] for i in self.section.contents]
 
-    # Generate the default colors
-    colors = get_colors(section[LAYOUT_KEY], objects)
-    unassigned_color = 'darkgrey'
+        # Fix the unassigned key:
+        objects = [i if i != "" else "Unassigned" for i in objects]
 
-    # If we have predefined colors, use them
-    if 'legend' in section[LAYOUT_KEY] and section[LAYOUT_KEY]['legend']:
-        colors = [i['color'] for i in section[LAYOUT_KEY]['legend']]
+        # Generate the default colors
+        colors = get_colors(self.section.layout, objects)
+        unassigned_color = 'darkgrey'
 
-    color_keys = {}
-    for i, k in enumerate(objects):
-        color_keys[k] = colors[i]
-        if k == 'Unassigned':
-            color_keys['Unassigned'] = unassigned_color
+        # If we have predefined colors, use them
+        if 'legend' in self.section.layout and self.section.layout[
+            'legend']:
+            colors = [i['color'] for i in self.section.layout['legend']]
 
-    final_colors = [color_keys[k] for k in objects]
+        color_keys = {}
+        for i, k in enumerate(objects):
+            color_keys[k] = colors[i]
+            if k == 'Unassigned':
+                color_keys['Unassigned'] = unassigned_color
 
-    wedges, texts = ax.pie(data,
-                           colors=final_colors,
-                           startangle=90, pctdistance=0.85,
-                           textprops=dict(color="w"))
+        final_colors = [color_keys[k] for k in objects]
 
-    keys_with_numbers = ['{}: {}'.format(k, data[i]) for i, k in
-                         enumerate(objects)]
+        wedges, texts = ax.pie(data,
+                               colors=final_colors,
+                               startangle=90, pctdistance=0.85,
+                               textprops=dict(color="w"))
 
-    legend_location_relative_to_graph = (1, 0, 0.5, 1)
-    legend_style = section[LAYOUT_KEY]['legendStyle']
-    ax.legend(wedges, keys_with_numbers,
-              title="",
-              loc=get_ax_location(legend_style),
-              bbox_to_anchor=legend_location_relative_to_graph
-              )
+        keys_with_numbers = ['{}: {}'.format(k, data[i]) for i, k in
+                             enumerate(objects)]
 
-    ax.set_title(section['title'])
-    circle = plt.Circle((0, 0), 0.5, fc='white')
-    ax.add_artist(circle)
+        legend_location_relative_to_graph = (1, 0, 0.5, 1)
+        legend_style = self.section.layout['legendStyle']
+        ax.legend(wedges, keys_with_numbers,
+                  title="",
+                  loc=get_ax_location(legend_style),
+                  bbox_to_anchor=legend_location_relative_to_graph
+                  )
 
-    plt_b64 = utils.plt_t0_b64(plt)
+        ax.set_title(self.section.extra['title'])
+        circle = plt.Circle((0, 0), 0.5, fc='white')
+        ax.add_artist(circle)
 
-    s = {
-        'type': 'image',
-        'data': plt_b64
-    }
-    image.insert(cell_object, s)
+        plt_b64 = utils.plt_t0_b64(plt)
+
+        s = Section('image', plt_b64, {}, {})
+        image.invoke(self.cell_object, s)
+
+
+def invoke(cell_object, section):
+    if section.type != 'pie_chart':
+        section.contents = f'Called pie_chart but not pie_chart - [{section}]'
+        return error.invoke(cell_object, section)
+
+    PieChartElement(cell_object, section).insert()

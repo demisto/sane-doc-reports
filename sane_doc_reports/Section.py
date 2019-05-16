@@ -13,7 +13,8 @@ class Section(object):
      elements.
     """
 
-    def __init__(self, type, contents: Union[Section, str], layout, extra, attrs={}):
+    def __init__(self, type, contents: Union[Section, str], layout, extra,
+                 attrs={}):
         self.type = type
 
         # Text contents / or could have children

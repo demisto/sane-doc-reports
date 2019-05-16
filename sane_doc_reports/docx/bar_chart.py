@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 
-
 from sane_doc_reports.Element import Element
 from sane_doc_reports import utils
 from sane_doc_reports.Section import Section
@@ -48,8 +47,8 @@ class BarChartElement(Element):
 
         ax = plt.gca()
         ax.legend(rects, fixed_legends, loc=legend_location,
-                  bbox_to_anchor=legend_location_relative_to_graph).get_frame() \
-            .set_alpha(DEFAULT_ALPHA)
+                  bbox_to_anchor=legend_location_relative_to_graph) \
+            .get_frame().set_alpha(DEFAULT_ALPHA)
 
         # Fix the axises
         ax.set_yticks(y_axis)
@@ -72,6 +71,6 @@ class BarChartElement(Element):
 def invoke(cell_object, section):
     if section.type != 'bar_chart':
         section.contents = f'Called bar_chart but not bar_chart -  [{section}]'
-        return error.invoke(cell_object,  section)
+        return error.invoke(cell_object, section)
 
     BarChartElement(cell_object, section).insert()

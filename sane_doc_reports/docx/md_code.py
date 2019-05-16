@@ -20,8 +20,9 @@ class CodeWrapper(Wrapper):
             # TODO: remove newlines from OXML
 
         new_cell = self.cell_object.cell.add_table(1, 1).cell(0, 0)
+        code_color = name_to_hex("whitesmoke")
         shading_elm_1 = parse_xml(
-            f'<w:shd {{}} w:fill="{name_to_hex("whitesmoke")}"/>'.format(
+            f'<w:shd {{}} w:fill="{code_color}"/>'.format(
                 nsdecls('w')))
         new_cell._tc.get_or_add_tcPr().append(shading_elm_1)
 

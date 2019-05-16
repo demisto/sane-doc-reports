@@ -17,8 +17,10 @@ class QuoteWrapper(Wrapper):
 
         self.cell_object.add_paragraph()
         new_cell = self.cell_object.cell.add_table(1, 1).cell(0, 0)
+
+        quote_color = name_to_hex("cornsilk")
         shading_elm_1 = parse_xml(
-            f'<w:shd {{}} w:fill="{name_to_hex("cornsilk")}"/>'.format(
+            f'<w:shd {{}} w:fill="{quote_color}"/>'.format(
                 nsdecls('w')))
         new_cell._tc.get_or_add_tcPr().append(shading_elm_1)
 

@@ -37,7 +37,7 @@ class Report:
             for section in page.get_sections():
                 cell = get_cell(grid, section)
                 merge_cells(grid, section)
-                cell_object = CellObject(cell)
+                cell_object = CellObject(cell, False)
                 section = sane_to_section(section)
 
                 self._insert_section(cell_object, section)

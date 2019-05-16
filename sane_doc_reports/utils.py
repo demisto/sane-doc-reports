@@ -174,13 +174,12 @@ def apply_cell_styling(cell_object, style):
 
 def apply_paragraph_styling(cell_object, style):
     if PYDOCX_TEXT_ALIGN in style:
-        # text align
         if style[PYDOCX_TEXT_ALIGN] == 'left':
-            # cell.alignment = 0
             cell_object.paragraph.paragraph_format.alignment = 0
         elif style[PYDOCX_TEXT_ALIGN] == 'right':
-            # cell.alignment = 1
             cell_object.paragraph.paragraph_format.alignment = 2
+        elif style[PYDOCX_TEXT_ALIGN] == 'center':
+            cell_object.paragraph.paragraph_format.alignment = 1
 
 
 def _hash_simple_value(s):

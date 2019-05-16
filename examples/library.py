@@ -33,13 +33,13 @@ def example_pie_chart():
 
 
 def example_markdown():
-    report = Report(get_mock('docx/markdown.json'))
+    report = Report(get_mock('docx/hr.json'))
     report.populate_report()
     report.save('example.docx')
 
 
 def example_investigation():
-    report = Report(get_mock('docx/markdown.json'))
+    report = Report(get_mock('docx/investigation.json'))
     report.populate_report()
     report.save('example.docx')
 

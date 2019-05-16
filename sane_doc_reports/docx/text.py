@@ -1,6 +1,7 @@
 from sane_doc_reports.Element import Element
 from sane_doc_reports.conf import DEBUG
 from sane_doc_reports.docx import error
+import sane_doc_reports.styles.text as text_style
 
 
 class TextElement(Element):
@@ -17,5 +18,10 @@ def invoke(cell_object, section) -> None:
                             'span', 'text', 'p']:
         section.contents = f'Called text but not text -  [{section}]'
         return error.invoke(cell_object, section)
+
+    if cell_object.run is None:
+        cell_object.add_run()
+
+    text_style.apply_style(cell_object, section)
 
     TextElement(cell_object, section).insert()

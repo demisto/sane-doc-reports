@@ -23,14 +23,14 @@ class CellObject(object):
      - run (holds: text, pictures, text-styling (font))
      """
 
-    def __init__(self, cell):
+    def __init__(self, cell, add_run=True):
         self.cell = cell
 
-        cell_paragraph, cell_run = self._get_cell_wrappers()
+        cell_paragraph, cell_run = self._get_cell_wrappers(add_run=add_run)
         self.paragraph = cell_paragraph
         self.run = cell_run
 
-    def _get_cell_wrappers(self) -> Tuple[Paragraph, Union[Run, None]]:
+    def _get_cell_wrappers(self, add_run=True) -> Tuple[Paragraph, Union[Run, None]]:
         """
         Return the cell's paragraph and create a run object too, return them
         both. They are used to inject elements into the table cell.
@@ -41,7 +41,9 @@ class CellObject(object):
         """
         paragraphs = self.cell.paragraphs
         paragraph = paragraphs[0]
-        run = paragraph.add_run()
+        run = None
+        if add_run:
+            run = paragraph.add_run()
         return paragraph, run
 
     def add_run(self) -> None:
@@ -50,7 +52,8 @@ class CellObject(object):
     def get_last_paragraph(self) -> Paragraph:
         return self.cell.paragraphs[-1]
 
-    def add_paragraph(self, style=None) -> Paragraph:
+    def add_paragraph(self, style=None, add_run=True) -> Paragraph:
         self.paragraph = _insert_paragraph_after(self.paragraph, style=style)
-        self.run = self.paragraph.add_run()
+        if add_run:
+            self.run = self.paragraph.add_run()
         return self.paragraph

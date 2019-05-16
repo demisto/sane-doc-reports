@@ -5,7 +5,6 @@ from sane_doc_reports.docx import text, md_code, md_ul, md_li, md_blockquote, \
 from sane_doc_reports import CellObject, Section
 from sane_doc_reports.Wrapper import Wrapper
 from sane_doc_reports.docx import error
-import sane_doc_reports.styles.text as text_style
 import sane_doc_reports.styles.header as header_style
 
 
@@ -27,7 +26,7 @@ class MarkdownWrapper(Wrapper):
                              '(must be a list)')
 
         for section in md_section_list:
-            self.cell_object.add_run()
+            # self.cell_object.add_run()
             section_type = section.type
             # === Start wrappers ===
             if section_type == 'div':
@@ -75,8 +74,8 @@ class MarkdownWrapper(Wrapper):
             # === Elements ===
 
             # Add a block (newline) if not called from a wrapper
-            if not invoked_from_wrapper:
-                self.cell_object.add_paragraph()
+            # if not invoked_from_wrapper:
+            #     self.cell_object.add_paragraph()
 
             if section_type in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
                 header_style.apply_style(self.cell_object, section)
@@ -84,7 +83,6 @@ class MarkdownWrapper(Wrapper):
                 continue
 
             if section_type in ['p', 'span']:
-                text_style.apply_style(self.cell_object, section)
                 text.invoke(self.cell_object, section)
                 continue
 

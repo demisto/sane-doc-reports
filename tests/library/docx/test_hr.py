@@ -12,8 +12,8 @@ def test_hr():
     d = report.document
 
     # Find 3 paragraphs
-    assert len(d.element.xpath('//w:p')) == 3
+    assert len(d.element.xpath('//w:p')) == 6
 
     # Find hr
-    assert len(d.element.xpath('////w:bottom')) == 1
+    assert len(d.element.xpath('//w:jc[@w:val="center"]')) == 3
 

@@ -1,4 +1,5 @@
 from sane_doc_reports.Element import Element
+from sane_doc_reports.conf import DEBUG
 from sane_doc_reports.utils import apply_styling
 
 
@@ -7,7 +8,9 @@ class ErrorElement(Element):
     (better for debugging problems in the generation)"""
 
     def insert(self):
-        print('Adding error element: ', self.section.contents)
+        if DEBUG:
+            print('Adding error element: ', self.section.contents)
+
         style = {
             'bold': True,
             'color': '#ff0013',

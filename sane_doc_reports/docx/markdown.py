@@ -29,7 +29,6 @@ class MarkdownWrapper(Wrapper):
                              '(must be a list)')
 
         for section in md_section_list:
-            # self.cell_object.add_run()
             section_type = section.type
             # === Start wrappers ===
             if section_type == 'div':

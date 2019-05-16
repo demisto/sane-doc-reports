@@ -38,6 +38,12 @@ def example_markdown():
     report.save('example.docx')
 
 
+def example_hr():
+    report = Report(get_mock('docx/hr.json'))
+    report.populate_report()
+    report.save('example.docx')
+
+
 def example_investigation():
     report = Report(get_mock('docx/investigation.json'))
     report.populate_report()
@@ -59,7 +65,7 @@ def example_bar_chart():
 
 def main():
     # Gets the json form tests/mock_data
-    example_markdown()
+    example_hr()
 
 
 if __name__ == '__main__':

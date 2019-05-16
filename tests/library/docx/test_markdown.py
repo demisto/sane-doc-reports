@@ -15,7 +15,7 @@ def test_markdown():
     assert len(d.element.xpath("//w:t[contains(text(), 'Heading')]")) == 6
 
     # Find 3 Hrs
-    assert len(d.element.xpath('//w:bottom[@w:val="single"]')) == 3
+    assert len(d.element.xpath('//w:jc[@w:val="center"]')) == 3
 
     # Find Text stylings
     #   Two bold

@@ -73,9 +73,6 @@ def insert_by_type(type: str, cell_object: CellObject,
     """ Call a docx elemnt's insert method """
     func = importlib.import_module(f'sane_doc_reports.docx.{type}')
 
-    if section.layout and STYLE_KEY in section.layout:
-        apply_styling(cell_object, section.layout[STYLE_KEY])
-
     func.invoke(cell_object, section)
 
 
@@ -93,6 +90,12 @@ def add_run(cell_object):
     cell_object.paragraph = _insert_paragraph_after(cell_object.paragraph)
     cell_object.run = cell_object.paragraph.add_run()
     return cell_object
+
+
+def has_run(cell_object: CellObject):
+    """ A helper used to make sure to add a run """
+    if cell_object.run is None:
+        cell_object.add_run()
 
 
 def plot(func):

@@ -1,6 +1,16 @@
+from docx.table import _Cell
+
+from sane_doc_reports.CellObject import CellObject
 from sane_doc_reports.Element import Element
+from sane_doc_reports.Section import Section
 from sane_doc_reports.conf import DEBUG
-from sane_doc_reports.docx import error
+from sane_doc_reports.docx import error, text
+
+
+def insert_text_into_cell(cell: _Cell, text_value: str):
+    cell_object = CellObject(cell)
+    section = Section('text', text_value, {}, {})
+    text.invoke(cell_object, section)
 
 
 class TableElement(Element):
@@ -22,13 +32,13 @@ class TableElement(Element):
         hdr_cells = table.rows[0].cells
 
         for i, header in enumerate(table_columns):
-            hdr_cells[i].text = header
+            insert_text_into_cell(hdr_cells[i], header)
 
         for r in table_data:
             row_cells = table.add_row().cells
             for i, header in enumerate(table_columns):
                 if header in r:
-                    row_cells[i].text = r[header]
+                    insert_text_into_cell(row_cells[i], r[header])
 
 
 def invoke(cell_object, section):

@@ -4,7 +4,9 @@ from sane_doc_reports.utils import apply_styling
 
 def apply_style(cell_object, section):
     level = int(section.type.replace('h', ''))
-    pre_defined_styles = section.layout[STYLE_KEY]
+    pre_defined_styles = {}
+    if STYLE_KEY in section.layout:
+        pre_defined_styles = section.layout[STYLE_KEY]
     computed_style = {"fontSize": 36 - level * 2}
     attached_styles = {k: True for k in section.attrs}
     computed_style = {**computed_style, **attached_styles}

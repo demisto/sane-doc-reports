@@ -6,6 +6,7 @@ from sane_doc_reports import CellObject, Section
 from sane_doc_reports.Wrapper import Wrapper
 from sane_doc_reports.docx import error
 import sane_doc_reports.styles.header as header_style
+from sane_doc_reports.utils import has_run
 
 
 class MarkdownWrapper(Wrapper):
@@ -15,9 +16,11 @@ class MarkdownWrapper(Wrapper):
         # Handle called from another wrapper.
         if isinstance(self.section.contents, list):
             md_section_list = self.section.contents
+
         elif invoked_from_wrapper and \
                 isinstance(self.section.contents.contents, str):
             md_section_list = [self.section.contents]
+
         else:
             md_section_list = markdown_to_section_list(self.section.contents)
 
@@ -72,14 +75,20 @@ class MarkdownWrapper(Wrapper):
                 continue
 
             # === Elements ===
+            if section_type == 'hr':
+                md_hr.invoke(self.cell_object, section)
+                continue
 
             # Add a block (newline) if not called from a wrapper
-            # if not invoked_from_wrapper:
-            #     self.cell_object.add_paragraph()
+            #  (Should come after hr)
+            if not invoked_from_wrapper:
+                self.cell_object.add_paragraph()
 
             if section_type in ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']:
+                has_run(self.cell_object)
                 header_style.apply_style(self.cell_object, section)
-                text.invoke(self.cell_object, section)
+                text.invoke(self.cell_object, section,
+                            apply_default_styling=False)
                 continue
 
             if section_type in ['p', 'span']:
@@ -92,10 +101,6 @@ class MarkdownWrapper(Wrapper):
 
             if section_type == 'img':
                 md_image.invoke(self.cell_object, section)
-                continue
-
-            if section_type == 'hr':
-                md_hr.invoke(self.cell_object, section)
                 continue
 
             raise ValueError(f'Section type is not defined: {section_type}')

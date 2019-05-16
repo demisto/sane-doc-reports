@@ -30,7 +30,7 @@ class ExternalImageElement(Element):
 
 
 def invoke(cell_object, section) -> None:
-    if section.type not in [MD_TYPE_IMAGE]:
+    if section.type != MD_TYPE_IMAGE:
         section.contents = f'Called image but not image -  [{section}]'
         return error.invoke(cell_object, section)
 

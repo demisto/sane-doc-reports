@@ -1,7 +1,7 @@
 from typing import List
 
 import mistune
-from pyquery import PyQuery as pq, PyQuery
+from pyquery import PyQuery as PyQuery
 
 from sane_doc_reports.conf import HTML_NOT_WRAPABLES
 
@@ -19,7 +19,7 @@ def markdown_to_html(markdown_string: str) -> str:
 
 def _wrap(elem):
     """ Wrap an element with a span element """
-    span = pq('<span></span>')
+    span = PyQuery('<span></span>')
     span.html(elem)
     return span
 
@@ -45,7 +45,7 @@ def fix_unwrapped_text(root_elem):
     children = root_elem.contents()
     should_not_wrap = check_should_not_wrap(tag, children)
     fixed_children = _fix_unwrapped_text(children, do_not_wrap=should_not_wrap)
-    fixed_element = pq(f'<{tag}></{tag}>')
+    fixed_element = PyQuery(f'<{tag}></{tag}>')
     fixed_element.html(get_html(fixed_children))
     return fixed_element
 
@@ -58,8 +58,8 @@ def _fix_unwrapped_text(children: PyQuery, do_not_wrap=False) -> List[PyQuery]:
             if isinstance(i, str):
                 ret.append(i)
             else:
-                for fixed in fix_unwrapped_text(pq(i)):
-                    ret.append(pq(fixed))  # pq(i).outer_html())
+                for fixed in fix_unwrapped_text(PyQuery(i)):
+                    ret.append(PyQuery(fixed))  # PyQuery(i).outer_html())
         return ret
 
     if len(children) == 1 and isinstance(children[0], str):
@@ -72,7 +72,7 @@ def _fix_unwrapped_text(children: PyQuery, do_not_wrap=False) -> List[PyQuery]:
 
         tag = child.tag
         attribs = "".join([f'{k}="{v}" ' for k, v in child.attrib.items()])
-        child = pq(child)
+        child = PyQuery(child)
         descendants = _fix_unwrapped_text(child.contents(),
                                           do_not_wrap=tag in HTML_NOT_WRAPABLES)
         descendants_html = ""
@@ -86,7 +86,7 @@ def _fix_unwrapped_text(children: PyQuery, do_not_wrap=False) -> List[PyQuery]:
             child.html(descendants_html)
             ret.append(child)
         else:
-            child = pq(f'<{tag} {attribs}>{descendants_html}</{tag}>')
+            child = PyQuery(f'<{tag} {attribs}>{descendants_html}</{tag}>')
             ret.append(_wrap(child))
 
     return ret

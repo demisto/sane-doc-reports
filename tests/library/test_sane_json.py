@@ -21,7 +21,7 @@ def test_sane_json_invalid_json():
     with pytest.raises(json.JSONDecodeError):
         SaneJson(get_mock('invalid/invalid_json.json'))
 
-    with pytest.raises(json.JSONDecodeError) as e:
+    with pytest.raises(json.JSONDecodeError):
         SaneJson(get_mock('invalid/empty.json'))
 
 

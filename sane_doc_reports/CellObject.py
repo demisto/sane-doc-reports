@@ -30,7 +30,8 @@ class CellObject(object):
         self.paragraph = cell_paragraph
         self.run = cell_run
 
-    def _get_cell_wrappers(self, add_run=True) -> Tuple[Paragraph, Union[Run, None]]:
+    def _get_cell_wrappers(self, add_run=True) -> Tuple[
+        Paragraph, Union[Run, None]]:
         """
         Return the cell's paragraph and create a run object too, return them
         both. They are used to inject elements into the table cell.
@@ -51,6 +52,9 @@ class CellObject(object):
 
     def get_last_paragraph(self) -> Paragraph:
         return self.cell.paragraphs[-1]
+
+    def update_paragraph(self):
+        self.paragraph = self.get_last_paragraph()
 
     def add_paragraph(self, style=None, add_run=True) -> Paragraph:
         self.paragraph = _insert_paragraph_after(self.paragraph, style=style)

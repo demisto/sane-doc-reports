@@ -3,7 +3,7 @@ from __future__ import annotations  # Used to fix the __init__ of same type
 import json
 from typing import Union, List
 
-from pyquery import PyQuery as pq, PyQuery
+from pyquery import PyQuery 
 
 from sane_doc_reports.Section import Section
 from sane_doc_reports.conf import HTML_ATTRIBUTES, HTML_ATTR_MARKDOWN_MAP, \
@@ -96,12 +96,12 @@ class MarkdownSection(Section):
     def is_leaf(self):
         return isinstance(self.contents, str)
 
-    def toJSON(self):
+    def to_json(self):
         return json.dumps(self, default=lambda o: o.__dict__,
                           sort_keys=True, indent=2)
 
     def get_dict(self):
-        return json.loads(self.toJSON())
+        return json.loads(self.to_json())
 
     def propagate_extra(self, key, value):
         """ propagate an extra down to all children """
@@ -114,11 +114,11 @@ class MarkdownSection(Section):
             child.propagate_extra(key, value)
 
     def __str__(self):
-        return self.toJSON()
+        return self.to_json()
 
 
 def _collapse_attrs(section_list: List[Section]) -> List[
-                                            Union[Section, MarkdownSection]]:
+    Union[Section, MarkdownSection]]:
     """ Collapse all of the sections
     (moving em as attributes or removing redundant elements like <p>) """
     ret = []
@@ -137,7 +137,7 @@ def _collapse_attrs(section_list: List[Section]) -> List[
 
 def _build_dict(elem: PyQuery, already_wrapped=False) -> dict:
     # Find if has children
-    elem = pq(elem)
+    elem = PyQuery(elem)
     children = list(elem.contents())
     has_children = len(elem.children()) > 0
 
@@ -185,7 +185,7 @@ def markdown_to_section_list(markdown_string) -> List[MarkdownSection]:
         -> [Section Object]
     """
     html = markdown_to_html(markdown_string)
-    etree_root = pq(html)
+    etree_root = PyQuery(html)
     html_list = list(map(_build_dict, [c for c in list(etree_root)]))
     collapsed = _collapse_attrs(html_list)
 

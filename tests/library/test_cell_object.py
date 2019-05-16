@@ -1,5 +1,3 @@
-from copy import deepcopy
-
 from docx import Document
 from docx.text.paragraph import Paragraph
 from docx.text.run import Run

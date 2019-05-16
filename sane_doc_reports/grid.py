@@ -1,8 +1,6 @@
-from typing import Tuple, List
+from typing import List
 
 from docx.table import Table, _Cell
-from docx.text.paragraph import Paragraph
-from docx.text.run import Run
 
 from sane_doc_reports.positioning import row_pos, col_pos, get_height, get_width
 

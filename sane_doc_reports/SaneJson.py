@@ -1,5 +1,5 @@
 import json
-from typing import Any, Callable, Dict, List, Optional, Type, Union, Tuple
+from typing import List
 
 from sane_doc_reports.json_schema import validate
 from sane_doc_reports.positioning import *
@@ -31,8 +31,8 @@ class SaneJson:
 
     def _separate_pages(self) -> List[List[Page]]:
         """
-        A page is a list of dicts (each dict is an section in the page), sections in
-        the page are sorted by the ROW_POSITION_KEY.
+        A page is a list of dicts (each dict is an section in the page),
+        sections in the page are sorted by the ROW_POSITION_KEY.
         """
 
         # Let's sort the report by from the top downwards (by ROW_POSITION_KEY)

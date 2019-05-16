@@ -14,8 +14,8 @@ from matplotlib import pyplot as plt
 from matplotlib import colors as mcolors
 
 from sane_doc_reports import CellObject, Section
-from sane_doc_reports.conf import STYLE_KEY, SIZE_H_INCHES, SIZE_W_INCHES, \
-    DPI, DEFAULT_DPI, PYDOCX_FONT_SIZE, PYDOCX_FONT_NAME, \
+from sane_doc_reports.conf import SIZE_H_INCHES, SIZE_W_INCHES, DPI, \
+    DEFAULT_DPI, PYDOCX_FONT_SIZE, PYDOCX_FONT_NAME, \
     PYDOCX_FONT_BOLD, PYDOCX_FONT_STRIKE, PYDOCX_FONT_UNDERLINE, \
     PYDOCX_FONT_ITALIC, PYDOCX_FONT_COLOR, PYDOCX_TEXT_ALIGN
 
@@ -220,7 +220,7 @@ def get_colors(section_layout, objects):
     """ Return the chart colors and replace the default colors if they
     are hardcoded """
     default_colors = [get_chart_color(i) for i in objects]
-    if not "legend" in section_layout or not isinstance(
+    if "legend" not in section_layout or not isinstance(
             section_layout['legend'], list):
         return default_colors
 

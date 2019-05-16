@@ -1,4 +1,4 @@
-from pyquery import PyQuery as pq, PyQuery
+from pyquery import PyQuery as PyQuery
 
 from sane_doc_reports.MarkdownSection import markdown_to_html
 from sane_doc_reports.md_helpers import fix_unwrapped_text
@@ -89,134 +89,134 @@ def test_markdown_to_html_text_styles():
 
 def test_fix_unwrapped_no_tags():
     html = 'test'
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = pq('<p>test</p>')
+    expected = PyQuery('<p>test</p>')
     assert res_check == expected.outer_html()
 
 
 def test_fix_unwrapped_em_tag():
     html = '<em>wrapped</em>'
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = pq('<em>wrapped</em>')
+    expected = PyQuery('<em>wrapped</em>')
     assert res_check == expected.outer_html()
 
 
 def test_fix_unwrapped_text_basic():
     html = '<p>1<b>2</b>3</p>'
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = pq('<p><span>1</span><span><b>2</b></span><span>3</span></p>')
+    expected = PyQuery('<p><span>1</span><span><b>2</b></span><span>3</span></p>')
     assert res_check == expected.outer_html()
 
 
 def test_fix_unwrapped_text_basic_2():
     html = '<p><b>2</b>3</p>'
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = pq('<p><span><b>2</b></span><span>3</span></p>')
+    expected = PyQuery('<p><span><b>2</b></span><span>3</span></p>')
     assert res_check == expected.outer_html()
 
 
 def test_fix_unwrapped_text_basic_3():
     html = '<p><strong>test</strong> unwrapped</p>'
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = pq('<p><span><strong>test</strong></span><span> unwrapped' +
+    expected = PyQuery('<p><span><strong>test</strong></span><span> unwrapped' +
                   '</span<</p>')
     assert res_check == expected.outer_html()
 
 
 def test_fix_unwrapped_text_basic_4():
     html = '<p><i>a</i><b>b</b><c>c</c></p>'
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = pq('<p><span><i>a</i></span><span><b>b</b></span><span><c>c' +
+    expected = PyQuery('<p><span><i>a</i></span><span><b>b</b></span><span><c>c' +
                   '</c></span></p>')
     assert res_check == expected.outer_html()
 
 
 def test_fix_unwrapped_text_deep():
     html = '<span><strong>12<b>3</b></strong></span>'
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
 
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = pq('<p><span><strong><span>12</span><span><b>3</b></span>' +
+    expected = PyQuery('<p><span><strong><span>12</span><span><b>3</b></span>' +
                   '</strong></span></p>')
     assert res_check == expected.html()
 
 
 def test_fix_unwrapped_text_attributes():
     html = '<p><strong attr="123">test</strong> unwrapped</p>'
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
 
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = pq('<p><span><strong attr="123">test</strong></span>' +
+    expected = PyQuery('<p><span><strong attr="123">test</strong></span>' +
                   '<span> unwrapped</span></p>')
     assert res_check == expected.outer_html()
 
 
 def test_fix_unwrapped_no_unwrapped_basic():
     html = '<span>wrapped</span>'
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = pq('<span>wrapped</span>')
+    expected = PyQuery('<span>wrapped</span>')
     assert res_check == expected.outer_html()
 
 
 def test_fix_unwrapped_text_no_unwrapped_basic():
     html = '<span><strong>123</strong></span>'
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = pq('<p><span><strong>123</strong></span></p>')
+    expected = PyQuery('<p><span><strong>123</strong></span></p>')
     assert res_check == expected.html()
 
 
 def test_fix_unwrapped_text_no_unwrapped_basic_2():
     html = '<p><span>123</span></p>'
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = pq('<p><span>123</span></p>')
+    expected = PyQuery('<p><span>123</span></p>')
     assert res_check == expected.outer_html()
 
 
 def test_fix_unwrapped_text_no_unwrapped_complex():
     html = '<p><span><i>a</i></span><span><b>b</b></span></p>'
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = pq('<p><span><i>a</i></span><span><b>b</b></span></p>')
+    expected = PyQuery('<p><span><i>a</i></span><span><b>b</b></span></p>')
     assert res_check == expected.outer_html()
 
 
 def test_fix_unwrapped_text_ul_basic():
     html = '<ul><li>123</li></ul>'
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = pq('<ul><li>123</li></ul>')
+    expected = PyQuery('<ul><li>123</li></ul>')
     assert res_check == expected.outer_html()
 
 
 def test_build_dict_ol_with_nesting():
     markdown_string = '1. parent\n2. child\n\t1. nested'
     html = markdown_to_html(markdown_string).strip()
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = pq(
+    expected = PyQuery(
         '<ol><li>parent</li><li><span>child</span><ol><li>nested</li>' +
         '</ol></li></ol>')
     assert res_check == expected.outer_html()
@@ -224,10 +224,10 @@ def test_build_dict_ol_with_nesting():
 
 def test_fix_unwrapped_text_complex():
     html = '<p>aaa <em>bbb <i>ccc</i></em> ddd <del>eee</del> fff</p>'
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = pq('<p><span>aaa </span><span><em><span>bbb </span><span>' +
+    expected = PyQuery('<p><span>aaa </span><span><em><span>bbb </span><span>' +
                   '<i>ccc</i></span></em></span><span> ddd </span><span>' +
                   '<del>eee</del></span><span> fff</span></p>')
     assert res_check == expected.outer_html()
@@ -236,10 +236,10 @@ def test_fix_unwrapped_text_complex():
 def test_fix_unwrapped_text_complex_2():
     html = '<p>aaa <em>bbb <i>ccc<q>zzz</q>ddd</i></em> ddd <del>' + \
            'eee</del> fff</p>'
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = pq('<p><span>aaa </span><span><em><span>bbb </span><span>' +
+    expected = PyQuery('<p><span>aaa </span><span><em><span>bbb </span><span>' +
                   '<i><span>ccc</span><span><q>zzz</q></span><span>ddd' +
                   '</span></i></span></em></span><span> ddd </span><span>' +
                   '<del>eee</del></span><span> fff</span></p>')
@@ -249,10 +249,10 @@ def test_fix_unwrapped_text_complex_2():
 def test_fix_unwrapped_text_complex_3():
     html = '<p>aaa <em>bbb <i>ccc<span><p>zzz</p></span>ddd</i>' + \
            '</em> ddd <del>eee</del> fff</p>'
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = pq('<p><span>aaa </span><span><em><span>bbb </span><span>' +
+    expected = PyQuery('<p><span>aaa </span><span><em><span>bbb </span><span>' +
                   '<i><span>ccc</span><span><p>zzz</p></span><span>ddd' +
                   '</span></i></span></em></span><span> ddd </span><span>' +
                   '<del>eee</del></span><span> fff</span></p>')
@@ -264,10 +264,10 @@ def test_no_change_fix_unwrapped_text_complex():
            '<i><span>ccc</span><span><p>zzz</p></span><span>ddd' + \
            '</span></i></span></em></span><span> ddd </span><span>' + \
            '<del>eee</del></span><span> fff</span></p>'
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = pq('<p><span>aaa </span><span><em><span>bbb </span><span>' +
+    expected = PyQuery('<p><span>aaa </span><span><em><span>bbb </span><span>' +
                   '<i><span>ccc</span><span><p>zzz</p></span><span>ddd' +
                   '</span></i></span></em></span><span> ddd </span><span>' +
                   '<del>eee</del></span><span> fff</span></p>')

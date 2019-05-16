@@ -2,7 +2,7 @@
 import matplotlib.pyplot as plt
 
 from sane_doc_reports.Section import Section
-from sane_doc_reports.conf import DATA_KEY, LAYOUT_KEY, DEBUG
+from sane_doc_reports.conf import DEBUG
 
 from sane_doc_reports.docx import image, error
 from sane_doc_reports.utils import get_ax_location, get_colors
@@ -31,8 +31,7 @@ class PieChartElement(Element):
         unassigned_color = 'darkgrey'
 
         # If we have predefined colors, use them
-        if 'legend' in self.section.layout and self.section.layout[
-            'legend']:
+        if 'legend' in self.section.layout and self.section.layout['legend']:
             colors = [i['color'] for i in self.section.layout['legend']]
 
         color_keys = {}

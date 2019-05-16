@@ -4,9 +4,8 @@ from docx.shared import Pt, Mm
 from sane_doc_reports.CellObject import CellObject
 from sane_doc_reports.Section import sane_to_section, Section
 from sane_doc_reports.utils import insert_by_type
-from sane_doc_reports.conf import DEBUG, LAYOUT_KEY, STYLE_KEY, \
-    A4_MM_HEIGHT, A4_MM_WIDTH, TOP_MARGIN_PT, BOTTOM_MARGIN_PT, \
-    LEFT_MARGIN_PT, RIGHT_MARGIN_PT
+from sane_doc_reports.conf import DEBUG, A4_MM_HEIGHT, A4_MM_WIDTH, \
+    TOP_MARGIN_PT, BOTTOM_MARGIN_PT, LEFT_MARGIN_PT, RIGHT_MARGIN_PT
 from sane_doc_reports.SaneJson import SaneJson
 from sane_doc_reports.grid import get_cell, merge_cells
 
@@ -56,7 +55,7 @@ class Report:
     def save(self, output_file_path: str):
         self.document.save(output_file_path)
 
-    def change_page_size(self, paper_size: str, direction=None) -> None:
+    def change_page_size(self, paper_size: str) -> None:
         if paper_size == 'A4':
             sections = self.document.sections
             for section in sections:

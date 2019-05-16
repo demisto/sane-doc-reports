@@ -43,22 +43,22 @@ class MarkdownWrapper(Wrapper):
 
             if section_type == MD_TYPE_CODE:
                 md_code.invoke(self.cell_object, section)
-                self.cell_object.paragraph = self.cell_object.get_last_paragraph()
+                self.cell_object.update_paragraph()
                 continue
 
             if section_type == MD_TYPE_QUOTE:
                 md_blockquote.invoke(self.cell_object, section)
-                self.cell_object.paragraph = self.cell_object.get_last_paragraph()
+                self.cell_object.update_paragraph()
                 continue
 
             if section_type == MD_TYPE_UNORDERED_LIST:
                 md_ul.invoke(self.cell_object, section)
-                self.cell_object.paragraph = self.cell_object.get_last_paragraph()
+                self.cell_object.update_paragraph()
                 continue
 
             if section_type == MD_TYPE_ORDERED_LIST:
                 md_ol.invoke(self.cell_object, section)
-                self.cell_object.paragraph = self.cell_object.get_last_paragraph()
+                self.cell_object.update_paragraph()
                 continue
 
             if section_type == MD_TYPE_LIST_ITEM:

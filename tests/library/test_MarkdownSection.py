@@ -1,4 +1,4 @@
-from pyquery import PyQuery as pq
+from pyquery import PyQuery as PyQuery
 
 from sane_doc_reports.MarkdownSection import markdown_to_section_list, \
     MarkdownSection, _build_dict, markdown_to_html, _collapse_attrs
@@ -8,7 +8,7 @@ from sane_doc_reports.conf import MD_TYPE_QUOTE
 def test_build_dict_basic():
     markdown_string = 'some string'  # 'tes *can **also*** be ~~the~~ nested...'
     html = markdown_to_html(markdown_string).strip()
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = _build_dict(root_elem)
     expected = {'type': 'p', 'contents': 'some string', 'attrs': [],
                 'layout': {}, 'extra': {}}
@@ -18,7 +18,7 @@ def test_build_dict_basic():
 def test_build_dict_basic_element():
     markdown_string = 'some **string**'
     html = markdown_to_html(markdown_string).strip()
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = _build_dict(root_elem)
     expected = {'type': 'p', 'contents': [
         {'type': 'span', 'contents': 'some ', 'attrs': [],
@@ -35,7 +35,7 @@ def test_build_dict_basic_element():
 def test_build_dict_deep_ul():
     markdown_string = '- parent\n\t- child'
     html = markdown_to_html(markdown_string).strip()
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = _build_dict(root_elem)
     expected = {'type': 'ul', 'contents': [
         {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},  # 0
@@ -55,7 +55,7 @@ def test_build_dict_deep_ul():
 def test_build_dict_ol():
     markdown_string = '1. parent\n\t1. child'
     html = markdown_to_html(markdown_string).strip()
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = _build_dict(root_elem)
     expected = {'type': 'ol', 'contents': [
         {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},  # 0
@@ -75,7 +75,7 @@ def test_build_dict_ol():
 def test_build_dict_deep_ol():
     markdown_string = '1. parent\n\t1. child\n\t\t1. deep child'
     html = markdown_to_html(markdown_string).strip()
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = _build_dict(root_elem)
     expected = {'type': 'ol', 'contents': [
         {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},  # 0
@@ -106,7 +106,7 @@ def test_build_dict_deep_ol():
 def test_collapse_attrs_ol_deep():
     markdown_string = '1. parent\n\t1. child\n\t\t1. deep child'
     html = markdown_to_html(markdown_string).strip()
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = _build_dict(root_elem)
     res = _collapse_attrs([res])
 
@@ -122,7 +122,7 @@ def test_collapse_attrs_ol_deep():
 def test_build_dict_basic_element_attribute():
     markdown_string = 'some [string](url)'
     html = markdown_to_html(markdown_string).strip()
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = _build_dict(root_elem)
     expected = {'type': 'p', 'contents': [
         {'type': 'span', 'contents': 'some ', 'attrs': [],
@@ -139,7 +139,7 @@ def test_build_dict_basic_element_attribute():
 def test_build_dict_text_and_elements():
     markdown_string = 'some **string** and more strings'
     html = markdown_to_html(markdown_string).strip()
-    root_elem = pq(html)
+    root_elem = PyQuery(html)
     res = _build_dict(root_elem)
     expected = {'type': 'p', 'contents': [
 

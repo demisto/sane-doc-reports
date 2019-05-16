@@ -1,42 +1,7 @@
-from docx.oxml import OxmlElement
-from docx.oxml.ns import qn
-
 from sane_doc_reports.Section import Section
 from sane_doc_reports.conf import DEBUG, PYDOCX_TEXT_ALIGN, STYLE_KEY
 from sane_doc_reports.Element import Element
 from sane_doc_reports.docx import error, text
-
-
-def _remove_paragraph(p_elem):
-    if p_elem is not None and p_elem.getparent() is not None:
-        p_elem.getparent().remove(p_elem)
-        p_elem._p = p_elem._element = None
-
-
-def _create_hr_oxml():
-    ''' Not working yet '''
-    w_para = OxmlElement('w:p')
-    w_ppr = OxmlElement('w:pPr')
-    w_pbdr = OxmlElement('w:pBdr')
-
-    w_bottom = OxmlElement('w:bottom')
-    w_bottom.set(qn('w:val'), 'single')
-    w_bottom.set(qn('w:sz'), '6')
-    w_bottom.set(qn('w:space'), '1')
-    w_bottom.set(qn('w:color'), 'auto')
-
-    w_between = OxmlElement('w:between')
-    w_between.set(qn('w:val'), 'single')
-    w_between.set(qn('w:sz'), '6')
-    w_between.set(qn('w:space'), '1')
-    w_between.set(qn('w:color'), 'auto')
-
-    w_pbdr.append(w_bottom)
-    w_pbdr.append(w_between)
-    w_ppr.append(w_pbdr)
-    w_para.append(w_ppr)
-
-    return w_para
 
 
 class HorizontalLineElement(Element):

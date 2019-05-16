@@ -65,7 +65,7 @@ def example_bar_chart():
 
 def main():
     # Gets the json form tests/mock_data
-    example_hr()
+    example_markdown()
 
 
 if __name__ == '__main__':

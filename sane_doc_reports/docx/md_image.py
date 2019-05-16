@@ -4,7 +4,7 @@ import requests
 
 from sane_doc_reports.Element import Element
 from sane_doc_reports.Section import Section
-from sane_doc_reports.conf import DEBUG
+from sane_doc_reports.conf import DEBUG, MD_TYPE_IMAGE
 from sane_doc_reports.docx import image, error
 
 
@@ -30,7 +30,7 @@ class ExternalImageElement(Element):
 
 
 def invoke(cell_object, section) -> None:
-    if section.type not in ['img']:
+    if section.type not in [MD_TYPE_IMAGE]:
         section.contents = f'Called image but not image -  [{section}]'
         return error.invoke(cell_object, section)
 

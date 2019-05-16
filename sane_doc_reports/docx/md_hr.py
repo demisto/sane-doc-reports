@@ -1,5 +1,6 @@
 from sane_doc_reports.Section import Section
-from sane_doc_reports.conf import DEBUG, PYDOCX_TEXT_ALIGN, STYLE_KEY
+from sane_doc_reports.conf import DEBUG, PYDOCX_TEXT_ALIGN, STYLE_KEY, \
+    MD_TYPE_HORIZONTAL_LINE
 from sane_doc_reports.Element import Element
 from sane_doc_reports.docx import error, text
 
@@ -24,7 +25,7 @@ class HorizontalLineElement(Element):
 
 
 def invoke(cell_object, section):
-    if section.type != 'hr':
+    if section.type != MD_TYPE_HORIZONTAL_LINE:
         section.contents = f'Called hr but not hr -  [{section}]'
         return error.invoke(cell_object, section)
 

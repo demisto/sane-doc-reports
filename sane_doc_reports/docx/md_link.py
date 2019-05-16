@@ -26,7 +26,9 @@ def add_hyperlink_into_run(paragraph, run, url):
     paragraph._p.insert(i + 1, hyperlink)
 
     # Add the style
-    # run.font.color.theme_color = MSO_THEME_COLOR_INDEX.HYPERLINK
+    if run.font.color.rgb is None:
+        run.font.color.theme_color = MSO_THEME_COLOR_INDEX.HYPERLINK
+
     run.font.underline = True
 
 

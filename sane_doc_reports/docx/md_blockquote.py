@@ -4,7 +4,7 @@ from docx.oxml.ns import nsdecls
 from sane_doc_reports.CellObject import CellObject
 from sane_doc_reports.MarkdownSection import MarkdownSection
 from sane_doc_reports.Wrapper import Wrapper
-from sane_doc_reports.conf import DEBUG
+from sane_doc_reports.conf import DEBUG, MD_TYPE_QUOTE
 from sane_doc_reports.docx import markdown, error
 from sane_doc_reports.utils import name_to_hex
 
@@ -39,7 +39,7 @@ class QuoteWrapper(Wrapper):
 
 
 def invoke(cell_object, section):
-    if section.type != 'blockquote':
+    if section.type != MD_TYPE_QUOTE:
         section.contents = 'Called blockquote but not blockquote (quote) -' + \
                            f' [{section}]'
         return error.invoke(cell_object, section)

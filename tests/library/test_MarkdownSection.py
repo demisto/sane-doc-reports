@@ -2,6 +2,7 @@ from pyquery import PyQuery as pq
 
 from sane_doc_reports.MarkdownSection import markdown_to_section_list, \
     MarkdownSection, _build_dict, markdown_to_html, _collapse_attrs
+from sane_doc_reports.conf import MD_TYPE_QUOTE
 
 
 def test_build_dict_basic():
@@ -268,7 +269,7 @@ def test_markdown_to_section_list_quote():
 
     assert isinstance(md_list, list)
     assert isinstance(md_list[0], MarkdownSection)
-    assert md_list[0].type == 'blockquote'
+    assert md_list[0].type == MD_TYPE_QUOTE
 
     res = [i.get_dict() for i in md_list]
     expected = [{

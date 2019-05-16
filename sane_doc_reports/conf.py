@@ -56,3 +56,18 @@ PYDOCX_FONT_UNDERLINE = 'underline'
 PYDOCX_FONT_ITALIC = 'italic'
 PYDOCX_FONT_COLOR = 'color'
 PYDOCX_TEXT_ALIGN = 'textAlign'
+
+
+# Markdown section types constants
+MD_TYPE_DIV = 'div'
+MD_TYPE_CODE = 'code'
+MD_TYPE_QUOTE = 'blockquote'
+MD_TYPE_UNORDERED_LIST = 'ul'
+MD_TYPE_ORDERED_LIST = 'ol'
+MD_TYPE_LIST_ITEM = 'li'
+MD_TYPE_INLINE_TEXT = 'span'
+MD_TYPE_TEXT = 'p'
+MD_TYPES_HEADERS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+MD_TYPE_LINK = 'a'
+MD_TYPE_IMAGE = 'img'
+MD_TYPE_HORIZONTAL_LINE = 'hr'

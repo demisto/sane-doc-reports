@@ -1,6 +1,7 @@
 from sane_doc_reports.MarkdownSection import MarkdownSection
 from sane_doc_reports.Wrapper import Wrapper
-from sane_doc_reports.conf import UNORDERED_LIST_NAME, DEBUG
+from sane_doc_reports.conf import UNORDERED_LIST_NAME, DEBUG, \
+    MD_TYPE_UNORDERED_LIST
 from sane_doc_reports.docx import markdown, error
 from sane_doc_reports.utils import get_current_li
 
@@ -23,7 +24,7 @@ class UlWrapper(Wrapper):
 
 
 def invoke(cell_object, section):
-    if section.type != 'ul':
+    if section.type != MD_TYPE_UNORDERED_LIST:
         section.contents = f'Called ul but not ul -  [{section}]'
         return error.invoke(cell_object, section)
 

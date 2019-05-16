@@ -3,7 +3,7 @@ from docx.oxml.ns import nsdecls
 
 from sane_doc_reports.CellObject import CellObject
 from sane_doc_reports.MarkdownSection import MarkdownSection
-from sane_doc_reports.conf import DEBUG
+from sane_doc_reports.conf import DEBUG, MD_TYPE_CODE
 from sane_doc_reports.docx import markdown, error
 from sane_doc_reports.utils import name_to_hex
 from sane_doc_reports.Wrapper import Wrapper
@@ -42,7 +42,7 @@ class CodeWrapper(Wrapper):
 
 
 def invoke(cell_object, section):
-    if section.type != 'code':
+    if section.type != MD_TYPE_CODE:
         section.contents = f'Called code but not code -  [{section}]'
         return error.invoke(cell_object, section)
 

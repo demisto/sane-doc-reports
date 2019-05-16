@@ -15,6 +15,7 @@ python-docx = "*"
 webcolors = "*"
 fastjsonschema = "*"
 matplotlib = "*"
+pyquery = "*"
 
 [requires]
 python_version = "3.7"

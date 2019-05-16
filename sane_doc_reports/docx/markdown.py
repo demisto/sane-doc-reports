@@ -92,6 +92,8 @@ class MarkdownWrapper(Wrapper):
                 continue
 
             if section_type in ['p', 'span']:
+                if invoked_from_wrapper:
+                    self.cell_object.add_run()
                 text.invoke(self.cell_object, section)
                 continue
 

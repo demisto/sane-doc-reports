@@ -20,6 +20,7 @@ def invoke(cell_object, section, apply_default_styling=True) -> None:
         section.contents = f'Called text but not text -  [{section}]'
         return error.invoke(cell_object, section)
 
+
     has_run(cell_object)
 
     if apply_default_styling:

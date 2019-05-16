@@ -16,6 +16,7 @@ webcolors = "*"
 fastjsonschema = "*"
 matplotlib = "*"
 pyquery = "*"
+mistune = "*"
 
 [requires]
 python_version = "3.7"

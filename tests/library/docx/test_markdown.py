@@ -34,10 +34,16 @@ def test_markdown():
     # Find one quote
     assert len(d.element.xpath(
         '//w:tbl//w:shd[@w:fill="#fff8dc"]/following::w:t[position() <2]')) == 1
+    # Check the quote has a bold element inside
+    assert len(d.element.xpath(
+        '//w:tbl//w:shd[@w:fill="#fff8dc"]/following::w:b')) == 1
 
     # Find one code
     assert len(d.element.xpath(
         '//w:tbl//w:shd[@w:fill="#f5f5f5"]/following::w:t[position() <2]')) == 1
+    # Check the quote has no bold element inside
+    assert len(d.element.xpath(
+        '//w:tbl//w:shd[@w:fill="#f5f5f5"]/following::w:b')) == 0
 
     # Find ULs
     assert len(

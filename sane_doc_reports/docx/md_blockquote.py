@@ -33,6 +33,7 @@ class QuoteWrapper(Wrapper):
         else:
             temp_section = MarkdownSection('markdown',
                                            contents, {}, {})
+
         markdown.invoke(self.cell_object, temp_section,
                         invoked_from_wrapper=True)
 

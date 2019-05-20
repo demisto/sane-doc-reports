@@ -13,7 +13,7 @@ from docx.text.paragraph import Paragraph
 from matplotlib import pyplot as plt
 from matplotlib import colors as mcolors
 
-from sane_doc_reports import CellObject, Section
+from sane_doc_reports.domain import CellObject, Section
 from sane_doc_reports.conf import SIZE_H_INCHES, SIZE_W_INCHES, DPI, \
     DEFAULT_DPI, PYDOCX_FONT_SIZE, PYDOCX_FONT_NAME, \
     PYDOCX_FONT_BOLD, PYDOCX_FONT_STRIKE, PYDOCX_FONT_UNDERLINE, \
@@ -50,7 +50,7 @@ def name_to_hex(color_name: str):
 
 def hex_to_rgb(hex_color: str):
     """
-    Convert a hex color string into an RGBColor object (used in python-docx)
+    Convert a hex color string into an RGBColor object (used in python-elements)
     """
     hex_color = hex_color.lstrip('#')
     return RGBColor(*[int(hex_color[i:i + 2], 16) for i in (0, 2, 4)])
@@ -70,8 +70,8 @@ def open_b64_image(image_base64):
 
 def insert_by_type(type: str, cell_object: CellObject,
                    section: Section):
-    """ Call a docx elemnt's insert method """
-    func = importlib.import_module(f'sane_doc_reports.docx.{type}')
+    """ Call a elements elemnt's insert method """
+    func = importlib.import_module(f'sane_doc_reports.elements.{type}')
 
     func.invoke(cell_object, section)
 
@@ -265,9 +265,9 @@ def list_number(doc, par, prev=None, level=None, num=True):
     ----------
     doc : docx.document.Document
         The document to add the list into.
-    par : docx.paragraph.Paragraph
+    par : elements.paragraph.Paragraph
         The paragraph to turn into a list item.
-    prev : docx.paragraph.Paragraph or None
+    prev : elements.paragraph.Paragraph or None
         The previous paragraph in the list. If specified, the numbering
         and styles will be taken as a continuation of this paragraph.
         If omitted, a new numbering scheme will be started.

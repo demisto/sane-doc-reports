@@ -2,7 +2,7 @@ from docx import Document
 from docx.text.paragraph import Paragraph
 from docx.text.run import Run
 
-from sane_doc_reports.CellObject import CellObject
+from sane_doc_reports.domain.CellObject import CellObject
 
 
 def test_cell_object_init():

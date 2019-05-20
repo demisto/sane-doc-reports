@@ -1,7 +1,10 @@
 from pyquery import PyQuery as PyQuery
 
-from sane_doc_reports.MarkdownSection import markdown_to_html
-from sane_doc_reports.md_helpers import fix_unwrapped_text
+from sane_doc_reports.conf import MD_TYPE_QUOTE
+from sane_doc_reports.transform.MarkdownSection import markdown_to_html, \
+    MarkdownSection, collapse_attrs
+from sane_doc_reports.transform.md_helpers import fix_unwrapped_text, \
+    markdown_to_section_list, _build_dict_from_sane_json
 
 
 def test_markdown_to_html_none():
@@ -110,7 +113,8 @@ def test_fix_unwrapped_text_basic():
     root_elem = PyQuery(html)
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = PyQuery('<p><span>1</span><span><b>2</b></span><span>3</span></p>')
+    expected = PyQuery(
+        '<p><span>1</span><span><b>2</b></span><span>3</span></p>')
     assert res_check == expected.outer_html()
 
 
@@ -129,7 +133,7 @@ def test_fix_unwrapped_text_basic_3():
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
     expected = PyQuery('<p><span><strong>test</strong></span><span> unwrapped' +
-                  '</span<</p>')
+                       '</span<</p>')
     assert res_check == expected.outer_html()
 
 
@@ -138,8 +142,9 @@ def test_fix_unwrapped_text_basic_4():
     root_elem = PyQuery(html)
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
-    expected = PyQuery('<p><span><i>a</i></span><span><b>b</b></span><span><c>c' +
-                  '</c></span></p>')
+    expected = PyQuery(
+        '<p><span><i>a</i></span><span><b>b</b></span><span><c>c' +
+        '</c></span></p>')
     assert res_check == expected.outer_html()
 
 
@@ -150,7 +155,7 @@ def test_fix_unwrapped_text_deep():
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
     expected = PyQuery('<p><span><strong><span>12</span><span><b>3</b></span>' +
-                  '</strong></span></p>')
+                       '</strong></span></p>')
     assert res_check == expected.html()
 
 
@@ -161,7 +166,7 @@ def test_fix_unwrapped_text_attributes():
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
     expected = PyQuery('<p><span><strong attr="123">test</strong></span>' +
-                  '<span> unwrapped</span></p>')
+                       '<span> unwrapped</span></p>')
     assert res_check == expected.outer_html()
 
 
@@ -228,8 +233,8 @@ def test_fix_unwrapped_text_complex():
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
     expected = PyQuery('<p><span>aaa </span><span><em><span>bbb </span><span>' +
-                  '<i>ccc</i></span></em></span><span> ddd </span><span>' +
-                  '<del>eee</del></span><span> fff</span></p>')
+                       '<i>ccc</i></span></em></span><span> ddd </span><span>' +
+                       '<del>eee</del></span><span> fff</span></p>')
     assert res_check == expected.outer_html()
 
 
@@ -240,9 +245,9 @@ def test_fix_unwrapped_text_complex_2():
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
     expected = PyQuery('<p><span>aaa </span><span><em><span>bbb </span><span>' +
-                  '<i><span>ccc</span><span><q>zzz</q></span><span>ddd' +
-                  '</span></i></span></em></span><span> ddd </span><span>' +
-                  '<del>eee</del></span><span> fff</span></p>')
+                       '<i><span>ccc</span><span><q>zzz</q></span><span>ddd' +
+                       '</span></i></span></em></span><span> ddd </span><span>' +
+                       '<del>eee</del></span><span> fff</span></p>')
     assert res_check == expected.outer_html()
 
 
@@ -253,9 +258,9 @@ def test_fix_unwrapped_text_complex_3():
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
     expected = PyQuery('<p><span>aaa </span><span><em><span>bbb </span><span>' +
-                  '<i><span>ccc</span><span><p>zzz</p></span><span>ddd' +
-                  '</span></i></span></em></span><span> ddd </span><span>' +
-                  '<del>eee</del></span><span> fff</span></p>')
+                       '<i><span>ccc</span><span><p>zzz</p></span><span>ddd' +
+                       '</span></i></span></em></span><span> ddd </span><span>' +
+                       '<del>eee</del></span><span> fff</span></p>')
     assert res_check == expected.outer_html()
 
 
@@ -268,7 +273,286 @@ def test_no_change_fix_unwrapped_text_complex():
     res = fix_unwrapped_text(root_elem)
     res_check = res.outer_html()
     expected = PyQuery('<p><span>aaa </span><span><em><span>bbb </span><span>' +
-                  '<i><span>ccc</span><span><p>zzz</p></span><span>ddd' +
-                  '</span></i></span></em></span><span> ddd </span><span>' +
-                  '<del>eee</del></span><span> fff</span></p>')
+                       '<i><span>ccc</span><span><p>zzz</p></span><span>ddd' +
+                       '</span></i></span></em></span><span> ddd </span><span>' +
+                       '<del>eee</del></span><span> fff</span></p>')
     assert res_check == expected.outer_html()
+
+
+def test_build_dict_basic():
+    markdown_string = 'some string'  # 'tes *can **also*** be ~~the~~ nested...'
+    html = markdown_to_html(markdown_string).strip()
+    root_elem = PyQuery(html)
+    res = _build_dict_from_sane_json(root_elem)
+    expected = {'type': 'p', 'contents': 'some string', 'attrs': [],
+                'layout': {}, 'extra': {}}
+    assert res == expected
+
+
+def test_build_dict_basic_element():
+    markdown_string = 'some **string**'
+    html = markdown_to_html(markdown_string).strip()
+    root_elem = PyQuery(html)
+    res = _build_dict_from_sane_json(root_elem)
+    expected = {'type': 'p', 'contents': [
+        {'type': 'span', 'contents': 'some ', 'attrs': [],
+         'layout': {}, 'extra': {}},
+        {'type': 'span', 'contents': [
+            {'type': 'strong', 'contents': 'string', 'attrs': [],
+             'layout': {}, 'extra': {}}
+        ], 'attrs': [], 'layout': {}, 'extra': {}}
+    ], 'attrs': [], 'layout': {}, 'extra': {}
+                }
+    assert res == expected
+
+
+def test_build_dict_deep_ul():
+    markdown_string = '- parent\n\t- child'
+    html = markdown_to_html(markdown_string).strip()
+    root_elem = PyQuery(html)
+    res = _build_dict_from_sane_json(root_elem)
+    expected = {'type': 'ul', 'contents': [
+        {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},  # 0
+         'contents': [
+             {'type': 'span', 'contents': 'parent', 'attrs': [], 'layout': {},
+              'extra': {}},
+             {'type': 'ul', 'contents': [
+                 {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},
+                  'contents': 'child'}
+             ], 'attrs': [], 'layout': {}, 'extra': {}}
+         ]
+         }], 'attrs': [], 'layout': {}, 'extra': {}
+                }
+    assert res == expected
+
+
+def test_build_dict_ol():
+    markdown_string = '1. parent\n\t1. child'
+    html = markdown_to_html(markdown_string).strip()
+    root_elem = PyQuery(html)
+    res = _build_dict_from_sane_json(root_elem)
+    expected = {'type': 'ol', 'contents': [
+        {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},  # 0
+         'contents': [
+             {'type': 'span', 'contents': 'parent', 'attrs': [], 'layout': {},
+              'extra': {}},
+             {'type': 'ol', 'contents': [
+                 {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},
+                  'contents': 'child'}
+             ], 'attrs': [], 'layout': {}, 'extra': {}}
+         ]
+         }], 'attrs': [], 'layout': {}, 'extra': {}
+                }
+    assert res == expected
+
+
+def test_build_dict_deep_ol():
+    markdown_string = '1. parent\n\t1. child\n\t\t1. deep child'
+    html = markdown_to_html(markdown_string).strip()
+    root_elem = PyQuery(html)
+    res = _build_dict_from_sane_json(root_elem)
+    expected = {'type': 'ol', 'contents': [
+        {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},  # 0
+         'contents': [
+             {'type': 'span', 'contents': 'parent', 'attrs': [], 'layout': {},
+              'extra': {}},
+             {'type': 'ol', 'contents': [
+                 {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},
+                  'contents': [
+                      {'type': 'span', 'contents': 'child', 'attrs': [],
+                       'layout': {},
+                       'extra': {}},
+                      {'type': 'ol', 'contents': [
+                          {'type': 'li', 'contents': 'deep child', 'attrs': [],
+                           'layout': {},
+                           'extra': {}},
+                      ], 'attrs': [],
+                       'layout': {},
+                       'extra': {}},
+                  ]}
+             ], 'attrs': [], 'layout': {}, 'extra': {}}
+         ]
+         }], 'attrs': [], 'layout': {}, 'extra': {}
+                }
+    assert res == expected
+
+
+def test_build_dict_basic_element_attribute():
+    markdown_string = 'some [string](url)'
+    html = markdown_to_html(markdown_string).strip()
+    root_elem = PyQuery(html)
+    res = _build_dict_from_sane_json(root_elem)
+    expected = {'type': 'p', 'contents': [
+        {'type': 'span', 'contents': 'some ', 'attrs': [],
+         'layout': {}, 'extra': {}},
+        {'type': 'span', 'contents': [
+            {'type': 'a', 'contents': 'string', 'attrs': [], 'layout': {},
+             'extra': {'href': 'url'}}]
+            , 'attrs': [], 'layout': {}, 'extra': {}}
+    ], 'attrs': [], 'layout': {}, 'extra': {}
+                }
+    assert res == expected
+
+
+def test_build_dict_text_and_elements():
+    markdown_string = 'some **string** and more strings'
+    html = markdown_to_html(markdown_string).strip()
+    root_elem = PyQuery(html)
+    res = _build_dict_from_sane_json(root_elem)
+    expected = {'type': 'p', 'contents': [
+
+        {'type': 'span', 'contents': 'some ', 'attrs': [],
+         'layout': {}, 'extra': {}},
+        {'type': 'span', 'contents': [
+            {'type': 'strong', 'contents': 'string', 'attrs': [],
+             'layout': {}, 'extra': {}},
+        ], 'attrs': [], 'layout': {}, 'extra': {}},
+        {'type': 'span', 'contents': ' and more strings', 'attrs': [],
+         'layout': {}, 'extra': {}},
+
+    ], 'attrs': [], 'layout': {}, 'extra': {}
+                }
+    assert res == expected
+
+
+def test_markdown_to_section_basic():
+    markdown = '~~123~~'
+    md_list = markdown_to_section_list(markdown)
+    res = [i.get_dict() for i in md_list]
+    expected = [{
+        'type': 'p',
+        'contents': [
+            {
+                'type': 'span',
+                'attrs': ['strikethrough'],
+                'extra': {},
+                'contents': '123',
+                'layout': {}
+            }
+        ], 'attrs': [], 'extra': {}, 'layout': {}
+    }]
+    assert res == expected
+
+
+def test_markdown_to_section_wrapped():
+    markdown = '**~~123~~**'
+    md_list = markdown_to_section_list(markdown)
+
+    res = [i.get_dict() for i in md_list]
+    expected = [{
+        'type': 'p',
+        'contents': [
+            {
+                'type': 'span',
+                'attrs': ['bold', 'strikethrough'],
+                'extra': {},
+                'contents': '123',
+                'layout': {}
+            }
+        ], 'attrs': [], 'extra': {}, 'layout': {}
+    }]
+    assert res == expected
+
+
+def test_markdown_to_section_pre_code():
+    markdown = '\n```\ncode\n```\n'
+    md_list = markdown_to_section_list(markdown)
+
+    res = [i.get_dict() for i in md_list]
+    expected = [{
+        'type': 'pre',
+        'contents': [
+            {
+                'type': 'code',
+                'attrs': [],
+                'extra': {},
+                'contents': 'code',
+                'layout': {}
+            }
+        ], 'attrs': [], 'extra': {}, 'layout': {}
+    }]
+    assert res == expected
+
+
+def test_markdown_to_section_ul():
+    markdown = '- one\n- *two*'
+    md_list = markdown_to_section_list(markdown)
+
+    res = [i.get_dict() for i in md_list]
+    expected = [{
+        'type': 'ul',
+        'contents': [
+            {'type': 'li', 'attrs': [], 'extra': {}, 'contents': 'one',
+             'layout': {}},
+            {'type': 'li', 'attrs': ['italic'], 'extra': {}, 'contents': 'two',
+             'layout': {}}
+        ], 'attrs': [], 'extra': {}, 'layout': {}
+    }]
+    assert res == expected
+
+
+def test_markdown_to_section_ul_ol_complex():
+    markdown = '- one\n- two\n\t1. nested\n\t2. nested deep'
+    md_list = markdown_to_section_list(markdown)
+
+    res = [i.get_dict() for i in md_list]
+    expected = [{
+        'type': 'ul',
+        'contents': [
+            {'type': 'li', 'attrs': [], 'extra': {}, 'contents': 'one',
+             'layout': {}},
+            {'type': 'li', 'attrs': [], 'extra': {}, 'contents': [
+                {'type': 'span', 'attrs': [], 'extra': {}, 'contents': 'two',
+                 'layout': {}},
+                {'type': 'ol', 'attrs': [], 'extra': {}, 'contents': [
+                    {'type': 'li', 'attrs': [], 'extra': {},
+                     'contents': 'nested',
+                     'layout': {}},
+                    {'type': 'li', 'attrs': [], 'extra': {},
+                     'contents': 'nested deep',
+                     'layout': {}}
+                ],
+                 'layout': {}}
+            ],
+             'layout': {}},
+        ], 'attrs': [], 'extra': {}, 'layout': {}
+    }]
+    assert res == expected
+
+
+def test_markdown_to_section_list_quote():
+    markdown_string = "> Blockquotes *can also* have ~~the~~ nested..."
+
+    md_list = markdown_to_section_list(markdown_string)
+
+    assert isinstance(md_list, list)
+    assert isinstance(md_list[0], MarkdownSection)
+    assert md_list[0].type == MD_TYPE_QUOTE
+
+    res = [i.get_dict() for i in md_list]
+    expected = [{
+        'type': 'blockquote',
+        'contents': [
+            {
+                'type': 'span', 'attrs': [], 'extra': {},
+                'contents': 'Blockquotes ', 'layout': {}
+            },
+            {
+                'type': 'span', 'attrs': ['italic'], 'extra': {},
+                'contents': 'can also', 'layout': {}
+            },
+            {
+                'type': 'span', 'attrs': [], 'extra': {},
+                'contents': ' have ', 'layout': {}
+            },
+            {
+                'type': 'span', 'attrs': ['strikethrough'], 'extra': {},
+                'contents': 'the', 'layout': {}
+            },
+            {
+                'type': 'span', 'attrs': [], 'extra': {},
+                'contents': ' nested...', 'layout': {}
+            }
+        ], 'attrs': [], 'extra': {}, 'layout': {}
+    }]
+    assert res == expected

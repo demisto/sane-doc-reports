@@ -1,7 +1,7 @@
 from docx.table import Table
 
-from sane_doc_reports.grid import get_vtable_merged
-from sane_doc_reports.Report import Report
+from sane_doc_reports.populate.grid import get_vtable_merged
+from sane_doc_reports.populate.Report import Report
 from tests import utils
 from tests.utils import get_mock
 

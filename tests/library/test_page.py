@@ -1,7 +1,7 @@
 from functools import reduce
 
 import pytest
-from sane_doc_reports.transform.SaneJson import SaneJson, get_vertical_pos
+from sane_doc_reports.domain.SaneJson import SaneJson, get_vertical_pos
 from tests.utils import get_mock
 from sane_doc_reports.conf import *
 

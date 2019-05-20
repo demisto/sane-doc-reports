@@ -1,5 +1,5 @@
 from sane_doc_reports.populate.Report import Report
-from sane_doc_reports.transform.SaneJson import SaneJson
+from sane_doc_reports.domain.SaneJson import SaneJson
 from sane_doc_reports.transform.Transform import Transform
 
 

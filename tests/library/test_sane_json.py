@@ -3,9 +3,9 @@ import json
 
 from fastjsonschema import JsonSchemaException
 
-from sane_doc_reports.transform.SaneJson import SaneJson
+from sane_doc_reports.domain.SaneJson import SaneJson
 from tests.utils import get_mock
-from sane_doc_reports.transform.SaneJsonPage import SaneJsonPage
+from sane_doc_reports.domain.SaneJsonPage import SaneJsonPage
 
 
 def test_sane_json_constructor():

@@ -1,5 +1,5 @@
 from sane_doc_reports.domain.Section import sane_to_section
-from sane_doc_reports.transform import SaneJsonPage
+from sane_doc_reports.domain import SaneJsonPage
 from sane_doc_reports.transform.md_helpers import markdown_to_section_list
 
 

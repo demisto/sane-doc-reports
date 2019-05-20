@@ -1,10 +1,10 @@
-from sane_doc_reports.transform.MarkdownSection import markdown_to_section_list, \
-    MarkdownSection
+from sane_doc_reports.transform.MarkdownSection import MarkdownSection
 from sane_doc_reports.conf import MD_TYPE_DIV, MD_TYPE_CODE, MD_TYPE_QUOTE, \
     MD_TYPE_UNORDERED_LIST, MD_TYPE_ORDERED_LIST, MD_TYPE_LIST_ITEM, \
     MD_TYPE_HORIZONTAL_LINE, MD_TYPE_IMAGE, MD_TYPE_LINK, MD_TYPE_TEXT, \
     MD_TYPE_INLINE_TEXT, MD_TYPES_HEADERS
-from sane_doc_reports.elements import text, md_code, md_ul, md_li, md_blockquote, \
+from sane_doc_reports.elements import text, md_code, md_ul, md_li, \
+    md_blockquote, \
     md_hr, md_ol, md_link, md_image
 from sane_doc_reports.domain import CellObject, Section
 from sane_doc_reports.domain.Wrapper import Wrapper
@@ -24,9 +24,6 @@ class MarkdownWrapper(Wrapper):
         elif invoked_from_wrapper and \
                 isinstance(self.section.contents.contents, str):
             md_section_list = [self.section.contents]
-
-        # else:
-        #     md_section_list = markdown_to_section_list(self.section.contents)
 
         if not isinstance(md_section_list, list):
             raise ValueError('Markdown section does not have valid contents ' +

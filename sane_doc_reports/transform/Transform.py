@@ -1,8 +1,7 @@
-from typing import Union, List
+from typing import List
 
-from sane_doc_reports.domain import Section, Wrapper
 from sane_doc_reports.domain.Page import Page
-from sane_doc_reports.transform.SaneJson import SaneJson
+from sane_doc_reports.domain.SaneJson import SaneJson
 
 
 class Transform:

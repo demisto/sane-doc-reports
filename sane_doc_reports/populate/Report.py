@@ -5,8 +5,8 @@ from docx.shared import Pt, Mm
 
 from sane_doc_reports.domain.CellObject import CellObject
 from sane_doc_reports.domain.Page import Page
-from sane_doc_reports.domain.Section import sane_to_section, Section
-from sane_doc_reports.transform import SaneJson
+from sane_doc_reports.domain.Section import Section
+from sane_doc_reports.domain import SaneJson
 from sane_doc_reports.utils import insert_by_type
 from sane_doc_reports.conf import DEBUG, A4_MM_HEIGHT, A4_MM_WIDTH, \
     TOP_MARGIN_PT, BOTTOM_MARGIN_PT, LEFT_MARGIN_PT, RIGHT_MARGIN_PT

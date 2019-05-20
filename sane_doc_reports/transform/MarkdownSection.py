@@ -3,10 +3,11 @@ from __future__ import annotations  # Used to fix the __init__ of same type
 import json
 from typing import Union, List
 
-from sane_doc_reports.domain.Section import Section
 from sane_doc_reports.conf import HTML_ATTRIBUTES, HTML_ATTR_MARKDOWN_MAP, \
     HTML_REDUNDANT_COLLAPSIBLE
-from sane_doc_reports.transform.md_helpers import *
+
+from sane_doc_reports.domain.Section import Section
+import sane_doc_reports.transform.md_helpers as md
 
 
 def _should_collapse(has_siblings, section_type):
@@ -20,6 +21,7 @@ class MarkdownSection(Section):
      redundant attributes and children elements (coming form
      md to html conversions)
     """
+
     def __init__(self, type, contents: Union[List[Section], str],
                  layout, extra, attrs=[]):
 
@@ -28,7 +30,7 @@ class MarkdownSection(Section):
         self.attrs = attrs
 
         if isinstance(contents, list):
-            self.contents = collapse_attrs(contents)
+            self.contents = md.collapse_attrs(contents)
         else:
             self.contents = contents
 
@@ -118,8 +120,3 @@ class MarkdownSection(Section):
 
     def __str__(self):
         return self.to_json()
-
-
-
-
-

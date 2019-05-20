@@ -3,7 +3,7 @@ from typing import List
 
 from sane_doc_reports.transform.json_schema import validate
 from sane_doc_reports.transform.positioning import *
-from sane_doc_reports.transform.SaneJsonPage import SaneJsonPage
+from sane_doc_reports.domain.SaneJsonPage import SaneJsonPage
 
 
 def _is_page_separator(json_section: dict):

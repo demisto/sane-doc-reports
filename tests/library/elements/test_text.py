@@ -4,7 +4,8 @@ from tests.utils import _transform
 
 def test_text():
     """
-        To check the xpath: rename the .elements to .zip and open word/document.xml
+        To check the xpath: rename the .elements to .zip and
+         open word/document.xml
     """
     report = Report(*_transform('elements/text.json'))
     report.populate_report()

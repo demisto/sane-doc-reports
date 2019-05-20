@@ -3,7 +3,8 @@ from typing import List
 from docx.table import Table, _Cell
 
 from sane_doc_reports.domain import Section
-from sane_doc_reports.transform.positioning import row_pos, col_pos, get_height, get_width
+from sane_doc_reports.transform.positioning import row_pos, col_pos, get_height, \
+    get_width
 
 
 def _merge_horizontally(grid: Table, row: int, col: int, width: int) -> None:
@@ -82,9 +83,9 @@ def get_vtable_merged(table: Table) -> List[List]:
     (<0,0> up to <2,2,> are merged as well as <3,3> up to <4,3>)
 
     Note 1: To understand this:
-        You should probably create a table via `python-elements` and try to use this
-        on it, also to trigger the `1 not in vtables` you need to fully merge 2
-        rows.
+        You should probably create a table via `python-elements` and try to use
+        this on it, also to trigger the `1 not in vtables` you need to fully
+        merge 2 rows.
 
     Note 2: ._tc is the original object in python-elements, it helps us find out
         if 2 cells are the same cells or not (after merging them). So we will

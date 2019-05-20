@@ -5,6 +5,7 @@ from sane_doc_reports.transform.md_helpers import markdown_to_section_list
 
 class Page:
     """ Contains Sections relevant for the page"""
+
     def __init__(self, sane_page: SaneJsonPage):
         self._sane_page = sane_page
         self.sections = []

@@ -4,7 +4,8 @@ from tests.utils import _transform
 
 def test_markdown():
     """
-        To check the xpath: rename the .elements to .zip and open word/document.xml
+        To check the xpath: rename the .elements to .zip and
+         open word/document.xml
     """
     report = Report(*_transform('elements/markdown.json'))
     report.populate_report()

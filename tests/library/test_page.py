@@ -42,8 +42,8 @@ def test_calculate_page_grid_merge():
 def test_normalize_row_positions():
     sane_json = SaneJson(get_mock('three_pages.json'))
 
-    for page in sane_json.get_sane_pages():
-        sections = page.get_sections()
+    for sane_page in sane_json.get_sane_pages():
+        sections = sane_page.get_sections()
         assert reduce(lambda last_vertical_pos, current_section:
                       min(
                           get_vertical_pos(last_vertical_pos),

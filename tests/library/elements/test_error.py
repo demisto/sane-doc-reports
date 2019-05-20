@@ -7,7 +7,8 @@ from sane_doc_reports.elements import text
 
 def test_error():
     """
-        To check the xpath: rename the .elements to .zip and open word/document.xml
+        To check the xpath: rename the .elements to .zip and
+         open word/document.xml
     """
 
     d = Document()

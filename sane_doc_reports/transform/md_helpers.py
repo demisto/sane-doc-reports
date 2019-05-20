@@ -4,7 +4,7 @@ import mistune
 from pyquery import PyQuery
 
 from sane_doc_reports.conf import HTML_NOT_WRAPABLES, DEBUG
-import sane_doc_reports.transform.MarkdownSection as ms
+import sane_doc_reports.transform.MarkdownSection as MS
 from sane_doc_reports.domain.Section import Section
 
 
@@ -129,11 +129,11 @@ def collapse_attrs(section_list: List[Union[Section, dict]]) -> List[Section]:
     (moving em as attributes or removing redundant elements like <p>) """
     ret = []
     for section in section_list:
-        if isinstance(section, ms.MarkdownSection):
-            s = ms.MarkdownSection(section.type, section.contents,
+        if isinstance(section, MS.MarkdownSection):
+            s = MS.MarkdownSection(section.type, section.contents,
                                    section.layout, section.extra, section.attrs)
         else:
-            s = ms.MarkdownSection(section['type'], section['contents'],
+            s = MS.MarkdownSection(section['type'], section['contents'],
                                    section['layout'], section['extra'],
                                    section['attrs'])
         s.collapse(False)

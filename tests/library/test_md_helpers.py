@@ -243,8 +243,8 @@ def test_fix_unwrapped_text_complex_2():
     res_check = res.outer_html()
     expected = PyQuery('<p><span>aaa </span><span><em><span>bbb </span><span>' +
                        '<i><span>ccc</span><span><q>zzz</q></span><span>ddd' +
-                       '</span></i></span></em></span><span> ddd </span><span>' +
-                       '<del>eee</del></span><span> fff</span></p>')
+                       '</span></i></span></em></span><span> ddd </span>' +
+                       '<span><del>eee</del></span><span> fff</span></p>')
     assert res_check == expected.outer_html()
 
 
@@ -256,8 +256,8 @@ def test_fix_unwrapped_text_complex_3():
     res_check = res.outer_html()
     expected = PyQuery('<p><span>aaa </span><span><em><span>bbb </span><span>' +
                        '<i><span>ccc</span><span><p>zzz</p></span><span>ddd' +
-                       '</span></i></span></em></span><span> ddd </span><span>' +
-                       '<del>eee</del></span><span> fff</span></p>')
+                       '</span></i></span></em></span><span> ddd </span>' +
+                       '<span><del>eee</del></span><span> fff</span></p>')
     assert res_check == expected.outer_html()
 
 
@@ -271,8 +271,8 @@ def test_no_change_fix_unwrapped_text_complex():
     res_check = res.outer_html()
     expected = PyQuery('<p><span>aaa </span><span><em><span>bbb </span><span>' +
                        '<i><span>ccc</span><span><p>zzz</p></span><span>ddd' +
-                       '</span></i></span></em></span><span> ddd </span><span>' +
-                       '<del>eee</del></span><span> fff</span></p>')
+                       '</span></i></span></em></span><span> ddd </span>' +
+                       '<span><del>eee</del></span><span> fff</span></p>')
     assert res_check == expected.outer_html()
 
 

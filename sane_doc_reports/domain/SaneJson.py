@@ -29,7 +29,7 @@ class SaneJson:
     def _verify_sane_json(self):
         return validate(self.json_data)
 
-    def _separate_pages(self) -> List[List[SaneJsonPage]]:
+    def _separate_pages(self) -> List[SaneJsonPage]:
         """
         A sane page is a list of dicts (each dict is an section in the page),
         sections in the page are sorted by the ROW_POSITION_KEY.
@@ -69,6 +69,6 @@ class SaneJson:
     def get_sane_page(self, page_index: int) -> SaneJsonPage:
         return self.sane_pages[page_index]
 
-    def get_sane_pages(self) -> SaneJsonPage:
+    def get_sane_pages(self):
         for sane_page in self.sane_pages:
             yield sane_page

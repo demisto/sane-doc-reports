@@ -1,7 +1,8 @@
 from functools import reduce
 from typing import List, Tuple
 
-from sane_doc_reports.transform.positioning import get_vertical_pos, get_horizontal_pos, \
+from sane_doc_reports.transform.positioning import get_vertical_pos, \
+    get_horizontal_pos, \
     row_pos
 from sane_doc_reports.conf import *
 

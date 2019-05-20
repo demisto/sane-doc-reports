@@ -1,10 +1,11 @@
 from typing import List, Union
 
 import mistune
-from pyquery import PyQuery as PyQuery
+from pyquery import PyQuery
 
 from sane_doc_reports.conf import HTML_NOT_WRAPABLES, DEBUG
-from sane_doc_reports.transform.MarkdownSection import *
+import sane_doc_reports.transform.MarkdownSection as ms
+from sane_doc_reports.domain.Section import Section
 
 
 def markdown_to_html(markdown_string: str) -> str:
@@ -123,25 +124,24 @@ def _build_dict_from_sane_json(elem: PyQuery, already_wrapped=False) -> dict:
             'extra': extra}
 
 
-def collapse_attrs(section_list: List[Section]) -> List[
-    Union[Section, MarkdownSection]]:
+def collapse_attrs(section_list: List[Union[Section, dict]]) -> List[Section]:
     """ Collapse all of the sections
     (moving em as attributes or removing redundant elements like <p>) """
     ret = []
     for section in section_list:
-        if isinstance(section, MarkdownSection):
-            s = MarkdownSection(section.type, section.contents,
-                                section.layout, section.extra, section.attrs)
+        if isinstance(section, ms.MarkdownSection):
+            s = ms.MarkdownSection(section.type, section.contents,
+                                   section.layout, section.extra, section.attrs)
         else:
-            s = MarkdownSection(section['type'], section['contents'],
-                                section['layout'], section['extra'],
-                                section['attrs'])
+            s = ms.MarkdownSection(section['type'], section['contents'],
+                                   section['layout'], section['extra'],
+                                   section['attrs'])
         s.collapse(False)
         ret.append(s)
     return ret
 
 
-def markdown_to_section_list(markdown_string) -> List[MarkdownSection]:
+def markdown_to_section_list(markdown_string) -> List[Section]:
     """ Convert markdown to HTML->Python list,
         This will be a readable list of dicts containing:
             - Type: type of html element
@@ -162,10 +162,12 @@ def markdown_to_section_list(markdown_string) -> List[MarkdownSection]:
     """
     html = markdown_to_html(markdown_string)
     etree_root = PyQuery(html)
-    html_list = list(map(_build_dict_from_sane_json, [c for c in list(etree_root)]))
+    html_list = list(
+        map(_build_dict_from_sane_json, [c for c in list(etree_root)]))
     collapsed = collapse_attrs(html_list)
 
     if DEBUG:
-        print(">", "".join([str(i) for i in collapsed]))
+        print("markdown to section list: ",
+              "".join([str(i) for i in collapsed]))
 
     return collapsed

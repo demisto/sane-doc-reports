@@ -2,11 +2,11 @@ from docx.table import Table
 
 from sane_doc_reports.populate.Report import Report
 from tests import utils
-from tests.utils import get_mock
+from tests.utils import _transform
 
 
 def test_table_in_report():
-    report = Report(get_mock('elements/table.json'))
+    report = Report(*_transform('elements/table.json'))
     report.populate_report()
     d = report.document
     table = next(utils.iter_block_items(d))

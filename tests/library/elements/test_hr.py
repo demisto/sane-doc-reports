@@ -1,12 +1,12 @@
 from sane_doc_reports.populate.Report import Report
-from tests.utils import get_mock
+from tests.utils import _transform
 
 
 def test_hr():
     """
         To check the xpath: rename the .elements to .zip and open word/document.xml
     """
-    report = Report(get_mock('elements/hr.json'))
+    report = Report(*_transform('elements/hr.json'))
     report.populate_report()
 
     d = report.document

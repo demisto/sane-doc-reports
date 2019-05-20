@@ -2,15 +2,14 @@ from docx.table import Table
 
 from sane_doc_reports.conf import SHOULD_HAVE_12_GRID
 from sane_doc_reports.populate.Report import Report
-from tests import utils
-from tests.utils import get_mock
+from tests.utils import _transform, iter_block_items
 
 
 def test_bar_charts_in_report():
-    report = Report(get_mock('elements/bar_chart.json'))
+    report = Report(*_transform('elements/bar_chart.json'))
     report.populate_report()
     d = report.document
-    table = next(utils.iter_block_items(d))
+    table = next(iter_block_items(d))
     assert isinstance(table, Table)
 
     if SHOULD_HAVE_12_GRID:

@@ -1,4 +1,5 @@
 import json
+from typing import List, Tuple
 
 from docx.document import Document
 from docx.oxml.table import CT_Tbl
@@ -6,6 +7,10 @@ from docx.oxml.text.paragraph import CT_P
 from docx.table import _Cell, Table
 from docx.text.paragraph import Paragraph
 from pathlib import Path
+
+from sane_doc_reports.domain.Page import Page
+from sane_doc_reports.transform.SaneJson import SaneJson
+from sane_doc_reports.transform.Transform import Transform
 
 MOCK_DIR = 'tests/mock_data'
 
@@ -18,6 +23,14 @@ def get_mock(file_name, ret_dict=False):
         return json.loads(open(path, 'r').read())
 
     return path
+
+
+def _transform(mock_file) -> Tuple[List[Page], SaneJson]:
+    """ Prepare the data as sections before calling report """
+    sane_json = SaneJson(get_mock(mock_file))
+    transformer = Transform(sane_json)
+    pages = transformer.get_pages()
+    return pages, sane_json
 
 
 def iter_block_items(parent):

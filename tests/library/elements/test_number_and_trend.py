@@ -3,11 +3,11 @@ from docx.table import Table
 from sane_doc_reports.conf import SHOULD_HAVE_12_GRID
 from sane_doc_reports.populate.Report import Report
 from tests import utils
-from tests.utils import get_mock
+from tests.utils import _transform
 
 
 def test_number_and_trend_in_report():
-    report = Report(get_mock('elements/number_and_trend.json'))
+    report = Report(*_transform('elements/number_and_trend.json'))
     report.populate_report()
     d = report.document
     table = next(utils.iter_block_items(d))

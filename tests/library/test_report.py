@@ -3,11 +3,11 @@ from docx.table import Table
 from sane_doc_reports.populate.grid import get_vtable_merged
 from sane_doc_reports.populate.Report import Report
 from tests import utils
-from tests.utils import get_mock
+from tests.utils import _transform
 
 
 def test_creation_of_report_layout_basic():
-    report = Report(get_mock('basic.json'))
+    report = Report(*_transform('basic.json'))
     report.populate_report()
 
     d = report.document
@@ -25,7 +25,7 @@ def test_creation_of_report_layout_basic():
 
 
 def test_creation_of_report_layout_full():
-    report = Report(get_mock('grid_checks/fullgrid.json'))
+    report = Report(*_transform('grid_checks/fullgrid.json'))
     report.populate_report()
 
     d = report.document
@@ -48,7 +48,7 @@ def test_creation_of_report_layout_full():
 
 
 def test_creation_of_report_layout_merged():
-    report = Report(get_mock('grid_checks/mergegrid.json'))
+    report = Report(*_transform('grid_checks/mergegrid.json'))
     report.populate_report()
 
     d = report.document

@@ -38,13 +38,7 @@ def hex_to_rgb(hex_color: str):
     return RGBColor(*[int(hex_color[i:i + 2], 16) for i in (0, 2, 4)])
 
 
-def get_saturated_colors():
-    """ Return named colors that are clearly visible on a white background """
-    return [name for name, _ in colors.items()
-            if 'light' not in name and 'white' not in name]
-
-
-def get_chart_color(value):
+def _get_chart_color(value):
     """ Trying to copy the sane-report color scheme """
 
     def _hash_simple_value(s):
@@ -66,7 +60,7 @@ def get_chart_color(value):
 def get_colors(section_layout, objects):
     """ Return the chart colors and replace the default colors if they
     are hardcoded """
-    default_colors = [get_chart_color(i) for i in objects]
+    default_colors = [_get_chart_color(i) for i in objects]
     if "legend" not in section_layout or not isinstance(
             section_layout['legend'], list):
         return default_colors

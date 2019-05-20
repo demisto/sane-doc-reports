@@ -1,8 +1,9 @@
 from sane_doc_reports.conf import STYLE_KEY
-from sane_doc_reports.utils import apply_styling
+from sane_doc_reports.styles.utils import apply_styling
 
 
 def apply_style(cell_object, section):
+    """ Apply header specific styles and then the default style """
     level = int(section.type.replace('h', ''))
     pre_defined_styles = {}
     if STYLE_KEY in section.layout:

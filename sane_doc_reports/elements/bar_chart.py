@@ -7,7 +7,7 @@ from sane_doc_reports.conf import DEBUG, DEFAULT_ALPHA, \
     DEFAULT_BAR_WIDTH, DEFAULT_BAR_ALPHA
 
 from sane_doc_reports.elements import image, error
-from sane_doc_reports.utils import get_colors
+from sane_doc_reports.styles.colors import get_colors
 
 
 class BarChartElement(Element):

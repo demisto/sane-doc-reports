@@ -1,8 +1,9 @@
 from sane_doc_reports.conf import STYLE_KEY
-from sane_doc_reports.utils import apply_styling
+from sane_doc_reports.styles.utils import apply_styling
 
 
 def apply_style(cell_object, section):
+    """ Apply text specific styles and then the default style """
     computed_style = {"fontSize": 14}
     attached_styles = {k: True for k in section.attrs}
     pre_defined_styles = {}

@@ -6,7 +6,7 @@ from sane_doc_reports.transform.MarkdownSection import MarkdownSection
 from sane_doc_reports.domain.Wrapper import Wrapper
 from sane_doc_reports.conf import DEBUG, MD_TYPE_QUOTE
 from sane_doc_reports.elements import markdown, error
-from sane_doc_reports.utils import name_to_hex
+from sane_doc_reports.styles.colors import name_to_hex
 
 
 class QuoteWrapper(Wrapper):

@@ -1,6 +1,6 @@
 from sane_doc_reports.domain.Element import Element
 from sane_doc_reports.conf import DEBUG
-from sane_doc_reports.utils import apply_styling
+from sane_doc_reports.styles.utils import apply_styling
 
 
 class ErrorElement(Element):

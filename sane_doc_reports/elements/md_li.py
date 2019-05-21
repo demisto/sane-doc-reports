@@ -24,6 +24,7 @@ class LiWrapper(Wrapper):
 
         temp_section = MarkdownSection('markdown', self.section.contents, {},
                                        {})
+        temp_section.propagate_extra('inline', True)
         markdown.invoke(self.cell_object, temp_section,
                         invoked_from_wrapper=True)
 

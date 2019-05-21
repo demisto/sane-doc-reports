@@ -67,13 +67,14 @@ class MarkdownWrapper(Wrapper):
             #   (Some times there are elements which contain other elements,
             #    but are not considered one of the declared wrappers)
             if isinstance(section.contents, list):
-                if section_type == 'span':
-                    section.propagate_extra('inline', True)
+                is_inside_wrapper = False
+                if 'inline' in section.extra:
+                    is_inside_wrapper = True
 
                 temp_section = MarkdownSection('markdown', section.contents,
                                                {}, {}, section.attrs)
                 invoke(self.cell_object, temp_section,
-                       invoked_from_wrapper=True)
+                       invoked_from_wrapper=is_inside_wrapper)
                 continue
 
             # === Elements ===

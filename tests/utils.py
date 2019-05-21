@@ -15,7 +15,7 @@ from sane_doc_reports.transform.Transform import Transform
 MOCK_DIR = 'tests/mock_data'
 
 
-def get_mock(file_name, ret_dict=False):
+def get_mock(file_name, ret_dict=True):
     package_path = Path(__file__).parent.parent
     path = package_path / Path(MOCK_DIR) / Path(file_name)
 
@@ -27,8 +27,8 @@ def get_mock(file_name, ret_dict=False):
 
 def _transform(mock_file) -> Tuple[List[Page], SaneJson]:
     """ Prepare the data as sections before calling report """
-    sane_json = SaneJson(get_mock(mock_file))
-    transformer = Transform(sane_json)
+    transformer = Transform(get_mock(mock_file, ret_dict=False))
+    sane_json = transformer.get_sane_json()
     pages = transformer.get_pages()
     return pages, sane_json
 

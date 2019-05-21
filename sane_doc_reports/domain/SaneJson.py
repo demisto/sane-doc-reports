@@ -18,11 +18,8 @@ def _is_page_separator(json_section: dict):
 
 
 class SaneJson:
-    def __init__(self, json_file_path: str) -> None:
-        self.file_path = json_file_path
-        with open(json_file_path, 'r') as f:
-            self.json_data = json.load(f)
-
+    def __init__(self, json_data: dict) -> None:
+        self.json_data = json_data
         self._verify_sane_json()
         self.sane_pages = self._separate_pages()
 

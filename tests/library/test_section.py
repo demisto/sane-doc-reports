@@ -6,7 +6,7 @@ from sane_doc_reports.domain.Section import sane_to_section, Section
 
 
 def test_sane_to_section_text():
-    json = get_mock('elements/text.json', ret_dict=True)
+    json = get_mock('elements/text.json')
 
     section = sane_to_section(json[0])
     assert isinstance(section, Section)
@@ -18,7 +18,7 @@ def test_sane_to_section_text():
 
 
 def test_sane_to_section_image():
-    json = get_mock('elements/image.json', ret_dict=True)
+    json = get_mock('elements/image.json')
 
     section = sane_to_section(json[0])
     assert isinstance(section, Section)
@@ -30,7 +30,7 @@ def test_sane_to_section_image():
 
 
 def test_sane_to_section_table():
-    json = get_mock('elements/table.json', ret_dict=True)
+    json = get_mock('elements/table.json')
 
     section = sane_to_section(json[0])
     assert isinstance(section, Section)
@@ -44,7 +44,7 @@ def test_sane_to_section_table():
 
 def test_sane_to_section_quote():
     # TODO: make sure that quote contents has a list
-    json = get_mock('elements/quote.json', ret_dict=True)
+    json = get_mock('elements/quote.json')
 
     section = sane_to_section(json[0])
     assert isinstance(section, Section)
@@ -56,7 +56,7 @@ def test_sane_to_section_quote():
 
 
 def test_sane_to_section_number_trend():
-    json = get_mock('elements/number_and_trend.json', ret_dict=True)
+    json = get_mock('elements/number_and_trend.json')
 
     section = sane_to_section(json[0])
     assert isinstance(section, Section)
@@ -76,7 +76,7 @@ def test_sane_to_section_number_trend():
 
 
 def test_sane_to_section_markdown():
-    json = get_mock('elements/markdown.json', ret_dict=True)
+    json = get_mock('elements/markdown.json')
 
     section = sane_to_section(json[0])
     assert isinstance(section, Section)

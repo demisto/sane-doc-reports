@@ -11,15 +11,14 @@ def run(sane_json_path: str, docx_output_path: str) -> None:
     2) Populate: Send the Sections and Wrappers to Report, and populate it.
     3) Save: Save the generated file on disk.
     """
-    # Load
-    sane_json = SaneJson(sane_json_path)
 
     # Transform
-    transformer = Transform(sane_json)
+    transformer = Transform(sane_json_path)
     pages = transformer.get_pages()
+    transformed_sane_json = transformer.get_sane_json()
 
     # Populate
-    report = Report(pages, sane_json)
+    report = Report(pages, transformed_sane_json)
     report.populate_report()
 
     # Save

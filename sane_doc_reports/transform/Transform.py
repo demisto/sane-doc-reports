@@ -13,7 +13,6 @@ class Transform:
     def get_pages(self) -> List[Page]:
         """
         Get pages and their corresponding section/wrapper objects.
-        :return:
         """
         pages = []
 

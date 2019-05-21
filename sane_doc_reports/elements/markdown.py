@@ -26,6 +26,7 @@ class MarkdownWrapper(Wrapper):
             md_section_list = [self.section.contents]
 
         if not isinstance(md_section_list, list):
+            print(md_section_list)
             raise ValueError('Markdown section does not have valid contents ' +
                              '(must be a list)')
 

@@ -12,7 +12,7 @@ validate = fastjsonschema.compile({
             f'{DATA_KEY}': {
                 'type': ['object', 'array', 'string', 'integer'],
                 'properties': {
-                    'text': {'type': 'string'}
+                    'text': {'type': ['string']}
                 },
                 'items': {
                     'type': 'object',

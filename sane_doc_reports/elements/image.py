@@ -10,6 +10,14 @@ class ImageElement(Element):
         if DEBUG:
             print("Adding image...")
 
+        # Fix empty images
+        if self.section.contents == '':
+            return
+
+        # Temp fix for SVG
+        if self.section.contents.startswith('data:image/svg+xml'):
+            return
+
         self.cell_object.run.add_picture(
             open_b64_image(self.section.contents))
 

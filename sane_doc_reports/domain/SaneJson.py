@@ -1,4 +1,3 @@
-import json
 from typing import List
 
 from sane_doc_reports.transform.json_schema import validate

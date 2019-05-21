@@ -3,13 +3,14 @@ from docx.table import _Cell
 from sane_doc_reports.domain.CellObject import CellObject
 from sane_doc_reports.domain.Element import Element
 from sane_doc_reports.domain.Section import Section
-from sane_doc_reports.conf import DEBUG
+from sane_doc_reports.conf import DEBUG, STYLE_KEY, PYDOCX_FONT_SIZE
 from sane_doc_reports.elements import error, text
 
 
 def insert_text_into_cell(cell: _Cell, text_value: str):
     cell_object = CellObject(cell)
-    section = Section('text', text_value, {}, {})
+    section = Section('text', text_value, {STYLE_KEY: {PYDOCX_FONT_SIZE: 10}},
+                      {})
     text.invoke(cell_object, section)
 
 

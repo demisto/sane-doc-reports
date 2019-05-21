@@ -32,6 +32,9 @@ HTML_ATTRIBUTES = ['em', 'strong', 'del']
 HTML_ATTR_MARKDOWN_MAP = {'em': 'italic', 'strong': 'bold',
                           'del': 'strikethrough'}
 
+# Styles
+DEFAULT_WORD_FONT = 'Verdana'
+
 # Sizes:
 SIZE_W_INCHES = 6
 SIZE_H_INCHES = 3

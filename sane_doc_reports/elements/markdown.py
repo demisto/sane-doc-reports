@@ -71,6 +71,9 @@ class MarkdownWrapper(Wrapper):
                 if 'inline' in section.extra:
                     is_inside_wrapper = True
 
+                if section_type == 'span':
+                    section.propagate_extra('inline', True)
+
                 temp_section = MarkdownSection('markdown', section.contents,
                                                {}, {}, section.attrs)
                 invoke(self.cell_object, temp_section,

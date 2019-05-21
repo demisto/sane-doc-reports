@@ -37,8 +37,6 @@ class TableElement(Element):
         else:
             table_columns = self.section.layout['tableColumns']
 
-        print(table_columns)
-
         table = self.cell_object.cell.add_table(rows=1, cols=len(table_columns))
         table.style = 'Light Shading'
         hdr_cells = table.rows[0].cells

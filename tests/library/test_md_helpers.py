@@ -343,7 +343,7 @@ def test_collapse_attrs_inner_nesting():
                              "extra": {},
                              "contents": [
                                  {"type": "strong", "attrs": [], "layout": {},
-                                "extra": {}, "contents": "test"}]
+                                  "extra": {}, "contents": "test"}]
                              }
                         ]}
                    ]}]
@@ -362,21 +362,20 @@ def test_collapse_attrs_inner_nesting_deep():
                             {"type": "strong", "attrs": [], "layout": {},
                              "extra": {},
                              "contents": [
-                                {"type": "em", "attrs": [], "layout": {},
-                                 "extra": {},
-                                 "contents": [
-                                     {"type": "strong", "attrs": [],
-                                      "layout": {},
-                                    "extra": {}, "contents": "test"}]
-                                 }
-                            ]}
+                                 {"type": "em", "attrs": [], "layout": {},
+                                  "extra": {},
+                                  "contents": [
+                                      {"type": "strong", "attrs": [],
+                                       "layout": {},
+                                       "extra": {}, "contents": "test"}]
+                                  }
+                             ]}
                         ]}
                    ]}]
 
     res = collapse_attrs(input_dict)
     expected = [MS.MarkdownSection("span", "test", {}, {}, ["bold", "italic"])]
     assert res[0].get_dict() == expected[0].get_dict()
-
 
 
 def test_collapse_attrs_not_all_collapsable():
@@ -549,18 +548,18 @@ def test_markdown_to_section_wrapped():
 
     res = [i.get_dict() for i in md_list]
     expected = [{'attrs': [],
-            'contents': [{'attrs': ['bold'],
-                          'contents': [{'attrs': ['strikethrough'],
-                                        'contents': '123',
-                                        'extra': {},
-                                        'layout': {},
-                                        'type': 'span'}],
-                          'extra': {},
-                          'layout': {},
-                          'type': 'span'}],
-            'extra': {},
-            'layout': {},
-            'type': 'p'}]
+                 'contents': [{'attrs': ['bold'],
+                               'contents': [{'attrs': ['strikethrough'],
+                                             'contents': '123',
+                                             'extra': {},
+                                             'layout': {},
+                                             'type': 'span'}],
+                               'extra': {},
+                               'layout': {},
+                               'type': 'span'}],
+                 'extra': {},
+                 'layout': {},
+                 'type': 'p'}]
     assert res == expected
 
 

@@ -12,8 +12,8 @@ def test_text():
 
     d = report.document
 
-    # Find 1 fonts
-    assert len(d.element.xpath('//w:rFonts')) == 1
+    # Find 1 fonts, we also have default one which is different
+    assert len(d.element.xpath('//w:rFonts')) == 2
 
     # Check with Arial font too
     assert len(d.element.xpath('//w:rFonts[@w:ascii="Arial"]')) == 1

@@ -1,5 +1,3 @@
-from __future__ import annotations  # Used to fix the __init__ of same type
-
 import json
 from typing import Union, List
 
@@ -49,9 +47,13 @@ class MarkdownSection(Section):
             collapsible = child.collapse(False)
             if collapsible:
                 self.collapse_child()
-            parent_collapsible = _should_collapse(has_siblings, child.type)
-            if parent_collapsible:
-                self.collapse_child()
+
+            new_child = self.get_child()
+            if new_child:
+                parent_collapsible = _should_collapse(has_siblings, new_child.type)
+                if parent_collapsible:
+                    self.collapse_child()
+
             return _should_collapse(has_siblings, self.type)
 
         # Recursively go through all the section.
@@ -94,7 +96,7 @@ class MarkdownSection(Section):
     def has_child(self):
         return isinstance(self.contents, list) and len(self.contents) == 1
 
-    def get_child(self) -> MarkdownSection:
+    def get_child(self):
         if isinstance(self.contents, list):
             return self.contents[0]
 

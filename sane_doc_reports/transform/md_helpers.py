@@ -124,7 +124,8 @@ def _build_dict_from_sane_json(elem: PyQuery, already_wrapped=False) -> dict:
             'extra': extra}
 
 
-def collapse_attrs(section_list: List[Union[Section, dict]]) -> List[Section]:
+def collapse_attrs(section_list: List[Union[Section, dict]]) -> List[
+    MS.MarkdownSection]:
     """ Collapse all of the sections
     (moving em as attributes or removing redundant elements like <p>) """
     ret = []

@@ -31,6 +31,7 @@ class MarkdownWrapper(Wrapper):
 
         for section in md_section_list:
             section_type = section.type
+
             # === Start wrappers ===
             if section_type == MD_TYPE_DIV:
                 temp_section = MarkdownSection('markdown', section.contents,
@@ -71,7 +72,8 @@ class MarkdownWrapper(Wrapper):
 
                 temp_section = MarkdownSection('markdown', section.contents,
                                                {}, {}, section.attrs)
-                invoke(self.cell_object, temp_section)
+                invoke(self.cell_object, temp_section,
+                       invoked_from_wrapper=True)
                 continue
 
             # === Elements ===

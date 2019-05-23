@@ -1,5 +1,4 @@
 from sane_doc_reports import main
-from sane_doc_reports.populate.Report import Report
 from tests.utils import get_mock
 
 
@@ -35,7 +34,8 @@ def example_hr():
 
 
 def example_investigation():
-    main.run(get_mock('investigation.json', ret_dict=False), 'example.docx')
+    main.run(get_mock('elements/investigation.json', ret_dict=False),
+             'example.docx')
 
 
 def _example_junk():
@@ -48,9 +48,14 @@ def example_bar_chart():
              'example.docx')
 
 
+def example():
+    # Generate a big elements file for testing
+    main.run(get_mock('example.json', ret_dict=False), 'example.docx')
+
+
 def run():
     # Gets the json form tests/mock_data
-    example_investigation()
+    example()
 
 
 if __name__ == '__main__':

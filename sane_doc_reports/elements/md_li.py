@@ -1,5 +1,5 @@
 from sane_doc_reports import utils
-from sane_doc_reports.transform.MarkdownSection import MarkdownSection
+from sane_doc_reports.transform.markdown.MarkdownSection import MarkdownSection
 from sane_doc_reports.domain.Wrapper import Wrapper
 from sane_doc_reports.conf import DEBUG, MD_TYPE_LIST_ITEM
 from sane_doc_reports.elements import markdown, error
@@ -24,6 +24,7 @@ class LiWrapper(Wrapper):
 
         temp_section = MarkdownSection('markdown', self.section.contents, {},
                                        {})
+        temp_section.propagate_extra('inline', True)
         markdown.invoke(self.cell_object, temp_section,
                         invoked_from_wrapper=True)
 

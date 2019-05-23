@@ -4,7 +4,7 @@ from sane_doc_reports import utils
 from sane_doc_reports.domain.Element import Element
 from sane_doc_reports.domain.Section import Section
 from sane_doc_reports.conf import DEBUG, DEFAULT_BAR_WIDTH, \
-    DEFAULT_ALPHA, DEFAULT_BAR_ALPHA
+    DEFAULT_ALPHA, DEFAULT_BAR_ALPHA, CHART_LABEL_NONE_STRING
 from sane_doc_reports.elements import image, error
 from sane_doc_reports.utils import get_ax_location
 from sane_doc_reports.styles.colors import get_colors
@@ -39,12 +39,14 @@ class ColumnChartElement(Element):
 
         # Fix the legend values to be "some_value (some_number)" instead of
         # just "some_value"
-        fixed_legends = [f'{v} ({x_axis[i]})' for i, v in enumerate(objects)]
+        ledgend_keys = [CHART_LABEL_NONE_STRING if i == '' else i for i in
+                        objects]
+        fixed_legends = [f'{v} ({x_axis[i]})' for i, v in
+                         enumerate(ledgend_keys)]
 
-        legend_style = self.section.layout['legendStyle']
-        ax.legend(rects, fixed_legends,
-                  loc=get_ax_location(legend_style)).get_frame().set_alpha(
-            DEFAULT_ALPHA)
+        # Move legend
+        ax.legend(rects, fixed_legends, loc='upper center', bbox_to_anchor=(0.5, -0.15))\
+            .get_frame().set_alpha(DEFAULT_ALPHA)
         ax.set_xlim(-len(objects), len(objects))
 
         plt.xticks(y_axis, objects)

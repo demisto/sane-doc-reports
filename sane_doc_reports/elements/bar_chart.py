@@ -4,7 +4,8 @@ from sane_doc_reports.domain.Element import Element
 from sane_doc_reports import utils
 from sane_doc_reports.domain.Section import Section
 from sane_doc_reports.conf import DEBUG, DEFAULT_ALPHA, \
-    DEFAULT_BAR_WIDTH, DEFAULT_BAR_ALPHA
+    DEFAULT_BAR_WIDTH, DEFAULT_BAR_ALPHA, CHART_LABEL_NONE_STRING, \
+    X_AXIS_PADDING
 
 from sane_doc_reports.elements import image, error
 from sane_doc_reports.styles.colors import get_colors
@@ -39,13 +40,16 @@ class BarChartElement(Element):
 
         # Fix the legend values to be "some_value (some_number)" instead of
         # just "some_value"
-        fixed_legends = [f'{v} ({x_axis[i]})' for i, v in enumerate(objects)]
+        ledgend_keys = [CHART_LABEL_NONE_STRING if i == '' else i for i in
+                        objects]
+        fixed_legends = [f'{v} ({x_axis[i]})' for i, v in
+                         enumerate(ledgend_keys)]
 
         # Create and move the legend outside
-        legend_location = 'upper right'
-        legend_location_relative_to_graph = (1.75, 1)
-
         ax = plt.gca()
+        legend_location = 'upper left'
+        legend_location_relative_to_graph = (1.0, 1.0)
+
         ax.legend(rects, fixed_legends, loc=legend_location,
                   bbox_to_anchor=legend_location_relative_to_graph) \
             .get_frame().set_alpha(DEFAULT_ALPHA)
@@ -56,7 +60,8 @@ class BarChartElement(Element):
         ax.invert_yaxis()  # labels read top-to-bottom
         ax.set_xlabel('')
 
-        ax.set_xlim(0, len(objects) + DEFAULT_ALPHA)
+        # Fix the xaxis ratio to fit biggest element
+        ax.set_xlim(0, max(x_axis) + X_AXIS_PADDING)
 
         # Remove the bottom labels
         plt.tick_params(bottom='off')

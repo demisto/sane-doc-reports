@@ -1,4 +1,4 @@
-from sane_doc_reports.transform.MarkdownSection import MarkdownSection
+from sane_doc_reports.transform.markdown.MarkdownSection import MarkdownSection
 from sane_doc_reports.conf import MD_TYPE_DIV, MD_TYPE_CODE, MD_TYPE_QUOTE, \
     MD_TYPE_UNORDERED_LIST, MD_TYPE_ORDERED_LIST, MD_TYPE_LIST_ITEM, \
     MD_TYPE_HORIZONTAL_LINE, MD_TYPE_IMAGE, MD_TYPE_LINK, MD_TYPE_TEXT, \
@@ -18,6 +18,7 @@ class MarkdownWrapper(Wrapper):
     def wrap(self, invoked_from_wrapper=False):
 
         # Handle called from another wrapper.
+        md_section_list = None
         if isinstance(self.section.contents, list):
             md_section_list = self.section.contents
 
@@ -26,12 +27,12 @@ class MarkdownWrapper(Wrapper):
             md_section_list = [self.section.contents]
 
         if not isinstance(md_section_list, list):
-            print(md_section_list)
             raise ValueError('Markdown section does not have valid contents ' +
                              '(must be a list)')
 
         for section in md_section_list:
             section_type = section.type
+
             # === Start wrappers ===
             if section_type == MD_TYPE_DIV:
                 temp_section = MarkdownSection('markdown', section.contents,
@@ -67,12 +68,17 @@ class MarkdownWrapper(Wrapper):
             #   (Some times there are elements which contain other elements,
             #    but are not considered one of the declared wrappers)
             if isinstance(section.contents, list):
+                is_inside_wrapper = False
+                if 'inline' in section.extra:
+                    is_inside_wrapper = True
+
                 if section_type == 'span':
                     section.propagate_extra('inline', True)
 
                 temp_section = MarkdownSection('markdown', section.contents,
                                                {}, {}, section.attrs)
-                invoke(self.cell_object, temp_section)
+                invoke(self.cell_object, temp_section,
+                       invoked_from_wrapper=is_inside_wrapper)
                 continue
 
             # === Elements ===

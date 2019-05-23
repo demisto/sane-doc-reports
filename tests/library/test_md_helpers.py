@@ -1,7 +1,6 @@
 from sane_doc_reports.conf import MD_TYPE_QUOTE
-from sane_doc_reports.transform.MarkdownSection import *
-from sane_doc_reports.transform.md_helpers import *
-from sane_doc_reports.transform.md_helpers import _build_dict_from_sane_json
+from sane_doc_reports.transform.markdown.md_helpers import *
+from sane_doc_reports.transform.markdown.md_helpers import _build_dict_from_sane_json
 
 
 def test_markdown_to_html_none():
@@ -286,6 +285,117 @@ def test_build_dict_basic():
     assert res == expected
 
 
+def test_collapse_attrs_basic():
+    input_dict = [{"type": "span", "attrs": [], "layout": {}, "extra": {},
+                   "contents": [
+                       {"type": "strong", "attrs": [], "layout": {},
+                        "extra": {},
+                        "contents": "test"}
+                   ]}]
+
+    res = collapse_attrs(input_dict)
+    expected = [MS.MarkdownSection("span", "test", {}, {}, ["bold"])]
+    assert res[0].get_dict() == expected[0].get_dict()
+
+
+def test_collapse_attrs_nested():
+    input_dict = [{"type": "span", "attrs": [], "layout": {}, "extra": {},
+                   "contents": [
+                       {"type": "strong", "attrs": [], "layout": {},
+                        "extra": {},
+                        "contents": [
+                            {"type": "strong", "attrs": [], "layout": {},
+                             "extra": {},
+                             "contents": "test"}
+                        ]}
+                   ]}]
+
+    res = collapse_attrs(input_dict)
+    expected = [MS.MarkdownSection("span", "test", {}, {}, ["bold"])]
+    assert res[0].get_dict() == expected[0].get_dict()
+
+
+def test_collapse_attrs_multiple_nested():
+    input_dict = [{"type": "span", "attrs": [], "layout": {}, "extra": {},
+                   "contents": [
+                       {"type": "strong", "attrs": [], "layout": {},
+                        "extra": {},
+                        "contents": [
+                            {"type": "em", "attrs": [], "layout": {},
+                             "extra": {},
+                             "contents": "test"}
+                        ]}
+                   ]}]
+
+    res = collapse_attrs(input_dict)
+    expected = [MS.MarkdownSection("span", "test", {}, {}, ["bold", "italic"])]
+    assert res[0].get_dict() == expected[0].get_dict()
+
+
+def test_collapse_attrs_inner_nesting():
+    input_dict = [{"type": "span", "attrs": [], "layout": {}, "extra": {},
+                   "contents": [
+                       {"type": "strong", "attrs": [], "layout": {},
+                        "extra": {},
+                        "contents": [
+                            {"type": "em", "attrs": [], "layout": {},
+                             "extra": {},
+                             "contents": [
+                                 {"type": "strong", "attrs": [], "layout": {},
+                                  "extra": {}, "contents": "test"}]
+                             }
+                        ]}
+                   ]}]
+
+    res = collapse_attrs(input_dict)
+    expected = [MS.MarkdownSection("span", "test", {}, {}, ["bold", "italic"])]
+    assert res[0].get_dict() == expected[0].get_dict()
+
+
+def test_collapse_attrs_inner_nesting_deep():
+    input_dict = [{"type": "span", "attrs": [], "layout": {}, "extra": {},
+                   "contents": [
+                       {"type": "strong", "attrs": [], "layout": {},
+                        "extra": {},
+                        "contents": [
+                            {"type": "strong", "attrs": [], "layout": {},
+                             "extra": {},
+                             "contents": [
+                                 {"type": "em", "attrs": [], "layout": {},
+                                  "extra": {},
+                                  "contents": [
+                                      {"type": "strong", "attrs": [],
+                                       "layout": {},
+                                       "extra": {}, "contents": "test"}]
+                                  }
+                             ]}
+                        ]}
+                   ]}]
+
+    res = collapse_attrs(input_dict)
+    expected = [MS.MarkdownSection("span", "test", {}, {}, ["bold", "italic"])]
+    assert res[0].get_dict() == expected[0].get_dict()
+
+
+def test_collapse_attrs_not_all_collapsable():
+    input_dict = [{"type": "span", "attrs": [], "layout": {}, "extra": {},
+                   "contents": [
+                       {"type": "strong", "attrs": [], "layout": {},
+                        "extra": {},
+                        "contents": [
+                            {"type": "sometag", "attrs": [], "layout": {},
+                             "extra": {},
+                             "contents": "test"}
+                        ]}
+                   ]}]
+
+    res = collapse_attrs(input_dict)
+    expected = [MS.MarkdownSection("span", [
+        MS.MarkdownSection("sometag", "test", {}, {})
+    ], {}, {}, ["bold"])]
+    assert res[0].get_dict() == expected[0].get_dict()
+
+
 def test_build_dict_basic_element():
     markdown_string = 'some **string**'
     html = markdown_to_html(markdown_string).strip()
@@ -436,18 +546,19 @@ def test_markdown_to_section_wrapped():
     md_list = markdown_to_section_list(markdown)
 
     res = [i.get_dict() for i in md_list]
-    expected = [{
-        'type': 'p',
-        'contents': [
-            {
-                'type': 'span',
-                'attrs': ['bold', 'strikethrough'],
-                'extra': {},
-                'contents': '123',
-                'layout': {}
-            }
-        ], 'attrs': [], 'extra': {}, 'layout': {}
-    }]
+    expected = [{'attrs': [],
+                 'contents': [{'attrs': ['bold'],
+                               'contents': [{'attrs': ['strikethrough'],
+                                             'contents': '123',
+                                             'extra': {},
+                                             'layout': {},
+                                             'type': 'span'}],
+                               'extra': {},
+                               'layout': {},
+                               'type': 'span'}],
+                 'extra': {},
+                 'layout': {},
+                 'type': 'p'}]
     assert res == expected
 
 
@@ -523,7 +634,7 @@ def test_markdown_to_section_list_quote():
     md_list = markdown_to_section_list(markdown_string)
 
     assert isinstance(md_list, list)
-    assert isinstance(md_list[0], MarkdownSection)
+    assert isinstance(md_list[0], MS.MarkdownSection)
     assert md_list[0].type == MD_TYPE_QUOTE
 
     res = [i.get_dict() for i in md_list]

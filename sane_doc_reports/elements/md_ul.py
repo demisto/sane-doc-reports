@@ -1,4 +1,4 @@
-from sane_doc_reports.transform.MarkdownSection import MarkdownSection
+from sane_doc_reports.transform.markdown.MarkdownSection import MarkdownSection
 from sane_doc_reports.domain.Wrapper import Wrapper
 from sane_doc_reports.conf import UNORDERED_LIST_NAME, DEBUG, \
     MD_TYPE_UNORDERED_LIST

@@ -3,14 +3,24 @@ from docx.table import _Cell
 from sane_doc_reports.domain.CellObject import CellObject
 from sane_doc_reports.domain.Element import Element
 from sane_doc_reports.domain.Section import Section
-from sane_doc_reports.conf import DEBUG
+from sane_doc_reports.conf import DEBUG, STYLE_KEY, PYDOCX_FONT_SIZE
 from sane_doc_reports.elements import error, text
 
 
 def insert_text_into_cell(cell: _Cell, text_value: str):
     cell_object = CellObject(cell)
-    section = Section('text', text_value, {}, {})
+    section = Section('text', text_value, {STYLE_KEY: {PYDOCX_FONT_SIZE: 10}},
+                      {})
     text.invoke(cell_object, section)
+
+
+def fix_order(ordered, readable_headers) -> list:
+    """ Return the readable headers by the order given """
+    temp_readable = {i[0].lower() + i[1:]: i for i in readable_headers}
+    ret = []
+    for ordered_key in ordered:
+        ret.append(temp_readable[ordered_key])
+    return ret
 
 
 class TableElement(Element):
@@ -20,10 +30,10 @@ class TableElement(Element):
             print("Adding table...")
 
         table_data = self.section.contents
-
         if 'readableHeaders' in self.section.layout:
-            table_columns = list(
-                self.section.layout['readableHeaders'].values())
+            ordered = self.section.layout['tableColumns']
+            readable_headers = self.section.layout['readableHeaders'].values()
+            table_columns = fix_order(ordered, readable_headers)
         else:
             table_columns = self.section.layout['tableColumns']
 

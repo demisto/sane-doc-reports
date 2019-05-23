@@ -5,8 +5,6 @@ from sane_doc_reports.domain.Element import Element
 import sane_doc_reports.styles.text as text_style
 from sane_doc_reports.conf import DEBUG
 from sane_doc_reports.elements import error
-from sane_doc_reports.utils import has_run
-
 
 def add_hyperlink_into_run(paragraph, run, url):
     runs = paragraph.runs

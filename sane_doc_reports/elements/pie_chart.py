@@ -1,4 +1,3 @@
-# Plot
 import matplotlib.pyplot as plt
 
 from sane_doc_reports.domain.Section import Section

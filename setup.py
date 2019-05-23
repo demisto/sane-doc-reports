@@ -8,13 +8,13 @@ setup(
     include_package_data=True,
     install_requires=[
         'click',
-        'python-elements',
         'webcolors',
         'fastjsonschema',
         'matplotlib',
         'pyquery',
         'mistune',
-        'requests', 'docx'
+        'requests',
+        'python-docx'
     ],
     entry_points='''
         [console_scripts]

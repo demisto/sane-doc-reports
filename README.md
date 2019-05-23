@@ -49,3 +49,7 @@ The function needs to create an instance of the same class in the file (see the 
 You can create an Element (text, hr...) or a Wrapper (which holds other elements, quote, ul...).  
 Wrappers usually call markdown again (to create more wrappers/elements inside the same cell object).
 
+### Docker usage:
+1) Generate a `whl` file:
+`python3 setup.py sdist bdist_wheel`
+2) Copy to the .dockerfile directory and add to `copy` command

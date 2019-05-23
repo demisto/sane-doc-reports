@@ -26,21 +26,37 @@ A4_MM_WIDTH = 210
 SHOULD_HAVE_12_GRID = False
 
 # Others
-HTML_MAP = {'pre': 'p'}
+HTML_REDUNDANT_COLLAPSIBLE = ['p']
+HTML_NOT_WRAPABLES = ['span', 'li', 'ul', 'ol', 'code', 'blockquote']
 HTML_ATTRIBUTES = ['em', 'strong', 'del']
 HTML_ATTR_MARKDOWN_MAP = {'em': 'italic', 'strong': 'bold',
                           'del': 'strikethrough'}
 
-# Sizes:
+# Styles
+DEFAULT_WORD_FONT = 'Verdana'
+
+# Chart Sizes:
 SIZE_W_INCHES = 6
 SIZE_H_INCHES = 3
 DPI = 80
 
-# Chart constants
+# List constants
+ORDERED_LIST_NAME = 'List Number'
+UNORDERED_LIST_NAME = 'List Bullet'
+
+# Element constants
 DEFAULT_ALPHA = 0.5
 DEFAULT_BAR_WIDTH = 0.35
 DEFAULT_BAR_ALPHA = 0.8
 DEFAULT_DPI = 100.0
+CHART_LABEL_NONE_STRING = "None"
+X_AXIS_PADDING = 0.5
+
+TREND_MAIN_NUMBER_FONT_SIZE = 24
+TREND_SECOND_NUMBER_FONT_SIZE = 14
+ALIGN_LEFT = 0
+ALIGN_RIGHT = 1
+ALIGN_CENTER = 2
 
 # PYTHON-DOCX constants
 PYDOCX_FONT_SIZE = 'fontSize'
@@ -51,3 +67,18 @@ PYDOCX_FONT_UNDERLINE = 'underline'
 PYDOCX_FONT_ITALIC = 'italic'
 PYDOCX_FONT_COLOR = 'color'
 PYDOCX_TEXT_ALIGN = 'textAlign'
+
+
+# Markdown section types constants
+MD_TYPE_DIV = 'div'
+MD_TYPE_CODE = 'code'
+MD_TYPE_QUOTE = 'blockquote'
+MD_TYPE_UNORDERED_LIST = 'ul'
+MD_TYPE_ORDERED_LIST = 'ol'
+MD_TYPE_LIST_ITEM = 'li'
+MD_TYPE_INLINE_TEXT = 'span'
+MD_TYPE_TEXT = 'p'
+MD_TYPES_HEADERS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
+MD_TYPE_LINK = 'a'
+MD_TYPE_IMAGE = 'img'
+MD_TYPE_HORIZONTAL_LINE = 'hr'

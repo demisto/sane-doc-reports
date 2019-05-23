@@ -12,9 +12,12 @@ pytest-cov = "*"
 [packages]
 click = "*"
 python-docx = "*"
-mistune = "*"
+webcolors = "*"
 fastjsonschema = "*"
 matplotlib = "*"
+pyquery = "*"
+mistune = "*"
+requests = "*"
 
 [requires]
 python_version = "3.7"

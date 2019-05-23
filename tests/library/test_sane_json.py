@@ -3,9 +3,9 @@ import json
 
 from fastjsonschema import JsonSchemaException
 
-from sane_doc_reports.SaneJson import SaneJson
+from sane_doc_reports.domain.SaneJson import SaneJson
 from tests.utils import get_mock
-from sane_doc_reports.Page import Page
+from sane_doc_reports.domain.SaneJsonPage import SaneJsonPage
 
 
 def test_sane_json_constructor():
@@ -21,7 +21,7 @@ def test_sane_json_invalid_json():
     with pytest.raises(json.JSONDecodeError):
         SaneJson(get_mock('invalid/invalid_json.json'))
 
-    with pytest.raises(json.JSONDecodeError) as e:
+    with pytest.raises(json.JSONDecodeError):
         SaneJson(get_mock('invalid/empty.json'))
 
 
@@ -88,8 +88,8 @@ def test__separate_pages():
 
 def test_pages_grid_constructor():
     sane_json = SaneJson(get_mock('basic.json'))
-    assert len(sane_json.pages) == 1
+    assert len(sane_json.sane_pages) == 1
 
-    first_page = sane_json.pages[0]
-    assert isinstance(first_page, Page)
+    first_page = sane_json.sane_pages[0]
+    assert isinstance(first_page, SaneJsonPage)
     assert len(first_page) == 2

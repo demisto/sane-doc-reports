@@ -1,47 +1,62 @@
-from sane_doc_reports.Report import Report
+from sane_doc_reports import main
 from tests.utils import get_mock
 
 
 def example_basic():
-    report = Report(get_mock('grid_checks/fullgrid.json'))
-    report.populate_report()
-    report.save('example.docx')
+    main.run(get_mock('grid_checks/fullgrid.json', ret_dict=False),
+             'example.docx')
 
 
 def example_table():
-    report = Report(get_mock('docx/table.json'))
-    report.populate_report()
-    report.save('example.docx')
+    main.run(get_mock('elements/table.json', ret_dict=False), 'example.docx')
 
 
 def example_number():
-    report = Report(get_mock('docx/number_and_trend.json'))
-    report.populate_report()
-    report.save('example.docx')
+    main.run(get_mock('elements/number_and_trend.json', ret_dict=False),
+             'example.docx')
 
 
 def example_text():
-    report = Report(get_mock('docx/text.json'))
-    report.populate_report()
-    report.save('example.docx')
+    main.run(get_mock('elements/text.json', ret_dict=False), 'example.docx')
 
 
 def example_pie_chart():
-    report = Report(get_mock('docx/pie_chart.json'))
-    report.populate_report()
-    report.save('example.docx')
+    main.run(get_mock('elements/pie_chart.json', ret_dict=False),
+             'example.docx')
+
+
+def example_markdown():
+    main.run(get_mock('elements/markdown.json', ret_dict=False), 'example.docx')
+
+
+def example_hr():
+    main.run(get_mock('elements/hr.json', ret_dict=False), 'example.docx')
+
+
+def example_investigation():
+    main.run(get_mock('elements/investigation.json', ret_dict=False),
+             'example.docx')
+
+
+def _example_junk():
+    # Generate a big elements file for testing
+    main.run(get_mock('junkbig.json', ret_dict=False), 'example.docx')
 
 
 def example_bar_chart():
-    report = Report(get_mock('docx/bar_chart.json'))
-    report.populate_report()
-    report.save('example.docx')
+    main.run(get_mock('elements/bar_chart.json', ret_dict=False),
+             'example.docx')
 
 
-def main():
+def example():
+    # Generate a big elements file for testing
+    main.run(get_mock('example.json', ret_dict=False), 'example.docx')
+
+
+def run():
     # Gets the json form tests/mock_data
-    example_text()
+    example()
 
 
 if __name__ == '__main__':
-    main()
+    run()

@@ -6,7 +6,6 @@ from sane_doc_reports.domain.Section import Section
 from sane_doc_reports.conf import DEBUG, DEFAULT_BAR_WIDTH, \
     DEFAULT_ALPHA, DEFAULT_BAR_ALPHA, CHART_LABEL_NONE_STRING
 from sane_doc_reports.elements import image, error
-from sane_doc_reports.utils import get_ax_location
 from sane_doc_reports.styles.colors import get_colors
 
 

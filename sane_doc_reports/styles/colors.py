@@ -1,4 +1,4 @@
-from docx.shared import RGBColor, Pt
+from docx.shared import RGBColor
 from matplotlib import colors as mcolors
 
 colors = dict(mcolors.BASE_COLORS, **mcolors.CSS4_COLORS)

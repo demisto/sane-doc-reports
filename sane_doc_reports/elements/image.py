@@ -14,7 +14,8 @@ class ImageElement(Element):
         if self.section.contents == '':
             return
 
-        # Temp fix for SVG
+        # TODO: Temp fix for SVG, try to convert it to png somehow (currently
+        # blocked because of license)
         if self.section.contents.startswith('data:image/svg+xml'):
             return
 

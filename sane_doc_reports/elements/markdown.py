@@ -98,10 +98,6 @@ class MarkdownWrapper(Wrapper):
                 header_style.apply_style(self.cell_object, section)
                 text.invoke(self.cell_object, section,
                             apply_default_styling=False)
-
-                # Fixes in span but still a header
-                if invoked_from_wrapper:
-                    self.cell_object.add_paragraph()
                 continue
 
             if section_type in [MD_TYPE_TEXT, MD_TYPE_INLINE_TEXT]:

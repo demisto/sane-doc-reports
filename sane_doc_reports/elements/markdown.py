@@ -69,12 +69,14 @@ class MarkdownWrapper(Wrapper):
             #    but are not considered one of the declared wrappers)
             if isinstance(section.contents, list):
                 is_inside_wrapper = False
+
                 if 'inline' in section.extra:
                     is_inside_wrapper = True
 
                 if section_type == 'span':
                     section.propagate_extra('inline', True)
 
+                # TODO: Fix problem with H1 no newline even if in span.
                 temp_section = MarkdownSection('markdown', section.contents,
                                                {}, {}, section.attrs)
                 invoke(self.cell_object, temp_section,
@@ -96,6 +98,10 @@ class MarkdownWrapper(Wrapper):
                 header_style.apply_style(self.cell_object, section)
                 text.invoke(self.cell_object, section,
                             apply_default_styling=False)
+
+                # Fixes in span but still a header
+                if invoked_from_wrapper:
+                    self.cell_object.add_paragraph()
                 continue
 
             if section_type in [MD_TYPE_TEXT, MD_TYPE_INLINE_TEXT]:

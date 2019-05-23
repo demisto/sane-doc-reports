@@ -11,7 +11,7 @@ class NumberElement(Element):
 
     def insert(self):
         if DEBUG:
-            print("Adding number: ", self.section.contents)
+            print('Adding number...')
 
         table = self.cell_object.cell.add_table(rows=1, cols=1)
 

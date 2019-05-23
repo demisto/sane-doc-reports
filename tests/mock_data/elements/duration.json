@@ -1,0 +1,53 @@
+[
+  {
+    "type": "duration",
+    "data": [
+      {
+        "name": "",
+        "data": [
+          -1558442290
+        ],
+        "groups": null
+      }
+    ],
+    "layout": {
+      "chartProperties": {
+        "daysLabel": "DAYS",
+        "hoursLabel": "HOURS",
+        "minutesLabel": "MIN"
+      },
+      "columnPos": 0,
+      "h": 1,
+      "i": "756b53d0-7d29-11e9-ac33-dbeb1078424e",
+      "rowPos": 4,
+      "w": 12
+    },
+    "query": {
+      "type": "incident",
+      "filter": {
+        "query": "-category:job and -status:closed",
+        "period": {
+          "by": "day",
+          "byFrom": "days",
+          "byTo": "",
+          "field": "",
+          "fromValue": 7,
+          "toValue": null
+        },
+        "fromDate": "0001-01-01T00:00:00Z",
+        "toDate": "0001-01-01T00:00:00Z"
+      },
+      "keys": [
+        "avg|(closed-occurred)"
+      ]
+    },
+    "automation": {
+      "name": "",
+      "id": "",
+      "args": null,
+      "noEvent": false
+    },
+    "fromDate": "2019-05-16T15:06:32+03:00",
+    "title": "Average Response Time"
+  }
+]

@@ -33,6 +33,8 @@ class TrendElement(Element):
         change = (current_sum * 100) / previous_sum
         if change < 0:
             direction = '⏷'  # Down arrow
+        elif change == 0:
+            direction = '= '
         else:
             direction = '⏶'  # Up arrow
 

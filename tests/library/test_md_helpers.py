@@ -1,6 +1,7 @@
 from sane_doc_reports.conf import MD_TYPE_QUOTE
 from sane_doc_reports.transform.markdown.md_helpers import *
-from sane_doc_reports.transform.markdown.md_helpers import _build_dict_from_sane_json
+from sane_doc_reports.transform.markdown.md_helpers import \
+    _build_dict_from_sane_json
 
 
 def test_markdown_to_html_none():
@@ -275,16 +276,6 @@ def test_no_change_fix_unwrapped_text_complex():
     assert res_check == expected.outer_html()
 
 
-def test_build_dict_basic():
-    markdown_string = 'some string'  # 'tes *can **also*** be ~~the~~ nested...'
-    html = markdown_to_html(markdown_string).strip()
-    root_elem = PyQuery(html)
-    res = _build_dict_from_sane_json(root_elem)
-    expected = {'type': 'p', 'contents': 'some string', 'attrs': [],
-                'layout': {}, 'extra': {}}
-    assert res == expected
-
-
 def test_collapse_attrs_basic():
     input_dict = [{"type": "span", "attrs": [], "layout": {}, "extra": {},
                    "contents": [
@@ -396,6 +387,16 @@ def test_collapse_attrs_not_all_collapsable():
     assert res[0].get_dict() == expected[0].get_dict()
 
 
+def test_build_dict_basic():
+    markdown_string = 'some string'  # 'tes *can **also*** be ~~the~~ nested...'
+    html = markdown_to_html(markdown_string).strip()
+    root_elem = PyQuery(html)
+    res = _build_dict_from_sane_json(root_elem)
+    expected = {'type': 'p', 'contents': 'some string', 'attrs': [],
+                'layout': {}, 'extra': {}}
+    assert res == expected
+
+
 def test_build_dict_basic_element():
     markdown_string = 'some **string**'
     html = markdown_to_html(markdown_string).strip()
@@ -411,6 +412,33 @@ def test_build_dict_basic_element():
     ], 'attrs': [], 'layout': {}, 'extra': {}
                 }
     assert res == expected
+
+
+def test_build_dict_md_code():
+    markdown_string = '`some string`'
+    html = markdown_to_html(markdown_string).strip()
+    root_elem = PyQuery(html)
+    res = _build_dict_from_sane_json(root_elem)
+    expected = {'type': 'p', 'attrs': [], 'layout': {}, 'contents': [
+        {'type': 'code', 'attrs': [], 'layout': {},
+         'contents': 'some string', 'extra': {}}
+    ], 'extra': {}}
+    assert res == expected
+
+
+# def test_build_dict_md_code_complex():
+#     markdown_string = '''## Title
+# https://example.com
+# `code`'''
+#     html = markdown_to_html(markdown_string).strip()
+#     root_elem = PyQuery(html)
+#     res = _build_dict_from_sane_json(root_elem)
+#     expected = {'type': 'p', 'attrs': [], 'layout': {}, 'contents': [
+#         {'type': 'code', 'attrs': [], 'layout': {},
+#          'contents': 'some string', 'extra': {}}
+#     ], 'extra': {}}
+#     print(res)
+#     assert res == expected
 
 
 def test_build_dict_deep_ul():

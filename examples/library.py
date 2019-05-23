@@ -48,6 +48,11 @@ def example_bar_chart():
              'example.docx')
 
 
+def example_duration():
+    # Generate a big elements file for testing
+    main.run(get_mock('elements/duration.json', ret_dict=False), 'example.docx')
+
+
 def example():
     # Generate a big elements file for testing
     main.run(get_mock('example.json', ret_dict=False), 'example.docx')
@@ -55,7 +60,7 @@ def example():
 
 def run():
     # Gets the json form tests/mock_data
-    example()
+    example_duration()
 
 
 if __name__ == '__main__':

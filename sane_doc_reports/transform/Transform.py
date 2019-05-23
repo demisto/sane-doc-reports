@@ -49,8 +49,8 @@ class Transform:
         if any([LAYOUT_KEY not in i for i in json_data]):
             return
 
-        has_w = hasattr(json_data[0][LAYOUT_KEY], "w")
-        has_h = hasattr(json_data[0][LAYOUT_KEY], "h")
+        has_w = WIDTH_POSITION_KEY in json_data[0][LAYOUT_KEY]
+        has_h = HEIGHT_POSITION_KEY in json_data[0][LAYOUT_KEY]
         return not has_w or not has_h
 
 

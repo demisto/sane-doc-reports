@@ -2,7 +2,7 @@ from docx.oxml import parse_xml
 from docx.oxml.ns import nsdecls
 
 from sane_doc_reports.domain.CellObject import CellObject
-from sane_doc_reports.transform.MarkdownSection import MarkdownSection
+from sane_doc_reports.transform.markdown.MarkdownSection import MarkdownSection
 from sane_doc_reports.domain.Wrapper import Wrapper
 from sane_doc_reports.conf import DEBUG, MD_TYPE_QUOTE
 from sane_doc_reports.elements import markdown, error

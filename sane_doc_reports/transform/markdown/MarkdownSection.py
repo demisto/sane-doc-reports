@@ -5,7 +5,7 @@ from sane_doc_reports.conf import HTML_ATTRIBUTES, HTML_ATTR_MARKDOWN_MAP, \
     HTML_REDUNDANT_COLLAPSIBLE
 
 from sane_doc_reports.domain.Section import Section
-import sane_doc_reports.transform.md_helpers as md
+import sane_doc_reports.transform.markdown.md_helpers as md
 
 
 def _should_collapse(has_siblings, section_type):

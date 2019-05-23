@@ -1,6 +1,6 @@
 from sane_doc_reports.domain.Section import sane_to_section
 from sane_doc_reports.domain import SaneJsonPage
-from sane_doc_reports.transform.md_helpers import markdown_to_section_list
+from sane_doc_reports.transform.markdown.md_helpers import markdown_to_section_list
 
 
 class Page:

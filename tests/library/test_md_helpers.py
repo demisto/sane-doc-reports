@@ -1,7 +1,6 @@
 from sane_doc_reports.conf import MD_TYPE_QUOTE
-import sane_doc_reports.transform.MarkdownSection as MS
-from sane_doc_reports.transform.md_helpers import *
-from sane_doc_reports.transform.md_helpers import _build_dict_from_sane_json
+from sane_doc_reports.transform.markdown.md_helpers import *
+from sane_doc_reports.transform.markdown.md_helpers import _build_dict_from_sane_json
 
 
 def test_markdown_to_html_none():

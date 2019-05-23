@@ -1,5 +1,5 @@
 from sane_doc_reports import utils
-from sane_doc_reports.transform.MarkdownSection import MarkdownSection
+from sane_doc_reports.transform.markdown.MarkdownSection import MarkdownSection
 from sane_doc_reports.domain.Wrapper import Wrapper
 from sane_doc_reports.conf import DEBUG, MD_TYPE_LIST_ITEM
 from sane_doc_reports.elements import markdown, error

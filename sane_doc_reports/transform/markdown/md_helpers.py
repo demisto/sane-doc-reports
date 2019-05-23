@@ -4,7 +4,7 @@ import mistune
 from pyquery import PyQuery
 
 from sane_doc_reports.conf import HTML_NOT_WRAPABLES, DEBUG
-import sane_doc_reports.transform.MarkdownSection as MS
+import sane_doc_reports.transform.markdown.MarkdownSection as MS
 from sane_doc_reports.domain.Section import Section
 
 

@@ -2,7 +2,8 @@ from docx.shared import Pt
 
 from sane_doc_reports.domain.CellObject import CellObject
 from sane_doc_reports.domain.Element import Element
-from sane_doc_reports.conf import DEBUG
+from sane_doc_reports.conf import DEBUG, TREND_MAIN_NUMBER_FONT_SIZE, \
+    TREND_SECOND_NUMBER_FONT_SIZE, ALIGN_RIGHT
 from sane_doc_reports.elements import error
 
 
@@ -22,17 +23,17 @@ class NumberElement(Element):
 
         main_number = CellObject(inner_cell)
         main_number.run.text = str(self.section.contents)
-        main_number.run.font.size = Pt(24)
+        main_number.run.font.size = Pt(TREND_MAIN_NUMBER_FONT_SIZE)
         main_number.run.font.bold = True
-        main_number.paragraph.alignment = 1
+        main_number.paragraph.alignment = ALIGN_RIGHT
 
         # Add the title
         title_paragraph = inner_cell.add_paragraph()
         title_run = title_paragraph.add_run()
         title_run.text = str(self.section.extra['title'])
-        title_run.font.size = Pt(14)
+        title_run.font.size = Pt(TREND_SECOND_NUMBER_FONT_SIZE)
         title_run.font.bold = False
-        title_paragraph.alignment = 1
+        title_paragraph.alignment = ALIGN_RIGHT
 
 
 def invoke(cell_object, section):

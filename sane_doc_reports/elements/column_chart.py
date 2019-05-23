@@ -45,14 +45,8 @@ class ColumnChartElement(Element):
                          enumerate(ledgend_keys)]
 
         # Move legend
-        box = ax.get_position()
-
-        legend_style = self.section.layout['legendStyle']
         ax.legend(rects, fixed_legends, loc='upper center', bbox_to_anchor=(0.5, -0.15))\
             .get_frame().set_alpha(DEFAULT_ALPHA)
-        # bbox_to_anchor = legend_location_relative_to_graph,
-        # loc = get_ax_location(legend_style)
-
         ax.set_xlim(-len(objects), len(objects))
 
         plt.xticks(y_axis, objects)

@@ -54,7 +54,6 @@ class SaneJson:
             # Check if we get the end of the sections
             if index == len(report_json_sorted) - 1:
                 sane_pages.append(current_page)
-                continue
 
         # Normalize all of the vertical positions
         # and fix order for merge, see @merge_cells

@@ -43,12 +43,12 @@ def _get_chart_color(value):
 
     def _hash_simple_value(s):
         """ djb2 """
-        hash = 5381
+        current_hash = 5381
         i = len(s)
         for _ in s:
             i = i - 1
-            hash = (hash * 33) ^ ord(s[i])
-        return hash & 0xFFFFFFFF
+            current_hash = (current_hash * 33) ^ ord(s[i])
+        return current_hash & 0xFFFFFFFF
 
     if not value:
         return DEFAULT_BAR_COLOR

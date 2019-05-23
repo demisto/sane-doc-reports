@@ -35,7 +35,7 @@ HTML_ATTR_MARKDOWN_MAP = {'em': 'italic', 'strong': 'bold',
 # Styles
 DEFAULT_WORD_FONT = 'Verdana'
 
-# Sizes:
+# Chart Sizes:
 SIZE_W_INCHES = 6
 SIZE_H_INCHES = 3
 DPI = 80
@@ -44,13 +44,19 @@ DPI = 80
 ORDERED_LIST_NAME = 'List Number'
 UNORDERED_LIST_NAME = 'List Bullet'
 
-# Chart constants
+# Element constants
 DEFAULT_ALPHA = 0.5
 DEFAULT_BAR_WIDTH = 0.35
 DEFAULT_BAR_ALPHA = 0.8
 DEFAULT_DPI = 100.0
 CHART_LABEL_NONE_STRING = "None"
 X_AXIS_PADDING = 0.5
+
+TREND_MAIN_NUMBER_FONT_SIZE = 24
+TREND_SECOND_NUMBER_FONT_SIZE = 14
+ALIGN_LEFT = 0
+ALIGN_RIGHT = 1
+ALIGN_CENTER = 2
 
 # PYTHON-DOCX constants
 PYDOCX_FONT_SIZE = 'fontSize'

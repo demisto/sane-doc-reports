@@ -7,14 +7,14 @@ from docx.text.run import Run
 
 def _insert_paragraph_after(paragraph, text=None, style=None):
     """Insert a new paragraph after the given paragraph."""
-    new_p = OxmlElement("w:p")
-    paragraph._p.addnext(new_p)
-    new_para = Paragraph(new_p, paragraph._parent)
+    new_paragraph_oxml = OxmlElement("w:p")
+    paragraph._p.addnext(new_paragraph_oxml)
+    new_paragraph = Paragraph(new_paragraph_oxml, paragraph._parent)
     if text:
-        new_para.add_run(text)
+        new_paragraph.add_run(text)
     if style is not None:
-        new_para.style = style
-    return new_para
+        new_paragraph.style = style
+    return new_paragraph
 
 
 class CellObject(object):

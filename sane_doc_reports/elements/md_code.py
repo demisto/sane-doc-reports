@@ -22,8 +22,7 @@ class CodeWrapper(Wrapper):
         new_cell = self.cell_object.cell.add_table(1, 1).cell(0, 0)
         code_color = name_to_hex("whitesmoke")
         shading_elm_1 = parse_xml(
-            f'<w:shd {{}} w:fill="{code_color}"/>'.format(
-                nsdecls('w')))
+            f'<w:shd {nsdecls("w")} w:fill="{code_color}"/>')
         new_cell._tc.get_or_add_tcPr().append(shading_elm_1)
 
         self.cell_object = CellObject(new_cell)

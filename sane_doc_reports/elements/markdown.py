@@ -18,6 +18,7 @@ class MarkdownWrapper(Wrapper):
     def wrap(self, invoked_from_wrapper=False):
 
         # Handle called from another wrapper.
+        md_section_list = None
         if isinstance(self.section.contents, list):
             md_section_list = self.section.contents
 

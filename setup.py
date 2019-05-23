@@ -14,7 +14,7 @@ setup(
         'matplotlib',
         'pyquery',
         'mistune',
-        'requests'
+        'requests', 'docx'
     ],
     entry_points='''
         [console_scripts]

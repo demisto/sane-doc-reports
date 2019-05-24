@@ -1,13 +1,19 @@
+from sane_doc_reports.domain.CellObject import CellObject
 from sane_doc_reports.domain.Element import Element
 from sane_doc_reports.conf import DEBUG, PYDOCX_FONT_SIZE, STYLE_KEY, \
     DEFAULT_TABLE_FONT_SIZE
-from sane_doc_reports.elements import error
+from sane_doc_reports.domain.Section import Section
+from sane_doc_reports.elements import error, image
 from sane_doc_reports.populate.utils import insert_text_into_cell
 
 
 def fix_order(ordered, readable_headers) -> list:
     """ Return the readable headers by the order given """
     temp_readable = {i[0].lower() + i[1:]: i for i in readable_headers}
+    # Investigations are not lowercased
+    inv_fix = {i: i for i in readable_headers}
+    temp_readable = {**temp_readable, **inv_fix}
+
     ret = []
     for ordered_key in ordered:
         ret.append(temp_readable[ordered_key])
@@ -40,7 +46,15 @@ class TableElement(Element):
             row_cells = table.add_row().cells
             for i, header_text in enumerate(table_columns):
                 if header_text in r:
-                    insert_text_into_cell(row_cells[i], r[header_text],
+
+                    # Investigations can have 'Avatars', which are images
+                    if isinstance(r, dict) and 'Avatar' in r:
+                        r = r['Avatar']
+                        s = Section(r['type'], r['data'], {}, {})
+                        co = CellObject(row_cells[i], add_run=False)
+                        image.invoke(co, s)
+                    else:
+                        insert_text_into_cell(row_cells[i], r[header_text],
                                           text_style)
 
 

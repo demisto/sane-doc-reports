@@ -13,7 +13,6 @@ class HeaderElement(Element):
         if DEBUG:
             print('Adding text...')
 
-        print(self.section.contents)
         section = Section('h1', self.section.contents, {}, {})
 
         has_run(self.cell_object)

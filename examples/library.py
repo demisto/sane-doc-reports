@@ -34,7 +34,7 @@ def example_hr():
 
 
 def example_investigation():
-    main.run(get_mock('elements/investigation.json', ret_dict=False),
+    main.run(get_mock('investigation.json', ret_dict=False),
              'example.docx')
 
 
@@ -60,7 +60,7 @@ def example():
 
 def run():
     # Gets the json form tests/mock_data
-    example_duration()
+    example_investigation()
 
 
 if __name__ == '__main__':

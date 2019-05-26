@@ -112,7 +112,10 @@ def build_dict_from_sane_json(elem: PyQuery, already_wrapped=False) -> dict:
     else:
         contents = elem.html()
 
-    extra = {'original_html': str(elem)}
+    extra = {}
+    if elem.is_("table"):
+        extra = {'original_html': str(elem)}
+
     if 'src' in elem[0].attrib:
         extra['src'] = elem.attr('src')
     if 'href' in elem[0].attrib:

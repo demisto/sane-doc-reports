@@ -14,6 +14,7 @@ class HeaderElement(Element):
             print('Adding text...')
 
         section = Section('h1', self.section.contents, {}, {})
+        section.layout['HIGHLIGHT'] = True
 
         has_run(self.cell_object)
         header_style.apply_style(self.cell_object, section)

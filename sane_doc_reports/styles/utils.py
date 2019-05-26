@@ -12,6 +12,9 @@ def apply_styling(cell_object, style):
 
 
 def apply_cell_styling(cell_object, style):
+    if "HIGHLIGHT" in style:
+        print("woiwoowow")
+
     # Font size
     if PYDOCX_FONT_SIZE in style:
         cell_object.run.font.size = Pt(style[PYDOCX_FONT_SIZE])

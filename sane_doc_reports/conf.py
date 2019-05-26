@@ -92,3 +92,6 @@ MD_TYPE_LINK = 'a'
 MD_TYPE_IMAGE = 'img'
 MD_TYPE_HORIZONTAL_LINE = 'hr'
 MD_TYPE_TABLE = 'table'
+
+# Investigation
+INVESTIGATION_GRID_MAX = 10

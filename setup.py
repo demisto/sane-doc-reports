@@ -14,7 +14,7 @@ setup(
         'pyquery',
         'mistune',
         'requests',
-        'docx',
+        'python-docx',
         'moment'
     ],
     entry_points='''

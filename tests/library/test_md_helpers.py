@@ -1,4 +1,5 @@
 from sane_doc_reports.conf import MD_TYPE_QUOTE
+from sane_doc_reports.transform.markdown.MarkdownSection import MarkdownSection
 from sane_doc_reports.transform.markdown.md_helpers import *
 from sane_doc_reports.transform.markdown.md_helpers import \
     build_dict_from_sane_json
@@ -285,7 +286,7 @@ def test_collapse_attrs_basic():
                    ]}]
 
     res = collapse_attrs(input_dict)
-    expected = [MS.MarkdownSection("span", "test", {}, {}, ["bold"])]
+    expected = [MarkdownSection("span", "test", {}, {}, ["bold"])]
     assert res[0].get_dict() == expected[0].get_dict()
 
 
@@ -302,7 +303,7 @@ def test_collapse_attrs_nested():
                    ]}]
 
     res = collapse_attrs(input_dict)
-    expected = [MS.MarkdownSection("span", "test", {}, {}, ["bold"])]
+    expected = [MarkdownSection("span", "test", {}, {}, ["bold"])]
     assert res[0].get_dict() == expected[0].get_dict()
 
 
@@ -319,7 +320,7 @@ def test_collapse_attrs_multiple_nested():
                    ]}]
 
     res = collapse_attrs(input_dict)
-    expected = [MS.MarkdownSection("span", "test", {}, {}, ["bold", "italic"])]
+    expected = [MarkdownSection("span", "test", {}, {}, ["bold", "italic"])]
     assert res[0].get_dict() == expected[0].get_dict()
 
 
@@ -339,7 +340,7 @@ def test_collapse_attrs_inner_nesting():
                    ]}]
 
     res = collapse_attrs(input_dict)
-    expected = [MS.MarkdownSection("span", "test", {}, {}, ["bold", "italic"])]
+    expected = [MarkdownSection("span", "test", {}, {}, ["bold", "italic"])]
     assert res[0].get_dict() == expected[0].get_dict()
 
 
@@ -364,7 +365,7 @@ def test_collapse_attrs_inner_nesting_deep():
                    ]}]
 
     res = collapse_attrs(input_dict)
-    expected = [MS.MarkdownSection("span", "test", {}, {}, ["bold", "italic"])]
+    expected = [MarkdownSection("span", "test", {}, {}, ["bold", "italic"])]
     assert res[0].get_dict() == expected[0].get_dict()
 
 
@@ -381,8 +382,8 @@ def test_collapse_attrs_not_all_collapsable():
                    ]}]
 
     res = collapse_attrs(input_dict)
-    expected = [MS.MarkdownSection("span", [
-        MS.MarkdownSection("sometag", "test", {}, {})
+    expected = [MarkdownSection("span", [
+        MarkdownSection("sometag", "test", {}, {})
     ], {}, {}, ["bold"])]
     assert res[0].get_dict() == expected[0].get_dict()
 
@@ -662,7 +663,7 @@ def test_markdown_to_section_list_quote():
     md_list = markdown_to_section_list(markdown_string)
 
     assert isinstance(md_list, list)
-    assert isinstance(md_list[0], MS.MarkdownSection)
+    assert isinstance(md_list[0], MarkdownSection)
     assert md_list[0].type == MD_TYPE_QUOTE
 
     res = [i.get_dict() for i in md_list]

@@ -61,7 +61,8 @@ class BarChartElement(Element):
         ax.set_xlabel('')
 
         # Fix the xaxis ratio to fit biggest element
-        ax.set_xlim(0, max(x_axis) + X_AXIS_PADDING)
+        if x_axis:
+            ax.set_xlim(0, max(x_axis) + X_AXIS_PADDING)
 
         # Remove the bottom labels
         plt.tick_params(bottom='off')

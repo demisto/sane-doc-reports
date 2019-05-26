@@ -49,9 +49,9 @@ class TableElement(Element):
                     continue
 
                 # Investigations can have 'Avatars', which are images
-                if isinstance(r, dict) and 'Avatar' in r:
-                    r = r['Avatar']
-                    s = Section(r['type'], r['data'], {}, {})
+                if header_text == 'Avatar' and header_text in r:
+                    row_temp = r['Avatar']
+                    s = Section(row_temp['type'], row_temp['data'], {}, {})
                     co = CellObject(row_cells[i], add_run=False)
                     image.invoke(co, s)
                 else:

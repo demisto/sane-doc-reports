@@ -1,9 +1,10 @@
 import json
-from typing import List
 from collections import defaultdict
+from typing import List
 
 from sane_doc_reports.conf import LAYOUT_KEY, ROW_POSITION_KEY, \
-    COL_POSITION_KEY, HEIGHT_POSITION_KEY, WIDTH_POSITION_KEY, DATA_KEY
+    COL_POSITION_KEY, HEIGHT_POSITION_KEY, WIDTH_POSITION_KEY, DATA_KEY, \
+    INVESTIGATION_GRID_MAX
 from sane_doc_reports.domain.Section import sane_to_section
 from sane_doc_reports.transform.markdown.md_helpers import \
     markdown_to_section_list
@@ -37,21 +38,27 @@ def transform_investigation_json(json_data: List[dict]) -> List[dict]:
             {"original_key": i, "section": v})
 
     # Normalize the columnPos & rowPos by the groups
-    currentRow = 1
+    currentRow = 0
     for row in row_groups:
         group = row_groups[row]
-        group_size = len(group)
+        width = max(int(INVESTIGATION_GRID_MAX / len(group)), 1)
+        current_width = 0
+        normalized_cols = [i for i in range(len(group))]
         for i, v in enumerate(group):
             section = v['section']
 
             # Fix the rowPos
             section[LAYOUT_KEY][ROW_POSITION_KEY] = currentRow
-            # Add a default width:
-            width = max(int(10 / group_size), 1)
-            section[LAYOUT_KEY][WIDTH_POSITION_KEY] = width
-            # Fix the columnPos
-            section[LAYOUT_KEY][COL_POSITION_KEY] = i * width
 
+            # Fix the columnPos
+            section[LAYOUT_KEY][COL_POSITION_KEY] = normalized_cols[
+                                                        i] * current_width
+            current_width = width
+
+            if width + normalized_cols[i] > INVESTIGATION_GRID_MAX:
+                width = max(
+                    INVESTIGATION_GRID_MAX - (normalized_cols[i] + width), 1)
+            section[LAYOUT_KEY][WIDTH_POSITION_KEY] = width
 
             json_data[v['original_key']] = section
         currentRow += 1

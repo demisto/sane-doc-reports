@@ -1,12 +1,15 @@
+from pyquery import PyQuery
+
 from sane_doc_reports.transform.markdown.MarkdownSection import MarkdownSection
 from sane_doc_reports.conf import MD_TYPE_DIV, MD_TYPE_CODE, MD_TYPE_QUOTE, \
     MD_TYPE_UNORDERED_LIST, MD_TYPE_ORDERED_LIST, MD_TYPE_LIST_ITEM, \
     MD_TYPE_HORIZONTAL_LINE, MD_TYPE_IMAGE, MD_TYPE_LINK, MD_TYPE_TEXT, \
-    MD_TYPE_INLINE_TEXT, MD_TYPES_HEADERS
+    MD_TYPE_INLINE_TEXT, MD_TYPES_HEADERS, MD_TYPE_TABLE
 from sane_doc_reports.elements import text, md_code, md_ul, md_li, \
     md_blockquote, \
-    md_hr, md_ol, md_link, md_image
-from sane_doc_reports.domain import CellObject, Section
+    md_hr, md_ol, md_link, md_image, table
+from sane_doc_reports.domain import CellObject
+from sane_doc_reports.domain.Section import Section
 from sane_doc_reports.domain.Wrapper import Wrapper
 from sane_doc_reports.elements import error
 import sane_doc_reports.styles.header as header_style
@@ -16,7 +19,6 @@ from sane_doc_reports.utils import has_run
 class MarkdownWrapper(Wrapper):
 
     def wrap(self, invoked_from_wrapper=False):
-
         # Handle called from another wrapper.
         md_section_list = None
         if isinstance(self.section.contents, list):
@@ -62,6 +64,22 @@ class MarkdownWrapper(Wrapper):
 
             if section_type == MD_TYPE_LIST_ITEM:
                 md_li.invoke(self.cell_object, section)
+                continue
+
+            if section_type == MD_TYPE_TABLE:
+                table_html = section.extra['original_html']
+                t = PyQuery(table_html)
+                headers = [i.find('th') for i in t.find('tr').items()][0]
+                headers = [c.text() for c in headers.items()]
+
+                rows = [i.find('td') for i in t.find('tr').items() if
+                        i.find('td')]
+                data = []
+                for row in rows:
+                    r = {headers[i]: c.text() for i, c in enumerate(row.items())}
+                    data.append(r)
+                s = Section("table", data, {"tableColumns": headers}, {})
+                table.invoke(self.cell_object, s)
                 continue
 
             # Fix wrapped:

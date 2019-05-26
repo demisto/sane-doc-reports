@@ -1,6 +1,8 @@
 from sane_doc_reports.domain import CellObject, Section
 from sane_doc_reports.domain.Wrapper import Wrapper
 from sane_doc_reports.elements import error
+from sane_doc_reports.transform.utils import transform_section
+from sane_doc_reports.utils import insert_by_type
 
 
 class ElemListWrapper(Wrapper):
@@ -12,9 +14,13 @@ class ElemListWrapper(Wrapper):
         section_list = self.section.contents
 
         if not isinstance(section_list, list):
-            print(section_list)
             raise ValueError('Elem list does not have valid contents ' +
                              '(must be a list)')
+
+        for section in section_list:
+            section = transform_section(section)
+            self.cell_object.add_paragraph()
+            insert_by_type(section.type, self.cell_object, section)
 
 
 def invoke(cell_object: CellObject, section: Section,

@@ -45,16 +45,17 @@ class TableElement(Element):
         for r in table_data:
             row_cells = table.add_row().cells
             for i, header_text in enumerate(table_columns):
-                if header_text in r:
+                if header_text not in r:
+                    continue
 
-                    # Investigations can have 'Avatars', which are images
-                    if isinstance(r, dict) and 'Avatar' in r:
-                        r = r['Avatar']
-                        s = Section(r['type'], r['data'], {}, {})
-                        co = CellObject(row_cells[i], add_run=False)
-                        image.invoke(co, s)
-                    else:
-                        insert_text_into_cell(row_cells[i], r[header_text],
+                # Investigations can have 'Avatars', which are images
+                if isinstance(r, dict) and 'Avatar' in r:
+                    r = r['Avatar']
+                    s = Section(r['type'], r['data'], {}, {})
+                    co = CellObject(row_cells[i], add_run=False)
+                    image.invoke(co, s)
+                else:
+                    insert_text_into_cell(row_cells[i], r[header_text],
                                           text_style)
 
 

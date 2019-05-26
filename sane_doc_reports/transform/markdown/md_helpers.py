@@ -4,7 +4,6 @@ import mistune
 from pyquery import PyQuery
 
 from sane_doc_reports.conf import HTML_NOT_WRAPABLES, DEBUG
-import sane_doc_reports.transform.markdown.MarkdownSection as MS
 from sane_doc_reports.domain.Section import Section
 
 
@@ -94,7 +93,7 @@ def _fix_unwrapped_text(children: PyQuery, do_not_wrap=False) -> List[PyQuery]:
     return ret
 
 
-def _build_dict_from_sane_json(elem: PyQuery, already_wrapped=False) -> dict:
+def build_dict_from_sane_json(elem: PyQuery, already_wrapped=False) -> dict:
     # Find if has children
     elem = PyQuery(elem)
     children = list(elem.contents())
@@ -107,13 +106,13 @@ def _build_dict_from_sane_json(elem: PyQuery, already_wrapped=False) -> dict:
             children = fix_unwrapped_text(elem).contents()
 
         for child in children:
-            child_dict = _build_dict_from_sane_json(child, already_wrapped=True)
+            child_dict = build_dict_from_sane_json(child, already_wrapped=True)
             if child_dict:
                 contents.append(child_dict)
     else:
         contents = elem.html()
 
-    extra = {}
+    extra = {'original_html': str(elem)}
     if 'src' in elem[0].attrib:
         extra['src'] = elem.attr('src')
     if 'href' in elem[0].attrib:
@@ -124,19 +123,20 @@ def _build_dict_from_sane_json(elem: PyQuery, already_wrapped=False) -> dict:
             'extra': extra}
 
 
-def collapse_attrs(section_list: List[Union[Section, dict]]) -> List[
-    MS.MarkdownSection]:
+def collapse_attrs(section_list: List[Union[Section, dict]]) -> list:
     """ Collapse all of the sections
     (moving em as attributes or removing redundant elements like <p>) """
+    from sane_doc_reports.transform.markdown.MarkdownSection import \
+        MarkdownSection
     ret = []
     for section in section_list:
-        if isinstance(section, MS.MarkdownSection):
-            s = MS.MarkdownSection(section.type, section.contents,
-                                   section.layout, section.extra, section.attrs)
+        if isinstance(section, MarkdownSection):
+            s = MarkdownSection(section.type, section.contents,
+                                section.layout, section.extra, section.attrs)
         else:
-            s = MS.MarkdownSection(section['type'], section['contents'],
-                                   section['layout'], section['extra'],
-                                   section['attrs'])
+            s = MarkdownSection(section['type'], section['contents'],
+                                section['layout'], section['extra'],
+                                section['attrs'])
         s.collapse(False)
         ret.append(s)
     return ret
@@ -164,7 +164,7 @@ def markdown_to_section_list(markdown_string) -> List[Section]:
     html = markdown_to_html(markdown_string)
     etree_root = PyQuery(html)
     html_list = list(
-        map(_build_dict_from_sane_json, [c for c in list(etree_root)]))
+        map(build_dict_from_sane_json, [c for c in list(etree_root)]))
     collapsed = collapse_attrs(html_list)
 
     if DEBUG:

@@ -91,3 +91,4 @@ MD_TYPES_HEADERS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
 MD_TYPE_LINK = 'a'
 MD_TYPE_IMAGE = 'img'
 MD_TYPE_HORIZONTAL_LINE = 'hr'
+MD_TYPE_TABLE = 'table'

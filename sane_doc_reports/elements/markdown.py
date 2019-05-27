@@ -114,6 +114,7 @@ class MarkdownWrapper(Wrapper):
                 # We want to keep the h{1...6} for styling
                 insert_header(self.cell_object, section.contents,
                               header=section.type)
+
                 continue
 
             if section.type in [MD_TYPE_TEXT, MD_TYPE_INLINE_TEXT]:

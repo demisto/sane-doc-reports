@@ -110,11 +110,19 @@ class MarkdownSection(Section):
     def get_dict(self):
         return json.loads(self.to_json())
 
-    def propagate_extra(self, key, value):
-        """ propagate an extra down to all children """
+    def propagate_extra(self, key, value, only_multiple_children=True):
+        """ propagate an extra down to all children
+            only_multiple_children - mainly used to propagate "inline" extra,
+            in a way that we only want to inline elements that have siblings
+             (so we don't propagate when this element doesn't have multiple
+              children).
+        """
         self.extra[key] = value
 
         if not isinstance(self.contents, list):
+            return
+
+        if only_multiple_children and not self.has_children():
             return
 
         for child in self.contents:

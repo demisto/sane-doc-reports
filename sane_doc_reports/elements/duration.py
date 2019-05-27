@@ -11,7 +11,7 @@ from sane_doc_reports.conf import DEBUG, TREND_MAIN_NUMBER_FONT_SIZE, \
     DEFAULT_DURATION_LABEL_FONT_SIZE, DURATION_MINUTES_LABEL, \
     DURATION_HOURS_LABEL, DURATION_DAYS_LABEL
 from sane_doc_reports.elements import error
-from sane_doc_reports.populate.utils import insert_text_into_cell
+from sane_doc_reports.populate.utils import insert_text
 
 
 def format_number(num):
@@ -62,7 +62,7 @@ class DurationElement(Element):
 
         title_style = {
             STYLE_KEY: {PYDOCX_FONT_SIZE: DEFAULT_DURATION_TITLE_FONT_SIZE}}
-        insert_text_into_cell(title_cell, title, title_style)
+        insert_text(title_cell, title, title_style)
 
         style = {STYLE_KEY: {
             PYDOCX_FONT_SIZE: DEFAULT_DURATION_FONT_SIZE,
@@ -73,19 +73,19 @@ class DurationElement(Element):
         }}
 
         days_cell = table.cell(1, 0)
-        insert_text_into_cell(days_cell, days, style)
-        insert_text_into_cell(days_cell, DURATION_DAYS_LABEL, style_label,
-                              add_run=True)
+        insert_text(days_cell, days, style)
+        insert_text(days_cell, DURATION_DAYS_LABEL, style_label,
+                    add_run=True)
 
         hours_cell = table.cell(1, 1)
-        insert_text_into_cell(hours_cell, hours, style)
-        insert_text_into_cell(hours_cell, DURATION_HOURS_LABEL, style_label,
-                              add_run=True)
+        insert_text(hours_cell, hours, style)
+        insert_text(hours_cell, DURATION_HOURS_LABEL, style_label,
+                    add_run=True)
 
         minutes_cell = table.cell(1, 2)
-        insert_text_into_cell(minutes_cell, minutes, style)
-        insert_text_into_cell(minutes_cell, DURATION_MINUTES_LABEL, style_label,
-                              add_run=True)
+        insert_text(minutes_cell, minutes, style)
+        insert_text(minutes_cell, DURATION_MINUTES_LABEL, style_label,
+                    add_run=True)
 
 
 def invoke(cell_object, section):

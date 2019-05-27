@@ -2,9 +2,9 @@ import docx
 from docx.enum.dml import MSO_THEME_COLOR_INDEX
 
 from sane_doc_reports.domain.Element import Element
-import sane_doc_reports.styles.text as text_style
 from sane_doc_reports.conf import DEBUG
 from sane_doc_reports.elements import error
+from sane_doc_reports.populate.utils import insert_text
 
 
 def add_hyperlink_into_run(paragraph, run, url):
@@ -39,11 +39,7 @@ class LinkElement(Element):
         if DEBUG:
             print('Adding link...')
 
-        self.cell_object.add_run()
-        self.cell_object.run.text = self.section.contents
-
-        # Add more text styling so it will look like a link
-        text_style.apply_style(self.cell_object, self.section)
+        insert_text(self.cell_object, self.section.contents)
 
         add_hyperlink_into_run(self.cell_object.paragraph, self.cell_object.run,
                                self.section.extra['href'])

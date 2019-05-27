@@ -1,11 +1,9 @@
 import moment
-from datetime import datetime
 
 from sane_doc_reports.domain.Element import Element
-from sane_doc_reports.conf import DEBUG, LAYOUT_KEY
-from sane_doc_reports.domain.Section import Section
-from sane_doc_reports.elements import error, text
-
+from sane_doc_reports.conf import DEBUG
+from sane_doc_reports.elements import error
+from sane_doc_reports.populate.utils import insert_text
 
 
 class DateElement(Element):
@@ -31,9 +29,7 @@ class DateElement(Element):
             else:
                 formatted_date = date.strftime(default_date_format)
 
-
-        section = Section('text', formatted_date, {}, {})
-        text.invoke(self.cell_object, section)
+        insert_text(self.cell_object, formatted_date)
 
 
 def invoke(cell_object, section) -> None:

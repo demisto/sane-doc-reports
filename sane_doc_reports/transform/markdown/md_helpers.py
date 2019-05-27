@@ -113,6 +113,8 @@ def build_dict_from_sane_json(elem: PyQuery, already_wrapped=False) -> dict:
         contents = elem.html()
 
     extra = {}
+
+    # Only tables need the HTML (to use later for extraction of relevant data)
     if elem.is_("table"):
         extra = {'original_html': str(elem)}
 

@@ -1,6 +1,6 @@
 from sane_doc_reports.domain.Element import Element
 from sane_doc_reports.conf import DEBUG
-from sane_doc_reports.styles.utils import apply_styling
+import sane_doc_reports.populate.utils as utils
 
 
 class ErrorElement(Element):
@@ -19,9 +19,9 @@ class ErrorElement(Element):
             'strikethrough': False,
             'italic': False
         }
-        apply_styling(self.cell_object, style)
+
         error_message = f'ERROR GENERATING SECTION ({self.section.contents})'
-        self.cell_object.run.text = error_message
+        utils.insert_text(self.cell_object, error_message, style)
 
 
 def invoke(cell_object, section) -> None:

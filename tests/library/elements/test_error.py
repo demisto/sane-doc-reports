@@ -15,6 +15,8 @@ def test_error():
     t = d.add_table(1, 1)
     test_section = Section('tedxt', "some contents", {}, {})
     c = CellObject(t.cell(0, 0))
+
+    # This will invoke an error element because of the wrong type:
     text.invoke(c, test_section)
 
     assert len(d.element.xpath('//w:p')) == 1

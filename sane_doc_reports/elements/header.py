@@ -1,9 +1,7 @@
 from sane_doc_reports.domain.Element import Element
 from sane_doc_reports.conf import DEBUG
-from sane_doc_reports.domain.Section import Section
-from sane_doc_reports.elements import error, text
-from sane_doc_reports.utils import has_run
-import sane_doc_reports.styles.header as header_style
+from sane_doc_reports.elements import error
+from sane_doc_reports.populate.utils import insert_header
 
 
 class HeaderElement(Element):
@@ -13,13 +11,7 @@ class HeaderElement(Element):
         if DEBUG:
             print('Adding text...')
 
-        section = Section('h1', self.section.contents, {}, {})
-        section.layout['HIGHLIGHT'] = True
-
-        has_run(self.cell_object)
-        header_style.apply_style(self.cell_object, section)
-
-        text.invoke(self.cell_object, section)
+        insert_header(self.cell_object, self.section.contents, header='h1')
 
 
 def invoke(cell_object, section) -> None:

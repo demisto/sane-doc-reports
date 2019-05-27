@@ -4,7 +4,7 @@ from sane_doc_reports.conf import DEBUG, PYDOCX_FONT_SIZE, STYLE_KEY, \
     DEFAULT_TABLE_FONT_SIZE
 from sane_doc_reports.domain.Section import Section
 from sane_doc_reports.elements import error, image
-from sane_doc_reports.populate.utils import insert_text_into_cell
+from sane_doc_reports.populate.utils import insert_text
 
 
 def fix_order(ordered, readable_headers) -> list:
@@ -40,7 +40,7 @@ class TableElement(Element):
         text_style = {STYLE_KEY: {PYDOCX_FONT_SIZE: DEFAULT_TABLE_FONT_SIZE}}
 
         for i, header_text in enumerate(table_columns):
-            insert_text_into_cell(hdr_cells[i], header_text, text_style)
+            insert_text(hdr_cells[i], header_text, text_style)
 
         for r in table_data:
             row_cells = table.add_row().cells
@@ -55,8 +55,8 @@ class TableElement(Element):
                     co = CellObject(row_cells[i], add_run=False)
                     image.invoke(co, s)
                 else:
-                    insert_text_into_cell(row_cells[i], r[header_text],
-                                          text_style)
+                    insert_text(row_cells[i], r[header_text],
+                                text_style)
 
 
 def invoke(cell_object, section):

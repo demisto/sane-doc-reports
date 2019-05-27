@@ -12,7 +12,6 @@ from sane_doc_reports.conf import PYDOCX_FONT_SIZE, PYDOCX_FONT_NAME, \
 def _apply_cell_styling(cell_object: CellObject, section: Section):
     style = section.get_style()
 
-
     # Font size
     if PYDOCX_FONT_SIZE in style:
         cell_object.run.font.size = Pt(style[PYDOCX_FONT_SIZE])
@@ -51,6 +50,10 @@ def _apply_cell_styling(cell_object: CellObject, section: Section):
             cell_object.paragraph.paragraph_format.alignment = ALIGN_RIGHT
         elif style[PYDOCX_TEXT_ALIGN] == 'center':
             cell_object.paragraph.paragraph_format.alignment = ALIGN_CENTER
+        elif style[PYDOCX_TEXT_ALIGN] in [ALIGN_RIGHT, ALIGN_CENTER,
+                                          ALIGN_CENTER]:
+            cell_object.paragraph.paragraph_format.alignment = int(
+                style[PYDOCX_TEXT_ALIGN])
 
 
 def _attach_all_styles(section: Section, base_style: dict) -> Section:

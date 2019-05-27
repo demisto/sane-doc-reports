@@ -60,7 +60,7 @@ def example():
 
 def run():
     # Gets the json form tests/mock_data
-    example_investigation()
+    example_number()
 
 
 if __name__ == '__main__':

@@ -60,7 +60,7 @@ def example():
 
 def run():
     # Gets the json form tests/mock_data
-    example_hr()
+    example_investigation()
 
 
 if __name__ == '__main__':

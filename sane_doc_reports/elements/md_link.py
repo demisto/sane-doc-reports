@@ -6,7 +6,6 @@ from sane_doc_reports.conf import DEBUG
 from sane_doc_reports.elements import error
 from sane_doc_reports.populate.utils import insert_text
 
-
 def add_hyperlink_into_run(paragraph, run, url):
     runs = paragraph.runs
     i = 0

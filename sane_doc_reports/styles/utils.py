@@ -5,28 +5,13 @@ from sane_doc_reports.domain.Section import Section
 from sane_doc_reports.styles.colors import name_to_rgb, hex_to_rgb
 from sane_doc_reports.conf import PYDOCX_FONT_SIZE, PYDOCX_FONT_NAME, \
     PYDOCX_FONT_BOLD, PYDOCX_FONT_STRIKE, PYDOCX_FONT_UNDERLINE, \
-    PYDOCX_FONT_ITALIC, PYDOCX_FONT_COLOR, PYDOCX_TEXT_ALIGN, DEFAULT_WORD_FONT, \
-    STYLE_KEY
-
-
-def get_style(section):
-    if STYLE_KEY in section.layout:
-        return section.layout[STYLE_KEY]
-    return {}
-
-
-def _merge_styles(section, applied_style):
-    """ Merges the predefind styles (specified in the json), applied styles
-        from functions here, and element attributes from
-        collapsing (MarkdownSection).
-    """
-    attached_styles = {k: True for k in section.attrs}
-    computed_style = {**applied_style, **attached_styles}
-    return {**computed_style, **get_style(section)}
+    PYDOCX_FONT_ITALIC, PYDOCX_FONT_COLOR, PYDOCX_TEXT_ALIGN, \
+    DEFAULT_WORD_FONT, ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
 
 
 def _apply_cell_styling(cell_object: CellObject, section: Section):
-    style = get_style(section)
+    style = section.get_style()
+
 
     # Font size
     if PYDOCX_FONT_SIZE in style:
@@ -61,11 +46,19 @@ def _apply_cell_styling(cell_object: CellObject, section: Section):
     # Paragraph styling
     if PYDOCX_TEXT_ALIGN in style:
         if style[PYDOCX_TEXT_ALIGN] == 'left':
-            cell_object.paragraph.paragraph_format.alignment = 0
+            cell_object.paragraph.paragraph_format.alignment = ALIGN_LEFT
         elif style[PYDOCX_TEXT_ALIGN] == 'right':
-            cell_object.paragraph.paragraph_format.alignment = 2
+            cell_object.paragraph.paragraph_format.alignment = ALIGN_RIGHT
         elif style[PYDOCX_TEXT_ALIGN] == 'center':
-            cell_object.paragraph.paragraph_format.alignment = 1
+            cell_object.paragraph.paragraph_format.alignment = ALIGN_CENTER
+
+
+def _attach_all_styles(section: Section, base_style: dict) -> Section:
+    attribute_styles = {k: True for k in section.attrs}
+
+    section.add_style(base_style, is_new=False)
+    section.add_style(attribute_styles)
+    return section
 
 
 def insert_header_style(section: Section) -> Section:
@@ -74,18 +67,16 @@ def insert_header_style(section: Section) -> Section:
     """
 
     level = int(section.extra['header_tag'].replace('h', ''))
-    applied_style = {"fontSize": 36 - level * 2}
-    section.layout[STYLE_KEY] = _merge_styles(section, applied_style)
-    return section
+    base_style = {"fontSize": 36 - level * 2}
+    return _attach_all_styles(section, base_style)
 
 
 def insert_text_style(section: Section) -> Section:
     """ Apply header specific styles and then the default style,
             All fonts should have at least 14 Pt size.
         """
-    applied_style = {"fontSize": 14}
-    section.layout[STYLE_KEY] = _merge_styles(section, applied_style)
-    return section
+    base_style = {"fontSize": 14}
+    return _attach_all_styles(section, base_style)
 
 
 def apply_style(cell_object: CellObject, section: Section) -> None:

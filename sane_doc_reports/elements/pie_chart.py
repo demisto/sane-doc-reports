@@ -15,7 +15,7 @@ class PieChartElement(Element):
     @utils.plot
     def insert(self):
         if DEBUG:
-            print("Adding pie chart: ", self.section.contents)
+            print('Adding pie chart: ...')
         size_w, size_h, dpi = utils.convert_plt_size(self.section)
         fig, ax = plt.subplots(figsize=(size_w, size_h), dpi=dpi,
                                subplot_kw=dict(aspect="equal"))

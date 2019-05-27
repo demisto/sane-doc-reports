@@ -9,7 +9,7 @@ class ErrorElement(Element):
 
     def insert(self):
         if DEBUG:
-            print('Adding error element: ', self.section.contents)
+            print('Adding error element...')
 
         style = {
             'bold': True,

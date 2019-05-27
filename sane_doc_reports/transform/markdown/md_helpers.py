@@ -173,7 +173,7 @@ def markdown_to_section_list(markdown_string) -> List[Section]:
     collapsed = collapse_attrs(html_list)
 
     if DEBUG:
-        print("markdown to section list: ",
+        print("markdown_to_section list: ",
               "".join([str(i) for i in collapsed]))
 
     return collapsed

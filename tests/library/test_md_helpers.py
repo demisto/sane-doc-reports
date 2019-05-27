@@ -427,21 +427,6 @@ def test_build_dict_md_code():
     assert res == expected
 
 
-# def test_build_dict_md_code_complex():
-#     markdown_string = '''## Title
-# https://example.com
-# `code`'''
-#     html = markdown_to_html(markdown_string).strip()
-#     root_elem = PyQuery(html)
-#     res = _build_dict_from_sane_json(root_elem)
-#     expected = {'type': 'p', 'attrs': [], 'layout': {}, 'contents': [
-#         {'type': 'code', 'attrs': [], 'layout': {},
-#          'contents': 'some string', 'extra': {}}
-#     ], 'extra': {}}
-#     print(res)
-#     assert res == expected
-
-
 def test_build_dict_deep_ul():
     markdown_string = '- parent\n\t- child'
     html = markdown_to_html(markdown_string).strip()

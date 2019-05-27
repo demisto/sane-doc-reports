@@ -17,7 +17,7 @@ class ColumnChartElement(Element):
         This is a standing barchart (bar goes up)
         """
         if DEBUG:
-            print("Yo I am column chart!")
+            print("Adding a column chart!")
 
         # Fix sizing
         size_w, size_h, dpi = utils.convert_plt_size(self.section)

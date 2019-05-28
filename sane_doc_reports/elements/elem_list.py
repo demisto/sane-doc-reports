@@ -19,6 +19,10 @@ class ElemListWrapper(Wrapper):
 
         for section in section_list:
             section = transform_section(section)
+
+            # Apply the elem list's style as a base style
+            section.add_style(self.section.get_style())
+
             self.cell_object.add_paragraph()
             insert_by_type(section.type, self.cell_object, section)
 

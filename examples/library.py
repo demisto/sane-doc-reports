@@ -2,53 +2,53 @@ from sane_doc_reports import main
 from tests.utils import get_mock
 
 
-def example_basic(out_file_name='example.doc'):
+def example_basic(out_file_name='example.docx'):
     main.run(get_mock('grid_checks/fullgrid.json', ret_dict=False),
              out_file_name)
 
 
-def example_table(out_file_name='example.doc'):
+def example_table(out_file_name='example.docx'):
     main.run(get_mock('elements/table.json', ret_dict=False), out_file_name)
 
 
-def example_number(out_file_name='example.doc'):
+def example_number(out_file_name='example.docx'):
     main.run(get_mock('elements/number_and_trend.json', ret_dict=False),
              out_file_name)
 
 
-def example_text(out_file_name='example.doc'):
+def example_text(out_file_name='example.docx'):
     main.run(get_mock('elements/text.json', ret_dict=False), out_file_name)
 
 
-def example_pie_chart(out_file_name='example.doc'):
+def example_pie_chart(out_file_name='example.docx'):
     main.run(get_mock('elements/pie_chart.json', ret_dict=False),
              out_file_name)
 
 
-def example_markdown(out_file_name='example.doc'):
+def example_markdown(out_file_name='example.docx'):
     main.run(get_mock('elements/markdown.json', ret_dict=False), out_file_name)
 
 
-def example_hr(out_file_name='example.doc'):
+def example_hr(out_file_name='example.docx'):
     main.run(get_mock('elements/hr.json', ret_dict=False), out_file_name)
 
 
-def example_investigation(out_file_name='example.doc'):
+def example_investigation(out_file_name='example.docx'):
     main.run(get_mock('investigation.json', ret_dict=False),
              out_file_name)
 
 
-def _example_junk(out_file_name='example.doc'):
+def _example_junk(out_file_name='example.docx'):
     # Generate a big elements file for testing
     main.run(get_mock('junkbig.json', ret_dict=False), out_file_name)
 
 
-def example_bar_chart(out_file_name='example.doc'):
+def example_bar_chart(out_file_name='example.docx'):
     main.run(get_mock('elements/bar_chart.json', ret_dict=False),
              out_file_name)
 
 
-def example_duration(out_file_name='example.doc'):
+def example_duration(out_file_name='example.docx'):
     # Generate a big elements file for testing
     main.run(get_mock('elements/duration.json', ret_dict=False), out_file_name)
 
@@ -77,7 +77,7 @@ def run_all():
 
 
 def run():
-    run_all()
+    example_investigation()
 
 
 if __name__ == '__main__':

@@ -10,6 +10,23 @@ from sane_doc_reports.populate.utils import insert_text
 
 
 class TrendElement(Element):
+    style = {
+        'main': {
+            PYDOCX_FONT_SIZE: TREND_MAIN_NUMBER_FONT_SIZE,
+            PYDOCX_FONT_BOLD: True,
+            PYDOCX_TEXT_ALIGN: ALIGN_RIGHT
+        },
+        'trend': {
+            PYDOCX_FONT_SIZE: TREND_SECOND_NUMBER_FONT_SIZE,
+            PYDOCX_FONT_BOLD: False,
+            PYDOCX_TEXT_ALIGN: ALIGN_RIGHT
+        },
+        'title': {
+            PYDOCX_FONT_SIZE: TREND_SECOND_NUMBER_FONT_SIZE,
+            PYDOCX_FONT_BOLD: False,
+            PYDOCX_TEXT_ALIGN: ALIGN_RIGHT
+        }
+    }
 
     def insert(self):
         if DEBUG:
@@ -21,12 +38,7 @@ class TrendElement(Element):
         current_sum = self.section.contents['currSum']
         inner_cell = table.cell(0, 1)
         main_number = CellObject(inner_cell)
-        style = {
-            PYDOCX_FONT_SIZE: TREND_MAIN_NUMBER_FONT_SIZE,
-            PYDOCX_FONT_BOLD: True,
-            PYDOCX_TEXT_ALIGN: ALIGN_RIGHT
-        }
-        insert_text(main_number, str(current_sum), style)
+        insert_text(main_number, str(current_sum), self.style['main'])
 
         # Add the trend number
         previous_sum = self.section.contents['prevSum']
@@ -45,23 +57,14 @@ class TrendElement(Element):
         value_percent = f'{direction}{change}%'
         inner_cell = table.cell(0, 2)
         trend_number = CellObject(inner_cell)
-        style = {
-            PYDOCX_FONT_SIZE: TREND_SECOND_NUMBER_FONT_SIZE,
-            PYDOCX_FONT_BOLD: False,
-            PYDOCX_TEXT_ALIGN: ALIGN_RIGHT
-        }
-        insert_text(trend_number, value_percent, style)
+        insert_text(trend_number, value_percent, self.style['trend'])
 
         # Add the title
         third_cell = table.cell(1, 1)
         table.cell(1, 2).merge(third_cell)
         title = CellObject(third_cell)
-        style = {
-            PYDOCX_FONT_SIZE: TREND_SECOND_NUMBER_FONT_SIZE,
-            PYDOCX_FONT_BOLD: False,
-            PYDOCX_TEXT_ALIGN: ALIGN_RIGHT
-        }
-        insert_text(title, str(self.section.extra['title']), style)
+        insert_text(title, str(self.section.extra['title']),
+                    self.style['title'])
 
 
 def invoke(cell_object, section):

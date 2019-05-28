@@ -8,6 +8,18 @@ from sane_doc_reports.conf import DEBUG, TREND_MAIN_NUMBER_FONT_SIZE, \
 
 
 class NumberElement(Element):
+    style = {
+        'main': {
+            PYDOCX_FONT_SIZE: TREND_MAIN_NUMBER_FONT_SIZE,
+            PYDOCX_FONT_BOLD: True,
+            PYDOCX_TEXT_ALIGN: ALIGN_CENTER
+        },
+        'title': {
+            PYDOCX_FONT_SIZE: TREND_SECOND_NUMBER_FONT_SIZE,
+            PYDOCX_FONT_BOLD: False,
+            PYDOCX_TEXT_ALIGN: ALIGN_CENTER
+        }
+    }
 
     def insert(self):
         if DEBUG:
@@ -22,20 +34,11 @@ class NumberElement(Element):
         inner_cell = table.cell(0, 0)
         main_number = CellObject(inner_cell)
 
-        style = {
-            PYDOCX_FONT_SIZE: TREND_MAIN_NUMBER_FONT_SIZE,
-            PYDOCX_FONT_BOLD: True,
-            PYDOCX_TEXT_ALIGN: ALIGN_CENTER
-        }
-        insert_text(main_number, str(self.section.contents), style)
+        insert_text(main_number, str(self.section.contents), self.style['main'])
 
         main_number.add_paragraph(add_run=True)
-        style = {
-            PYDOCX_FONT_SIZE: TREND_SECOND_NUMBER_FONT_SIZE,
-            PYDOCX_FONT_BOLD: False,
-            PYDOCX_TEXT_ALIGN: ALIGN_CENTER
-        }
-        insert_text(main_number, str(self.section.extra['title']), style)
+        insert_text(main_number, str(self.section.extra['title']),
+                    self.style['title'])
 
 
 def invoke(cell_object, section):

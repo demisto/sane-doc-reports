@@ -1,11 +1,7 @@
 from math import floor
 
-from docx.shared import Pt
-
-from sane_doc_reports.domain.CellObject import CellObject
 from sane_doc_reports.domain.Element import Element
-from sane_doc_reports.conf import DEBUG, TREND_MAIN_NUMBER_FONT_SIZE, \
-    TREND_SECOND_NUMBER_FONT_SIZE, ALIGN_RIGHT, DEFAULT_DURATION_TITLE, \
+from sane_doc_reports.conf import DEBUG, DEFAULT_DURATION_TITLE, \
     STYLE_KEY, PYDOCX_FONT_SIZE, DEFAULT_DURATION_TITLE_FONT_SIZE, \
     DEFAULT_DURATION_FONT_SIZE, PYDOCX_FONT_BOLD, \
     DEFAULT_DURATION_LABEL_FONT_SIZE, DURATION_MINUTES_LABEL, \
@@ -19,6 +15,18 @@ def format_number(num):
 
 
 class DurationElement(Element):
+    style = {
+        'title': {
+            PYDOCX_FONT_SIZE: DEFAULT_DURATION_TITLE_FONT_SIZE
+        },
+        'duration': {
+            PYDOCX_FONT_SIZE: DEFAULT_DURATION_FONT_SIZE,
+            PYDOCX_FONT_BOLD: True
+        },
+        'label': {
+            PYDOCX_FONT_SIZE: DEFAULT_DURATION_LABEL_FONT_SIZE
+        }
+    }
 
     def insert(self):
         if DEBUG:
@@ -33,7 +41,7 @@ class DurationElement(Element):
             result = 0
             if len(contents) > 0 and isinstance(contents[0]['data'],
                                                 list) and len(
-                    contents[0]['data']) > 0:
+                contents[0]['data']) > 0:
                 result = contents[0]['data'][0]
 
             days = floor(result / (3600 * 24))
@@ -67,30 +75,21 @@ class DurationElement(Element):
             'name'] != '':
             title = contents['data']['name']
 
-        title_style = {PYDOCX_FONT_SIZE: DEFAULT_DURATION_TITLE_FONT_SIZE}
-        insert_text(title_cell, title, title_style)
-
-        style = {
-            PYDOCX_FONT_SIZE: DEFAULT_DURATION_FONT_SIZE,
-            PYDOCX_FONT_BOLD: True
-        }
-        style_label = {
-            PYDOCX_FONT_SIZE: DEFAULT_DURATION_LABEL_FONT_SIZE
-        }
+        insert_text(title_cell, title, self.style['title'])
 
         days_cell = table.cell(1, 0)
-        insert_text(days_cell, days, style)
-        insert_text(days_cell, DURATION_DAYS_LABEL, style_label,
+        insert_text(days_cell, days, self.style['duration'])
+        insert_text(days_cell, DURATION_DAYS_LABEL, self.style['label'],
                     add_run=True)
 
         hours_cell = table.cell(1, 1)
-        insert_text(hours_cell, hours, style)
-        insert_text(hours_cell, DURATION_HOURS_LABEL, style_label,
+        insert_text(hours_cell, hours, self.style['duration'])
+        insert_text(hours_cell, DURATION_HOURS_LABEL, self.style['label'],
                     add_run=True)
 
         minutes_cell = table.cell(1, 2)
-        insert_text(minutes_cell, minutes, style)
-        insert_text(minutes_cell, DURATION_MINUTES_LABEL, style_label,
+        insert_text(minutes_cell, minutes, self.style['duration'])
+        insert_text(minutes_cell, DURATION_MINUTES_LABEL, self.style['label'],
                     add_run=True)
 
 

@@ -20,23 +20,6 @@
       "rowPos": 0,
       "w": 12
     },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
-    },
     "title": "dailyIncidentRepor Headline"
   },
   {
@@ -51,29 +34,6 @@
       "i": "9fdd8b00-00e4-11e8-9b6f-436025e19450",
       "rowPos": 1,
       "w": 4
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-status:closed",
-        "fromDate": "0001-01-01T00:00:00Z",
-        "toDate": "0001-01-01T00:00:00Z",
-        "period": {
-          "by": "hour",
-          "byTo": "days",
-          "byFrom": "hours",
-          "toValue": 0,
-          "fromValue": 24,
-          "field": ""
-        },
-        "fromDateLicense": "0001-01-01T00:00:00Z"
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "fromDate": "2019-04-14T11:59:11+03:00",
     "title": "dailyIncidentRepor Headline2"
@@ -413,23 +373,6 @@
       ],
       "w": 6
     },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
-    },
     "title": "Open Incidents"
   },
   {
@@ -452,23 +395,6 @@
       "i": "0388a590-01b7-11e8-9918-2d303bb12520",
       "rowPos": 1,
       "w": 3
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "title": "dailyIncidentReport Severity"
   },
@@ -526,26 +452,6 @@
       },
       "rowPos": 2,
       "w": 3
-    },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "severity"
-      ],
-      "filter": {
-        "query": "",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "title": "dailyIncidentReport Severity"
   },
@@ -626,26 +532,6 @@
       "rowPos": 3,
       "w": 4
     },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "type"
-      ],
-      "filter": {
-        "query": "",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
-    },
     "title": "dailyIncidentReport Type"
   },
   {
@@ -711,26 +597,6 @@
       "rowPos": 5,
       "w": 2
     },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "owner"
-      ],
-      "filter": {
-        "query": "",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
-    },
     "title": "dailyIncidentReport Analyst"
   },
   {
@@ -795,26 +661,6 @@
       },
       "rowPos": 4,
       "w": 3
-    },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "owner"
-      ],
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "title": "Active Incidents Assigned by User"
   }

@@ -13,23 +13,6 @@
       "style": {},
       "w": 4
     },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": 7,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
-    },
     "fromDate": "2019-04-15T14:10:59+03:00",
     "title": "Active Incidents - Line chart"
   },
@@ -49,29 +32,6 @@
       "signAlignment": "left",
       "style": {},
       "w": 3
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-category:job and status:closed",
-        "fromDate": "0001-01-01T00:00:00Z",
-        "toDate": "0001-01-01T00:00:00Z",
-        "period": {
-          "by": "day",
-          "byTo": "",
-          "byFrom": "days",
-          "toValue": null,
-          "fromValue": 7,
-          "field": ""
-        },
-        "fromDateLicense": "0001-01-01T00:00:00Z"
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
     "title": "Incidents By Close Reason"

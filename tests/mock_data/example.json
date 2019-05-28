@@ -129,32 +129,6 @@
       "rowPos": 1,
       "w": 5
     },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "occurred(d)",
-        "type"
-      ],
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "by": "day",
-          "byTo": "",
-          "byFrom": "days",
-          "toValue": null,
-          "fromValue": 7,
-          "field": ""
-        },
-        "fromDate": "0001-01-01T00:00:00Z",
-        "toDate": "0001-01-01T00:00:00Z"
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
-    },
     "fromDate": "2019-05-20T17:28:47+03:00",
     "title": "Active Incidents - Line chart"
   },
@@ -178,28 +152,6 @@
       "i": "fe8fd030-8069-11e9-b18b-6f7c51bf664f",
       "rowPos": 0,
       "w": 12
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "",
-        "period": {
-          "by": "day",
-          "byTo": "",
-          "byFrom": "days",
-          "toValue": null,
-          "fromValue": 7,
-          "field": ""
-        },
-        "fromDate": "0001-01-01T00:00:00Z",
-        "toDate": "0001-01-01T00:00:00Z"
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "fromDate": "2019-05-20T17:28:47+03:00",
     "title": "Text Widget"
@@ -259,31 +211,6 @@
       "rowPos": 1,
       "w": 7
     },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "severity"
-      ],
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "by": "day",
-          "byTo": "",
-          "byFrom": "days",
-          "toValue": null,
-          "fromValue": 7,
-          "field": ""
-        },
-        "fromDate": "0001-01-01T00:00:00Z",
-        "toDate": "0001-01-01T00:00:00Z"
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
-    },
     "fromDate": "2019-05-20T17:28:47+03:00",
     "title": "Active Incidents - Pie chart"
   },
@@ -342,31 +269,6 @@
       },
       "rowPos": 4,
       "w": 6
-    },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "owner"
-      ],
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "by": "day",
-          "byTo": "",
-          "byFrom": "days",
-          "toValue": null,
-          "fromValue": 7,
-          "field": ""
-        },
-        "fromDate": "0001-01-01T00:00:00Z",
-        "toDate": "0001-01-01T00:00:00Z"
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "fromDate": "2019-05-20T17:28:47+03:00",
     "title": "Active Incidents Assigned by User"
@@ -489,32 +391,6 @@
       "rowPos": 4,
       "w": 6
     },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "severity",
-        "type"
-      ],
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "by": "day",
-          "byTo": "",
-          "byFrom": "days",
-          "toValue": null,
-          "fromValue": 7,
-          "field": ""
-        },
-        "fromDate": "0001-01-01T00:00:00Z",
-        "toDate": "0001-01-01T00:00:00Z"
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
-    },
     "fromDate": "2019-05-20T17:28:47+03:00",
     "title": "Incident Severity by Type"
   },
@@ -531,28 +407,6 @@
       "signAlignment": "left",
       "style": {},
       "w": 3
-    },
-    "query": {
-      "type": "audit",
-      "filter": {
-        "query": "",
-        "period": {
-          "by": "day",
-          "byTo": "",
-          "byFrom": "days",
-          "toValue": null,
-          "fromValue": 7,
-          "field": ""
-        },
-        "fromDate": "0001-01-01T00:00:00Z",
-        "toDate": "0001-01-01T00:00:00Z"
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "fromDate": "2019-05-20T17:28:47+03:00",
     "title": "Incidents Dropped in Preprocessing"
@@ -571,28 +425,6 @@
       "style": {},
       "w": 3
     },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "runStatus:error",
-        "period": {
-          "by": "day",
-          "byTo": "",
-          "byFrom": "days",
-          "toValue": null,
-          "fromValue": 7,
-          "field": ""
-        },
-        "fromDate": "0001-01-01T00:00:00Z",
-        "toDate": "0001-01-01T00:00:00Z"
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
-    },
     "fromDate": "2019-05-20T17:28:47+03:00",
     "title": "Incidents in Error Run Status"
   },
@@ -609,28 +441,6 @@
       "signAlignment": null,
       "style": {},
       "w": 3
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed and dueDate:\u003cnow",
-        "period": {
-          "by": "day",
-          "byTo": "",
-          "byFrom": "days",
-          "toValue": null,
-          "fromValue": 7,
-          "field": ""
-        },
-        "fromDate": "0001-01-01T00:00:00Z",
-        "toDate": "0001-01-01T00:00:00Z"
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "fromDate": "2019-05-20T17:28:47+03:00",
     "title": "Late Incidents"
@@ -675,31 +485,6 @@
       "rowPos": 7,
       "w": 6
     },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "playbookId"
-      ],
-      "filter": {
-        "query": "status:active -category:job",
-        "period": {
-          "by": "day",
-          "byTo": "",
-          "byFrom": "days",
-          "toValue": null,
-          "fromValue": 7,
-          "field": ""
-        },
-        "fromDate": "0001-01-01T00:00:00Z",
-        "toDate": "0001-01-01T00:00:00Z"
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
-    },
     "fromDate": "2019-05-20T17:28:47+03:00",
     "title": "Top Active Playbooks"
   },
@@ -717,31 +502,6 @@
       "i": "85905930-808b-11e9-b145-ebd2df9a5035",
       "rowPos": 6,
       "w": 3
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-category:job and detectionsla.runStatus:ended",
-        "period": {
-          "by": "day",
-          "byTo": "",
-          "byFrom": "days",
-          "toValue": null,
-          "fromValue": 7,
-          "field": ""
-        },
-        "fromDate": "0001-01-01T00:00:00Z",
-        "toDate": "0001-01-01T00:00:00Z"
-      },
-      "keys": [
-        "avg|detectionsla.totalDuration"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "fromDate": "2019-05-20T17:28:47+03:00",
     "title": "Mean Time to Detection"

@@ -11,14 +11,6 @@
       "i": "8cdc9e20-005c-11e8-831f-e7429aff1c69",
       "rowPos": 0
     },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-status:Closed and (severity:High or severity:Critical)",
-        "period": { "byFrom": "days", "fromValue": null, "by": "day" }
-      }
-    },
-    "automation": { "name": "", "id": "", "args": null, "noEvent": false },
     "title": "criticalAndHighIncidents Headline"
   }
 ]

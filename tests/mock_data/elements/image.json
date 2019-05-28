@@ -14,19 +14,6 @@
             "sectionStyle": {
                 "width": 60
             }
-        },
-        "query": {
-            "type": "sessionData",
-            "filter": "incidentOwner",
-            "keys": [
-                "image"
-            ]
-        },
-        "automation": {
-            "name": "",
-            "id": "",
-            "args": null,
-            "noEvent": false
         }
     }
 ]

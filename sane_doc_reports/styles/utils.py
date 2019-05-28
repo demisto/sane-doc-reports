@@ -6,7 +6,8 @@ from sane_doc_reports.styles.colors import name_to_rgb, hex_to_rgb
 from sane_doc_reports.conf import PYDOCX_FONT_SIZE, PYDOCX_FONT_NAME, \
     PYDOCX_FONT_BOLD, PYDOCX_FONT_STRIKE, PYDOCX_FONT_UNDERLINE, \
     PYDOCX_FONT_ITALIC, PYDOCX_FONT_COLOR, PYDOCX_TEXT_ALIGN, \
-    DEFAULT_WORD_FONT, ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER
+    DEFAULT_WORD_FONT, ALIGN_LEFT, ALIGN_RIGHT, ALIGN_CENTER, \
+    DEFAULT_FONT_DARK_COLOR, BASE_HEADER_FONT_SIZE, BASE_FONT_SIZE
 
 
 def _apply_cell_styling(cell_object: CellObject, section: Section):
@@ -70,15 +71,20 @@ def insert_header_style(section: Section) -> Section:
     """
 
     level = int(section.extra['header_tag'].replace('h', ''))
-    base_style = {"fontSize": 36 - level * 2}
+    base_style = {
+        "fontSize": BASE_HEADER_FONT_SIZE - level * 2,
+        "color": DEFAULT_FONT_DARK_COLOR
+    }
     return _attach_all_styles(section, base_style)
 
 
 def insert_text_style(section: Section) -> Section:
     """ Apply header specific styles and then the default style,
-            All fonts should have at least 14 Pt size.
-        """
-    base_style = {"fontSize": 14}
+    """
+    base_style = {
+        'fontSize': BASE_FONT_SIZE,
+        'color': DEFAULT_FONT_DARK_COLOR
+    }
     return _attach_all_styles(section, base_style)
 
 

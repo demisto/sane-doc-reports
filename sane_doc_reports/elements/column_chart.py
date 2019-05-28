@@ -4,8 +4,8 @@ from sane_doc_reports import utils
 from sane_doc_reports.domain.Element import Element
 from sane_doc_reports.domain.Section import Section
 from sane_doc_reports.conf import DEBUG, DEFAULT_BAR_WIDTH, \
-    DEFAULT_ALPHA, DEFAULT_BAR_ALPHA, CHART_LABEL_NONE_STRING, \
-    DEFAULT_WORD_FONT, DEFAULT_TITLE_COLOR, DEFAULT_TITLE_FONT_SIZE
+    DEFAULT_BAR_ALPHA, CHART_LABEL_NONE_STRING, \
+    DEFAULT_WORD_FONT, DEFAULT_FONT_DARK_COLOR, DEFAULT_TITLE_FONT_SIZE
 from sane_doc_reports.elements import image, error
 from sane_doc_reports.styles.colors import get_colors
 from sane_doc_reports.utils import set_legend_style, remove_plot_borders
@@ -15,7 +15,7 @@ class ColumnChartElement(Element):
     style = {
         'title': {
             'fontname': DEFAULT_WORD_FONT,
-            'color': DEFAULT_TITLE_COLOR,
+            'color': DEFAULT_FONT_DARK_COLOR,
             'fontsize': DEFAULT_TITLE_FONT_SIZE
         }
     }

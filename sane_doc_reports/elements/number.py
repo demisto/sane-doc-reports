@@ -6,16 +6,15 @@ from sane_doc_reports.conf import DEBUG, TREND_MAIN_NUMBER_FONT_SIZE, \
     TREND_SECOND_NUMBER_FONT_SIZE, PYDOCX_TEXT_ALIGN, \
     PYDOCX_FONT_SIZE, ALIGN_CENTER
 
-
 class NumberElement(Element):
     style = {
         'main': {
             PYDOCX_FONT_SIZE: TREND_MAIN_NUMBER_FONT_SIZE,
-            PYDOCX_TEXT_ALIGN: ALIGN_CENTER
+            PYDOCX_TEXT_ALIGN: ALIGN_CENTER,
         },
         'title': {
             PYDOCX_FONT_SIZE: TREND_SECOND_NUMBER_FONT_SIZE,
-            PYDOCX_TEXT_ALIGN: ALIGN_CENTER
+            PYDOCX_TEXT_ALIGN: ALIGN_CENTER,
         }
     }
 

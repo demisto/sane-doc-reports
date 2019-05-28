@@ -13,31 +13,27 @@ WIDTH_POSITION_KEY = 'w'
 PAGE_GRID_HEIGHT = 12
 STYLE_KEY = 'style'
 PAGEBREAK_KEY = 'pageBreakBefore'
+SHOULD_HAVE_12_GRID = False
+OLD_JSON_FORMAT_GRID_MAX = 10
 
-# Page margin constants
+# Page constants
 TOP_MARGIN_PT = 10
 BOTTOM_MARGIN_PT = 10
 LEFT_MARGIN_PT = 25
 RIGHT_MARGIN_PT = 15
-
-# Page size constants
 A4_MM_HEIGHT = 297
 A4_MM_WIDTH = 210
-SHOULD_HAVE_12_GRID = False
 
-# Others
-HTML_REDUNDANT_COLLAPSIBLE = ['p']
-HTML_NOT_WRAPABLES = ['span', 'li', 'ul', 'ol', 'code', 'blockquote']
-HTML_ATTRIBUTES = ['em', 'strong', 'del']
-HTML_ATTR_MARKDOWN_MAP = {'em': 'italic', 'strong': 'bold',
-                          'del': 'strikethrough'}
-
-# Styles
+# Base Styles
 DEFAULT_WORD_FONT = 'Source Sans Pro'
-DEFAULT_TITLE_COLOR = '#7e7e7e'
+DEFAULT_FONT_LIGHT_COLOR = '#7e7e7e'
+DEFAULT_FONT_DARK_COLOR = '#555555'
+BASE_HEADER_FONT_SIZE = 30
+BASE_FONT_SIZE = 14
+DEFAULT_TABLE_FONT_SIZE = 12
 DEFAULT_TITLE_FONT_SIZE = 14
-DEFAULT_LEGEND_COLOR = '#555555'
 DEFAULT_LEGEND_FONT_SIZE = 10
+DEFAULT_TABLE_STYLE = 'Light Grid'
 
 # Chart Sizes:
 SIZE_W_INCHES = 6
@@ -55,7 +51,6 @@ DEFAULT_BAR_ALPHA = 0.8
 DEFAULT_DPI = 100.0
 CHART_LABEL_NONE_STRING = "None"
 X_AXIS_PADDING = 0.5
-DEFAULT_TABLE_FONT_SIZE = 10
 
 DEFAULT_DURATION_LABEL_FONT_SIZE = 8
 DEFAULT_DURATION_TITLE_FONT_SIZE = 14
@@ -98,6 +93,8 @@ MD_TYPE_LINK = 'a'
 MD_TYPE_IMAGE = 'img'
 MD_TYPE_HORIZONTAL_LINE = 'hr'
 MD_TYPE_TABLE = 'table'
-
-# Investigation
-OLD_JSON_FORMAT_GRID_MAX = 10
+HTML_REDUNDANT_COLLAPSIBLE = ['p']
+HTML_NOT_WRAPABLES = ['span', 'li', 'ul', 'ol', 'code', 'blockquote']
+HTML_ATTRIBUTES = ['em', 'strong', 'del']
+HTML_ATTR_MARKDOWN_MAP = {'em': 'italic', 'strong': 'bold',
+                          'del': 'strikethrough'}

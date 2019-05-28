@@ -1,7 +1,7 @@
 from sane_doc_reports.domain.CellObject import CellObject
 from sane_doc_reports.domain.Element import Element
 from sane_doc_reports.conf import DEBUG, PYDOCX_FONT_SIZE, STYLE_KEY, \
-    DEFAULT_TABLE_FONT_SIZE
+    DEFAULT_TABLE_FONT_SIZE, DEFAULT_TABLE_STYLE
 from sane_doc_reports.domain.Section import Section
 from sane_doc_reports.elements import error, image
 from sane_doc_reports.populate.utils import insert_text
@@ -21,6 +21,11 @@ def fix_order(ordered, readable_headers) -> list:
 
 
 class TableElement(Element):
+    style = {
+        'text': {
+            PYDOCX_FONT_SIZE: DEFAULT_TABLE_FONT_SIZE
+        }
+    }
 
     def insert(self):
         if DEBUG:
@@ -35,12 +40,11 @@ class TableElement(Element):
             table_columns = self.section.layout['tableColumns']
 
         table = self.cell_object.cell.add_table(rows=1, cols=len(table_columns))
-        table.style = 'Light Shading'
+        table.style = DEFAULT_TABLE_STYLE
         hdr_cells = table.rows[0].cells
-        text_style = {STYLE_KEY: {PYDOCX_FONT_SIZE: DEFAULT_TABLE_FONT_SIZE}}
 
         for i, header_text in enumerate(table_columns):
-            insert_text(hdr_cells[i], header_text, text_style)
+            insert_text(hdr_cells[i], header_text, self.style['text'])
 
         for r in table_data:
             row_cells = table.add_row().cells
@@ -57,7 +61,7 @@ class TableElement(Element):
                     image.invoke(co, s)
                 else:
                     insert_text(row_cells[i], r[header_text],
-                                text_style)
+                                self.style['text'])
 
 
 def invoke(cell_object, section):

@@ -21,13 +21,10 @@ class DurationElement(Element):
         },
         'duration': {
             PYDOCX_FONT_SIZE: DEFAULT_DURATION_FONT_SIZE,
+            PYDOCX_TEXT_ALIGN: 'center'
         },
         'label': {
             PYDOCX_FONT_SIZE: DEFAULT_DURATION_LABEL_FONT_SIZE
-        },
-        'colon': {
-            PYDOCX_FONT_SIZE: DEFAULT_DURATION_FONT_SIZE,
-            PYDOCX_TEXT_ALIGN: 'center'
         }
     }
 
@@ -88,7 +85,7 @@ class DurationElement(Element):
 
         # Add first colon
         colon_right = table.cell(1, 1)
-        insert_text(colon_right, ':', self.style['colon'])
+        insert_text(colon_right, ':', self.style['duration'])
 
         # Hours
         hours_cell = table.cell(1, 2)
@@ -98,7 +95,7 @@ class DurationElement(Element):
 
         # Add second colon
         colon_left = table.cell(1, 3)
-        insert_text(colon_left, ':', self.style['colon'])
+        insert_text(colon_left, ':', self.style['duration'])
 
         # Minutes
         minutes_cell = table.cell(1, 4)

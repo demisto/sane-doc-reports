@@ -1,16 +1,24 @@
 import matplotlib.pyplot as plt
 
 from sane_doc_reports.domain.Section import Section
-from sane_doc_reports.conf import DEBUG
+from sane_doc_reports.conf import DEBUG, DEFAULT_WORD_FONT, DEFAULT_TITLE_COLOR, \
+    DEFAULT_TITLE_FONT_SIZE
 
 from sane_doc_reports.elements import image, error
-from sane_doc_reports.utils import get_ax_location
+from sane_doc_reports.utils import get_ax_location, set_legend_style
 from sane_doc_reports.styles.colors import get_colors
 from sane_doc_reports import utils
 from sane_doc_reports.domain.Element import Element
 
 
 class PieChartElement(Element):
+    style = {
+        'title': {
+            'fontname': DEFAULT_WORD_FONT,
+            'color': DEFAULT_TITLE_COLOR,
+            'fontsize': DEFAULT_TITLE_FONT_SIZE
+        }
+    }
 
     @utils.plot
     def insert(self):
@@ -45,21 +53,22 @@ class PieChartElement(Element):
         wedges, texts = ax.pie(data,
                                colors=final_colors,
                                startangle=90, pctdistance=0.85,
-                               textprops=dict(color="w"))
+                               textprops=dict(color="w"), radius=1)
 
         keys_with_numbers = ['{}: {}'.format(k, data[i]) for i, k in
                              enumerate(objects)]
 
+        legend_location = self.section.layout['legendStyle']
         legend_location_relative_to_graph = (1, 0, 0.5, 1)
-        legend_style = self.section.layout['legendStyle']
-        ax.legend(wedges, keys_with_numbers,
-                  title="",
-                  loc=get_ax_location(legend_style),
-                  bbox_to_anchor=legend_location_relative_to_graph
-                  )
+        legend = ax.legend(wedges, keys_with_numbers,
+                           title="",
+                           loc=get_ax_location(legend_location),
+                           bbox_to_anchor=legend_location_relative_to_graph
+                           )
+        set_legend_style(legend)
 
-        ax.set_title(self.section.extra['title'])
-        circle = plt.Circle((0, 0), 0.5, fc='white')
+        ax.set_title(self.section.extra['title'], **self.style['title'])
+        circle = plt.Circle((0, 0), 0.7, fc='white')
         ax.add_artist(circle)
 
         plt_b64 = utils.plt_t0_b64(plt)

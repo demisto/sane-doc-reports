@@ -13,17 +13,14 @@ class TrendElement(Element):
     style = {
         'main': {
             PYDOCX_FONT_SIZE: TREND_MAIN_NUMBER_FONT_SIZE,
-            PYDOCX_FONT_BOLD: True,
             PYDOCX_TEXT_ALIGN: ALIGN_RIGHT
         },
         'trend': {
             PYDOCX_FONT_SIZE: TREND_SECOND_NUMBER_FONT_SIZE,
-            PYDOCX_FONT_BOLD: False,
             PYDOCX_TEXT_ALIGN: ALIGN_RIGHT
         },
         'title': {
             PYDOCX_FONT_SIZE: TREND_SECOND_NUMBER_FONT_SIZE,
-            PYDOCX_FONT_BOLD: False,
             PYDOCX_TEXT_ALIGN: ALIGN_RIGHT
         }
     }

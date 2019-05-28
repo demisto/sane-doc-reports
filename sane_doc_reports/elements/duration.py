@@ -61,7 +61,7 @@ class DurationElement(Element):
         # | Title         |
         # +---------------+
         # | H |:| M |:| S |
-        # +---+---+---+---+
+        # +---+-+---+-+---+
         # .cell(row, col)
         table = self.cell_object.cell.add_table(rows=2, cols=5)
         if DEBUG:

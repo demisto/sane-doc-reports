@@ -33,7 +33,11 @@ HTML_ATTR_MARKDOWN_MAP = {'em': 'italic', 'strong': 'bold',
                           'del': 'strikethrough'}
 
 # Styles
-DEFAULT_WORD_FONT = 'Verdana'
+DEFAULT_WORD_FONT = 'Source Sans Pro'
+DEFAULT_TITLE_COLOR = '#7e7e7e'
+DEFAULT_TITLE_FONT_SIZE = 14
+DEFAULT_LEGEND_COLOR = '#555555'
+DEFAULT_LEGEND_FONT_SIZE = 10
 
 # Chart Sizes:
 SIZE_W_INCHES = 6

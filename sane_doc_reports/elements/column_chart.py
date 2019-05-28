@@ -4,12 +4,21 @@ from sane_doc_reports import utils
 from sane_doc_reports.domain.Element import Element
 from sane_doc_reports.domain.Section import Section
 from sane_doc_reports.conf import DEBUG, DEFAULT_BAR_WIDTH, \
-    DEFAULT_ALPHA, DEFAULT_BAR_ALPHA, CHART_LABEL_NONE_STRING
+    DEFAULT_ALPHA, DEFAULT_BAR_ALPHA, CHART_LABEL_NONE_STRING, \
+    DEFAULT_WORD_FONT, DEFAULT_TITLE_COLOR, DEFAULT_TITLE_FONT_SIZE
 from sane_doc_reports.elements import image, error
 from sane_doc_reports.styles.colors import get_colors
+from sane_doc_reports.utils import set_legend_style
 
 
 class ColumnChartElement(Element):
+    style = {
+        'title': {
+            'fontname': DEFAULT_WORD_FONT,
+            'color': DEFAULT_TITLE_COLOR,
+            'fontsize': DEFAULT_TITLE_FONT_SIZE
+        }
+    }
 
     @utils.plot
     def insert(self) -> None:
@@ -44,12 +53,17 @@ class ColumnChartElement(Element):
                          enumerate(ledgend_keys)]
 
         # Move legend
-        ax.legend(rects, fixed_legends, loc='upper center', bbox_to_anchor=(0.5, -0.15))\
-            .get_frame().set_alpha(DEFAULT_ALPHA)
+        legend_location = 'upper center'
+        legend_location_relative_to_graph = (0.5, -0.35)
+        a = ax.legend(rects, fixed_legends, loc=legend_location,
+                      bbox_to_anchor=legend_location_relative_to_graph)
+
+        set_legend_style(a)
+
         ax.set_xlim(-len(objects), len(objects))
 
         plt.xticks(y_axis, objects)
-        plt.title(self.section.extra['title'])
+        plt.title(self.section.extra['title'], **self.style['title'])
 
         plt_b64 = utils.plt_t0_b64(plt)
 

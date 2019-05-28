@@ -8,7 +8,7 @@ from sane_doc_reports.conf import DEBUG, DEFAULT_BAR_WIDTH, \
     DEFAULT_WORD_FONT, DEFAULT_TITLE_COLOR, DEFAULT_TITLE_FONT_SIZE
 from sane_doc_reports.elements import image, error
 from sane_doc_reports.styles.colors import get_colors
-from sane_doc_reports.utils import set_legend_style
+from sane_doc_reports.utils import set_legend_style, remove_plot_borders
 
 
 class ColumnChartElement(Element):
@@ -44,6 +44,7 @@ class ColumnChartElement(Element):
                         width=DEFAULT_BAR_WIDTH, color=colors)
 
         ax = plt.gca()
+        remove_plot_borders(ax)
 
         # Fix the legend values to be "some_value (some_number)" instead of
         # just "some_value"

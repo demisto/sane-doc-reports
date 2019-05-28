@@ -58,11 +58,14 @@ class PieChartElement(Element):
         keys_with_numbers = ['{}: {}'.format(k, data[i]) for i, k in
                              enumerate(objects)]
 
-        legend_location = self.section.layout['legendStyle']
-        legend_location_relative_to_graph = (1, 0, 0.5, 1)
+        # legend_location_relative_to_graph = (1, 0, 0.5, 1)
+        # legend_location = self.section.layout['legendStyle']
+        legend_location = 'upper center'
+        legend_location_relative_to_graph = (0.5, 0)
+
         legend = ax.legend(wedges, keys_with_numbers,
                            title="",
-                           loc=get_ax_location(legend_location),
+                           loc=legend_location,
                            bbox_to_anchor=legend_location_relative_to_graph
                            )
         set_legend_style(legend)

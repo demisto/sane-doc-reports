@@ -24,4 +24,4 @@ def test_duration():
     assert len(d.element.xpath('//w:tbl//w:tbl')) == 1
 
     # Check that it has the right amount of rows
-    assert len(d.element.xpath('//w:tbl//w:tbl//w:t')) == 7
+    assert len(d.element.xpath('//w:tbl//w:tbl//w:t')) == 9

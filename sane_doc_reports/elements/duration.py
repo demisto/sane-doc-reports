@@ -2,10 +2,10 @@ from math import floor
 
 from sane_doc_reports.domain.Element import Element
 from sane_doc_reports.conf import DEBUG, DEFAULT_DURATION_TITLE, \
-    STYLE_KEY, PYDOCX_FONT_SIZE, DEFAULT_DURATION_TITLE_FONT_SIZE, \
-    DEFAULT_DURATION_FONT_SIZE, PYDOCX_FONT_BOLD, \
+    PYDOCX_FONT_SIZE, DEFAULT_DURATION_TITLE_FONT_SIZE, \
+    DEFAULT_DURATION_FONT_SIZE, \
     DEFAULT_DURATION_LABEL_FONT_SIZE, DURATION_MINUTES_LABEL, \
-    DURATION_HOURS_LABEL, DURATION_DAYS_LABEL
+    DURATION_HOURS_LABEL, DURATION_DAYS_LABEL, PYDOCX_TEXT_ALIGN
 from sane_doc_reports.elements import error
 from sane_doc_reports.populate.utils import insert_text
 
@@ -21,10 +21,13 @@ class DurationElement(Element):
         },
         'duration': {
             PYDOCX_FONT_SIZE: DEFAULT_DURATION_FONT_SIZE,
-            PYDOCX_FONT_BOLD: True
         },
         'label': {
             PYDOCX_FONT_SIZE: DEFAULT_DURATION_LABEL_FONT_SIZE
+        },
+        'colon': {
+            PYDOCX_FONT_SIZE: DEFAULT_DURATION_FONT_SIZE,
+            PYDOCX_TEXT_ALIGN: 'center'
         }
     }
 
@@ -57,18 +60,18 @@ class DurationElement(Element):
             minutes = format_number(minutes)
 
         # Split the table as so:
-        # +-----------+
-        # | Title     |
-        # +-----------+
-        # | H | M | S |
-        # +---+---+---+
+        # +---------------+
+        # | Title         |
+        # +---------------+
+        # | H |:| M |:| S |
+        # +---+---+---+---+
         # .cell(row, col)
-        table = self.cell_object.cell.add_table(rows=2, cols=3)
+        table = self.cell_object.cell.add_table(rows=2, cols=5)
         if DEBUG:
             table.style = 'Table Grid'
 
         title_cell = table.cell(0, 0)
-        title_cell.merge(table.cell(0, 2))
+        title_cell.merge(table.cell(0, 4))
 
         title = DEFAULT_DURATION_TITLE
         if len(contents) > 0 and 'name' in contents[0] and contents[0][
@@ -77,18 +80,29 @@ class DurationElement(Element):
 
         insert_text(title_cell, title, self.style['title'])
 
+        # Days
         days_cell = table.cell(1, 0)
         insert_text(days_cell, days, self.style['duration'])
         insert_text(days_cell, DURATION_DAYS_LABEL, self.style['label'],
                     add_run=True)
 
-        hours_cell = table.cell(1, 1)
+        # Add first colon
+        colon_right = table.cell(1, 1)
+        insert_text(colon_right, ':', self.style['colon'])
+
+        # Hours
+        hours_cell = table.cell(1, 2)
         insert_text(hours_cell, hours, self.style['duration'])
         insert_text(hours_cell, DURATION_HOURS_LABEL, self.style['label'],
                     add_run=True)
 
-        minutes_cell = table.cell(1, 2)
-        insert_text(minutes_cell, minutes, self.style['duration'])
+        # Add second colon
+        colon_left = table.cell(1, 3)
+        insert_text(colon_left, ':', self.style['colon'])
+
+        # Minutes
+        minutes_cell = table.cell(1, 4)
+        insert_text(minutes_cell, minutes, self.style['duration'], add_run=True)
         insert_text(minutes_cell, DURATION_MINUTES_LABEL, self.style['label'],
                     add_run=True)
 

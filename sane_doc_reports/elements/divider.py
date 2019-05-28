@@ -4,7 +4,7 @@ from sane_doc_reports.elements import error, md_hr
 
 
 class DividerElement(Element):
-    """ Mainly used to fix the investigation divider element """
+    """ Mainly used to fix the old json's divider element """
 
     def insert(self):
         if DEBUG:

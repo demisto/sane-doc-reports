@@ -33,8 +33,8 @@ def example_hr(out_file_name='example.docx'):
     main.run(get_mock('elements/hr.json', ret_dict=False), out_file_name)
 
 
-def example_investigation(out_file_name='example.docx'):
-    main.run(get_mock('investigation.json', ret_dict=False),
+def example_old_json(out_file_name='example.docx'):
+    main.run(get_mock('old_json.json', ret_dict=False),
              out_file_name)
 
 
@@ -67,7 +67,7 @@ def run_all():
         example_pie_chart,
         example_markdown,
         example_hr,
-        example_investigation,
+        example_old_json,
         example_bar_chart,
         example_duration
     ]
@@ -77,7 +77,7 @@ def run_all():
 
 
 def run():
-    example_investigation()
+    example_old_json()
 
 
 if __name__ == '__main__':

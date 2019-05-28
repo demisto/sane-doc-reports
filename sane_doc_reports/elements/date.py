@@ -7,7 +7,7 @@ from sane_doc_reports.populate.utils import insert_text
 
 
 class DateElement(Element):
-    """ Mainly used to fix the investigation date element """
+    """ Mainly used to fix the old json's date element """
 
     def insert(self):
         if DEBUG:

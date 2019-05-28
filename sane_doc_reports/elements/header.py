@@ -5,7 +5,7 @@ from sane_doc_reports.populate.utils import insert_header
 
 
 class HeaderElement(Element):
-    """ Mainly used to fix the investigation header element """
+    """ Mainly used to fix the old json's header element """
 
     def insert(self):
         if DEBUG:

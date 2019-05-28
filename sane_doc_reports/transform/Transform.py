@@ -5,7 +5,7 @@ from sane_doc_reports.conf import LAYOUT_KEY, \
     HEIGHT_POSITION_KEY, WIDTH_POSITION_KEY
 from sane_doc_reports.domain.SaneJson import SaneJson
 from sane_doc_reports.domain.Page import Page
-from sane_doc_reports.transform.utils import transform_investigation_json
+from sane_doc_reports.transform.utils import transform_old_json_format
 
 
 class Transform:
@@ -15,9 +15,9 @@ class Transform:
         with open(sane_json_path, 'r') as f:
             self.json_data = json.load(f)
 
-        # Transform the json if it is an investigation json
-        if self.is_investigation_json():
-            self.json_data = transform_investigation_json(self.json_data)
+        # Transform the json if it is an old json's json
+        if self.is_old_json_format():
+            self.json_data = transform_old_json_format(self.json_data)
 
         self.sane_json = SaneJson(self.json_data)
 
@@ -38,7 +38,7 @@ class Transform:
         """ Return the transformed sane json """
         return self.sane_json
 
-    def is_investigation_json(self):
+    def is_old_json_format(self):
         json_data = self.json_data
 
         # Pass through to the json validation in SaneJson

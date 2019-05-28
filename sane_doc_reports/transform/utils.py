@@ -19,8 +19,8 @@ def transform_section(sane_section: dict):
     return section
 
 
-def transform_investigation_json(json_data: List[dict]) -> List[dict]:
-    """ Fixes all of the old investigation json format, trying to convert
+def transform_old_json_format(json_data: List[dict]) -> List[dict]:
+    """ Fixes all of the old json format, trying to convert
         it to the new json format.
     """
 
@@ -97,7 +97,7 @@ def transform_investigation_json(json_data: List[dict]) -> List[dict]:
 
         if json_data[i]['type'] == 'globalSection':
             json_data[i]['type'] = 'elem_list'
-            json_data[i][DATA_KEY] = transform_investigation_json(
+            json_data[i][DATA_KEY] = transform_old_json_format(
                 json_data[i][DATA_KEY])
             continue
 

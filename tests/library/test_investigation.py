@@ -1,15 +1,15 @@
 from sane_doc_reports.populate.Report import Report
-from sane_doc_reports.transform.utils import transform_investigation_json
+from sane_doc_reports.transform.utils import transform_old_json_format
 from tests.utils import _transform
 
 
-def test_transform_investigation_json_no_col_row():
+def test_transform_old_json_no_col_row():
     test_json = [{
         'type': 'text',
         'data': '',
         'layout': {},
     }]
-    transformed = transform_investigation_json(test_json)
+    transformed = transform_old_json_format(test_json)
     expected = [{
         'type': 'text',
         'data': {'text': ''},
@@ -23,7 +23,7 @@ def test_transform_investigation_json_no_col_row():
     assert transformed == expected
 
 
-def test_transform_investigation_json_multiple_rows():
+def test_transform_old_json_multiple_rows():
     test_json = [{
         'type': 'text',
         'data': '',
@@ -52,7 +52,7 @@ def test_transform_investigation_json_multiple_rows():
             }
         }
     ]
-    transformed = transform_investigation_json(test_json)
+    transformed = transform_old_json_format(test_json)
     expected = [{
         'type': 'text',
         'data': {'text': ''},
@@ -95,12 +95,12 @@ def test_transform_investigation_json_multiple_rows():
     assert transformed == expected
 
 
-def test_investigation_s():
+def test_old_json():
     '''
         To check the xpath: rename the .elements to .zip and
          open word/document.xml
     '''
-    report = Report(*_transform('investigation.json'))
+    report = Report(*_transform('old_json.json'))
     report.populate_report()
 
     d = report.document

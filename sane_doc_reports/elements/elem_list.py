@@ -6,7 +6,7 @@ from sane_doc_reports.utils import insert_by_type
 
 
 class ElemListWrapper(Wrapper):
-    """ Mainly used to fix the investigation globalSection """
+    """ Mainly used to fix the old json's globalSection """
 
     def wrap(self, invoked_from_wrapper=False):
         # Handle called from another wrapper.

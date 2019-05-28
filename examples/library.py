@@ -77,7 +77,7 @@ def run_all():
 
 
 def run():
-    example_markdown()
+    run_all()
 
 
 if __name__ == '__main__':

@@ -1,3 +1,5 @@
+import os
+from pathlib import Path
 from typing import List
 
 from docx import Document
@@ -19,7 +21,10 @@ class Report:
     """
 
     def __init__(self, pages: List[Page], sane_json: SaneJson):
-        self.document = Document()
+        template_path = Path(os.path.dirname(__file__)) / 'template.docx'
+        with template_path.open('rb') as f:
+            self.document = Document(f)
+
         self.pages = pages
 
         # Used to calculate and create the page grid(layout)

@@ -40,7 +40,7 @@ class TableElement(Element):
             table_columns = self.section.layout['tableColumns']
 
         table = self.cell_object.cell.add_table(rows=1, cols=len(table_columns))
-        table.style = DEFAULT_TABLE_STYLE
+        # table.style = DEFAULT_TABLE_STYLE
         hdr_cells = table.rows[0].cells
 
         for i, header_text in enumerate(table_columns):

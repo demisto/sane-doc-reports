@@ -72,7 +72,7 @@ def insert_header_style(section: Section) -> Section:
 
     level = int(section.extra['header_tag'].replace('h', ''))
     base_style = {
-        "fontSize": BASE_HEADER_FONT_SIZE - level * 2,
+        "fontSize": BASE_HEADER_FONT_SIZE - level * 4,
         "color": DEFAULT_FONT_DARK_COLOR
     }
     return _attach_all_styles(section, base_style)

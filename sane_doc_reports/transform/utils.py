@@ -19,6 +19,30 @@ def transform_section(sane_section: dict):
     return section
 
 
+def _font_transformations(json_item: dict) -> dict:
+    font_size_mapping = {
+        28: 16,
+        22: 20,
+        16: 10,
+        14: 9,
+        12: 8,
+    }
+    if LAYOUT_KEY not in json_item:
+        return json_item
+
+    if 'style' not in json_item[LAYOUT_KEY]:
+        return json_item
+
+    if 'fontSize' not in json_item[LAYOUT_KEY]['style']:
+        return json_item
+
+    font_size = json_item[LAYOUT_KEY]['style']['fontSize']
+    json_item[LAYOUT_KEY]['style']['fontSize'] = font_size_mapping[
+        font_size]
+
+    return json_item
+
+
 def transform_old_json_format(json_data: List[dict]) -> List[dict]:
     """ Fixes all of the old json format, trying to convert
         it to the new json format.
@@ -84,6 +108,9 @@ def transform_old_json_format(json_data: List[dict]) -> List[dict]:
         if WIDTH_POSITION_KEY not in json_data[i][LAYOUT_KEY]:
             json_data[i][LAYOUT_KEY][WIDTH_POSITION_KEY] = 1
 
+        # Fix font-size
+        json_data[i] = _font_transformations(json_data[i])
+
         # Fix nil data
         if not json_data[i][DATA_KEY]:
             json_data[i][DATA_KEY] = ""
@@ -99,9 +126,9 @@ def transform_old_json_format(json_data: List[dict]) -> List[dict]:
         if json_data[i]['type'] == 'table':
             if 'tableColumns' not in json_data[i]['layout']:
                 table_data = json.loads(json_data[i]['data'])
-                json_data[i]['data'] = table_data
+                json_data[i][DATA_KEY] = table_data
                 headers = list(table_data[0].keys())
-                json_data[i]['layout']['tableColumns'] = headers
+                json_data[i][LAYOUT_KEY]['tableColumns'] = headers
                 continue
 
         if json_data[i]['type'] == 'globalSection':

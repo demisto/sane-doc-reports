@@ -13,6 +13,14 @@ from sane_doc_reports.utils import insert_by_type
 from sane_doc_reports.conf import DEBUG, A4_MM_HEIGHT, A4_MM_WIDTH, \
     TOP_MARGIN_PT, BOTTOM_MARGIN_PT, LEFT_MARGIN_PT, RIGHT_MARGIN_PT
 from sane_doc_reports.populate.grid import get_cell, merge_cells
+from docx.enum.style import WD_STYLE_TYPE
+
+
+def _debug_show_styles(document):
+    styles = document.styles
+    styles = [s for s in styles if s.type == WD_STYLE_TYPE.PARAGRAPH]
+    for style in styles:
+        print(style.name)
 
 
 class Report:
@@ -24,7 +32,12 @@ class Report:
         template_path = Path(os.path.dirname(__file__)) / 'template.docx'
         with template_path.open('rb') as f:
             self.document = Document(f)
+
+            # Remove the default paragraph in the template.
             self.document._body.clear_content()
+
+        if DEBUG:
+            _debug_show_styles(self.document)
 
         self.pages = pages
 

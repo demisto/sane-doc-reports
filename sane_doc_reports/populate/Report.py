@@ -24,6 +24,7 @@ class Report:
         template_path = Path(os.path.dirname(__file__)) / 'template.docx'
         with template_path.open('rb') as f:
             self.document = Document(f)
+            self.document._body.clear_content()
 
         self.pages = pages
 

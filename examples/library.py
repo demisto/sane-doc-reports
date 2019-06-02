@@ -77,7 +77,7 @@ def run_all():
 
 
 def run():
-    example_old_json()
+    example_basic()
 
 
 if __name__ == '__main__':

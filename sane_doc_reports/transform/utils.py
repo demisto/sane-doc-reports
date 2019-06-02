@@ -4,7 +4,7 @@ from typing import List
 
 from sane_doc_reports.conf import LAYOUT_KEY, ROW_POSITION_KEY, \
     COL_POSITION_KEY, HEIGHT_POSITION_KEY, WIDTH_POSITION_KEY, DATA_KEY, \
-    OLD_JSON_FORMAT_GRID_MAX
+    OLD_JSON_FORMAT_GRID_MAX, BASE_FONT_SIZE
 from sane_doc_reports.domain.Section import sane_to_section
 from sane_doc_reports.transform.markdown.md_helpers import \
     markdown_to_section_list
@@ -37,8 +37,12 @@ def _font_transformations(json_item: dict) -> dict:
         return json_item
 
     font_size = json_item[LAYOUT_KEY]['style']['fontSize']
-    json_item[LAYOUT_KEY]['style']['fontSize'] = font_size_mapping[
-        font_size]
+
+    if font_size not in font_size_mapping:
+        json_item[LAYOUT_KEY]['style']['fontSize'] = BASE_FONT_SIZE
+    else:
+        json_item[LAYOUT_KEY]['style']['fontSize'] = font_size_mapping[
+            font_size]
 
     return json_item
 

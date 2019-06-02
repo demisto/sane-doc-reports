@@ -1,22 +1,23 @@
+from pyquery import PyQuery
+
+from sane_doc_reports.populate.utils import insert_text, insert_header
 from sane_doc_reports.transform.markdown.MarkdownSection import MarkdownSection
 from sane_doc_reports.conf import MD_TYPE_DIV, MD_TYPE_CODE, MD_TYPE_QUOTE, \
     MD_TYPE_UNORDERED_LIST, MD_TYPE_ORDERED_LIST, MD_TYPE_LIST_ITEM, \
     MD_TYPE_HORIZONTAL_LINE, MD_TYPE_IMAGE, MD_TYPE_LINK, MD_TYPE_TEXT, \
-    MD_TYPE_INLINE_TEXT, MD_TYPES_HEADERS
-from sane_doc_reports.elements import text, md_code, md_ul, md_li, \
+    MD_TYPE_INLINE_TEXT, MD_TYPES_HEADERS, MD_TYPE_TABLE
+from sane_doc_reports.elements import md_code, md_ul, md_li, \
     md_blockquote, \
-    md_hr, md_ol, md_link, md_image
-from sane_doc_reports.domain import CellObject, Section
+    md_hr, md_ol, md_link, md_image, table
+from sane_doc_reports.domain import CellObject
+from sane_doc_reports.domain.Section import Section
 from sane_doc_reports.domain.Wrapper import Wrapper
 from sane_doc_reports.elements import error
-import sane_doc_reports.styles.header as header_style
-from sane_doc_reports.utils import has_run
 
 
 class MarkdownWrapper(Wrapper):
 
     def wrap(self, invoked_from_wrapper=False):
-
         # Handle called from another wrapper.
         md_section_list = None
         if isinstance(self.section.contents, list):
@@ -31,37 +32,53 @@ class MarkdownWrapper(Wrapper):
                              '(must be a list)')
 
         for section in md_section_list:
-            section_type = section.type
 
             # === Start wrappers ===
-            if section_type == MD_TYPE_DIV:
+            if section.type == MD_TYPE_DIV:
                 temp_section = MarkdownSection('markdown', section.contents,
                                                {}, {})
                 invoke(self.cell_object, temp_section)
                 continue
 
-            if section_type == MD_TYPE_CODE:
+            if section.type == MD_TYPE_CODE:
                 md_code.invoke(self.cell_object, section)
                 self.cell_object.update_paragraph()
                 continue
 
-            if section_type == MD_TYPE_QUOTE:
+            if section.type == MD_TYPE_QUOTE:
                 md_blockquote.invoke(self.cell_object, section)
                 self.cell_object.update_paragraph()
                 continue
 
-            if section_type == MD_TYPE_UNORDERED_LIST:
+            if section.type == MD_TYPE_UNORDERED_LIST:
                 md_ul.invoke(self.cell_object, section)
                 self.cell_object.update_paragraph()
                 continue
 
-            if section_type == MD_TYPE_ORDERED_LIST:
+            if section.type == MD_TYPE_ORDERED_LIST:
                 md_ol.invoke(self.cell_object, section)
                 self.cell_object.update_paragraph()
                 continue
 
-            if section_type == MD_TYPE_LIST_ITEM:
+            if section.type == MD_TYPE_LIST_ITEM:
                 md_li.invoke(self.cell_object, section)
+                continue
+
+            if section.type == MD_TYPE_TABLE:
+                table_html = section.extra['original_html']
+                t = PyQuery(table_html)
+                headers = [i.find('th') for i in t.find('tr').items()][0]
+                headers = [c.text() for c in headers.items()]
+
+                rows = [i.find('td') for i in t.find('tr').items() if
+                        i.find('td')]
+                data = []
+                for row in rows:
+                    r = {headers[i]: c.text() for i, c in
+                         enumerate(row.items())}
+                    data.append(r)
+                s = Section("table", data, {"tableColumns": headers}, {})
+                table.invoke(self.cell_object, s)
                 continue
 
             # Fix wrapped:
@@ -69,12 +86,14 @@ class MarkdownWrapper(Wrapper):
             #    but are not considered one of the declared wrappers)
             if isinstance(section.contents, list):
                 is_inside_wrapper = False
+
                 if 'inline' in section.extra:
                     is_inside_wrapper = True
 
-                if section_type == 'span':
+                if section.type == 'span':
                     section.propagate_extra('inline', True)
 
+                # TODO: Fix problem with H1 no newline even if in span.
                 temp_section = MarkdownSection('markdown', section.contents,
                                                {}, {}, section.attrs)
                 invoke(self.cell_object, temp_section,
@@ -82,7 +101,7 @@ class MarkdownWrapper(Wrapper):
                 continue
 
             # === Elements ===
-            if section_type == MD_TYPE_HORIZONTAL_LINE:
+            if section.type == MD_TYPE_HORIZONTAL_LINE:
                 md_hr.invoke(self.cell_object, section)
                 continue
 
@@ -91,28 +110,29 @@ class MarkdownWrapper(Wrapper):
             if not invoked_from_wrapper:
                 self.cell_object.add_paragraph()
 
-            if section_type in MD_TYPES_HEADERS:
-                has_run(self.cell_object)
-                header_style.apply_style(self.cell_object, section)
-                text.invoke(self.cell_object, section,
-                            apply_default_styling=False)
+            if section.type in MD_TYPES_HEADERS:
+                # We want to keep the h{1...6} for styling
+                insert_header(self.cell_object, section.contents,
+                              header=section.type)
+
                 continue
 
-            if section_type in [MD_TYPE_TEXT, MD_TYPE_INLINE_TEXT]:
+            if section.type in [MD_TYPE_TEXT, MD_TYPE_INLINE_TEXT]:
                 if invoked_from_wrapper:
                     self.cell_object.add_run()
-                text.invoke(self.cell_object, section)
+
+                insert_text(self.cell_object, section)
                 continue
 
-            if section_type == MD_TYPE_LINK:
+            if section.type == MD_TYPE_LINK:
                 md_link.invoke(self.cell_object, section)
                 continue
 
-            if section_type == MD_TYPE_IMAGE:
+            if section.type == MD_TYPE_IMAGE:
                 md_image.invoke(self.cell_object, section)
                 continue
 
-            raise ValueError(f'Section type is not defined: {section_type}')
+            raise ValueError(f'Section type is not defined: {section.type}')
 
 
 def invoke(cell_object: CellObject, section: Section,

@@ -18,6 +18,7 @@ matplotlib = "*"
 pyquery = "*"
 mistune = "*"
 requests = "*"
+moment = "*"
 
 [requires]
 python_version = "3.7"

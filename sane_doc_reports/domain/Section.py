@@ -3,7 +3,7 @@ from __future__ import annotations  # Used to fix the __init__ of same type
 import json
 from typing import Union
 
-from sane_doc_reports.conf import LAYOUT_KEY, DATA_KEY
+from sane_doc_reports.conf import LAYOUT_KEY, DATA_KEY, STYLE_KEY
 
 
 class Section(object):
@@ -29,6 +29,20 @@ class Section(object):
 
         self.attrs = attrs
 
+    def set_style(self, style: dict):
+        self.layout[STYLE_KEY] = style
+
+    def add_style(self, added_style: dict, is_new=True):
+        if is_new:
+            self.set_style({**self.get_style(), **added_style})
+        else:
+            self.set_style({**added_style, **self.get_style()})
+
+    def get_style(self) -> dict:
+        if STYLE_KEY in self.layout:
+            return self.layout[STYLE_KEY]
+        return {}
+
     def __str__(self):
         self_dict = {
             'type': self.type,
@@ -46,7 +60,7 @@ def sane_to_section(json):
 
     type = json['type']
     contents = json[DATA_KEY]
-    if type in ['markdown', 'text']:
+    if type in ['markdown', 'text', 'header']:
         contents = json[DATA_KEY]['text']
 
     layout = json[LAYOUT_KEY]

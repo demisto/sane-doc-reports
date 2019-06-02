@@ -1,7 +1,7 @@
 from os import getenv
 
 # Environment
-DEBUG = getenv('SANE_DOCX_DEBUG', 'False') == 'True'
+DEBUG = getenv('SANE_DEBUG', 'False') == 'True'
 
 # Grid Constants
 DATA_KEY = 'data'
@@ -13,27 +13,27 @@ WIDTH_POSITION_KEY = 'w'
 PAGE_GRID_HEIGHT = 12
 STYLE_KEY = 'style'
 PAGEBREAK_KEY = 'pageBreakBefore'
+SHOULD_HAVE_12_GRID = False
+OLD_JSON_FORMAT_GRID_MAX = 10
 
-# Page margin constants
+# Page constants
 TOP_MARGIN_PT = 10
 BOTTOM_MARGIN_PT = 10
 LEFT_MARGIN_PT = 25
 RIGHT_MARGIN_PT = 15
-
-# Page size constants
 A4_MM_HEIGHT = 297
 A4_MM_WIDTH = 210
-SHOULD_HAVE_12_GRID = False
 
-# Others
-HTML_REDUNDANT_COLLAPSIBLE = ['p']
-HTML_NOT_WRAPABLES = ['span', 'li', 'ul', 'ol', 'code', 'blockquote']
-HTML_ATTRIBUTES = ['em', 'strong', 'del']
-HTML_ATTR_MARKDOWN_MAP = {'em': 'italic', 'strong': 'bold',
-                          'del': 'strikethrough'}
-
-# Styles
-DEFAULT_WORD_FONT = 'Verdana'
+# Base Styles
+DEFAULT_WORD_FONT = 'Source Sans Pro'
+DEFAULT_FONT_LIGHT_COLOR = '#7e7e7e'
+DEFAULT_FONT_DARK_COLOR = '#555555'
+BASE_HEADER_FONT_SIZE = 30
+BASE_FONT_SIZE = 14
+DEFAULT_TABLE_FONT_SIZE = 12
+DEFAULT_TITLE_FONT_SIZE = 14
+DEFAULT_LEGEND_FONT_SIZE = 10
+DEFAULT_TABLE_STYLE = 'Light Grid'
 
 # Chart Sizes:
 SIZE_W_INCHES = 6
@@ -52,11 +52,22 @@ DEFAULT_DPI = 100.0
 CHART_LABEL_NONE_STRING = "None"
 X_AXIS_PADDING = 0.5
 
+DEFAULT_DURATION_LABEL_FONT_SIZE = 8
+DEFAULT_DURATION_TITLE_FONT_SIZE = 14
+DEFAULT_DURATION_FONT_SIZE = 18
+DEFAULT_DURATION_TITLE = 'Duration'
+DURATION_DAYS_LABEL = '\nDAYS'
+DURATION_HOURS_LABEL = '\nHOURS'
+DURATION_MINUTES_LABEL = '\nMINUTESS'
+
 TREND_MAIN_NUMBER_FONT_SIZE = 24
 TREND_SECOND_NUMBER_FONT_SIZE = 14
+DEFAULT_HR_DASHES_SIZE = 64
+
+# ALIGNMENT
 ALIGN_LEFT = 0
-ALIGN_RIGHT = 1
-ALIGN_CENTER = 2
+ALIGN_RIGHT = 2
+ALIGN_CENTER = 1
 
 # PYTHON-DOCX constants
 PYDOCX_FONT_SIZE = 'fontSize'
@@ -67,7 +78,6 @@ PYDOCX_FONT_UNDERLINE = 'underline'
 PYDOCX_FONT_ITALIC = 'italic'
 PYDOCX_FONT_COLOR = 'color'
 PYDOCX_TEXT_ALIGN = 'textAlign'
-
 
 # Markdown section types constants
 MD_TYPE_DIV = 'div'
@@ -82,3 +92,9 @@ MD_TYPES_HEADERS = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']
 MD_TYPE_LINK = 'a'
 MD_TYPE_IMAGE = 'img'
 MD_TYPE_HORIZONTAL_LINE = 'hr'
+MD_TYPE_TABLE = 'table'
+HTML_REDUNDANT_COLLAPSIBLE = ['p']
+HTML_NOT_WRAPABLES = ['span', 'li', 'ul', 'ol', 'code', 'blockquote']
+HTML_ATTRIBUTES = ['em', 'strong', 'del']
+HTML_ATTR_MARKDOWN_MAP = {'em': 'italic', 'strong': 'bold',
+                          'del': 'strikethrough'}

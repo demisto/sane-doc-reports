@@ -9,11 +9,12 @@ from typing import Tuple
 from docx.oxml import OxmlElement
 import matplotlib
 from docx.text.paragraph import Paragraph
-from matplotlib import pyplot as plt
+from matplotlib import pyplot as plt, font_manager
 
 from sane_doc_reports.domain import CellObject, Section
 from sane_doc_reports.conf import SIZE_H_INCHES, SIZE_W_INCHES, DPI, \
-    DEFAULT_DPI
+    DEFAULT_DPI, DEFAULT_LEGEND_FONT_SIZE, DEFAULT_WORD_FONT, \
+    DEFAULT_FONT_LIGHT_COLOR, DEFAULT_ALPHA, DEFAULT_FONT_DARK_COLOR
 
 
 def open_b64_image(image_base64):
@@ -181,3 +182,21 @@ def list_number(doc, par, prev=None, level=None, num=True):
         num = prev._p.pPr.numPr.numId.val
     par._p.get_or_add_pPr().get_or_add_numPr().get_or_add_numId().val = num
     par._p.get_or_add_pPr().get_or_add_numPr().get_or_add_ilvl().val = level
+
+
+def remove_plot_borders(ax):
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    ax.spines['bottom'].set_visible(False)
+    ax.spines['left'].set_visible(False)
+
+
+def set_legend_style(legend):
+    legend.get_frame().set_alpha(DEFAULT_ALPHA)
+    legend.get_frame().set_linewidth(0.0)
+
+    font = font_manager.FontProperties(family=DEFAULT_WORD_FONT,
+                                       size=DEFAULT_LEGEND_FONT_SIZE)
+    for text in legend.get_texts():
+        text.set_fontproperties(font)
+        text.set_color(DEFAULT_FONT_DARK_COLOR)

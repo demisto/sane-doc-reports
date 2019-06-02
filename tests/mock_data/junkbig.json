@@ -12,23 +12,6 @@
       "rowPos": 0,
       "w": 12
     },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": 7,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
-    },
     "fromDate": "2019-04-22T18:38:13+03:00",
     "title": "Active Incidents - Line chart"
   },
@@ -47,19 +30,6 @@
             "sectionStyle": {
                 "width": 60
             }
-        },
-        "query": {
-            "type": "sessionData",
-            "filter": "incidentOwner",
-            "keys": [
-                "image"
-            ]
-        },
-        "automation": {
-            "name": "",
-            "id": "",
-            "args": null,
-            "noEvent": false
         }
     },
   {
@@ -75,23 +45,6 @@
       "signAlignment": "left",
       "style": {},
       "w": 4
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": 7,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
     "title": "Active Incidents - Line chart"
@@ -112,29 +65,6 @@
       "signAlignment": "left",
       "style": {},
       "w": 3
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-category:job and status:closed",
-        "fromDate": "0001-01-01T00:00:00Z",
-        "toDate": "0001-01-01T00:00:00Z",
-        "period": {
-          "by": "day",
-          "byTo": "",
-          "byFrom": "days",
-          "toValue": null,
-          "fromValue": 7,
-          "field": ""
-        },
-        "fromDateLicense": "0001-01-01T00:00:00Z"
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
     "title": "Incidents By Close Reason"
@@ -159,23 +89,6 @@
       "i": "8cdc9e20-005c-11e8-831f-e7429aff1c69",
       "rowPos": 0,
       "w": 12
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-status:Closed and (severity:High or severity:Critical)",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "title": "criticalAndHighIncidents Headline"
   },
@@ -234,26 +147,6 @@
       "rowPos": 3,
       "w": 6
     },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "severity"
-      ],
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
-    },
     "title": "Active Incidents - Pie chart"
   },
   {
@@ -294,26 +187,6 @@
       },
       "rowPos": 1,
       "w": 6
-    },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "phase"
-      ],
-      "filter": {
-        "query": "-category:job",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "title": "Incidents by Phase"
   },
@@ -371,26 +244,6 @@
       },
       "rowPos": 1,
       "w": 3
-    },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "severity"
-      ],
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "title": "Active Incidents - Pie chart"
   },
@@ -545,23 +398,6 @@
         "dueDate"
       ],
       "w": 12
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-status:Closed and (severity:High or severity:Critical)",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
   "title": "Critical and High Incidents"
   },
@@ -578,23 +414,6 @@
       "rowPos": 0,
       "w": 12
     },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": 7,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
-    },
     "fromDate": "2019-04-22T18:38:13+03:00",
     "title": "Active Incidents - Line chart"
   },
@@ -613,19 +432,6 @@
             "sectionStyle": {
                 "width": 60
             }
-        },
-        "query": {
-            "type": "sessionData",
-            "filter": "incidentOwner",
-            "keys": [
-                "image"
-            ]
-        },
-        "automation": {
-            "name": "",
-            "id": "",
-            "args": null,
-            "noEvent": false
         }
     },
   {
@@ -641,23 +447,6 @@
       "signAlignment": "left",
       "style": {},
       "w": 4
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": 7,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
     "title": "Active Incidents - Line chart"
@@ -678,29 +467,6 @@
       "signAlignment": "left",
       "style": {},
       "w": 3
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-category:job and status:closed",
-        "fromDate": "0001-01-01T00:00:00Z",
-        "toDate": "0001-01-01T00:00:00Z",
-        "period": {
-          "by": "day",
-          "byTo": "",
-          "byFrom": "days",
-          "toValue": null,
-          "fromValue": 7,
-          "field": ""
-        },
-        "fromDateLicense": "0001-01-01T00:00:00Z"
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
     "title": "Incidents By Close Reason"
@@ -725,23 +491,6 @@
       "i": "8cdc9e20-005c-11e8-831f-e7429aff1c69",
       "rowPos": 0,
       "w": 12
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-status:Closed and (severity:High or severity:Critical)",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "title": "criticalAndHighIncidents Headline"
   },
@@ -800,26 +549,6 @@
       "rowPos": 3,
       "w": 6
     },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "severity"
-      ],
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
-    },
     "title": "Active Incidents - Pie chart"
   },
   {
@@ -860,26 +589,6 @@
       },
       "rowPos": 1,
       "w": 6
-    },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "phase"
-      ],
-      "filter": {
-        "query": "-category:job",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "title": "Incidents by Phase"
   },
@@ -937,26 +646,6 @@
       },
       "rowPos": 1,
       "w": 3
-    },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "severity"
-      ],
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "title": "Active Incidents - Pie chart"
   },
@@ -1111,23 +800,6 @@
         "dueDate"
       ],
       "w": 12
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-status:Closed and (severity:High or severity:Critical)",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
   "title": "Critical and High Incidents"
   },
@@ -1144,23 +816,6 @@
       "rowPos": 0,
       "w": 12
     },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": 7,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
-    },
     "fromDate": "2019-04-22T18:38:13+03:00",
     "title": "Active Incidents - Line chart"
   },
@@ -1179,19 +834,6 @@
             "sectionStyle": {
                 "width": 60
             }
-        },
-        "query": {
-            "type": "sessionData",
-            "filter": "incidentOwner",
-            "keys": [
-                "image"
-            ]
-        },
-        "automation": {
-            "name": "",
-            "id": "",
-            "args": null,
-            "noEvent": false
         }
     },
   {
@@ -1207,23 +849,6 @@
       "signAlignment": "left",
       "style": {},
       "w": 4
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": 7,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
     "title": "Active Incidents - Line chart"
@@ -1244,29 +869,6 @@
       "signAlignment": "left",
       "style": {},
       "w": 3
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-category:job and status:closed",
-        "fromDate": "0001-01-01T00:00:00Z",
-        "toDate": "0001-01-01T00:00:00Z",
-        "period": {
-          "by": "day",
-          "byTo": "",
-          "byFrom": "days",
-          "toValue": null,
-          "fromValue": 7,
-          "field": ""
-        },
-        "fromDateLicense": "0001-01-01T00:00:00Z"
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
     "title": "Incidents By Close Reason"
@@ -1291,23 +893,6 @@
       "i": "8cdc9e20-005c-11e8-831f-e7429aff1c69",
       "rowPos": 0,
       "w": 12
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-status:Closed and (severity:High or severity:Critical)",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "title": "criticalAndHighIncidents Headline"
   },
@@ -1366,26 +951,6 @@
       "rowPos": 3,
       "w": 6
     },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "severity"
-      ],
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
-    },
     "title": "Active Incidents - Pie chart"
   },
   {
@@ -1426,26 +991,6 @@
       },
       "rowPos": 1,
       "w": 6
-    },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "phase"
-      ],
-      "filter": {
-        "query": "-category:job",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "title": "Incidents by Phase"
   },
@@ -1503,26 +1048,6 @@
       },
       "rowPos": 1,
       "w": 3
-    },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "severity"
-      ],
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "title": "Active Incidents - Pie chart"
   },
@@ -1677,23 +1202,6 @@
         "dueDate"
       ],
       "w": 12
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-status:Closed and (severity:High or severity:Critical)",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
   "title": "Critical and High Incidents"
   },
@@ -1710,23 +1218,6 @@
       "rowPos": 0,
       "w": 12
     },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": 7,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
-    },
     "fromDate": "2019-04-22T18:38:13+03:00",
     "title": "Active Incidents - Line chart"
   },
@@ -1745,19 +1236,6 @@
             "sectionStyle": {
                 "width": 60
             }
-        },
-        "query": {
-            "type": "sessionData",
-            "filter": "incidentOwner",
-            "keys": [
-                "image"
-            ]
-        },
-        "automation": {
-            "name": "",
-            "id": "",
-            "args": null,
-            "noEvent": false
         }
     },
   {
@@ -1773,23 +1251,6 @@
       "signAlignment": "left",
       "style": {},
       "w": 4
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": 7,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
     "title": "Active Incidents - Line chart"
@@ -1810,29 +1271,6 @@
       "signAlignment": "left",
       "style": {},
       "w": 3
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-category:job and status:closed",
-        "fromDate": "0001-01-01T00:00:00Z",
-        "toDate": "0001-01-01T00:00:00Z",
-        "period": {
-          "by": "day",
-          "byTo": "",
-          "byFrom": "days",
-          "toValue": null,
-          "fromValue": 7,
-          "field": ""
-        },
-        "fromDateLicense": "0001-01-01T00:00:00Z"
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
     "title": "Incidents By Close Reason"
@@ -1857,23 +1295,6 @@
       "i": "8cdc9e20-005c-11e8-831f-e7429aff1c69",
       "rowPos": 0,
       "w": 12
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-status:Closed and (severity:High or severity:Critical)",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "title": "criticalAndHighIncidents Headline"
   },
@@ -1932,26 +1353,6 @@
       "rowPos": 3,
       "w": 6
     },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "severity"
-      ],
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
-    },
     "title": "Active Incidents - Pie chart"
   },
   {
@@ -1992,26 +1393,6 @@
       },
       "rowPos": 1,
       "w": 6
-    },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "phase"
-      ],
-      "filter": {
-        "query": "-category:job",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "title": "Incidents by Phase"
   },
@@ -2069,26 +1450,6 @@
       },
       "rowPos": 1,
       "w": 3
-    },
-    "query": {
-      "type": "incident",
-      "groupBy": [
-        "severity"
-      ],
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "title": "Active Incidents - Pie chart"
   },
@@ -2243,23 +1604,6 @@
         "dueDate"
       ],
       "w": 12
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-status:Closed and (severity:High or severity:Critical)",
-        "period": {
-          "byFrom": "days",
-          "fromValue": null,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "title": "Critical and High Incidents"
   },
@@ -2275,23 +1619,6 @@
       "i": "49e211c0-6a93-11e9-9415-9dacbf5f34af",
       "rowPos": 0,
       "w": 12
-    },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
-        "period": {
-          "byFrom": "days",
-          "fromValue": 7,
-          "by": "day"
-        }
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     },
     "fromDate": "2019-04-22T18:38:13+03:00",
     "title": "Active Incidents - Line chart"

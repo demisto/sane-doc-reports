@@ -1,6 +1,5 @@
-from sane_doc_reports.domain.Section import sane_to_section
 from sane_doc_reports.domain import SaneJsonPage
-from sane_doc_reports.transform.markdown.md_helpers import markdown_to_section_list
+from sane_doc_reports.transform.utils import transform_section
 
 
 class Page:
@@ -12,11 +11,7 @@ class Page:
 
     def transform(self):
         for sane_section in self._sane_page.get_sections():
-            section = sane_to_section(sane_section)
-
-            if section.type == 'markdown':
-                section.contents = markdown_to_section_list(section.contents)
-
+            section = transform_section(sane_section)
             self.sections.append(section)
 
     def __iter__(self):

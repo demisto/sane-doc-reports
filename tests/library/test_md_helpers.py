@@ -1,6 +1,8 @@
 from sane_doc_reports.conf import MD_TYPE_QUOTE
+from sane_doc_reports.transform.markdown.MarkdownSection import MarkdownSection
 from sane_doc_reports.transform.markdown.md_helpers import *
-from sane_doc_reports.transform.markdown.md_helpers import _build_dict_from_sane_json
+from sane_doc_reports.transform.markdown.md_helpers import \
+    build_dict_from_sane_json
 
 
 def test_markdown_to_html_none():
@@ -275,16 +277,6 @@ def test_no_change_fix_unwrapped_text_complex():
     assert res_check == expected.outer_html()
 
 
-def test_build_dict_basic():
-    markdown_string = 'some string'  # 'tes *can **also*** be ~~the~~ nested...'
-    html = markdown_to_html(markdown_string).strip()
-    root_elem = PyQuery(html)
-    res = _build_dict_from_sane_json(root_elem)
-    expected = {'type': 'p', 'contents': 'some string', 'attrs': [],
-                'layout': {}, 'extra': {}}
-    assert res == expected
-
-
 def test_collapse_attrs_basic():
     input_dict = [{"type": "span", "attrs": [], "layout": {}, "extra": {},
                    "contents": [
@@ -294,7 +286,7 @@ def test_collapse_attrs_basic():
                    ]}]
 
     res = collapse_attrs(input_dict)
-    expected = [MS.MarkdownSection("span", "test", {}, {}, ["bold"])]
+    expected = [MarkdownSection("span", "test", {}, {}, ["bold"])]
     assert res[0].get_dict() == expected[0].get_dict()
 
 
@@ -311,7 +303,7 @@ def test_collapse_attrs_nested():
                    ]}]
 
     res = collapse_attrs(input_dict)
-    expected = [MS.MarkdownSection("span", "test", {}, {}, ["bold"])]
+    expected = [MarkdownSection("span", "test", {}, {}, ["bold"])]
     assert res[0].get_dict() == expected[0].get_dict()
 
 
@@ -328,7 +320,7 @@ def test_collapse_attrs_multiple_nested():
                    ]}]
 
     res = collapse_attrs(input_dict)
-    expected = [MS.MarkdownSection("span", "test", {}, {}, ["bold", "italic"])]
+    expected = [MarkdownSection("span", "test", {}, {}, ["bold", "italic"])]
     assert res[0].get_dict() == expected[0].get_dict()
 
 
@@ -348,7 +340,7 @@ def test_collapse_attrs_inner_nesting():
                    ]}]
 
     res = collapse_attrs(input_dict)
-    expected = [MS.MarkdownSection("span", "test", {}, {}, ["bold", "italic"])]
+    expected = [MarkdownSection("span", "test", {}, {}, ["bold", "italic"])]
     assert res[0].get_dict() == expected[0].get_dict()
 
 
@@ -373,7 +365,7 @@ def test_collapse_attrs_inner_nesting_deep():
                    ]}]
 
     res = collapse_attrs(input_dict)
-    expected = [MS.MarkdownSection("span", "test", {}, {}, ["bold", "italic"])]
+    expected = [MarkdownSection("span", "test", {}, {}, ["bold", "italic"])]
     assert res[0].get_dict() == expected[0].get_dict()
 
 
@@ -390,17 +382,27 @@ def test_collapse_attrs_not_all_collapsable():
                    ]}]
 
     res = collapse_attrs(input_dict)
-    expected = [MS.MarkdownSection("span", [
-        MS.MarkdownSection("sometag", "test", {}, {})
+    expected = [MarkdownSection("span", [
+        MarkdownSection("sometag", "test", {}, {})
     ], {}, {}, ["bold"])]
     assert res[0].get_dict() == expected[0].get_dict()
+
+
+def test_build_dict_basic():
+    markdown_string = 'some string'  # 'tes *can **also*** be ~~the~~ nested...'
+    html = markdown_to_html(markdown_string).strip()
+    root_elem = PyQuery(html)
+    res = build_dict_from_sane_json(root_elem)
+    expected = {'type': 'p', 'contents': 'some string', 'attrs': [],
+                'layout': {}, 'extra': {}}
+    assert res == expected
 
 
 def test_build_dict_basic_element():
     markdown_string = 'some **string**'
     html = markdown_to_html(markdown_string).strip()
     root_elem = PyQuery(html)
-    res = _build_dict_from_sane_json(root_elem)
+    res = build_dict_from_sane_json(root_elem)
     expected = {'type': 'p', 'contents': [
         {'type': 'span', 'contents': 'some ', 'attrs': [],
          'layout': {}, 'extra': {}},
@@ -413,11 +415,23 @@ def test_build_dict_basic_element():
     assert res == expected
 
 
+def test_build_dict_md_code():
+    markdown_string = '`some string`'
+    html = markdown_to_html(markdown_string).strip()
+    root_elem = PyQuery(html)
+    res = build_dict_from_sane_json(root_elem)
+    expected = {'type': 'p', 'attrs': [], 'layout': {}, 'contents': [
+        {'type': 'code', 'attrs': [], 'layout': {},
+         'contents': 'some string', 'extra': {}}
+    ], 'extra': {}}
+    assert res == expected
+
+
 def test_build_dict_deep_ul():
     markdown_string = '- parent\n\t- child'
     html = markdown_to_html(markdown_string).strip()
     root_elem = PyQuery(html)
-    res = _build_dict_from_sane_json(root_elem)
+    res = build_dict_from_sane_json(root_elem)
     expected = {'type': 'ul', 'contents': [
         {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},  # 0
          'contents': [
@@ -437,7 +451,7 @@ def test_build_dict_ol():
     markdown_string = '1. parent\n\t1. child'
     html = markdown_to_html(markdown_string).strip()
     root_elem = PyQuery(html)
-    res = _build_dict_from_sane_json(root_elem)
+    res = build_dict_from_sane_json(root_elem)
     expected = {'type': 'ol', 'contents': [
         {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},  # 0
          'contents': [
@@ -457,7 +471,7 @@ def test_build_dict_deep_ol():
     markdown_string = '1. parent\n\t1. child\n\t\t1. deep child'
     html = markdown_to_html(markdown_string).strip()
     root_elem = PyQuery(html)
-    res = _build_dict_from_sane_json(root_elem)
+    res = build_dict_from_sane_json(root_elem)
     expected = {'type': 'ol', 'contents': [
         {'type': 'li', 'attrs': [], 'layout': {}, 'extra': {},  # 0
          'contents': [
@@ -488,7 +502,7 @@ def test_build_dict_basic_element_attribute():
     markdown_string = 'some [string](url)'
     html = markdown_to_html(markdown_string).strip()
     root_elem = PyQuery(html)
-    res = _build_dict_from_sane_json(root_elem)
+    res = build_dict_from_sane_json(root_elem)
     expected = {'type': 'p', 'contents': [
         {'type': 'span', 'contents': 'some ', 'attrs': [],
          'layout': {}, 'extra': {}},
@@ -505,7 +519,7 @@ def test_build_dict_text_and_elements():
     markdown_string = 'some **string** and more strings'
     html = markdown_to_html(markdown_string).strip()
     root_elem = PyQuery(html)
-    res = _build_dict_from_sane_json(root_elem)
+    res = build_dict_from_sane_json(root_elem)
     expected = {'type': 'p', 'contents': [
 
         {'type': 'span', 'contents': 'some ', 'attrs': [],
@@ -634,7 +648,7 @@ def test_markdown_to_section_list_quote():
     md_list = markdown_to_section_list(markdown_string)
 
     assert isinstance(md_list, list)
-    assert isinstance(md_list[0], MS.MarkdownSection)
+    assert isinstance(md_list[0], MarkdownSection)
     assert md_list[0].type == MD_TYPE_QUOTE
 
     res = [i.get_dict() for i in md_list]

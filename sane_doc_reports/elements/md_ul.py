@@ -16,8 +16,10 @@ class UlWrapper(Wrapper):
                                        {})
         p_style, list_level, list_type = get_current_li(self.section.extra,
                                                         UNORDERED_LIST_NAME)
-        temp_section.propagate_extra('list_level', list_level)
-        temp_section.propagate_extra('list_type', list_type)
+        temp_section.propagate_extra('list_level', list_level,
+                                     only_multiple_children=False)
+        temp_section.propagate_extra('list_type', list_type,
+                                     only_multiple_children=False)
 
         markdown.invoke(self.cell_object, temp_section,
                         invoked_from_wrapper=True)

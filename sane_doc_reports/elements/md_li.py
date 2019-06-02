@@ -1,4 +1,5 @@
 from sane_doc_reports import utils
+from sane_doc_reports.populate.utils import insert_text
 from sane_doc_reports.transform.markdown.MarkdownSection import MarkdownSection
 from sane_doc_reports.domain.Wrapper import Wrapper
 from sane_doc_reports.conf import DEBUG, MD_TYPE_LIST_ITEM
@@ -19,12 +20,13 @@ class LiWrapper(Wrapper):
                           level=list_level, num=True)
 
         if isinstance(self.section.contents, str):
-            self.cell_object.run.add_text(self.section.contents)
+            insert_text(self.cell_object, self.section.contents)
             return
 
         temp_section = MarkdownSection('markdown', self.section.contents, {},
                                        {})
         temp_section.propagate_extra('inline', True)
+
         markdown.invoke(self.cell_object, temp_section,
                         invoked_from_wrapper=True)
 

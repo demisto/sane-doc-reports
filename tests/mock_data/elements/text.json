@@ -20,14 +20,6 @@
       "rowPos": 0,
       "w": 12
     },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-status:Closed and (severity:High or severity:Critical)",
-        "period": { "byFrom": "days", "fromValue": null, "by": "day" }
-      }
-    },
-    "automation": { "name": "", "id": "", "args": null, "noEvent": false },
     "title": "criticalAndHighIncidents Headline"
   },
   {
@@ -50,14 +42,6 @@
       "rowPos": 1,
       "w": 12
     },
-    "query": {
-      "type": "incident",
-      "filter": {
-        "query": "-status:Closed and (severity:High or severity:Critical)",
-        "period": { "byFrom": "days", "fromValue": null, "by": "day" }
-      }
-    },
-    "automation": { "name": "", "id": "", "args": null, "noEvent": false },
     "title": "criticalAndHighIncidents Headline"
   }
 ]

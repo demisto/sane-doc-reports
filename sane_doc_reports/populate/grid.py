@@ -7,50 +7,14 @@ from sane_doc_reports.transform.positioning import row_pos, col_pos, get_height,
     get_width
 
 
-def _merge_horizontally(grid: Table, row: int, col: int, width: int) -> None:
-    """
-    Merge the base cell at row->col with each adjacent cells in the width range.
-    """
-    for cell_index in range(1, width):
-        cell_to_merge = grid.rows[row].cells[col + cell_index]
-        grid.rows[row].cells[col].merge(cell_to_merge)
-
-
-def _merge_vertically(grid: Table, row: int, col: int, height: int,
-                      require_second_horizontal_merge: bool,
-                      width: int) -> None:
-    """
-    Merge the base cell provided at row->col.
-    Merges with each adjacent cells in the width range (width x cells
-    to the right), here we need to merge horizontally before merging vertically
-    (because it won't enable us to merge ("span not rectangular"))
-    """
-
-    for row_index in range(1, height):
-        if require_second_horizontal_merge:
-            _merge_horizontally(grid, row + row_index, col, width)
-
-        cell_to_merge = grid.rows[row + row_index].cells[col]
-        grid.rows[row].cells[col].merge(cell_to_merge)
-
-
 def merge_cells(grid: Table, section: Section) -> None:
     """
     Merge the sections cell using it's width and height.
     """
     row, col = row_pos(section), col_pos(section)
     width, height = get_width(section), get_height(section)
-    require_second_horizontal_merge = False
 
-    # Merge horizontally
-    if width > 1:
-        _merge_horizontally(grid, row, col, width)
-        require_second_horizontal_merge = True
-
-    # Merge Vertically
-    if height > 1:
-        _merge_vertically(grid, row, col, height,
-                          require_second_horizontal_merge, width)
+    grid.cell(row, col).merge(grid.cell(row + height - 1, col + width - 1))
 
 
 def get_cell(table: Table, section: Section) -> _Cell:

@@ -1,4 +1,4 @@
-- Test investigation...
-- Test propagate in Markdown Section
-- tests attrs in wrappers in collapse (ul/quote -> bold)
-- Test CLI
+- Remove all investigation refrences
+- Remove all type errors
+- Fix the elem_list to create a grid for the inner elements.
+

@@ -5,13 +5,22 @@ from sane_doc_reports import utils
 from sane_doc_reports.domain.Section import Section
 from sane_doc_reports.conf import DEBUG, DEFAULT_ALPHA, \
     DEFAULT_BAR_WIDTH, DEFAULT_BAR_ALPHA, CHART_LABEL_NONE_STRING, \
-    X_AXIS_PADDING
+    X_AXIS_PADDING, DEFAULT_WORD_FONT, DEFAULT_FONT_DARK_COLOR, \
+    DEFAULT_TITLE_FONT_SIZE, DEFAULT_LEGEND_FONT_SIZE, DEFAULT_FONT_LIGHT_COLOR
 
 from sane_doc_reports.elements import image, error
 from sane_doc_reports.styles.colors import get_colors
+from sane_doc_reports.utils import remove_plot_borders, set_legend_style
 
 
 class BarChartElement(Element):
+    style = {
+        'title': {
+            'fontname': DEFAULT_WORD_FONT,
+            'color': DEFAULT_FONT_DARK_COLOR,
+            'fontsize': DEFAULT_TITLE_FONT_SIZE
+        }
+    }
 
     def insert(self):
         """
@@ -47,12 +56,16 @@ class BarChartElement(Element):
 
         # Create and move the legend outside
         ax = plt.gca()
-        legend_location = 'upper left'
-        legend_location_relative_to_graph = (1.0, 1.0)
+        remove_plot_borders(ax)
+        legend_location = 'upper center'
+        legend_location_relative_to_graph = (0.5, -0.35)
 
-        ax.legend(rects, fixed_legends, loc=legend_location,
-                  bbox_to_anchor=legend_location_relative_to_graph) \
-            .get_frame().set_alpha(DEFAULT_ALPHA)
+        a = ax.legend(rects, fixed_legends, loc=legend_location,
+                  bbox_to_anchor=legend_location_relative_to_graph)
+
+        set_legend_style(a)
+        a.get_frame().set_alpha(DEFAULT_ALPHA)
+        a.get_frame().set_linewidth(0.0)
 
         # Fix the axises
         ax.set_yticks(y_axis)
@@ -61,11 +74,12 @@ class BarChartElement(Element):
         ax.set_xlabel('')
 
         # Fix the xaxis ratio to fit biggest element
-        ax.set_xlim(0, max(x_axis) + X_AXIS_PADDING)
+        if x_axis:
+            ax.set_xlim(0, max(x_axis) + X_AXIS_PADDING)
 
         # Remove the bottom labels
         plt.tick_params(bottom='off')
-        plt.title(self.section.extra['title'])
+        plt.title(self.section.extra['title'], **self.style['title'])
 
         plt_b64 = utils.plt_t0_b64(plt)
 

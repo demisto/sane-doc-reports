@@ -1,8 +1,8 @@
-from sane_doc_reports.domain.Section import Section
-from sane_doc_reports.conf import DEBUG, PYDOCX_TEXT_ALIGN, STYLE_KEY, \
-    MD_TYPE_HORIZONTAL_LINE
+from sane_doc_reports.conf import DEBUG, MD_TYPE_HORIZONTAL_LINE, ALIGN_CENTER, \
+    PYDOCX_TEXT_ALIGN, DEFAULT_HR_DASHES_SIZE
 from sane_doc_reports.domain.Element import Element
-from sane_doc_reports.elements import error, text
+from sane_doc_reports.elements import error
+from sane_doc_reports.populate.utils import insert_text
 
 
 class HorizontalLineElement(Element):
@@ -11,17 +11,9 @@ class HorizontalLineElement(Element):
         if DEBUG:
             print('Adding horizontal line...')
 
-        # tc = self.cell_object.cell._tc
-        # hr_oxml = _create_hr_oxml()
-        # tc.append(hr_oxml)
-
         self.cell_object.add_paragraph(add_run=False)
-        section = Section('text', '⎯' * 64, {  # Unicode
-            STYLE_KEY: {
-                PYDOCX_TEXT_ALIGN: 'center'
-            }
-        }, {})
-        text.invoke(self.cell_object, section)
+        insert_text(self.cell_object, '⎯' * DEFAULT_HR_DASHES_SIZE,
+                    style={PYDOCX_TEXT_ALIGN: 'center'})
 
 
 def invoke(cell_object, section):

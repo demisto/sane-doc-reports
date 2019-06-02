@@ -8,13 +8,6 @@
         "right": -1,
         "top": 0
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -29,15 +22,6 @@
         "marginTop": 5,
         "width": "auto"
       }
-    },
-    "query": {
-      "type": "customer"
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -51,13 +35,6 @@
         "padding": 5,
         "width": "auto"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -71,20 +48,6 @@
         "fontSize": 22,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "investigation",
-      "keys": [
-        "name",
-        "id"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -99,13 +62,6 @@
         "marginBottom": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -121,19 +77,6 @@
         "fontSize": 14,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "sessionUser",
-      "keys": [
-        "name"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -143,13 +86,6 @@
       "columnPos": 100,
       "rowPos": 5,
       "style": {}
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -163,13 +99,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -183,19 +112,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "type"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -209,13 +125,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -229,19 +138,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "severity"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -255,13 +151,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -275,19 +164,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "owner"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -301,13 +177,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -321,19 +190,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "dbotStatus"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -347,13 +203,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -367,19 +216,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "sourceBrand"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -393,13 +229,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -413,19 +242,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "sourceInstance"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -439,13 +255,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -459,19 +268,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "playbookId"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -485,13 +281,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -505,19 +294,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "phase"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -531,13 +307,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -551,19 +320,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "roles"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -573,13 +329,6 @@
       "columnPos": 100,
       "rowPos": 10011,
       "style": {}
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -593,13 +342,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -613,13 +355,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -636,13 +371,6 @@
             "fontSize": 16,
             "textAlign": "left"
           }
-        },
-        "query": {},
-        "automation": {
-          "name": "",
-          "id": "",
-          "args": null,
-          "noEvent": false
         }
       },
       {
@@ -656,13 +384,6 @@
             "marginTop": -15,
             "textAlign": "left"
           }
-        },
-        "query": {},
-        "automation": {
-          "name": "",
-          "id": "",
-          "args": null,
-          "noEvent": false
         }
       }
     ],
@@ -674,16 +395,6 @@
         "marginBottom": 12,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "errorTasks"
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -697,16 +408,6 @@
         "marginBottom": 12,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "waitingTasks"
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -716,13 +417,6 @@
       "columnPos": 100,
       "rowPos": 20064,
       "style": {}
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -736,13 +430,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -756,19 +443,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "dbotCreated"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -782,13 +456,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -802,19 +469,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "occurred"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -828,13 +482,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -848,19 +495,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "dbotDueDate"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -874,13 +508,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -894,19 +521,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "dbotModified"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -920,13 +534,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -940,19 +547,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "dbotTotalTime"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -962,13 +556,6 @@
       "columnPos": 100,
       "rowPos": 30068,
       "style": {}
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -982,13 +569,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1002,19 +582,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "detectionsla"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1028,13 +595,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1048,19 +608,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "remediationsla"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1074,13 +621,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1094,19 +634,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "timetoassignment"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1116,13 +643,6 @@
       "columnPos": 100,
       "rowPos": 40070,
       "style": {}
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1136,13 +656,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1156,19 +669,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "details"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1178,13 +678,6 @@
       "columnPos": 100,
       "rowPos": 50072,
       "style": {}
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1198,13 +691,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1216,13 +702,6 @@
       "style": {
         "marginTop": -10
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1236,19 +715,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "labels.Instance"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1262,13 +728,6 @@
         "fontSize": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1280,13 +739,6 @@
       "style": {
         "marginTop": -10
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1300,19 +752,6 @@
         "marginTop": -15,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incident",
-      "keys": [
-        "labels.Brand"
-      ]
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1322,13 +761,6 @@
       "columnPos": 100,
       "rowPos": 60080,
       "style": {}
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1354,16 +786,6 @@
         "path",
         "description"
       ]
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "incidentsAttachments"
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1373,13 +795,6 @@
       "columnPos": 100,
       "rowPos": 70082,
       "style": {}
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1406,13 +821,6 @@
             "padding": 6,
             "textAlign": "left"
           }
-        },
-        "query": {},
-        "automation": {
-          "name": "",
-          "id": "",
-          "args": null,
-          "noEvent": false
         }
       },
       {
@@ -1430,13 +838,6 @@
             "padding": 6,
             "textAlign": "left"
           }
-        },
-        "query": {},
-        "automation": {
-          "name": "",
-          "id": "",
-          "args": null,
-          "noEvent": false
         }
       },
       {
@@ -1453,13 +854,6 @@
             "padding": 6,
             "textAlign": "left"
           }
-        },
-        "query": {},
-        "automation": {
-          "name": "",
-          "id": "",
-          "args": null,
-          "noEvent": false
         }
       },
       {
@@ -1475,13 +869,6 @@
             "fontSize": 14,
             "padding": 6
           }
-        },
-        "query": {},
-        "automation": {
-          "name": "",
-          "id": "",
-          "args": null,
-          "noEvent": false
         }
       },
       {
@@ -1505,13 +892,6 @@
             "padding": 6,
             "textAlign": "left"
           }
-        },
-        "query": {},
-        "automation": {
-          "name": "",
-          "id": "",
-          "args": null,
-          "noEvent": false
         }
       },
       {
@@ -1529,13 +909,6 @@
             "padding": 6,
             "textAlign": "left"
           }
-        },
-        "query": {},
-        "automation": {
-          "name": "",
-          "id": "",
-          "args": null,
-          "noEvent": false
         }
       },
       {
@@ -1552,13 +925,6 @@
             "padding": 6,
             "textAlign": "left"
           }
-        },
-        "query": {},
-        "automation": {
-          "name": "",
-          "id": "",
-          "args": null,
-          "noEvent": false
         }
       },
       {
@@ -1574,13 +940,6 @@
             "fontSize": 14,
             "padding": 6
           }
-        },
-        "query": {},
-        "automation": {
-          "name": "",
-          "id": "",
-          "args": null,
-          "noEvent": false
         }
       },
       {
@@ -1604,13 +963,6 @@
             "padding": 6,
             "textAlign": "left"
           }
-        },
-        "query": {},
-        "automation": {
-          "name": "",
-          "id": "",
-          "args": null,
-          "noEvent": false
         }
       },
       {
@@ -1628,13 +980,6 @@
             "padding": 6,
             "textAlign": "left"
           }
-        },
-        "query": {},
-        "automation": {
-          "name": "",
-          "id": "",
-          "args": null,
-          "noEvent": false
         }
       },
       {
@@ -1651,13 +996,6 @@
             "padding": 6,
             "textAlign": "left"
           }
-        },
-        "query": {},
-        "automation": {
-          "name": "",
-          "id": "",
-          "args": null,
-          "noEvent": false
         }
       },
       {
@@ -1673,13 +1011,6 @@
             "fontSize": 14,
             "padding": 6
           }
-        },
-        "query": {},
-        "automation": {
-          "name": "",
-          "id": "",
-          "args": null,
-          "noEvent": false
         }
       },
       {
@@ -1703,13 +1034,6 @@
             "padding": 6,
             "textAlign": "left"
           }
-        },
-        "query": {},
-        "automation": {
-          "name": "",
-          "id": "",
-          "args": null,
-          "noEvent": false
         }
       },
       {
@@ -1727,13 +1051,6 @@
             "padding": 6,
             "textAlign": "left"
           }
-        },
-        "query": {},
-        "automation": {
-          "name": "",
-          "id": "",
-          "args": null,
-          "noEvent": false
         }
       },
       {
@@ -1750,13 +1067,6 @@
             "padding": 6,
             "textAlign": "left"
           }
-        },
-        "query": {},
-        "automation": {
-          "name": "",
-          "id": "",
-          "args": null,
-          "noEvent": false
         }
       },
       {
@@ -1772,13 +1082,6 @@
             "fontSize": 14,
             "padding": 6
           }
-        },
-        "query": {},
-        "automation": {
-          "name": "",
-          "id": "",
-          "args": null,
-          "noEvent": false
         }
       }
     ],
@@ -1790,24 +1093,6 @@
         "marginBottom": 12,
         "textAlign": "left"
       }
-    },
-    "query": {
-      "type": "entries",
-      "filter": {
-        "pageSize": 100,
-        "lastId": "",
-        "categories": [
-          "incidentInfo"
-        ],
-        "tags": [],
-        "users": []
-      }
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1817,13 +1102,6 @@
       "columnPos": 100,
       "rowPos": 80083,
       "style": {}
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1837,13 +1115,6 @@
         "marginBottom": 12,
         "textAlign": "left"
       }
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": true
     }
   },
   {
@@ -1853,13 +1124,6 @@
       "columnPos": 100,
       "rowPos": 90084,
       "style": {}
-    },
-    "query": {},
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   },
   {
@@ -1897,16 +1161,6 @@
         "Email",
         "Phone"
       ]
-    },
-    "query": {
-      "type": "sessionData",
-      "filter": "investigationUsers"
-    },
-    "automation": {
-      "name": "",
-      "id": "",
-      "args": null,
-      "noEvent": false
     }
   }
 ]

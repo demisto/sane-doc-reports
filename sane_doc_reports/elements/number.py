@@ -1,17 +1,26 @@
-from docx.shared import Pt
-
 from sane_doc_reports.domain.CellObject import CellObject
 from sane_doc_reports.domain.Element import Element
-from sane_doc_reports.conf import DEBUG, TREND_MAIN_NUMBER_FONT_SIZE, \
-    TREND_SECOND_NUMBER_FONT_SIZE, ALIGN_RIGHT
 from sane_doc_reports.elements import error
-
+from sane_doc_reports.populate.utils import insert_text
+from sane_doc_reports.conf import DEBUG, TREND_MAIN_NUMBER_FONT_SIZE, \
+    TREND_SECOND_NUMBER_FONT_SIZE, PYDOCX_TEXT_ALIGN, \
+    PYDOCX_FONT_SIZE, ALIGN_CENTER
 
 class NumberElement(Element):
+    style = {
+        'main': {
+            PYDOCX_FONT_SIZE: TREND_MAIN_NUMBER_FONT_SIZE,
+            PYDOCX_TEXT_ALIGN: ALIGN_CENTER,
+        },
+        'title': {
+            PYDOCX_FONT_SIZE: TREND_SECOND_NUMBER_FONT_SIZE,
+            PYDOCX_TEXT_ALIGN: ALIGN_CENTER,
+        }
+    }
 
     def insert(self):
         if DEBUG:
-            print("Adding number: ", self.section.contents)
+            print('Adding number...')
 
         table = self.cell_object.cell.add_table(rows=1, cols=1)
 
@@ -20,20 +29,13 @@ class NumberElement(Element):
 
         # Add the main number
         inner_cell = table.cell(0, 0)
-
         main_number = CellObject(inner_cell)
-        main_number.run.text = str(self.section.contents)
-        main_number.run.font.size = Pt(TREND_MAIN_NUMBER_FONT_SIZE)
-        main_number.run.font.bold = True
-        main_number.paragraph.alignment = ALIGN_RIGHT
 
-        # Add the title
-        title_paragraph = inner_cell.add_paragraph()
-        title_run = title_paragraph.add_run()
-        title_run.text = str(self.section.extra['title'])
-        title_run.font.size = Pt(TREND_SECOND_NUMBER_FONT_SIZE)
-        title_run.font.bold = False
-        title_paragraph.alignment = ALIGN_RIGHT
+        insert_text(main_number, str(self.section.contents), self.style['main'])
+
+        main_number.add_paragraph(add_run=True)
+        insert_text(main_number, str(self.section.extra['title']),
+                    self.style['title'])
 
 
 def invoke(cell_object, section):

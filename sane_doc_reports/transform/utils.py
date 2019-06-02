@@ -28,6 +28,15 @@ def transform_old_json_format(json_data: List[dict]) -> List[dict]:
     json_data[0][LAYOUT_KEY][ROW_POSITION_KEY] = 0
     json_data[0][LAYOUT_KEY][COL_POSITION_KEY] = 0
 
+    # Remove unnecessary first elements (logo/side image)
+    # We need to do this before we calculate the rowPos
+    if json_data[0]['type'] == 'image':
+        del json_data[0]
+    if json_data[0]['type'] == 'logo':
+        del json_data[0]
+    if json_data[0]['type'] == 'logo':
+        del json_data[0]
+
     # Normalize the rowPos
     json_data.sort(key=lambda item: item[LAYOUT_KEY][ROW_POSITION_KEY])
 

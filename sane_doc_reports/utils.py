@@ -14,7 +14,7 @@ from matplotlib import pyplot as plt, font_manager
 from sane_doc_reports.domain import CellObject, Section
 from sane_doc_reports.conf import SIZE_H_INCHES, SIZE_W_INCHES, DPI, \
     DEFAULT_DPI, DEFAULT_LEGEND_FONT_SIZE, DEFAULT_WORD_FONT, \
-    DEFAULT_FONT_LIGHT_COLOR, DEFAULT_ALPHA, DEFAULT_FONT_DARK_COLOR
+    DEFAULT_ALPHA, DEFAULT_FONT_COLOR
 
 
 def open_b64_image(image_base64):
@@ -199,4 +199,4 @@ def set_legend_style(legend):
                                        size=DEFAULT_LEGEND_FONT_SIZE)
     for text in legend.get_texts():
         text.set_fontproperties(font)
-        text.set_color(DEFAULT_FONT_DARK_COLOR)
+        text.set_color(DEFAULT_FONT_COLOR)

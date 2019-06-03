@@ -32,7 +32,7 @@ $ pytest --cov=sane_doc_reports # For coverage
 ### Terminology
 1) Grid Layout - all of the docs are created in a table so we could position them.
 2) CellObject - corresponds to a cell when the element will be inserted into
-3) Section - Ususally an element that we will place into a cell (has a type, contents (whcih can be more sections), layout (style and position), extra (metadata used mainly in recursive stuff), attrs (hold any markdown attributes generated from the html generated)).
+3) Section - Usually an element that we will place into a cell (has a type, contents (which can be more sections), layout (style and position), extra (metadata used mainly in recursive stuff), attrs (hold any markdown attributes generated from the html generated)).
 4) Element - a `python-docx` implementation of an element from the sane-reports.
 5) Styles - Element styles.
 6) elements/md_* - Markdown generated elements

@@ -111,18 +111,21 @@ def get_ax_location(legend_style):
     return f'{vertical_align} {align}'
 
 
-def get_current_li(extra, list_type) -> Tuple[str, int, str]:
+def get_current_li(extra, list_type):
     """ Return the current list item style and indent level """
-    list_level = 1
     list_type = list_type if 'list_type' not in extra else extra['list_type']
-    p_style = list_type
-    if 'list_level' in extra:
-        list_level = int(extra['list_level']) + 1
+    if not extra or 'list_level' not in extra:
+        return list_type, 0, list_type
 
-        # Word doesn't have more than 3 levels of indentation
-        if list_level >= 4:
-            list_level = 3
+    extra_list_level = int(extra['list_level'])
+    list_level = 0
+    if extra_list_level == 0:
+        list_level = 2
+        p_style = list_type
+    elif extra_list_level > 0:
+        list_level += extra['list_level'] + 1
         p_style = f'{list_type} {list_level}'
+
     return p_style, list_level, list_type
 
 

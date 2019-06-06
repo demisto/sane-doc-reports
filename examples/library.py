@@ -33,6 +33,11 @@ def example_hr(out_file_name='example.docx'):
     main.run(get_mock('elements/hr.json', ret_dict=False), out_file_name)
 
 
+def example_line_chart(out_file_name='example.docx'):
+    main.run(get_mock('elements/line_chart.json', ret_dict=False),
+             out_file_name)
+
+
 def example_old_json(out_file_name='example.docx'):
     main.run(get_mock('old_json.json', ret_dict=False),
              out_file_name)
@@ -49,12 +54,10 @@ def example_bar_chart(out_file_name='example.docx'):
 
 
 def example_duration(out_file_name='example.docx'):
-    # Generate a big elements file for testing
     main.run(get_mock('elements/duration.json', ret_dict=False), out_file_name)
 
 
 def example():
-    # Generate a big elements file for testing
     main.run(get_mock('example.json', ret_dict=False), 'example.docx')
 
 
@@ -69,7 +72,8 @@ def run_all():
         example_hr,
         example_old_json,
         example_bar_chart,
-        example_duration
+        example_duration,
+        example_line_chart
     ]
     for out_index, fun in enumerate(examples):
         out_file_name = f'example_{out_index}.docx'
@@ -77,7 +81,7 @@ def run_all():
 
 
 def run():
-    example_markdown()
+    example_line_chart()
 
 
 if __name__ == '__main__':

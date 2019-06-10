@@ -81,7 +81,7 @@ def run_all():
 
 
 def run():
-    example_line_chart()
+    example()
 
 
 if __name__ == '__main__':

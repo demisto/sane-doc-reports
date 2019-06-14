@@ -3,11 +3,12 @@ from matplotlib.pyplot import figure
 
 from sane_doc_reports import utils
 from sane_doc_reports.domain.Element import Element
-from sane_doc_reports.conf import DEBUG, DEFAULT_ALPHA
+from sane_doc_reports.conf import DEBUG, DEFAULT_ALPHA, DEFAULT_WORD_FONT, \
+    DEFAULT_FONT_COLOR, DEFAULT_TITLE_FONT_SIZE
 from sane_doc_reports.domain.Section import Section
 from sane_doc_reports.elements import error, image
 from sane_doc_reports.styles.colors import get_colors
-from sane_doc_reports.utils import get_ax_location, remove_plot_borders, \
+from sane_doc_reports.utils import remove_plot_borders, \
     set_legend_style
 
 
@@ -28,6 +29,13 @@ def _fix_date_range(groups):
 
 
 class LineChartElement(Element):
+    style = {
+        'title': {
+            'fontname': DEFAULT_WORD_FONT,
+            'color': DEFAULT_FONT_COLOR,
+            'fontsize': DEFAULT_TITLE_FONT_SIZE
+        }
+    }
 
     @utils.plot
     def insert(self):
@@ -102,12 +110,11 @@ class LineChartElement(Element):
         legend_location = 'upper center'
         legend_location_relative_to_graph = (0.5, -0.35)
 
-        a = ax.legend([i for i in groups.keys()], loc=legend_location,
+        legend = ax.legend([i for i in groups.keys()], loc=legend_location,
                       bbox_to_anchor=legend_location_relative_to_graph)
 
-        set_legend_style(a)
-        a.get_frame().set_alpha(DEFAULT_ALPHA)
-        a.get_frame().set_linewidth(0.0)
+        set_legend_style(legend)
+        ax.set_title(self.section.extra['title'], **self.style['title'])
 
         # Add to docx as image
         plt_b64 = utils.plt_t0_b64(plt)

@@ -99,3 +99,4 @@ HTML_NOT_WRAPABLES = ['span', 'li', 'ul', 'ol', 'code', 'blockquote']
 HTML_ATTRIBUTES = ['em', 'strong', 'del']
 HTML_ATTR_MARKDOWN_MAP = {'em': 'italic', 'strong': 'bold',
                           'del': 'strikethrough'}
+SHOULD_NEW_LINE = ['hr'] + MD_TYPES_HEADERS

@@ -10,7 +10,7 @@ class UnimplementedElement(Element):
         if DEBUG:
             print('Adding unimplemented...')
 
-        self.section.contents = f'{self.section.type} is not implemented' + \
+        self.section.contents = f'"{self.section.type}" is not implemented' + \
                                 ' in Docx yet. If required, use PDF instead.'
         error.invoke(self.cell_object, self.section)
 

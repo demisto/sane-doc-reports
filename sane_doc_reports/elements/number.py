@@ -34,8 +34,7 @@ class NumberElement(Element):
 
         # Add the main number
         inner_cell = table.cell(0, 0)
-        code_color = '#f9f9fb'
-        inner_cell = insert_cell_background(inner_cell, code_color)
+        inner_cell = insert_cell_background(inner_cell, '#f9f9fb')
         main_number = CellObject(inner_cell)
 
         insert_text(main_number, str(self.section.contents), self.style['main'])

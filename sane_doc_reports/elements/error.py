@@ -1,6 +1,7 @@
 from sane_doc_reports.domain.Element import Element
 from sane_doc_reports.conf import DEBUG
 import sane_doc_reports.populate.utils as utils
+from sane_doc_reports.styles.utils import insert_cell_background
 
 
 class ErrorElement(Element):
@@ -21,6 +22,7 @@ class ErrorElement(Element):
         }
 
         error_message = f'ERROR GENERATING SECTION ({self.section.contents})'
+        self.cell_object.cell = insert_cell_background(self.cell_object.cell, '#f9f9fb')
         utils.insert_text(self.cell_object, error_message, style)
 
 

@@ -5,12 +5,11 @@ from sane_doc_reports.conf import DEBUG, DEFAULT_DURATION_TITLE, \
     PYDOCX_FONT_SIZE, DEFAULT_DURATION_TITLE_FONT_SIZE, \
     DEFAULT_DURATION_FONT_SIZE, \
     DEFAULT_DURATION_LABEL_FONT_SIZE, DURATION_MINUTES_LABEL, \
-    DURATION_HOURS_LABEL, DURATION_DAYS_LABEL, PYDOCX_TEXT_ALIGN, \
-    DEFAULT_COLORED_CELL_COLOR
+    DURATION_HOURS_LABEL, DURATION_DAYS_LABEL, PYDOCX_TEXT_ALIGN
+
 from sane_doc_reports.elements import error
 from sane_doc_reports.populate.utils import insert_text
-from sane_doc_reports.styles.utils import insert_cell_background, \
-    set_cell_margins
+from sane_doc_reports.styles.utils import set_cell_margins, style_cell
 
 
 def format_number(num):
@@ -72,7 +71,7 @@ class DurationElement(Element):
             table.style = 'Table Grid'
 
         title_cell = table.cell(0, 0)
-        title_cell = insert_cell_background(title_cell)
+        style_cell(title_cell)
         title_cell.merge(table.cell(0, 4))
 
         title = DEFAULT_DURATION_TITLE
@@ -84,31 +83,31 @@ class DurationElement(Element):
 
         # Days
         days_cell = table.cell(1, 0)
-        days_cell = insert_cell_background(days_cell)
+        style_cell(days_cell)
         insert_text(days_cell, days, self.style['duration'])
         insert_text(days_cell, DURATION_DAYS_LABEL, self.style['label'],
                     add_run=True)
 
         # Add first colon
         colon_right = table.cell(1, 1)
-        colon_right = insert_cell_background(colon_right)
+        style_cell(colon_right)
         insert_text(colon_right, ':', self.style['duration'])
 
         # Hours
         hours_cell = table.cell(1, 2)
-        hours_cell = insert_cell_background(hours_cell)
+        style_cell(hours_cell)
         insert_text(hours_cell, hours, self.style['duration'])
         insert_text(hours_cell, DURATION_HOURS_LABEL, self.style['label'],
                     add_run=True)
 
         # Add second colon
         colon_left = table.cell(1, 3)
-        colon_left = insert_cell_background(colon_left)
+        style_cell(colon_left)
         insert_text(colon_left, ':', self.style['duration'])
 
         # Minutes
         minutes_cell = table.cell(1, 4)
-        minutes_cell = insert_cell_background(minutes_cell)
+        style_cell(minutes_cell)
         insert_text(minutes_cell, minutes, self.style['duration'], add_run=True)
         insert_text(minutes_cell, DURATION_MINUTES_LABEL, self.style['label'],
                     add_run=True)

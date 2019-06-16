@@ -100,6 +100,11 @@ def insert_text_style(section: Section) -> Section:
     return _attach_all_styles(section, base_style)
 
 
+def style_cell(cell: _Cell, margins={}):
+    insert_cell_background(cell)
+    set_cell_margins(cell, margins)
+
+
 def insert_cell_background(cell: _Cell,
                            color_hex=DEFAULT_COLORED_CELL_COLOR) -> _Cell:
     """ Add a background color to a cell, from hex color """

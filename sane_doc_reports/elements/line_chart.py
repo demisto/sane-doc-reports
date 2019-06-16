@@ -9,7 +9,7 @@ from sane_doc_reports.domain.Section import Section
 from sane_doc_reports.elements import error, image
 from sane_doc_reports.styles.colors import get_colors
 from sane_doc_reports.utils import remove_plot_borders, \
-    set_legend_style
+    set_legend_style, get_chart_font, set_axis_font
 
 
 def fix_data(data):
@@ -36,7 +36,7 @@ def fix_data(data):
 class LineChartElement(Element):
     style = {
         'title': {
-            'fontname': DEFAULT_WORD_FONT,
+            'fontname': get_chart_font(),
             'color': DEFAULT_FONT_COLOR,
             'fontsize': DEFAULT_TITLE_FONT_SIZE
         }
@@ -109,6 +109,7 @@ class LineChartElement(Element):
                            bbox_to_anchor=legend_location_relative_to_graph)
 
         set_legend_style(legend)
+        set_axis_font(ax)
         ax.set_title(self.section.extra['title'], **self.style['title'])
 
         # Add to docx as image

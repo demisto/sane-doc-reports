@@ -5,6 +5,9 @@ from sane_doc_reports.populate.utils import insert_text
 from sane_doc_reports.conf import DEBUG, TREND_MAIN_NUMBER_FONT_SIZE, \
     TREND_SECOND_NUMBER_FONT_SIZE, PYDOCX_TEXT_ALIGN, \
     PYDOCX_FONT_SIZE, ALIGN_CENTER
+from sane_doc_reports.styles.colors import name_to_hex
+from sane_doc_reports.styles.utils import insert_cell_background
+
 
 class NumberElement(Element):
     style = {
@@ -29,6 +32,8 @@ class NumberElement(Element):
 
         # Add the main number
         inner_cell = table.cell(0, 0)
+        code_color = "#e6e6e6"
+        inner_cell = insert_cell_background(inner_cell, code_color)
         main_number = CellObject(inner_cell)
 
         insert_text(main_number, str(self.section.contents), self.style['main'])

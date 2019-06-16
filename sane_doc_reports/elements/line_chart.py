@@ -98,7 +98,6 @@ class LineChartElement(Element):
             plt.plot(x_axis, y_axis, marker='', color=final_colors[group],
                      linewidth=2)
 
-
         # Create and move the legend outside
         ax = plt.gca()
         plt.setp(ax.get_xticklabels(), rotation=30, horizontalalignment='right')

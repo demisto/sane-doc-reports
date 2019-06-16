@@ -1,3 +1,5 @@
+from docx.shared import Pt
+
 from sane_doc_reports.domain.CellObject import CellObject
 from sane_doc_reports.domain.Element import Element
 from sane_doc_reports.elements import error
@@ -32,7 +34,7 @@ class NumberElement(Element):
 
         # Add the main number
         inner_cell = table.cell(0, 0)
-        code_color = "#e6e6e6"
+        code_color = '#f9f9fb'
         inner_cell = insert_cell_background(inner_cell, code_color)
         main_number = CellObject(inner_cell)
 

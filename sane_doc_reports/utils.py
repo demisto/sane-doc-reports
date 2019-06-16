@@ -12,7 +12,7 @@ from matplotlib import pyplot as plt
 import matplotlib.font_manager as fm
 
 from sane_doc_reports.domain import CellObject, Section
-from sane_doc_reports.conf import SIZE_H_INCHES, SIZE_W_INCHES, DPI, \
+from sane_doc_reports.conf import SIZE_H_INCHES, SIZE_W_INCHES, \
     DEFAULT_DPI, DEFAULT_LEGEND_FONT_SIZE, DEFAULT_WORD_FONT, \
     DEFAULT_ALPHA, DEFAULT_FONT_COLOR, DEFAULT_WORD_FONT_FALLBACK
 
@@ -80,7 +80,7 @@ def plt_t0_b64(plt: matplotlib.pyplot):
         next(tempfile._get_candidate_names()) + '.png')
 
     plt.savefig(str(path), format='png', bbox_inches='tight', figsize=(1, 1),
-                dpi=80)
+                dpi=DEFAULT_DPI)
 
     with open(str(path), "rb") as f:
         img_base64 = base64.b64encode(f.read()).decode("utf-8", "ignore")
@@ -92,7 +92,7 @@ def plt_t0_b64(plt: matplotlib.pyplot):
 
 def convert_plt_size(section: Section):
     """ Convert the plot size from pixels to word """
-    size_w, size_h, dpi = (SIZE_W_INCHES, SIZE_H_INCHES, DPI)
+    size_w, size_h, dpi = (SIZE_W_INCHES, SIZE_H_INCHES, DEFAULT_DPI)
     if 'dimensions' in section.layout:
         h = section.layout['dimensions']['height'] / DEFAULT_DPI
         w = section.layout['dimensions']['width'] / DEFAULT_DPI

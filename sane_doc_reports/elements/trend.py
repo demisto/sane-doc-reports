@@ -33,7 +33,7 @@ class TrendElement(Element):
         # Add the main number
         current_sum = self.section.contents['currSum']
         inner_cell = table.cell(0, 1)
-        code_color = "#e6e6e6"
+        code_color = '#f9f9fb'
         inner_cell = insert_cell_background(inner_cell, code_color)
         main_number = CellObject(inner_cell)
         insert_text(main_number, str(current_sum), self.style['main'])

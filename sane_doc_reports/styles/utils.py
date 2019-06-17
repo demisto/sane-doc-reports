@@ -103,6 +103,33 @@ def insert_text_style(section: Section) -> Section:
 def style_cell(cell: _Cell, margins={}):
     insert_cell_background(cell)
     set_cell_margins(cell, margins)
+    add_border(cell)
+
+
+def add_border(cell: _Cell):
+    '''
+    <w:tcPr>
+    <w:tcBorders>
+    <w:top w:val="double" w:sz="24" w:space="0" w:color="FF0000">
+    <w:start w:val="double" w:sz="24" w:space="0" w:color="FF0000">
+    <w:bottom w:val="double" w:sz="24" w:space="0" w:color="FF0000">
+    <w:end w:val="double" w:sz="24" w:space="0" w:color="FF0000">
+    <w:tl2br w:val="double" w:sz="24" w:space="0" w:color="FF0000">
+    </w:tcBorders>
+    <w:tcPr>
+    '''
+    tc = cell._tc
+    tcPr = tc.get_or_add_tcPr()
+    tcMar = OxmlElement('w:tcBorders')
+
+    for k in ['top', 'start', 'bottom', 'end']:
+        node = OxmlElement(f'w:{k}')
+        node.set(qn('w:val'), 'outset')
+        node.set(qn('w:sz'), '44')
+        node.set(qn('w:color'), DEFAULT_COLORED_CELL_COLOR)
+        tcMar.append(node)
+
+    tcPr.append(tcMar)
 
 
 def insert_cell_background(cell: _Cell,

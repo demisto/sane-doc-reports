@@ -124,8 +124,8 @@ def add_border(cell: _Cell):
 
     for k in ['top', 'start', 'bottom', 'end']:
         node = OxmlElement(f'w:{k}')
-        node.set(qn('w:val'), 'outset')
-        node.set(qn('w:sz'), '44')
+        node.set(qn('w:val'), 'inset')
+        node.set(qn('w:sz'), '87')
         node.set(qn('w:color'), DEFAULT_COLORED_CELL_COLOR)
         tcMar.append(node)
 

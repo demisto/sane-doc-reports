@@ -71,7 +71,8 @@ class PieChartElement(Element):
         legend = ax.legend(wedges, keys_with_numbers,
                            title="",
                            loc=legend_location,
-                           bbox_to_anchor=legend_location_relative_to_graph
+                           bbox_to_anchor=legend_location_relative_to_graph,
+                           handlelength=0.7
                            )
         set_legend_style(legend)
         set_axis_font(ax)

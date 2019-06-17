@@ -13,7 +13,7 @@ class ErrorElement(Element):
             print('Adding error element...')
 
         style = {
-            'bold': True,
+            'bold': False,
             'color': '#ff0013',
             'fontSize': 10,
             'underline': False,

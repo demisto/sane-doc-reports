@@ -106,7 +106,8 @@ class LineChartElement(Element):
         legend_location_relative_to_graph = (0.5, -0.35)
 
         legend = ax.legend([i for i in groups.keys()], loc=legend_location,
-                           bbox_to_anchor=legend_location_relative_to_graph)
+                           bbox_to_anchor=legend_location_relative_to_graph,
+                           handlelength=0.7)
 
         set_legend_style(legend)
         set_axis_font(ax)

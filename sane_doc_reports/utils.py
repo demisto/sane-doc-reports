@@ -14,7 +14,8 @@ import matplotlib.font_manager as fm
 from sane_doc_reports.domain import CellObject, Section
 from sane_doc_reports.conf import SIZE_H_INCHES, SIZE_W_INCHES, \
     DEFAULT_DPI, DEFAULT_LEGEND_FONT_SIZE, DEFAULT_WORD_FONT, \
-    DEFAULT_ALPHA, DEFAULT_FONT_COLOR, DEFAULT_WORD_FONT_FALLBACK
+    DEFAULT_ALPHA, DEFAULT_FONT_COLOR, DEFAULT_WORD_FONT_FALLBACK, \
+    DEFAULT_FONT_AXIS_COLOR
 
 
 def open_b64_image(image_base64):
@@ -200,6 +201,9 @@ def remove_plot_borders(ax):
 def set_axis_font(ax):
     font = fm.FontProperties(family=get_chart_font(),
                              size=DEFAULT_LEGEND_FONT_SIZE)
+
+    ax.tick_params(axis='x', colors=DEFAULT_FONT_AXIS_COLOR)
+    ax.tick_params(axis='y', colors=DEFAULT_FONT_AXIS_COLOR)
 
     for label in ax.get_xticklabels():
         label.set_fontproperties(font)

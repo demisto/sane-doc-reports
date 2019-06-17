@@ -62,7 +62,8 @@ class BarChartElement(Element):
         legend_location_relative_to_graph = (0.5, -0.35)
 
         a = ax.legend(rects, fixed_legends, loc=legend_location,
-                      bbox_to_anchor=legend_location_relative_to_graph)
+                      bbox_to_anchor=legend_location_relative_to_graph,
+                      handlelength=0.7)
 
         set_legend_style(a)
 

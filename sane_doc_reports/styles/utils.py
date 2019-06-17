@@ -49,9 +49,9 @@ def _apply_cell_styling(cell_object: CellObject, section: Section):
 
     # Background color
     if 'backgroundColor' in style:
-        cell_object.cell = insert_cell_background(cell_object.cell,
-                                                  style[
-                                                      PYDOCX_BACKGROUND_COLOR])
+        cell_object.cell = insert_cell_background(
+            cell_object.cell,
+            style[PYDOCX_BACKGROUND_COLOR])
 
     # Paragraph styling
     if PYDOCX_TEXT_ALIGN in style:

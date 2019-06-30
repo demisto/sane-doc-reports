@@ -19,7 +19,7 @@ def fix_data(data):
     last_name = 'value'
     for group in data:
         if group.get('groups', None) is None:
-            data_val = group.get('data', 0)[0]
+            data_val = group.get('data', [0])[0]
             group['groups'] = [{'name': last_name, "data": [data_val]}]
 
         for line in group.get('groups', []):

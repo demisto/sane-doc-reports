@@ -1829,6 +1829,7 @@
   },
   {
     "type": "table",
+    "title": "Some awesome title here",
     "data": [
       {
         "Avatar": {

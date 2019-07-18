@@ -47,7 +47,10 @@ class TableElement(Element):
         hdr_cells = table.rows[0].cells
 
         for i, header_text in enumerate(table_columns):
-            insert_text(hdr_cells[i], header_text, self.style['text'])
+            if isinstance(header_text, str):
+                insert_text(hdr_cells[i], header_text, self.style['text'])
+            else:
+                table_columns.remove(header_text)
 
         for r in table_data:
             row_cells = table.add_row().cells

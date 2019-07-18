@@ -87,7 +87,7 @@ def run_all():
 
 
 def run():
-    example()
+    example_table()
 
 
 if __name__ == '__main__':

@@ -22,7 +22,8 @@ def fix_order(ordered, readable_headers) -> list:
 
     ret = []
     for ordered_key in ordered:
-        ret.append(temp_readable[ordered_key])
+        if isinstance(ordered_key, str):
+            ret.append(temp_readable[ordered_key])
     return ret
 
 

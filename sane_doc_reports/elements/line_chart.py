@@ -14,7 +14,7 @@ from sane_doc_reports.utils import remove_plot_borders, \
 
 
 def fix_data(data):
-    dates = [i['name'] for i in datsa]
+    dates = [i['name'] for i in data]
     new_groups = {}
 
     last_name = 'value'

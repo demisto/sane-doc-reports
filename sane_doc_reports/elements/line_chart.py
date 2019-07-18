@@ -107,7 +107,10 @@ class LineChartElement(Element):
 
         # Create and move the legend outside
         ax = plt.gca()
-        plt.setp(ax.get_xticklabels(), rotation=30, horizontalalignment='right')
+        rotation = 0
+        if len(ax.get_xticklabels()) > 9:
+            rotation = 30
+        plt.setp(ax.get_xticklabels(), rotation=rotation, horizontalalignment='right')
         remove_plot_borders(ax)
         legend_location = 'upper center'
         legend_location_relative_to_graph = (0.5, -0.35)

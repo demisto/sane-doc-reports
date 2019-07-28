@@ -129,6 +129,11 @@ def get_current_li(extra, list_type):
     if extra_list_level == 0:
         list_level = 2
         p_style = list_type
+    elif extra_list_level > 4:
+        # The docx template doesn't support more than
+        #   4 levels of indentation.
+        list_level = 4
+        p_style = f'{list_type} {list_level}'
     elif extra_list_level > 0:
         list_level += extra['list_level'] + 1
         p_style = f'{list_type} {list_level}'

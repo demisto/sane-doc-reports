@@ -5,7 +5,8 @@ from sane_doc_reports.conf import LAYOUT_KEY, \
     HEIGHT_POSITION_KEY, WIDTH_POSITION_KEY
 from sane_doc_reports.domain.SaneJson import SaneJson
 from sane_doc_reports.domain.Page import Page
-from sane_doc_reports.transform.utils import transform_old_json_format
+from sane_doc_reports.transform.utils import transform_old_json_format, \
+    general_json_fixes
 
 
 class Transform:
@@ -16,6 +17,7 @@ class Transform:
             self.json_data = json.load(f)
 
         # Transform the json if it is an old json's json
+        self.json_data = general_json_fixes(self.json_data)
         if self.is_old_json_format():
             self.json_data = transform_old_json_format(self.json_data)
 

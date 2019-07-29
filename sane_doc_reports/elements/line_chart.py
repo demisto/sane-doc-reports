@@ -56,7 +56,8 @@ class LineChartElement(Element):
 
             # Fix sizing
         size_w, size_h, dpi = utils.convert_plt_size(self.section)
-        figure(num=2, figsize=(size_w, size_h), dpi=dpi)
+        figure(num=2, figsize=(size_w, size_h), dpi=dpi,
+               constrained_layout=False)
 
         data = self.section.contents
 
@@ -107,10 +108,10 @@ class LineChartElement(Element):
 
         # Create and move the legend outside
         ax = plt.gca()
-        rotation = 0
-        if len(ax.get_xticklabels()) > 9:
-            rotation = 30
-        plt.setp(ax.get_xticklabels(), rotation=rotation, horizontalalignment='right')
+
+        # Auto rotate the labels
+        plt.gcf().autofmt_xdate()
+
         remove_plot_borders(ax)
         legend_location = 'upper center'
         legend_location_relative_to_graph = (0.5, -0.35)

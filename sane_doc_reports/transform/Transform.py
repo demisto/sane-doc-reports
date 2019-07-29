@@ -17,10 +17,10 @@ class Transform:
             self.json_data = json.load(f)
 
         # Transform the json if it is an old json's json
-        self.json_data = general_json_fixes(self.json_data)
         if self.is_old_json_format():
             self.json_data = transform_old_json_format(self.json_data)
 
+        self.json_data = general_json_fixes(self.json_data)
         self.sane_json = SaneJson(self.json_data)
 
     def get_pages(self) -> List[Page]:

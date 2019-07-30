@@ -38,13 +38,12 @@ class BarChartElement(Element):
         plt.figure(figsize=(size_w, size_h), dpi=dpi)
 
         data = self.section.contents
-        objects = [i['name'] for i in data]
-        y_axis = [i for i in range(len(objects))]
-        colors = get_colors(self.section.layout, objects)
+        x_axis = None
 
         if any([True for i in data if 'groups' in i]):
             # Create the stacks
             agg = []
+            y_axis = [i['name'] for i in data]
             labels = [i['name'] for i in
                       sorted(data[0]['groups'], key=lambda x: x['name'])]
             for v in data:
@@ -55,8 +54,7 @@ class BarChartElement(Element):
             stacked = [i for i in zip(*agg)]
 
             # Draw each stack
-            rects = []
-            rects.append(plt.barh(y_axis, stacked[0], DEFAULT_BAR_WIDTH, tick_label="BUHAHAH"))
+            rects = [plt.barh(y_axis, stacked[0], DEFAULT_BAR_WIDTH)]
 
             for i in range(1, len(stacked)):
                 left_padding = [sum(i) for i in zip(*stacked[:i])]
@@ -69,50 +67,52 @@ class BarChartElement(Element):
             a = ax.legend(rects, labels, loc=legend_location,
                           bbox_to_anchor=legend_location_relative_to_graph,
                           handlelength=0.7)
-            remove_plot_borders(ax)
 
-            # else:
-        #     y_axis = [i for i in range(len(objects))]
-        #     x_axis = [i['data'][0] for i in data]
-        #
-        #
-        #
-        #     rects = plt.barh(y_axis, width=x_axis, align='center',
-        #                      alpha=DEFAULT_BAR_ALPHA,
-        #                      color=colors,
-        #                      height=DEFAULT_BAR_WIDTH)
-        #
-        # # Fix the legend values to be "some_value (some_number)" instead of
-        # # just "some_value"
-        # ledgend_keys = [CHART_LABEL_NONE_STRING if i == '' else i for i in
-        #                 objects]
-        # fixed_legends = [f'{v} ({x_axis[i]})' for i, v in
-        #                  enumerate(ledgend_keys)]
-        #
-        # # Create and move the legend outside
-        # ax = plt.gca()
-        # remove_plot_borders(ax)
-        # legend_location = 'upper center'
-        # legend_location_relative_to_graph = (0.5, -0.35)
-        #
-        # a = ax.legend(rects, fixed_legends, loc=legend_location,
-        #               bbox_to_anchor=legend_location_relative_to_graph,
-        #               handlelength=0.7)
-        #
-        # set_legend_style(a)
-        #
-        # # Fix the axises
-        # set_axis_font(ax)
-        # ax.set_yticks(y_axis)
-        # ax.set_yticklabels([])
-        # ax.invert_yaxis()  # labels read top-to-bottom
-        # ax.set_xlabel('')
-        #
-        # # Fix the xaxis ratio to fit biggest element
-        # if x_axis:
-        #     ax.set_xlim(0, max(x_axis) + X_AXIS_PADDING)
+        else:
+            objects = [i['name'] for i in data]
+            colors = get_colors(self.section.layout, objects)
+
+            y_axis = [i for i in range(len(objects))]
+            x_axis = [i['data'][0] for i in data]
+
+            rects = plt.barh(y_axis, width=x_axis, align='center',
+                             alpha=DEFAULT_BAR_ALPHA,
+                             color=colors,
+                             height=DEFAULT_BAR_WIDTH)
+
+            # Fix the legend values to be "some_value (some_number)" instead of
+            # just "some_value"
+            ledgend_keys = [CHART_LABEL_NONE_STRING if i == '' else i for i in
+                            objects]
+            fixed_legends = [f'{v} ({x_axis[i]})' for i, v in
+                             enumerate(ledgend_keys)]
+
+            # Create and move the legend outside
+            ax = plt.gca()
+            legend_location = 'upper center'
+            legend_location_relative_to_graph = (0.5, -0.35)
+
+            a = ax.legend(rects, fixed_legends, loc=legend_location,
+                          bbox_to_anchor=legend_location_relative_to_graph,
+                          handlelength=0.7)
+
+            ax.set_yticklabels([])
+
+        # Style the axis and labels
+        set_legend_style(a)
+
+        # Fix the axises
+        set_axis_font(ax)
+        ax.set_yticks(y_axis)
+        ax.set_xlabel('')
+        ax.invert_yaxis()  # labels read top-to-bottom
+
+        # Fix the xaxis ratio to fit biggest element
+        if x_axis:
+            ax.set_xlim(0, max(x_axis) + X_AXIS_PADDING)
 
         # Remove the bottom labels
+        remove_plot_borders(ax)
         plt.tick_params(bottom='off')
         plt.title(self.section.extra['title'], **self.style['title'])
 

@@ -7,7 +7,7 @@ from sane_doc_reports.conf import DEBUG, \
     DEFAULT_BAR_WIDTH, DEFAULT_BAR_ALPHA, CHART_LABEL_NONE_STRING, \
     X_AXIS_PADDING, DEFAULT_FONT_COLOR, \
     DEFAULT_TITLE_FONT_SIZE, PYDOCX_FONT_NAME, PYDOCX_FONT_COLOR, \
-    PYDOCX_FONT_SIZE
+    PYDOCX_FONT_SIZE, LEGEND_STYLE
 
 from sane_doc_reports.elements import image, error
 from sane_doc_reports.styles.colors import get_colors
@@ -67,7 +67,7 @@ class BarChartElement(Element):
                       bbox_to_anchor=legend_location_relative_to_graph,
                       handlelength=0.7)
 
-        set_legend_style(a)
+        set_legend_style(a, self.section.layout[LEGEND_STYLE])
 
         # Fix the axises
         set_axis_font(ax)

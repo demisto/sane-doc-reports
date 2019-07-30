@@ -22,7 +22,7 @@ def get_cell(table: Table, section: Section) -> (_Cell, Tuple[int, int]):
     Get the sections corresponding cell
     """
     row, col = row_pos(section), col_pos(section)
-    return table.rows[row].cells[col], (row, col)
+    return table.rows[row].cells[col], (get_width(section), get_height(section))
 
 
 def get_vtable_merged(table: Table) -> List[List]:

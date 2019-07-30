@@ -40,7 +40,7 @@ class BarChartElement(Element):
         data = self.section.contents
         x_axis = None
 
-        if any([True for i in data if 'groups' in i]):
+        if any([True for i in data if 'groups' in i and i['groups']]):
             # Create the stacks
             agg = []
             y_axis = [i['name'] for i in data]

@@ -220,7 +220,12 @@ def set_axis_font(ax):
         label.set_fontproperties(font)
 
 
-def set_legend_style(legend):
+def set_legend_style(legend, options=None):
+    if options:
+        if options['hideLegend']:
+            plt.gca().legend().set_visible(False)
+            return
+
     legend.get_frame().set_alpha(DEFAULT_ALPHA)
     legend.get_frame().set_linewidth(0.0)
 

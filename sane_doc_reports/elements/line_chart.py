@@ -3,8 +3,8 @@ from matplotlib.pyplot import figure
 
 from sane_doc_reports import utils
 from sane_doc_reports.domain.Element import Element
-from sane_doc_reports.conf import DEBUG, \
-    DEFAULT_FONT_COLOR, DEFAULT_TITLE_FONT_SIZE, PYDOCX_FONT_NAME, \
+from sane_doc_reports.conf import DEBUG, DEFAULT_FONT_COLOR, \
+    DEFAULT_TITLE_FONT_SIZE, PYDOCX_FONT_NAME, \
     PYDOCX_FONT_COLOR, PYDOCX_FONT_SIZE
 from sane_doc_reports.domain.Section import Section
 from sane_doc_reports.elements import error, image
@@ -111,13 +111,14 @@ class LineChartElement(Element):
 
         # Auto rotate the labels
         plt.gcf().autofmt_xdate()
-
         remove_plot_borders(ax)
         legend_location = 'upper center'
         legend_location_relative_to_graph = (0.5, -0.35)
 
-        handles = [plt.Rectangle((0, 0), 1, 1, fc=final_colors[i]) for i in groups.keys()]
-        legend = ax.legend(handles, [i for i in groups.keys()], loc=legend_location,
+        handles = [plt.Rectangle((0, 0), 1, 1, fc=final_colors[i]) for i in
+                   groups.keys()]
+        legend = ax.legend(handles, [i for i in groups.keys()],
+                           loc=legend_location,
                            bbox_to_anchor=legend_location_relative_to_graph,
                            handlelength=0.7, handleheight=0.7)
 

@@ -1,3 +1,4 @@
+from docx.shared import Inches
 from sane_doc_reports.domain.Element import Element
 from sane_doc_reports.conf import DEBUG
 from sane_doc_reports.elements import error
@@ -20,7 +21,7 @@ class ImageElement(Element):
             return
 
         self.cell_object.run.add_picture(
-            open_b64_image(self.section.contents))
+            open_b64_image(self.section.contents), width=Pt(2))
 
 
 def invoke(cell_object, section):

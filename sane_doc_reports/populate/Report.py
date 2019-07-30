@@ -62,7 +62,7 @@ class Report:
 
             page = self.pages[page_num]
             for section in page:
-                cell = get_cell(grid, section)
+                cell, grid_pos = get_cell(grid, section)
                 merge_cells(grid, section)
                 cell_object = CellObject(cell, add_run=False)
                 self._insert_section(cell_object, section)

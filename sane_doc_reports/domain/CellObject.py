@@ -23,12 +23,13 @@ class CellObject(object):
      - run (holds: text, pictures, text-styling (font))
      """
 
-    def __init__(self, cell, add_run=True):
+    def __init__(self, cell, add_run=True, grid_position=(0, 0)):
         self.cell = cell
 
         cell_paragraph, cell_run = self._get_cell_wrappers(add_run=add_run)
         self.paragraph = cell_paragraph
         self.run = cell_run
+        self.grid_position = grid_position
 
     def _get_cell_wrappers(self, add_run=True) -> Tuple[
         Paragraph, Union[Run, None]]:

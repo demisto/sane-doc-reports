@@ -222,7 +222,7 @@ def set_axis_font(ax):
 
 def set_legend_style(legend, options=None):
     if options:
-        if options['hideLegend']:
+        if 'hideLegend' in options and options['hideLegend']:
             plt.gca().legend().set_visible(False)
             return
 

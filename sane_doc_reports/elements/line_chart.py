@@ -3,9 +3,9 @@ from matplotlib.pyplot import figure
 
 from sane_doc_reports import utils
 from sane_doc_reports.domain.Element import Element
-from sane_doc_reports.conf import DEBUG, DEFAULT_FONT_COLOR, \
-    DEFAULT_TITLE_FONT_SIZE, PYDOCX_FONT_NAME, \
-    PYDOCX_FONT_COLOR, PYDOCX_FONT_SIZE
+from sane_doc_reports.conf import DEBUG, PYDOCX_FONT_NAME, \
+    DEFAULT_FONT_COLOR, DEFAULT_TITLE_FONT_SIZE, \
+    PYDOCX_FONT_COLOR, PYDOCX_FONT_SIZE, LEGEND_STYLE
 from sane_doc_reports.domain.Section import Section
 from sane_doc_reports.elements import error, image
 from sane_doc_reports.styles.colors import get_colors
@@ -122,7 +122,7 @@ class LineChartElement(Element):
                            bbox_to_anchor=legend_location_relative_to_graph,
                            handlelength=0.7, handleheight=0.7)
 
-        set_legend_style(legend)
+        set_legend_style(legend, self.section.layout[LEGEND_STYLE])
         set_axis_font(ax)
         ax.set_title(self.section.extra['title'], **self.style['title'])
 

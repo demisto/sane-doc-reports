@@ -56,7 +56,6 @@ class BarChartElement(Element):
 
             labels = sorted(max_labels_stacked)
             colors = get_colors(self.section.layout, labels)
-            print(colors)
 
             for v in data:
                 current_labels = {i['name']: i['data'][0] for i in v['groups']}

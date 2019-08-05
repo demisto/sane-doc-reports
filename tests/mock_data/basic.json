@@ -2,7 +2,7 @@
   {
     "type": "text",
     "data": {
-      "text": "Critical and High incidents",
+      "text": "Critical and High problems",
       "groups": [{ "name": "", "data": [2], "groups": null }]
     },
     "layout": {
@@ -12,12 +12,12 @@
       "rowPos": 0,
       "w": 12
     },
-    "title": "criticalAndHighIncidents Headline"
+    "title": "criticalAndHighproblems Headline"
   },
   {
     "type": "text",
     "data": {
-      "text": "Total open incidents: 2",
+      "text": "Total open problems: 2",
       "groups": [{ "name": "", "data": [2], "groups": null }]
     },
     "layout": {
@@ -27,6 +27,6 @@
       "rowPos": 1,
       "w": 12
     },
-    "title": "criticalAndHighIncidents Headline"
+    "title": "criticalAndHighproblems Headline"
   }
 ]

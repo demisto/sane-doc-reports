@@ -12,7 +12,7 @@
       "rowPos": 0,
       "w": 12
     },
-    "title": "criticalAndHighIncidents Headline"
+    "title": "criticalAndHighproblems Headline"
   },
   {
     "type": "text",
@@ -28,7 +28,7 @@
       "w": 12,
       "style":{"pageBreakBefore": "always"}
     },
-    "title": "criticalAndHighIncidents Headline"
+    "title": "criticalAndHighproblems Headline"
   },
   {
     "type": "text",
@@ -44,6 +44,6 @@
       "w": 12,
       "style":{"pageBreakBefore": "always"}
     },
-    "title": "criticalAndHighIncidents Headline"
+    "title": "criticalAndHighproblems Headline"
   }
 ]

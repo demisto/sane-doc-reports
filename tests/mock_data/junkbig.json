@@ -13,7 +13,7 @@
       "w": 12
     },
     "fromDate": "2019-04-22T18:38:13+03:00",
-    "title": "Active Incidents - Line chart"
+    "title": "Active problems - Line chart"
   },
   {
         "type": "image",
@@ -47,7 +47,7 @@
       "w": 4
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "Active Incidents - Line chart"
+    "title": "Active problems - Line chart"
   },
   {
     "type": "trend",
@@ -67,12 +67,12 @@
       "w": 3
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "Incidents By Close Reason"
+    "title": "problems By Close Reason"
   },
   {
     "type": "markdown",
     "data": {
-      "text": "# **Critical and High incidents**\n\nTue, 30 Apr 2019 10:43:38 IDT\n\n---",
+      "text": "# **Critical and High problems**\n\nTue, 30 Apr 2019 10:43:38 IDT\n\n---",
       "groups": [
         {
           "name": "",
@@ -90,7 +90,7 @@
       "rowPos": 0,
       "w": 12
     },
-    "title": "criticalAndHighIncidents Headline"
+    "title": "criticalAndHighproblems Headline"
   },
   {
     "type": "chart",
@@ -147,7 +147,7 @@
       "rowPos": 3,
       "w": 6
     },
-    "title": "Active Incidents - Pie chart"
+    "title": "Active problems - Pie chart"
   },
   {
     "type": "chart",
@@ -188,7 +188,7 @@
       "rowPos": 1,
       "w": 6
     },
-    "title": "Incidents by Phase"
+    "title": "problems by Phase"
   },
   {
     "type": "chart",
@@ -245,29 +245,29 @@
       "rowPos": 1,
       "w": 3
     },
-    "title": "Active Incidents - Pie chart"
+    "title": "Active problems - Pie chart"
   },
   {
     "type": "table",
     "data": [
       {
         "CustomFields": "N/A",
-        "Detection SLA": "Status: idle",
-        "Detection SLA.runStatus": "Idle",
-        "Detection SLA.totalElapsed": "0",
+        "Detection Time": "Status: idle",
+        "Detection Time.runStatus": "Idle",
+        "Detection Time.totalElapsed": "0",
         "DueDate": "Thu, 18 Apr 2019 16:16:46 IDT",
         "Name": "2223",
         "Occurred": "Mon, 08 Apr 2019 16:16:46 IDT",
-        "Owner": "nitzan",
-        "Remediation SLA": "Status: idle",
-        "Remediation SLA.runStatus": "Idle",
-        "Remediation SLA.totalElapsed": "0",
-        "Severity": "High",
+        "Owner": "nolan",
+        "Resolve Time": "Status: idle",
+        "Resolve Time.runStatus": "Idle",
+        "Resolve Time.totalElapsed": "0",
+        "level": "High",
         "Status": "Assigned",
         "Time to Assignment": "Status: idle",
         "Time to Assignment.runStatus": "Idle",
         "Time to Assignment.totalElapsed": "0",
-        "Type": "DoS",
+        "Type": "Orks",
         "account": "N/A",
         "activated": "N/A",
         "attachment": "N/A",
@@ -283,12 +283,12 @@
         "droppedCount": "0",
         "hasRole": "N/A",
         "id": "2",
-        "investigationId": "2",
+        "entryId": "2",
         "isPlayground": "N/A",
         "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
         "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
         "linkedCount": "0",
-        "linkedIncidents": "N/A",
+        "linkedproblems": "N/A",
         "modified": "2019-04-08 16:17:43.461913 +0300 IDT",
         "notifyTime": "2019-04-08 16:16:47.95437 +0300 IDT",
         "openDuration": "0h 0m 0s",
@@ -301,34 +301,34 @@
         "rawJSON": "N/A",
         "rawName": "2223",
         "rawPhase": "N/A",
-        "rawType": "DoS",
+        "rawType": "Orks",
         "reason": "N/A",
         "reminder": "N/A",
         "roles": "N/A",
         "runStatus": "waiting",
-        "sla": "0",
+        "Time": "0",
         "sourceBrand": "Manual",
         "sourceInstance": "admin",
         "version": "8"
       },
       {
         "CustomFields": "N/A",
-        "Detection SLA": "Status: idle",
-        "Detection SLA.runStatus": "Idle",
-        "Detection SLA.totalElapsed": "0",
+        "Detection Time": "Status: idle",
+        "Detection Time.runStatus": "Idle",
+        "Detection Time.totalElapsed": "0",
         "DueDate": "Thu, 18 Apr 2019 16:16:48 IDT",
         "Name": "33333",
         "Occurred": "Mon, 08 Apr 2019 16:16:48 IDT",
-        "Owner": "nitzan",
-        "Remediation SLA": "Status: idle",
-        "Remediation SLA.runStatus": "Idle",
-        "Remediation SLA.totalElapsed": "0",
-        "Severity": "High",
+        "Owner": "nolan",
+        "Resolve Time": "Status: idle",
+        "Resolve Time.runStatus": "Idle",
+        "Resolve Time.totalElapsed": "0",
+        "level": "High",
         "Status": "Assigned",
         "Time to Assignment": "Status: idle",
         "Time to Assignment.runStatus": "Idle",
         "Time to Assignment.totalElapsed": "0",
-        "Type": "DeviceLost",
+        "Type": "Teleportation",
         "account": "N/A",
         "activated": "N/A",
         "attachment": "N/A",
@@ -344,12 +344,12 @@
         "droppedCount": "0",
         "hasRole": "N/A",
         "id": "3",
-        "investigationId": "3",
+        "entryId": "3",
         "isPlayground": "N/A",
         "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
         "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
         "linkedCount": "0",
-        "linkedIncidents": "N/A",
+        "linkedproblems": "N/A",
         "modified": "2019-04-08 16:17:51.271564 +0300 IDT",
         "notifyTime": "2019-04-08 16:16:50.6746 +0300 IDT",
         "openDuration": "0h 0m 0s",
@@ -362,12 +362,12 @@
         "rawJSON": "N/A",
         "rawName": "33333",
         "rawPhase": "N/A",
-        "rawType": "DeviceLost",
+        "rawType": "Teleportation",
         "reason": "N/A",
         "reminder": "N/A",
         "roles": "N/A",
         "runStatus": "waiting",
-        "sla": "0",
+        "Time": "0",
         "sourceBrand": "Manual",
         "sourceInstance": "admin",
         "version": "8"
@@ -383,7 +383,7 @@
         "name": "Name",
         "occurred": "Occurred",
         "owner": "Owner",
-        "severity": "Severity",
+        "level": "level",
         "status": "Status",
         "type": "Type"
       },
@@ -393,13 +393,13 @@
         "occurred",
         "type",
         "owner",
-        "severity",
+        "level",
         "status",
         "dueDate"
       ],
       "w": 12
     },
-  "title": "Critical and High Incidents"
+  "title": "Critical and High problems"
   },
   {
     "type": "markdown",
@@ -415,7 +415,7 @@
       "w": 12
     },
     "fromDate": "2019-04-22T18:38:13+03:00",
-    "title": "Active Incidents - Line chart"
+    "title": "Active problems - Line chart"
   },
   {
         "type": "image",
@@ -449,7 +449,7 @@
       "w": 4
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "Active Incidents - Line chart"
+    "title": "Active problems - Line chart"
   },
   {
     "type": "trend",
@@ -469,12 +469,12 @@
       "w": 3
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "Incidents By Close Reason"
+    "title": "problems By Close Reason"
   },
   {
     "type": "markdown",
     "data": {
-      "text": "# **Critical and High incidents**\n\nTue, 30 Apr 2019 10:43:38 IDT\n\n---",
+      "text": "# **Critical and High problems**\n\nTue, 30 Apr 2019 10:43:38 IDT\n\n---",
       "groups": [
         {
           "name": "",
@@ -492,7 +492,7 @@
       "rowPos": 0,
       "w": 12
     },
-    "title": "criticalAndHighIncidents Headline"
+    "title": "criticalAndHighproblems Headline"
   },
   {
     "type": "chart",
@@ -549,7 +549,7 @@
       "rowPos": 3,
       "w": 6
     },
-    "title": "Active Incidents - Pie chart"
+    "title": "Active problems - Pie chart"
   },
   {
     "type": "chart",
@@ -590,7 +590,7 @@
       "rowPos": 1,
       "w": 6
     },
-    "title": "Incidents by Phase"
+    "title": "problems by Phase"
   },
   {
     "type": "chart",
@@ -647,29 +647,29 @@
       "rowPos": 1,
       "w": 3
     },
-    "title": "Active Incidents - Pie chart"
+    "title": "Active problems - Pie chart"
   },
   {
     "type": "table",
     "data": [
       {
         "CustomFields": "N/A",
-        "Detection SLA": "Status: idle",
-        "Detection SLA.runStatus": "Idle",
-        "Detection SLA.totalElapsed": "0",
+        "Detection Time": "Status: idle",
+        "Detection Time.runStatus": "Idle",
+        "Detection Time.totalElapsed": "0",
         "DueDate": "Thu, 18 Apr 2019 16:16:46 IDT",
         "Name": "2223",
         "Occurred": "Mon, 08 Apr 2019 16:16:46 IDT",
-        "Owner": "nitzan",
-        "Remediation SLA": "Status: idle",
-        "Remediation SLA.runStatus": "Idle",
-        "Remediation SLA.totalElapsed": "0",
-        "Severity": "High",
+        "Owner": "nolan",
+        "Resolve Time": "Status: idle",
+        "Resolve Time.runStatus": "Idle",
+        "Resolve Time.totalElapsed": "0",
+        "level": "High",
         "Status": "Assigned",
         "Time to Assignment": "Status: idle",
         "Time to Assignment.runStatus": "Idle",
         "Time to Assignment.totalElapsed": "0",
-        "Type": "DoS",
+        "Type": "Orks",
         "account": "N/A",
         "activated": "N/A",
         "attachment": "N/A",
@@ -685,12 +685,12 @@
         "droppedCount": "0",
         "hasRole": "N/A",
         "id": "2",
-        "investigationId": "2",
+        "entryId": "2",
         "isPlayground": "N/A",
         "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
         "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
         "linkedCount": "0",
-        "linkedIncidents": "N/A",
+        "linkedproblems": "N/A",
         "modified": "2019-04-08 16:17:43.461913 +0300 IDT",
         "notifyTime": "2019-04-08 16:16:47.95437 +0300 IDT",
         "openDuration": "0h 0m 0s",
@@ -703,34 +703,34 @@
         "rawJSON": "N/A",
         "rawName": "2223",
         "rawPhase": "N/A",
-        "rawType": "DoS",
+        "rawType": "Orks",
         "reason": "N/A",
         "reminder": "N/A",
         "roles": "N/A",
         "runStatus": "waiting",
-        "sla": "0",
+        "Time": "0",
         "sourceBrand": "Manual",
         "sourceInstance": "admin",
         "version": "8"
       },
       {
         "CustomFields": "N/A",
-        "Detection SLA": "Status: idle",
-        "Detection SLA.runStatus": "Idle",
-        "Detection SLA.totalElapsed": "0",
+        "Detection Time": "Status: idle",
+        "Detection Time.runStatus": "Idle",
+        "Detection Time.totalElapsed": "0",
         "DueDate": "Thu, 18 Apr 2019 16:16:48 IDT",
         "Name": "33333",
         "Occurred": "Mon, 08 Apr 2019 16:16:48 IDT",
-        "Owner": "nitzan",
-        "Remediation SLA": "Status: idle",
-        "Remediation SLA.runStatus": "Idle",
-        "Remediation SLA.totalElapsed": "0",
-        "Severity": "High",
+        "Owner": "nolan",
+        "Resolve Time": "Status: idle",
+        "Resolve Time.runStatus": "Idle",
+        "Resolve Time.totalElapsed": "0",
+        "level": "High",
         "Status": "Assigned",
         "Time to Assignment": "Status: idle",
         "Time to Assignment.runStatus": "Idle",
         "Time to Assignment.totalElapsed": "0",
-        "Type": "DeviceLost",
+        "Type": "Teleportation",
         "account": "N/A",
         "activated": "N/A",
         "attachment": "N/A",
@@ -746,12 +746,12 @@
         "droppedCount": "0",
         "hasRole": "N/A",
         "id": "3",
-        "investigationId": "3",
+        "entryId": "3",
         "isPlayground": "N/A",
         "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
         "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
         "linkedCount": "0",
-        "linkedIncidents": "N/A",
+        "linkedproblems": "N/A",
         "modified": "2019-04-08 16:17:51.271564 +0300 IDT",
         "notifyTime": "2019-04-08 16:16:50.6746 +0300 IDT",
         "openDuration": "0h 0m 0s",
@@ -764,12 +764,12 @@
         "rawJSON": "N/A",
         "rawName": "33333",
         "rawPhase": "N/A",
-        "rawType": "DeviceLost",
+        "rawType": "Teleportation",
         "reason": "N/A",
         "reminder": "N/A",
         "roles": "N/A",
         "runStatus": "waiting",
-        "sla": "0",
+        "Time": "0",
         "sourceBrand": "Manual",
         "sourceInstance": "admin",
         "version": "8"
@@ -785,7 +785,7 @@
         "name": "Name",
         "occurred": "Occurred",
         "owner": "Owner",
-        "severity": "Severity",
+        "level": "level",
         "status": "Status",
         "type": "Type"
       },
@@ -795,13 +795,13 @@
         "occurred",
         "type",
         "owner",
-        "severity",
+        "level",
         "status",
         "dueDate"
       ],
       "w": 12
     },
-  "title": "Critical and High Incidents"
+  "title": "Critical and High problems"
   },
   {
     "type": "markdown",
@@ -817,7 +817,7 @@
       "w": 12
     },
     "fromDate": "2019-04-22T18:38:13+03:00",
-    "title": "Active Incidents - Line chart"
+    "title": "Active problems - Line chart"
   },
   {
         "type": "image",
@@ -851,7 +851,7 @@
       "w": 4
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "Active Incidents - Line chart"
+    "title": "Active problems - Line chart"
   },
   {
     "type": "trend",
@@ -871,12 +871,12 @@
       "w": 3
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "Incidents By Close Reason"
+    "title": "problems By Close Reason"
   },
   {
     "type": "markdown",
     "data": {
-      "text": "# **Critical and High incidents**\n\nTue, 30 Apr 2019 10:43:38 IDT\n\n---",
+      "text": "# **Critical and High problems**\n\nTue, 30 Apr 2019 10:43:38 IDT\n\n---",
       "groups": [
         {
           "name": "",
@@ -894,7 +894,7 @@
       "rowPos": 0,
       "w": 12
     },
-    "title": "criticalAndHighIncidents Headline"
+    "title": "criticalAndHighproblems Headline"
   },
   {
     "type": "chart",
@@ -951,7 +951,7 @@
       "rowPos": 3,
       "w": 6
     },
-    "title": "Active Incidents - Pie chart"
+    "title": "Active problems - Pie chart"
   },
   {
     "type": "chart",
@@ -992,7 +992,7 @@
       "rowPos": 1,
       "w": 6
     },
-    "title": "Incidents by Phase"
+    "title": "problems by Phase"
   },
   {
     "type": "chart",
@@ -1049,29 +1049,29 @@
       "rowPos": 1,
       "w": 3
     },
-    "title": "Active Incidents - Pie chart"
+    "title": "Active problems - Pie chart"
   },
   {
     "type": "table",
     "data": [
       {
         "CustomFields": "N/A",
-        "Detection SLA": "Status: idle",
-        "Detection SLA.runStatus": "Idle",
-        "Detection SLA.totalElapsed": "0",
+        "Detection Time": "Status: idle",
+        "Detection Time.runStatus": "Idle",
+        "Detection Time.totalElapsed": "0",
         "DueDate": "Thu, 18 Apr 2019 16:16:46 IDT",
         "Name": "2223",
         "Occurred": "Mon, 08 Apr 2019 16:16:46 IDT",
-        "Owner": "nitzan",
-        "Remediation SLA": "Status: idle",
-        "Remediation SLA.runStatus": "Idle",
-        "Remediation SLA.totalElapsed": "0",
-        "Severity": "High",
+        "Owner": "nolan",
+        "Resolve Time": "Status: idle",
+        "Resolve Time.runStatus": "Idle",
+        "Resolve Time.totalElapsed": "0",
+        "level": "High",
         "Status": "Assigned",
         "Time to Assignment": "Status: idle",
         "Time to Assignment.runStatus": "Idle",
         "Time to Assignment.totalElapsed": "0",
-        "Type": "DoS",
+        "Type": "Orks",
         "account": "N/A",
         "activated": "N/A",
         "attachment": "N/A",
@@ -1087,12 +1087,12 @@
         "droppedCount": "0",
         "hasRole": "N/A",
         "id": "2",
-        "investigationId": "2",
+        "entryId": "2",
         "isPlayground": "N/A",
         "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
         "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
         "linkedCount": "0",
-        "linkedIncidents": "N/A",
+        "linkedproblems": "N/A",
         "modified": "2019-04-08 16:17:43.461913 +0300 IDT",
         "notifyTime": "2019-04-08 16:16:47.95437 +0300 IDT",
         "openDuration": "0h 0m 0s",
@@ -1105,34 +1105,34 @@
         "rawJSON": "N/A",
         "rawName": "2223",
         "rawPhase": "N/A",
-        "rawType": "DoS",
+        "rawType": "Orks",
         "reason": "N/A",
         "reminder": "N/A",
         "roles": "N/A",
         "runStatus": "waiting",
-        "sla": "0",
+        "Time": "0",
         "sourceBrand": "Manual",
         "sourceInstance": "admin",
         "version": "8"
       },
       {
         "CustomFields": "N/A",
-        "Detection SLA": "Status: idle",
-        "Detection SLA.runStatus": "Idle",
-        "Detection SLA.totalElapsed": "0",
+        "Detection Time": "Status: idle",
+        "Detection Time.runStatus": "Idle",
+        "Detection Time.totalElapsed": "0",
         "DueDate": "Thu, 18 Apr 2019 16:16:48 IDT",
         "Name": "33333",
         "Occurred": "Mon, 08 Apr 2019 16:16:48 IDT",
-        "Owner": "nitzan",
-        "Remediation SLA": "Status: idle",
-        "Remediation SLA.runStatus": "Idle",
-        "Remediation SLA.totalElapsed": "0",
-        "Severity": "High",
+        "Owner": "nolan",
+        "Resolve Time": "Status: idle",
+        "Resolve Time.runStatus": "Idle",
+        "Resolve Time.totalElapsed": "0",
+        "level": "High",
         "Status": "Assigned",
         "Time to Assignment": "Status: idle",
         "Time to Assignment.runStatus": "Idle",
         "Time to Assignment.totalElapsed": "0",
-        "Type": "DeviceLost",
+        "Type": "Teleportation",
         "account": "N/A",
         "activated": "N/A",
         "attachment": "N/A",
@@ -1148,12 +1148,12 @@
         "droppedCount": "0",
         "hasRole": "N/A",
         "id": "3",
-        "investigationId": "3",
+        "entryId": "3",
         "isPlayground": "N/A",
         "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
         "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
         "linkedCount": "0",
-        "linkedIncidents": "N/A",
+        "linkedproblems": "N/A",
         "modified": "2019-04-08 16:17:51.271564 +0300 IDT",
         "notifyTime": "2019-04-08 16:16:50.6746 +0300 IDT",
         "openDuration": "0h 0m 0s",
@@ -1166,12 +1166,12 @@
         "rawJSON": "N/A",
         "rawName": "33333",
         "rawPhase": "N/A",
-        "rawType": "DeviceLost",
+        "rawType": "Teleportation",
         "reason": "N/A",
         "reminder": "N/A",
         "roles": "N/A",
         "runStatus": "waiting",
-        "sla": "0",
+        "Time": "0",
         "sourceBrand": "Manual",
         "sourceInstance": "admin",
         "version": "8"
@@ -1187,7 +1187,7 @@
         "name": "Name",
         "occurred": "Occurred",
         "owner": "Owner",
-        "severity": "Severity",
+        "level": "level",
         "status": "Status",
         "type": "Type"
       },
@@ -1197,13 +1197,13 @@
         "occurred",
         "type",
         "owner",
-        "severity",
+        "level",
         "status",
         "dueDate"
       ],
       "w": 12
     },
-  "title": "Critical and High Incidents"
+  "title": "Critical and High problems"
   },
   {
     "type": "markdown",
@@ -1219,7 +1219,7 @@
       "w": 12
     },
     "fromDate": "2019-04-22T18:38:13+03:00",
-    "title": "Active Incidents - Line chart"
+    "title": "Active problems - Line chart"
   },
   {
         "type": "image",
@@ -1253,7 +1253,7 @@
       "w": 4
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "Active Incidents - Line chart"
+    "title": "Active problems - Line chart"
   },
   {
     "type": "trend",
@@ -1273,12 +1273,12 @@
       "w": 3
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "Incidents By Close Reason"
+    "title": "problems By Close Reason"
   },
   {
     "type": "markdown",
     "data": {
-      "text": "# **Critical and High incidents**\n\nTue, 30 Apr 2019 10:43:38 IDT\n\n---",
+      "text": "# **Critical and High problems**\n\nTue, 30 Apr 2019 10:43:38 IDT\n\n---",
       "groups": [
         {
           "name": "",
@@ -1296,7 +1296,7 @@
       "rowPos": 0,
       "w": 12
     },
-    "title": "criticalAndHighIncidents Headline"
+    "title": "criticalAndHighproblems Headline"
   },
   {
     "type": "chart",
@@ -1353,7 +1353,7 @@
       "rowPos": 3,
       "w": 6
     },
-    "title": "Active Incidents - Pie chart"
+    "title": "Active problems - Pie chart"
   },
   {
     "type": "chart",
@@ -1394,7 +1394,7 @@
       "rowPos": 1,
       "w": 6
     },
-    "title": "Incidents by Phase"
+    "title": "problems by Phase"
   },
   {
     "type": "chart",
@@ -1451,29 +1451,29 @@
       "rowPos": 1,
       "w": 3
     },
-    "title": "Active Incidents - Pie chart"
+    "title": "Active problems - Pie chart"
   },
   {
     "type": "table",
     "data": [
       {
         "CustomFields": "N/A",
-        "Detection SLA": "Status: idle",
-        "Detection SLA.runStatus": "Idle",
-        "Detection SLA.totalElapsed": "0",
+        "Detection Time": "Status: idle",
+        "Detection Time.runStatus": "Idle",
+        "Detection Time.totalElapsed": "0",
         "DueDate": "Thu, 18 Apr 2019 16:16:46 IDT",
         "Name": "2223",
         "Occurred": "Mon, 08 Apr 2019 16:16:46 IDT",
-        "Owner": "nitzan",
-        "Remediation SLA": "Status: idle",
-        "Remediation SLA.runStatus": "Idle",
-        "Remediation SLA.totalElapsed": "0",
-        "Severity": "High",
+        "Owner": "nolan",
+        "Resolve Time": "Status: idle",
+        "Resolve Time.runStatus": "Idle",
+        "Resolve Time.totalElapsed": "0",
+        "level": "High",
         "Status": "Assigned",
         "Time to Assignment": "Status: idle",
         "Time to Assignment.runStatus": "Idle",
         "Time to Assignment.totalElapsed": "0",
-        "Type": "DoS",
+        "Type": "Orks",
         "account": "N/A",
         "activated": "N/A",
         "attachment": "N/A",
@@ -1489,12 +1489,12 @@
         "droppedCount": "0",
         "hasRole": "N/A",
         "id": "2",
-        "investigationId": "2",
+        "entryId": "2",
         "isPlayground": "N/A",
         "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
         "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
         "linkedCount": "0",
-        "linkedIncidents": "N/A",
+        "linkedproblems": "N/A",
         "modified": "2019-04-08 16:17:43.461913 +0300 IDT",
         "notifyTime": "2019-04-08 16:16:47.95437 +0300 IDT",
         "openDuration": "0h 0m 0s",
@@ -1507,34 +1507,34 @@
         "rawJSON": "N/A",
         "rawName": "2223",
         "rawPhase": "N/A",
-        "rawType": "DoS",
+        "rawType": "Orks",
         "reason": "N/A",
         "reminder": "N/A",
         "roles": "N/A",
         "runStatus": "waiting",
-        "sla": "0",
+        "Time": "0",
         "sourceBrand": "Manual",
         "sourceInstance": "admin",
         "version": "8"
       },
       {
         "CustomFields": "N/A",
-        "Detection SLA": "Status: idle",
-        "Detection SLA.runStatus": "Idle",
-        "Detection SLA.totalElapsed": "0",
+        "Detection Time": "Status: idle",
+        "Detection Time.runStatus": "Idle",
+        "Detection Time.totalElapsed": "0",
         "DueDate": "Thu, 18 Apr 2019 16:16:48 IDT",
         "Name": "33333",
         "Occurred": "Mon, 08 Apr 2019 16:16:48 IDT",
-        "Owner": "nitzan",
-        "Remediation SLA": "Status: idle",
-        "Remediation SLA.runStatus": "Idle",
-        "Remediation SLA.totalElapsed": "0",
-        "Severity": "High",
+        "Owner": "nolan",
+        "Resolve Time": "Status: idle",
+        "Resolve Time.runStatus": "Idle",
+        "Resolve Time.totalElapsed": "0",
+        "level": "High",
         "Status": "Assigned",
         "Time to Assignment": "Status: idle",
         "Time to Assignment.runStatus": "Idle",
         "Time to Assignment.totalElapsed": "0",
-        "Type": "DeviceLost",
+        "Type": "Teleportation",
         "account": "N/A",
         "activated": "N/A",
         "attachment": "N/A",
@@ -1550,12 +1550,12 @@
         "droppedCount": "0",
         "hasRole": "N/A",
         "id": "3",
-        "investigationId": "3",
+        "entryId": "3",
         "isPlayground": "N/A",
         "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
         "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
         "linkedCount": "0",
-        "linkedIncidents": "N/A",
+        "linkedproblems": "N/A",
         "modified": "2019-04-08 16:17:51.271564 +0300 IDT",
         "notifyTime": "2019-04-08 16:16:50.6746 +0300 IDT",
         "openDuration": "0h 0m 0s",
@@ -1568,12 +1568,12 @@
         "rawJSON": "N/A",
         "rawName": "33333",
         "rawPhase": "N/A",
-        "rawType": "DeviceLost",
+        "rawType": "Teleportation",
         "reason": "N/A",
         "reminder": "N/A",
         "roles": "N/A",
         "runStatus": "waiting",
-        "sla": "0",
+        "Time": "0",
         "sourceBrand": "Manual",
         "sourceInstance": "admin",
         "version": "8"
@@ -1589,7 +1589,7 @@
         "name": "Name",
         "occurred": "Occurred",
         "owner": "Owner",
-        "severity": "Severity",
+        "level": "level",
         "status": "Status",
         "type": "Type"
       },
@@ -1599,13 +1599,13 @@
         "occurred",
         "type",
         "owner",
-        "severity",
+        "level",
         "status",
         "dueDate"
       ],
       "w": 12
     },
-    "title": "Critical and High Incidents"
+    "title": "Critical and High problems"
   },
   {
     "type": "markdown",
@@ -1621,6 +1621,6 @@
       "w": 12
     },
     "fromDate": "2019-04-22T18:38:13+03:00",
-    "title": "Active Incidents - Line chart"
+    "title": "Active problems - Line chart"
   }
 ]

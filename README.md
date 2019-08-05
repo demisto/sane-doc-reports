@@ -1,6 +1,6 @@
-# Sane Doc Reports by [Demisto](https://demisto.com)
+# Sane Doc Reports by [](https://.com)
 
-An extension to [sane-reports](https://github.com/demisto/sane-reports), 
+An extension to [sane-reports](https://github.com//sane-reports), 
 > *"keep you sane and not pulling your hair out while generating DOCX reports"*
 
 ## Installation
@@ -44,13 +44,13 @@ $ pytest --cov=sane_doc_reports # For coverage
 8) SaneJson - holds the raw sane-json sections.
 
 
-### Generating JSON files
+### Generating JSON files (in demisto)
 1) Start a new demisto server with: `report.remove.data=false`
 2) Go to the reports, generate a desired report
 3) Get the json from `<demisto_path>/debug/lib/temp`
 
 To check how it looks in the sane-reports:
-1) Change the `incidentDailyReportTempalte.json` file with the json from the last step (in `lib/temp`)
+1) Change the `DailyReportTempalte.json` file with the json from the last step (in `lib/temp`)
 2) `npm run start`
 3) To mark the tables there you can open the console and add this:
 ```js

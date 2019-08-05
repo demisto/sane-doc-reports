@@ -12,9 +12,9 @@
     ],
     "layout": {
       "chartProperties": {
-        "daysLabel": "DAYS",
-        "hoursLabel": "HOURS",
-        "minutesLabel": "MIN"
+        "dayTimebel": "DAYS",
+        "hourTimebel": "HOURS",
+        "minuteTimebel": "MIN"
       },
       "columnPos": 0,
       "h": 1,
@@ -23,6 +23,6 @@
       "w": 12
     },
     "fromDate": "2019-05-16T15:06:32+03:00",
-    "title": "Average Response Time"
+    "title": "Average Time"
   }
 ]

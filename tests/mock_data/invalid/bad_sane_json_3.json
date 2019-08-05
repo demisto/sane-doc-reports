@@ -2,7 +2,7 @@
   {
     "type": "text",
     "data": {
-      "text": "Critical and High incidents",
+      "text": "Critical and High problems",
       "groups": [{ "name": "", "data": [2], "groups": null }]
     },
     "layout": {
@@ -11,6 +11,6 @@
       "rowPos": 0,
       "w": 12
     },
-    "title": "criticalAndHighIncidents Headline"
+    "title": "criticalAndHighproblems Headline"
   }
 ]

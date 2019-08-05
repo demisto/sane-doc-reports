@@ -2,7 +2,7 @@
   {
     "type": "markdown",
     "data": {
-      "text": "# **Critical and High incidents**\n\nMon, 15 Apr 2019 11:42:09 IDT\n\n---",
+      "text": "# **Critical and High problems**\n\nMon, 15 Apr 2019 11:42:09 IDT\n\n---",
       "groups": [
         {
           "name": "",
@@ -20,7 +20,7 @@
       "rowPos": 0,
       "w": 12
     },
-    "title": "criticalAndHighIncidents Headline"
+    "title": "criticalAndHighproblems Headline"
   },
   {
     "type": "chart",
@@ -61,20 +61,20 @@
       "rowPos": 4,
       "w": 6
     },
-    "title": "SLA"
+    "title": "Time"
   },
   {
     "type": "chart",
     "data": [
       {
-        "name": "DeviceLost",
+        "name": "Teleportation",
         "data": [
           1
         ],
         "groups": null
       },
       {
-        "name": "DoS",
+        "name": "Orks",
         "data": [
           1
         ],
@@ -101,11 +101,11 @@
       "legend": [
         {
           "color": "#ADE901",
-          "name": "DeviceLost"
+          "name": "Teleportation"
         },
         {
           "color": "#00C853",
-          "name": "DoS"
+          "name": "Orks"
         }
       ],
       "legendStyle": {
@@ -124,7 +124,7 @@
     "type": "chart",
     "data": [
       {
-        "name": "Nitzan Peretz",
+        "name": "nolan winston",
         "data": [
           2
         ],
@@ -208,29 +208,29 @@
       "rowPos": 2,
       "w": 6
     },
-    "title": "Severity"
+    "title": "level"
   },
   {
     "type": "table",
     "data": [
       {
         "CustomFields": "N/A",
-        "Detection SLA": "Status: idle",
-        "Detection SLA.runStatus": "Idle",
-        "Detection SLA.totalElapsed": "0",
+        "Detection Time": "Status: idle",
+        "Detection Time.runStatus": "Idle",
+        "Detection Time.totalElapsed": "0",
         "DueDate": "Thu, 18 Apr 2019 16:16:46 IDT",
         "Name": "2223",
         "Occurred": "Mon, 08 Apr 2019 16:16:46 IDT",
-        "Owner": "nitzan",
-        "Remediation SLA": "Status: idle",
-        "Remediation SLA.runStatus": "Idle",
-        "Remediation SLA.totalElapsed": "0",
-        "Severity": "High",
+        "Owner": "nolan",
+        "Resolve Time": "Status: idle",
+        "Resolve Time.runStatus": "Idle",
+        "Resolve Time.totalElapsed": "0",
+        "level": "High",
         "Status": "Assigned",
         "Time to Assignment": "Status: idle",
         "Time to Assignment.runStatus": "Idle",
         "Time to Assignment.totalElapsed": "0",
-        "Type": "DoS",
+        "Type": "Orks",
         "account": "N/A",
         "activated": "N/A",
         "attachment": "N/A",
@@ -246,12 +246,12 @@
         "droppedCount": "0",
         "hasRole": "N/A",
         "id": "2",
-        "investigationId": "2",
+        "entryId": "2",
         "isPlayground": "N/A",
         "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
         "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
         "linkedCount": "0",
-        "linkedIncidents": "N/A",
+        "linkedproblems": "N/A",
         "modified": "2019-04-08 16:17:43.461913 +0300 IDT",
         "notifyTime": "2019-04-08 16:16:47.95437 +0300 IDT",
         "openDuration": "0h 0m 0s",
@@ -264,34 +264,34 @@
         "rawJSON": "N/A",
         "rawName": "2223",
         "rawPhase": "N/A",
-        "rawType": "DoS",
+        "rawType": "Orks",
         "reason": "N/A",
         "reminder": "N/A",
         "roles": "N/A",
         "runStatus": "waiting",
-        "sla": "0",
+        "Time": "0",
         "sourceBrand": "Manual",
         "sourceInstance": "admin",
         "version": "8"
       },
       {
         "CustomFields": "N/A",
-        "Detection SLA": "Status: idle",
-        "Detection SLA.runStatus": "Idle",
-        "Detection SLA.totalElapsed": "0",
+        "Detection Time": "Status: idle",
+        "Detection Time.runStatus": "Idle",
+        "Detection Time.totalElapsed": "0",
         "DueDate": "Thu, 18 Apr 2019 16:16:48 IDT",
         "Name": "33333",
         "Occurred": "Mon, 08 Apr 2019 16:16:48 IDT",
-        "Owner": "nitzan",
-        "Remediation SLA": "Status: idle",
-        "Remediation SLA.runStatus": "Idle",
-        "Remediation SLA.totalElapsed": "0",
-        "Severity": "High",
+        "Owner": "nolan",
+        "Resolve Time": "Status: idle",
+        "Resolve Time.runStatus": "Idle",
+        "Resolve Time.totalElapsed": "0",
+        "level": "High",
         "Status": "Assigned",
         "Time to Assignment": "Status: idle",
         "Time to Assignment.runStatus": "Idle",
         "Time to Assignment.totalElapsed": "0",
-        "Type": "DeviceLost",
+        "Type": "Teleportation",
         "account": "N/A",
         "activated": "N/A",
         "attachment": "N/A",
@@ -307,12 +307,12 @@
         "droppedCount": "0",
         "hasRole": "N/A",
         "id": "3",
-        "investigationId": "3",
+        "entryId": "3",
         "isPlayground": "N/A",
         "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
         "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
         "linkedCount": "0",
-        "linkedIncidents": "N/A",
+        "linkedproblems": "N/A",
         "modified": "2019-04-08 16:17:51.271564 +0300 IDT",
         "notifyTime": "2019-04-08 16:16:50.6746 +0300 IDT",
         "openDuration": "0h 0m 0s",
@@ -325,12 +325,12 @@
         "rawJSON": "N/A",
         "rawName": "33333",
         "rawPhase": "N/A",
-        "rawType": "DeviceLost",
+        "rawType": "Teleportation",
         "reason": "N/A",
         "reminder": "N/A",
         "roles": "N/A",
         "runStatus": "waiting",
-        "sla": "0",
+        "Time": "0",
         "sourceBrand": "Manual",
         "sourceInstance": "admin",
         "version": "8"
@@ -346,7 +346,7 @@
         "name": "Name",
         "occurred": "Occurred",
         "owner": "Owner",
-        "severity": "Severity",
+        "level": "level",
         "status": "Status",
         "type": "Type"
       },
@@ -356,18 +356,18 @@
         "occurred",
         "type",
         "owner",
-        "severity",
+        "level",
         "status",
         "dueDate"
       ],
       "w": 12
     },
-    "title": "Critical and High Incidents"
+    "title": "Critical and High problems"
   },
   {
     "type": "markdown",
     "data": {
-      "text": "# Total open incidents: 2",
+      "text": "# Total open problems: 2",
       "groups": [
         {
           "name": "",
@@ -385,7 +385,7 @@
       "rowPos": 1,
       "w": 12
     },
-    "title": "criticalAndHighIncidents Headline"
+    "title": "criticalAndHighproblems Headline"
   },
   {
     "type": "chart",
@@ -404,21 +404,21 @@
             "groups": null
           },
           {
-            "name": "DoS",
+            "name": "Orks",
             "data": [
               2
             ],
             "groups": null
           },
           {
-            "name": "DeviceLost",
+            "name": "Teleportation",
             "data": [
               1
             ],
             "groups": null
           },
           {
-            "name": "Exploit",
+            "name": "Snakes",
             "data": [
               1
             ],
@@ -455,15 +455,15 @@
         },
         {
           "color": "#00C853",
-          "name": "DoS"
+          "name": "Orks"
         },
         {
           "color": "#ADE901",
-          "name": "DeviceLost"
+          "name": "Teleportation"
         },
         {
           "color": "#2979FF",
-          "name": "Exploit"
+          "name": "Snakes"
         }
       ],
       "legendStyle": {
@@ -479,7 +479,7 @@
       "rowPos": 8,
       "w": 5
     },
-    "title": "Active Incidents - Line chart"
+    "title": "Active problems - Line chart"
   },
   {
     "type": "chart",
@@ -536,13 +536,13 @@
       "rowPos": 8,
       "w": 4
     },
-    "title": "Active Incidents - Pie chart"
+    "title": "Active problems - Pie chart"
   },
   {
     "type": "chart",
     "data": [
       {
-        "name": "Nitzan Peretz",
+        "name": "nolan winston",
         "data": [
           2
         ],
@@ -563,7 +563,7 @@
         "groups": null
       },
       {
-        "name": "Yuval Ben-Shalom",
+        "name": "Jonathan",
         "data": [
           1
         ],
@@ -601,7 +601,7 @@
       "rowPos": 8,
       "w": 3
     },
-    "title": "Active Incidents Assigned by User"
+    "title": "Active problems Assigned by User"
   },
   {
     "type": "markdown",
@@ -624,6 +624,6 @@
       "rowPos": 11,
       "w": 12
     },
-    "title": "criticalAndHighIncidents Headline"
+    "title": "criticalAndHighproblems Headline"
   }
 ]

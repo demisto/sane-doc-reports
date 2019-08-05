@@ -236,7 +236,7 @@
       "w": 12
     },
     "query": {
-      "type": "incident",
+      "type": "problems",
       "groupBy": [
         "occurred(d)",
         "type"

@@ -14,7 +14,7 @@
       "w": 4
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "Active Incidents - Line chart"
+    "title": "Active problems - Line chart"
   },
   {
     "type": "trend",
@@ -34,6 +34,6 @@
       "w": 3
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "Incidents By Close Reason"
+    "title": "problems By Close Reason"
   }
 ]

@@ -2,7 +2,7 @@
   {
     "type": "markdown",
     "data": {
-      "text": "# **Critical and High incidents**\n\nTue, 30 Apr 2019 10:43:38 IDT\n\n---",
+      "text": "# **Critical and High problems**\n\nTue, 30 Apr 2019 10:43:38 IDT\n\n---",
       "groups": [
         {
           "name": "",
@@ -20,7 +20,7 @@
       "rowPos": 0,
       "w": 12
     },
-    "title": "criticalAndHighIncidents Headline"
+    "title": "criticalAndHighproblems Headline"
   },
   {
     "type": "chart",
@@ -77,7 +77,7 @@
       "rowPos": 3,
       "w": 6
     },
-    "title": "Active Incidents - Pie chart"
+    "title": "Active problems - Pie chart"
   },
   {
     "type": "chart",
@@ -118,7 +118,7 @@
       "rowPos": 1,
       "w": 6
     },
-    "title": "Incidents by Phase"
+    "title": "problems by Phase"
   },
   {
     "type": "chart",
@@ -175,6 +175,6 @@
       "rowPos": 1,
       "w": 3
     },
-    "title": "Active Incidents - Pie chart"
+    "title": "Active problems - Pie chart"
   }
 ]

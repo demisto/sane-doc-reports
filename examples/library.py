@@ -7,6 +7,11 @@ def example_basic(out_file_name='example.docx'):
              out_file_name)
 
 
+def example_paged(out_file_name='example.docx'):
+    main.run(get_mock('grid_checks/fullgridpaged.json', ret_dict=False),
+             out_file_name)
+
+
 def example_table(out_file_name='example.docx'):
     main.run(get_mock('elements/table.json', ret_dict=False), out_file_name)
 
@@ -27,6 +32,11 @@ def example_pie_chart(out_file_name='example.docx'):
 
 def example_markdown(out_file_name='example.docx'):
     main.run(get_mock('elements/markdown.json', ret_dict=False), out_file_name)
+
+
+def example_markdown_paged(out_file_name='example.docx'):
+    main.run(get_mock('elements/markdown_paged.json', ret_dict=False),
+             out_file_name)
 
 
 def example_hr(out_file_name='example.docx'):
@@ -69,11 +79,13 @@ def example():
 def run_all():
     examples = [
         example_basic,
+        example_paged,
         example_table,
         example_number,
         example_text,
         example_pie_chart,
         example_markdown,
+        example_markdown_paged,
         example_hr,
         example_old_json,
         example_bar_chart,
@@ -87,8 +99,8 @@ def run_all():
 
 
 def run():
-    example()
+    example_markdown_paged()
 
 
 if __name__ == '__main__':
-    run_all()
+    run()

@@ -6,6 +6,12 @@ from sane_doc_reports.domain.SaneJsonPage import SaneJsonPage
 
 
 def _is_page_separator(json_section: dict):
+    # Check if a markdown page break
+    if 'type' in json_section and json_section['type'] == 'markdown':
+        if 'data' in json_section and 'text' in json_section['data'] and \
+                '\\pagebreak' in json_section['data']['text']:
+            return True
+
     if LAYOUT_KEY not in json_section:
         return False
     if STYLE_KEY not in json_section[LAYOUT_KEY]:
@@ -13,7 +19,8 @@ def _is_page_separator(json_section: dict):
     if PAGEBREAK_KEY not in json_section[LAYOUT_KEY][STYLE_KEY]:
         return False
 
-    return json_section[LAYOUT_KEY][STYLE_KEY][PAGEBREAK_KEY] == "always"
+    return json_section[LAYOUT_KEY][STYLE_KEY][PAGEBREAK_KEY] == "always" or \
+           json_section[LAYOUT_KEY][STYLE_KEY][PAGEBREAK_KEY]
 
 
 class SaneJson:
@@ -63,6 +70,9 @@ class SaneJson:
 
     def get_sane_page(self, page_index: int) -> SaneJsonPage:
         return self.sane_pages[page_index]
+
+    def get_pages_count(self):
+        return len(self.sane_pages)
 
     def get_sane_pages(self):
         for sane_page in self.sane_pages:

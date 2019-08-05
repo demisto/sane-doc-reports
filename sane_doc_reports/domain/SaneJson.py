@@ -9,7 +9,12 @@ def _is_page_separator(json_section: dict):
     # Check if a markdown page break
     if 'type' in json_section and json_section['type'] == 'markdown':
         if 'data' in json_section and 'text' in json_section['data'] and \
-                '\\pagebreak' in json_section['data']['text']:
+                MD_PAGE_BREAK in json_section['data']['text']:
+            # A bit hacky, but we need to be consistent
+            # the sane-reports removes the MD_PAGE_BREAK from the md,
+            # we need to do it too.
+            json_section['data']['text'] = json_section['data']['text'].replace(
+                MD_PAGE_BREAK, '\n')
             return True
 
     if LAYOUT_KEY not in json_section:
@@ -45,6 +50,7 @@ class SaneJson:
         # Let's split by any page break
         sane_pages = []
         current_page = SaneJsonPage()
+        first_page = True
 
         # Split the sections into pages
         for index, json_section in enumerate(report_json_sorted):
@@ -52,8 +58,18 @@ class SaneJson:
             # Check if we hit a page break
             # (add to current page and start a new one)
             if _is_page_separator(json_section):
+                # Check if this is the first element
+                if first_page:
+                    current_page.add_section(json_section)
                 sane_pages.append(current_page)
                 current_page = SaneJsonPage()
+            else:
+                # Fixes reports without breaks
+                first_page = False
+
+            if first_page:
+                first_page = False
+                continue
 
             current_page.add_section(json_section)
 
@@ -64,6 +80,8 @@ class SaneJson:
         # Normalize all of the vertical positions
         # and fix order for merge, see @merge_cells
         for sane_page in sane_pages:
+            # if len(sane_page.sections_list) == 0:
+            #     break
             sane_page.normalize_row_positions()
 
         return sane_pages

@@ -22,8 +22,9 @@ def _debug_show_styles(document):
     styles_p = [s for s in styles if s.type == WD_STYLE_TYPE.PARAGRAPH]
     styles_t = [s for s in styles if s.type == WD_STYLE_TYPE.TABLE]
     styles = styles_p + styles_t
+    print("Styles: ")
     for style in styles:
-        print(style.name)
+        print("\t", style.name)
 
 
 class Report:

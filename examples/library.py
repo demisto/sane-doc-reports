@@ -35,7 +35,7 @@ def example_markdown(out_file_name='example.docx'):
 
 
 def example_markdown_paged(out_file_name='example.docx'):
-    main.run(get_mock('elements/markdown_paged.json', ret_dict=False),
+    main.run(get_mock('elements/markdown_paged2.json', ret_dict=False),
              out_file_name)
 
 

@@ -80,8 +80,6 @@ class SaneJson:
         # Normalize all of the vertical positions
         # and fix order for merge, see @merge_cells
         for sane_page in sane_pages:
-            # if len(sane_page.sections_list) == 0:
-            #     break
             sane_page.normalize_row_positions()
 
         return sane_pages

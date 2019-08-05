@@ -99,7 +99,7 @@ def run_all():
 
 
 def run():
-    example_markdown_paged()
+    example_paged()
 
 
 if __name__ == '__main__':

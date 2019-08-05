@@ -1,7 +1,7 @@
 from functools import reduce
 
 import pytest
-from sane_doc_reports.domain.SaneJson import SaneJson, get_vertical_pos
+from sane_doc_reports.domain.SaneJson import SaneJson, get_vertical_pos, row_pos
 from tests.utils import get_mock
 from sane_doc_reports.conf import *
 
@@ -44,10 +44,6 @@ def test_normalize_row_positions():
 
     for sane_page in sane_json.get_sane_pages():
         sections = sane_page.get_sections()
-        print("Page")
-        last_row_pos = 0
-        for s in sections:
-            row_pos = s['layout']['rowPos']
-            print(s['type'], last_row_pos, row_pos)
-            assert row_pos - last_row_pos <= 1
-            last_row_pos = row_pos
+
+        # Let's test that the page starts with 0
+        assert sorted([row_pos(s) for s in sections])[0] == 0

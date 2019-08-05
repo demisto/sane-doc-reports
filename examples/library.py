@@ -76,7 +76,7 @@ def example():
     main.run(get_mock('example.json', ret_dict=False), 'example.docx')
 
 
-def run_all():
+def example_all():
     examples = [
         example_basic,
         example_paged,

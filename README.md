@@ -1,6 +1,6 @@
-# Sane Doc Reports by [](https://.com)
+# Sane Doc Reports by [Demisto](https://demisto.com)
 
-An extension to [sane-reports](https://github.com//sane-reports), 
+An extension to [sane-reports](https://github.com/demisto/sane-reports), 
 > *"keep you sane and not pulling your hair out while generating DOCX reports"*
 
 ## Installation

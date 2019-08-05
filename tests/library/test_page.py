@@ -40,12 +40,14 @@ def test_calculate_page_grid_merge():
 
 
 def test_normalize_row_positions():
-    sane_json = SaneJson(get_mock('three_pages.json'))
+    sane_json = SaneJson(get_mock('grid_checks/fullgridpaged.json'))
 
     for sane_page in sane_json.get_sane_pages():
         sections = sane_page.get_sections()
-        assert reduce(lambda last_vertical_pos, current_section:
-                      min(
-                          get_vertical_pos(last_vertical_pos),
-                          get_vertical_pos(current_section)
-                      ), sections)[LAYOUT_KEY][ROW_POSITION_KEY] == 0
+        print("Page")
+        last_row_pos = 0
+        for s in sections:
+            row_pos = s['layout']['rowPos']
+            print(s['type'], last_row_pos, row_pos)
+            assert row_pos - last_row_pos <= 1
+            last_row_pos = row_pos

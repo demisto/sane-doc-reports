@@ -5,8 +5,7 @@ from sane_doc_reports.transform.positioning import *
 from sane_doc_reports.domain.SaneJsonPage import SaneJsonPage
 
 
-def _is_page_separator(json_section: dict):
-    # Check if a markdown page break
+def _is_markdown_page_separator(json_section: dict):
     if 'type' in json_section and json_section['type'] == 'markdown':
         if 'data' in json_section and 'text' in json_section['data'] and \
                 MD_PAGE_BREAK in json_section['data']['text']:
@@ -14,9 +13,12 @@ def _is_page_separator(json_section: dict):
             # the sane-reports removes the MD_PAGE_BREAK from the md,
             # we need to do it too.
             json_section['data']['text'] = json_section['data']['text'].replace(
-                MD_PAGE_BREAK, '\n')
+                MD_PAGE_BREAK, '')
             return True
+    return False
 
+
+def _is_page_separator(json_section: dict):
     if LAYOUT_KEY not in json_section:
         return False
     if STYLE_KEY not in json_section[LAYOUT_KEY]:
@@ -24,8 +26,7 @@ def _is_page_separator(json_section: dict):
     if PAGEBREAK_KEY not in json_section[LAYOUT_KEY][STYLE_KEY]:
         return False
 
-    return json_section[LAYOUT_KEY][STYLE_KEY][PAGEBREAK_KEY] == "always" or \
-           json_section[LAYOUT_KEY][STYLE_KEY][PAGEBREAK_KEY]
+    return json_section[LAYOUT_KEY][STYLE_KEY][PAGEBREAK_KEY]
 
 
 class SaneJson:
@@ -50,31 +51,21 @@ class SaneJson:
         # Let's split by any page break
         sane_pages = []
         current_page = SaneJsonPage()
-        first_page = True
 
         # Split the sections into pages
         for index, json_section in enumerate(report_json_sorted):
-
-            # Check if we hit a page break
-            # (add to current page and start a new one)
-            if _is_page_separator(json_section):
-                # Check if this is the first element
-                if first_page:
-                    current_page.add_section(json_section)
-                sane_pages.append(current_page)
-                current_page = SaneJsonPage()
-            else:
-                # Fixes reports without breaks
-                first_page = False
-
-            if first_page:
-                first_page = False
-                continue
-
             current_page.add_section(json_section)
 
+            if _is_page_separator(json_section) or \
+                    _is_markdown_page_separator(json_section):
+                # TODO: There may be an edge case where the row and col are
+                #  the same, I'm not sure if it will ever happen though.
+                sane_pages.append(current_page)
+                current_page = SaneJsonPage()
+
             # Check if we get the end of the sections
-            if index == len(report_json_sorted) - 1:
+            elif index == len(report_json_sorted) - 1 and \
+                    len(current_page.sections_list) > 0:
                 sane_pages.append(current_page)
 
         # Normalize all of the vertical positions

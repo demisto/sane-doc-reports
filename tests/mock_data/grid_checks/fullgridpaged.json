@@ -571,6 +571,9 @@
       }
     ],
     "layout": {
+      "style": {
+        "pageBreakBefore": true
+      },
       "chartProperties": {
         "barSize": 15,
         "format": "DD MMM Y",
@@ -618,9 +621,6 @@
       ]
     },
     "layout": {
-      "style": {
-        "pageBreakBefore": true
-      },
       "columnPos": 0,
       "h": 1,
       "i": "ab2a8d40-00ea-11e8-9b6f-436025e19452",

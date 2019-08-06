@@ -1,4 +1,5 @@
 import os
+from docx.enum.text import WD_BREAK
 from pathlib import Path
 from typing import List
 
@@ -21,8 +22,9 @@ def _debug_show_styles(document):
     styles_p = [s for s in styles if s.type == WD_STYLE_TYPE.PARAGRAPH]
     styles_t = [s for s in styles if s.type == WD_STYLE_TYPE.TABLE]
     styles = styles_p + styles_t
+    print("Styles: ")
     for style in styles:
-        print(style.name)
+        print("\t", style.name)
 
 
 class Report:
@@ -49,6 +51,7 @@ class Report:
     def populate_report(self) -> None:
         self.change_page_size('A4')
         self._decrease_layout_margins()
+        page_count = self.sane_json.get_pages_count() - 1
         for page_num, sane_page in enumerate(self.sane_json.get_sane_pages()):
             cols, rows = sane_page.calculate_page_grid()
 
@@ -73,6 +76,15 @@ class Report:
                 cell_object = CellObject(cell, add_run=False,
                                          grid_position=grid_pos)
                 self._insert_section(cell_object, section)
+
+            # If this isn't the last page, we can add another page break.
+            if page_num != page_count:
+                p = self.document.add_paragraph()
+                r = p.add_run()
+                if DEBUG:
+                    r.text = f'Page break ({page_num})'
+                r.add_break(WD_BREAK.PAGE)
+
 
     @staticmethod
     def _insert_section(cell_object: CellObject, section: Section) -> None:

@@ -14,9 +14,7 @@ An extension to [sane-reports](https://github.com/demisto/sane-reports),
 ## Usage
 **CLI**  
 First, generate a JSON file with the sane-reports repo.
-```sh
-$ sane-doc some.json -w out.docx # Not implemented yet. Use the library.
-```
+Then do `Instalation` phase 5.
 
 **Library**
 ```

@@ -3,7 +3,7 @@
     "type": "chart",
     "data": [
       {
-        "name": "Unclassified",
+        "name": "Unknown",
         "data": [
           3
         ],
@@ -27,7 +27,7 @@
       "legend": [
         {
           "color": "#03B0FF",
-          "name": "Unclassified"
+          "name": "Unknown"
         }
       ],
       "legendStyle": {
@@ -44,7 +44,7 @@
       "w": 5
     },
     "fromDate": "2019-04-15T17:34:56+03:00",
-    "title": "Active problems - Line chart 2"
+    "title": "Things - Line chart 2"
   },
   {
     "type": "chart",
@@ -95,7 +95,7 @@
       "w": 5
     },
     "fromDate": "2019-04-15T17:34:56+03:00",
-    "title": "problems By Close Reason"
+    "title": "By Someone"
   },
   {
     "type": "chart",
@@ -121,7 +121,7 @@
             "groups": null
           },
           {
-            "name": "Unclassified",
+            "name": "Unknown",
             "data": [
               9
             ],
@@ -143,7 +143,7 @@
             "groups": null
           },
           {
-            "name": "Unclassified",
+            "name": "Unknown",
             "data": [
               17
             ],
@@ -165,7 +165,7 @@
         ],
         "groups": [
           {
-            "name": "Unclassified",
+            "name": "Unknown",
             "data": [
               6
             ],
@@ -194,7 +194,7 @@
         ],
         "groups": [
           {
-            "name": "Unclassified",
+            "name": "Unknown",
             "data": [
               12
             ],
@@ -223,7 +223,7 @@
         ],
         "groups": [
           {
-            "name": "Unclassified",
+            "name": "Unknown",
             "data": [
               4
             ],
@@ -271,7 +271,7 @@
         },
         {
           "color": "#03B0FF",
-          "name": "Unclassified"
+          "name": "Unknown"
         }
       ],
       "legendStyle": {
@@ -311,7 +311,7 @@
       "noEvent": false
     },
     "fromDate": "2019-07-22T12:26:49Z",
-    "title": "problems level by Type",
+    "title": "level by Type",
     "emptyNotification": "No results found",
     "titleStyle": null
   }

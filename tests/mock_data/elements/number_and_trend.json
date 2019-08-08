@@ -13,7 +13,7 @@
       "w": 4
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "Active problems - Line chart"
+    "title": "Things - Line chart"
   },
   {
     "type": "trend",
@@ -32,6 +32,6 @@
       "w": 3
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "problems By Close Reason"
+    "title": "By Someone"
   }
 ]

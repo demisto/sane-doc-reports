@@ -13,7 +13,7 @@
       "rowPos": 0,
       "w": 12
     },
-    "title": "CriticalAndHighProblems Headline"
+    "title": "Headline"
   },
   {
     "type":  "markdown",
@@ -71,6 +71,6 @@
       "rowPos": 2,
       "w": 12
     },
-    "title": "CriticalAndHighProblems Headline"
+    "title": "Headline"
   }
 ]

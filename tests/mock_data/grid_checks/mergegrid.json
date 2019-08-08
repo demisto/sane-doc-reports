@@ -19,7 +19,7 @@
       "rowPos": 0,
       "w": 12
     },
-    "title": "DailyProblemsRepor Headline"
+    "title": "Headline"
   },
   {
     "type": "markdown",
@@ -34,7 +34,7 @@
       "w": 4
     },
     "fromDate": "2019-04-14T11:59:11+03:00",
-    "title": "DailyProblemsRepor Headline2"
+    "title": "Headline2"
   },
   {
     "type": "table",
@@ -52,11 +52,11 @@
         "Resolve Time.runStatus": "Idle",
         "Resolve Time.totalElapsed": "0",
         "level": "Unknown",
-        "Status": "Assigned",
+        "Status": "Done",
         "Time to Start": "Status: idle",
         "Time to Start.runStatus": "Idle",
         "Time to Start.totalElapsed": "0",
-        "Type": "Unclassified",
+        "Type": "Unknown",
         "account": "N/A",
         "activated": "N/A",
         "attachment": "N/A",
@@ -90,7 +90,7 @@
         "rawJSON": "N/A",
         "rawName": "1123",
         "rawPhase": "N/A",
-        "rawType": "Unclassified",
+        "rawType": "Unknown",
         "reason": "N/A",
         "reminder": "N/A",
         "roles": "N/A",
@@ -113,7 +113,7 @@
         "Resolve Time.runStatus": "Idle",
         "Resolve Time.totalElapsed": "0",
         "level": "Unknown",
-        "Status": "Assigned",
+        "Status": "Done",
         "Time to Start": "Status: idle",
         "Time to Start.runStatus": "Idle",
         "Time to Start.totalElapsed": "0",
@@ -174,7 +174,7 @@
         "Resolve Time.runStatus": "Idle",
         "Resolve Time.totalElapsed": "0",
         "level": "High",
-        "Status": "Assigned",
+        "Status": "Done",
         "Time to Start": "Status: idle",
         "Time to Start.runStatus": "Idle",
         "Time to Start.totalElapsed": "0",
@@ -235,7 +235,7 @@
         "Resolve Time.runStatus": "Idle",
         "Resolve Time.totalElapsed": "0",
         "level": "High",
-        "Status": "Assigned",
+        "Status": "Done",
         "Time to Start": "Status: idle",
         "Time to Start.runStatus": "Idle",
         "Time to Start.totalElapsed": "0",
@@ -296,7 +296,7 @@
         "Resolve Time.runStatus": "Idle",
         "Resolve Time.totalElapsed": "0",
         "level": "Unknown",
-        "Status": "Assigned",
+        "Status": "Done",
         "Time to Start": "Status: idle",
         "Time to Start.runStatus": "Idle",
         "Time to Start.totalElapsed": "0",
@@ -370,7 +370,7 @@
       ],
       "w": 6
     },
-    "title": "Open problems"
+    "title": "problems"
   },
   {
     "type": "markdown",
@@ -392,7 +392,7 @@
       "rowPos": 1,
       "w": 3
     },
-    "title": "DailyProblemsReport level"
+    "title": "level"
   },
   {
     "type": "chart",
@@ -448,7 +448,7 @@
       "rowPos": 2,
       "w": 3
     },
-    "title": "DailyProblemsReport level"
+    "title": "level"
   },
   {
     "type": "chart",
@@ -475,7 +475,7 @@
         "groups": null
       },
       {
-        "name": "Unclassified",
+        "name": "Unknown",
         "data": [
           1
         ],
@@ -513,7 +513,7 @@
         },
         {
           "color": "#03B0FF",
-          "name": "Unclassified"
+          "name": "Unknown"
         }
       ],
       "legendStyle": {
@@ -526,7 +526,7 @@
       "rowPos": 3,
       "w": 4
     },
-    "title": "DailyProblemsReport Type"
+    "title": "Type"
   },
   {
     "type": "chart",
@@ -590,7 +590,7 @@
       "rowPos": 5,
       "w": 2
     },
-    "title": "DailyProblemsReport Analyst"
+    "title": "Person"
   },
   {
     "type": "chart",
@@ -654,6 +654,6 @@
       "rowPos": 4,
       "w": 3
     },
-    "title": "Active problems Assigned by User"
+    "title": "Things Done by User"
   }
 ]

@@ -12,7 +12,7 @@
       "w": 12
     },
     "fromDate": "2019-04-22T18:38:13+03:00",
-    "title": "Active problems - Line chart"
+    "title": "Things - Line chart"
   },
   {
         "type": "image",
@@ -45,7 +45,7 @@
       "w": 4
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "Active problems - Line chart"
+    "title": "Things - Line chart"
   },
   {
     "type": "trend",
@@ -64,12 +64,12 @@
       "w": 3
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "problems By Close Reason"
+    "title": "By Someone"
   },
   {
     "type": "markdown",
     "data": {
-      "text": "# **Critical and High problems**\n\nTue, 30 Apr 2019 10:43:38 IDT\n\n---",
+      "text": "# **Some text here**\n\nTue, 30 Apr 2019 10:43:38 IDT\n\n---",
       "groups": [
         {
           "name": "",
@@ -86,7 +86,7 @@
       "rowPos": 0,
       "w": 12
     },
-    "title": "CriticalAndHighProblems Headline"
+    "title": "Headline"
   },
   {
     "type": "chart",
@@ -142,7 +142,7 @@
       "rowPos": 3,
       "w": 6
     },
-    "title": "Active problems - Pie chart"
+    "title": "Things - Pie chart"
   },
   {
     "type": "chart",
@@ -182,7 +182,7 @@
       "rowPos": 1,
       "w": 6
     },
-    "title": "problems by Phase"
+    "title": "by Phase"
   },
   {
     "type": "chart",
@@ -238,132 +238,30 @@
       "rowPos": 1,
       "w": 3
     },
-    "title": "Active problems - Pie chart"
+    "title": "Things - Pie chart"
   },
   {
     "type": "table",
     "data": [
       {
-        "CustomFields": "N/A",
-        "Over Time": "Status: idle",
-        "Over Time.runStatus": "Idle",
-        "Over Time.totalElapsed": "0",
-        "DueDate": "Thu, 18 Apr 2019 16:16:46 IDT",
-        "Name": "2223",
-        "Occurred": "Mon, 08 Apr 2019 16:16:46 IDT",
-        "Owner": "nolan",
-        "Resolve Time": "Status: idle",
-        "Resolve Time.runStatus": "Idle",
-        "Resolve Time.totalElapsed": "0",
-        "level": "High",
-        "Status": "Assigned",
-        "Time to Start": "Status: idle",
-        "Time to Start.runStatus": "Idle",
-        "Time to Start.totalElapsed": "0",
-        "Type": "Orks",
-        "account": "N/A",
-        "activated": "N/A",
-        "attachment": "N/A",
-        "autime": "1554729406316395000",
-        "sandboxes": "N/A",
-        "category": "N/A",
-        "closeNotes": "N/A",
-        "closeReason": "N/A",
-        "closed": "N/A",
-        "closingUserId": "N/A",
-        "created": "Mon, 08 Apr 2019 16:16:46 IDT",
-        "details": "N/A",
-        "droppedCount": "0",
-        "hasRole": "N/A",
-        "id": "2",
-        "entryId": "2",
-        "isSandbox": "N/A",
-        "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
-        "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
-        "linkedCount": "0",
-        "linkedproblems": "N/A",
-        "modified": "2019-04-08 16:17:43.461913 +0300 IDT",
-        "notifyTime": "2019-04-08 16:16:47.95437 +0300 IDT",
-        "openDuration": "0h 0m 0s",
-        "parent": "N/A",
-        "phase": "N/A",
-        "bookId": "Default",
-        "previousRoles": "N/A",
-        "rawCategory": "N/A",
-        "rawCloseReason": "N/A",
-        "rawJSON": "N/A",
-        "rawName": "2223",
-        "rawPhase": "N/A",
-        "rawType": "Orks",
-        "reason": "N/A",
-        "reminder": "N/A",
-        "roles": "N/A",
-        "runStatus": "waiting",
-        "Time": "0",
-        "sourceBrand": "Manual",
-        "sourceInstance": "admin",
-        "version": "8"
+        "DueDate": "Thu, 18 Apr 2019 16:16:48 IDT",
+        "Name": "4444",
+        "Occurred": "Mon, 08 Apr 2019 16:16:48 IDT",
+        "Owner": "molan",
+        "level": "Low",
+        "Type": "Teleportation",
+        "Status": "Done",
+        "Over Time": "Status: n/a"
       },
       {
-        "CustomFields": "N/A",
-        "Over Time": "Status: idle",
-        "Over Time.runStatus": "Idle",
-        "Over Time.totalElapsed": "0",
         "DueDate": "Thu, 18 Apr 2019 16:16:48 IDT",
         "Name": "33333",
         "Occurred": "Mon, 08 Apr 2019 16:16:48 IDT",
         "Owner": "nolan",
-        "Resolve Time": "Status: idle",
-        "Resolve Time.runStatus": "Idle",
-        "Resolve Time.totalElapsed": "0",
         "level": "High",
-        "Status": "Assigned",
-        "Time to Start": "Status: idle",
-        "Time to Start.runStatus": "Idle",
-        "Time to Start.totalElapsed": "0",
         "Type": "Teleportation",
-        "account": "N/A",
-        "activated": "N/A",
-        "attachment": "N/A",
-        "autime": "1554729408908520000",
-        "sandboxes": "N/A",
-        "category": "N/A",
-        "closeNotes": "N/A",
-        "closeReason": "N/A",
-        "closed": "N/A",
-        "closingUserId": "N/A",
-        "created": "Mon, 08 Apr 2019 16:16:48 IDT",
-        "details": "N/A",
-        "droppedCount": "0",
-        "hasRole": "N/A",
-        "id": "3",
-        "entryId": "3",
-        "isSandbox": "N/A",
-        "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
-        "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
-        "linkedCount": "0",
-        "linkedproblems": "N/A",
-        "modified": "2019-04-08 16:17:51.271564 +0300 IDT",
-        "notifyTime": "2019-04-08 16:16:50.6746 +0300 IDT",
-        "openDuration": "0h 0m 0s",
-        "parent": "N/A",
-        "phase": "N/A",
-        "bookId": "Default",
-        "previousRoles": "N/A",
-        "rawCategory": "N/A",
-        "rawCloseReason": "N/A",
-        "rawJSON": "N/A",
-        "rawName": "33333",
-        "rawPhase": "N/A",
-        "rawType": "Teleportation",
-        "reason": "N/A",
-        "reminder": "N/A",
-        "roles": "N/A",
-        "runStatus": "waiting",
-        "Time": "0",
-        "sourceBrand": "Manual",
-        "sourceInstance": "admin",
-        "version": "8"
+        "Status": "Done",
+        "Over Time": "Status: idle"
       }
     ],
     "layout": {
@@ -391,7 +289,7 @@
       ],
       "w": 12
     },
-  "title": "Critical and High problems"
+  "title": "High problems"
   },
   {
     "type": "markdown",
@@ -406,7 +304,7 @@
       "w": 12
     },
     "fromDate": "2019-04-22T18:38:13+03:00",
-    "title": "Active problems - Line chart"
+    "title": "Things - Line chart"
   },
   {
         "type": "image",
@@ -439,7 +337,7 @@
       "w": 4
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "Active problems - Line chart"
+    "title": "Things - Line chart"
   },
   {
     "type": "trend",
@@ -458,12 +356,12 @@
       "w": 3
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "problems By Close Reason"
+    "title": "By Someone"
   },
   {
     "type": "markdown",
     "data": {
-      "text": "# **Critical and High problems**\n\nTue, 30 Apr 2019 10:43:38 IDT\n\n---",
+      "text": "# **Some text here**\n\nTue, 30 Apr 2019 10:43:38 IDT\n\n---",
       "groups": [
         {
           "name": "",
@@ -480,7 +378,7 @@
       "rowPos": 0,
       "w": 12
     },
-    "title": "CriticalAndHighProblems Headline"
+    "title": "Headline"
   },
   {
     "type": "chart",
@@ -536,7 +434,7 @@
       "rowPos": 3,
       "w": 6
     },
-    "title": "Active problems - Pie chart"
+    "title": "Things - Pie chart"
   },
   {
     "type": "chart",
@@ -576,7 +474,7 @@
       "rowPos": 1,
       "w": 6
     },
-    "title": "problems by Phase"
+    "title": "by Phase"
   },
   {
     "type": "chart",
@@ -632,132 +530,30 @@
       "rowPos": 1,
       "w": 3
     },
-    "title": "Active problems - Pie chart"
+    "title": "Things - Pie chart"
   },
   {
     "type": "table",
     "data": [
-      {
-        "CustomFields": "N/A",
-        "Over Time": "Status: idle",
-        "Over Time.runStatus": "Idle",
-        "Over Time.totalElapsed": "0",
-        "DueDate": "Thu, 18 Apr 2019 16:16:46 IDT",
-        "Name": "2223",
-        "Occurred": "Mon, 08 Apr 2019 16:16:46 IDT",
-        "Owner": "nolan",
-        "Resolve Time": "Status: idle",
-        "Resolve Time.runStatus": "Idle",
-        "Resolve Time.totalElapsed": "0",
-        "level": "High",
-        "Status": "Assigned",
-        "Time to Start": "Status: idle",
-        "Time to Start.runStatus": "Idle",
-        "Time to Start.totalElapsed": "0",
-        "Type": "Orks",
-        "account": "N/A",
-        "activated": "N/A",
-        "attachment": "N/A",
-        "autime": "1554729406316395000",
-        "sandboxes": "N/A",
-        "category": "N/A",
-        "closeNotes": "N/A",
-        "closeReason": "N/A",
-        "closed": "N/A",
-        "closingUserId": "N/A",
-        "created": "Mon, 08 Apr 2019 16:16:46 IDT",
-        "details": "N/A",
-        "droppedCount": "0",
-        "hasRole": "N/A",
-        "id": "2",
-        "entryId": "2",
-        "isSandbox": "N/A",
-        "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
-        "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
-        "linkedCount": "0",
-        "linkedproblems": "N/A",
-        "modified": "2019-04-08 16:17:43.461913 +0300 IDT",
-        "notifyTime": "2019-04-08 16:16:47.95437 +0300 IDT",
-        "openDuration": "0h 0m 0s",
-        "parent": "N/A",
-        "phase": "N/A",
-        "bookId": "Default",
-        "previousRoles": "N/A",
-        "rawCategory": "N/A",
-        "rawCloseReason": "N/A",
-        "rawJSON": "N/A",
-        "rawName": "2223",
-        "rawPhase": "N/A",
-        "rawType": "Orks",
-        "reason": "N/A",
-        "reminder": "N/A",
-        "roles": "N/A",
-        "runStatus": "waiting",
-        "Time": "0",
-        "sourceBrand": "Manual",
-        "sourceInstance": "admin",
-        "version": "8"
+       {
+        "DueDate": "Thu, 18 Apr 2019 16:16:48 IDT",
+        "Name": "4444",
+        "Occurred": "Mon, 08 Apr 2019 16:16:48 IDT",
+        "Owner": "molan",
+        "level": "Low",
+        "Type": "Teleportation",
+        "Status": "Done",
+        "Over Time": "Status: n/a"
       },
       {
-        "CustomFields": "N/A",
-        "Over Time": "Status: idle",
-        "Over Time.runStatus": "Idle",
-        "Over Time.totalElapsed": "0",
         "DueDate": "Thu, 18 Apr 2019 16:16:48 IDT",
         "Name": "33333",
         "Occurred": "Mon, 08 Apr 2019 16:16:48 IDT",
         "Owner": "nolan",
-        "Resolve Time": "Status: idle",
-        "Resolve Time.runStatus": "Idle",
-        "Resolve Time.totalElapsed": "0",
         "level": "High",
-        "Status": "Assigned",
-        "Time to Start": "Status: idle",
-        "Time to Start.runStatus": "Idle",
-        "Time to Start.totalElapsed": "0",
         "Type": "Teleportation",
-        "account": "N/A",
-        "activated": "N/A",
-        "attachment": "N/A",
-        "autime": "1554729408908520000",
-        "sandboxes": "N/A",
-        "category": "N/A",
-        "closeNotes": "N/A",
-        "closeReason": "N/A",
-        "closed": "N/A",
-        "closingUserId": "N/A",
-        "created": "Mon, 08 Apr 2019 16:16:48 IDT",
-        "details": "N/A",
-        "droppedCount": "0",
-        "hasRole": "N/A",
-        "id": "3",
-        "entryId": "3",
-        "isSandbox": "N/A",
-        "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
-        "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
-        "linkedCount": "0",
-        "linkedproblems": "N/A",
-        "modified": "2019-04-08 16:17:51.271564 +0300 IDT",
-        "notifyTime": "2019-04-08 16:16:50.6746 +0300 IDT",
-        "openDuration": "0h 0m 0s",
-        "parent": "N/A",
-        "phase": "N/A",
-        "bookId": "Default",
-        "previousRoles": "N/A",
-        "rawCategory": "N/A",
-        "rawCloseReason": "N/A",
-        "rawJSON": "N/A",
-        "rawName": "33333",
-        "rawPhase": "N/A",
-        "rawType": "Teleportation",
-        "reason": "N/A",
-        "reminder": "N/A",
-        "roles": "N/A",
-        "runStatus": "waiting",
-        "Time": "0",
-        "sourceBrand": "Manual",
-        "sourceInstance": "admin",
-        "version": "8"
+        "Status": "Done",
+        "Over Time": "Status: idle"
       }
     ],
     "layout": {
@@ -785,7 +581,7 @@
       ],
       "w": 12
     },
-  "title": "Critical and High problems"
+  "title": "High problems"
   },
   {
     "type": "markdown",
@@ -800,7 +596,7 @@
       "w": 12
     },
     "fromDate": "2019-04-22T18:38:13+03:00",
-    "title": "Active problems - Line chart"
+    "title": "Things - Line chart"
   },
   {
         "type": "image",
@@ -833,7 +629,7 @@
       "w": 4
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "Active problems - Line chart"
+    "title": "Things - Line chart"
   },
   {
     "type": "trend",
@@ -852,12 +648,12 @@
       "w": 3
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "problems By Close Reason"
+    "title": "By Someone"
   },
   {
     "type": "markdown",
     "data": {
-      "text": "# **Critical and High problems**\n\nTue, 30 Apr 2019 10:43:38 IDT\n\n---",
+      "text": "# **Some text here**\n\nTue, 30 Apr 2019 10:43:38 IDT\n\n---",
       "groups": [
         {
           "name": "",
@@ -874,7 +670,7 @@
       "rowPos": 0,
       "w": 12
     },
-    "title": "CriticalAndHighProblems Headline"
+    "title": "Headline"
   },
   {
     "type": "chart",
@@ -930,7 +726,7 @@
       "rowPos": 3,
       "w": 6
     },
-    "title": "Active problems - Pie chart"
+    "title": "Things - Pie chart"
   },
   {
     "type": "chart",
@@ -970,7 +766,7 @@
       "rowPos": 1,
       "w": 6
     },
-    "title": "problems by Phase"
+    "title": "by Phase"
   },
   {
     "type": "chart",
@@ -1026,132 +822,30 @@
       "rowPos": 1,
       "w": 3
     },
-    "title": "Active problems - Pie chart"
+    "title": "Things - Pie chart"
   },
   {
     "type": "table",
     "data": [
       {
-        "CustomFields": "N/A",
-        "Over Time": "Status: idle",
-        "Over Time.runStatus": "Idle",
-        "Over Time.totalElapsed": "0",
-        "DueDate": "Thu, 18 Apr 2019 16:16:46 IDT",
-        "Name": "2223",
-        "Occurred": "Mon, 08 Apr 2019 16:16:46 IDT",
-        "Owner": "nolan",
-        "Resolve Time": "Status: idle",
-        "Resolve Time.runStatus": "Idle",
-        "Resolve Time.totalElapsed": "0",
-        "level": "High",
-        "Status": "Assigned",
-        "Time to Start": "Status: idle",
-        "Time to Start.runStatus": "Idle",
-        "Time to Start.totalElapsed": "0",
-        "Type": "Orks",
-        "account": "N/A",
-        "activated": "N/A",
-        "attachment": "N/A",
-        "autime": "1554729406316395000",
-        "sandboxes": "N/A",
-        "category": "N/A",
-        "closeNotes": "N/A",
-        "closeReason": "N/A",
-        "closed": "N/A",
-        "closingUserId": "N/A",
-        "created": "Mon, 08 Apr 2019 16:16:46 IDT",
-        "details": "N/A",
-        "droppedCount": "0",
-        "hasRole": "N/A",
-        "id": "2",
-        "entryId": "2",
-        "isSandbox": "N/A",
-        "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
-        "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
-        "linkedCount": "0",
-        "linkedproblems": "N/A",
-        "modified": "2019-04-08 16:17:43.461913 +0300 IDT",
-        "notifyTime": "2019-04-08 16:16:47.95437 +0300 IDT",
-        "openDuration": "0h 0m 0s",
-        "parent": "N/A",
-        "phase": "N/A",
-        "bookId": "Default",
-        "previousRoles": "N/A",
-        "rawCategory": "N/A",
-        "rawCloseReason": "N/A",
-        "rawJSON": "N/A",
-        "rawName": "2223",
-        "rawPhase": "N/A",
-        "rawType": "Orks",
-        "reason": "N/A",
-        "reminder": "N/A",
-        "roles": "N/A",
-        "runStatus": "waiting",
-        "Time": "0",
-        "sourceBrand": "Manual",
-        "sourceInstance": "admin",
-        "version": "8"
+        "DueDate": "Thu, 18 Apr 2019 16:16:48 IDT",
+        "Name": "4444",
+        "Occurred": "Mon, 08 Apr 2019 16:16:48 IDT",
+        "Owner": "molan",
+        "level": "Low",
+        "Type": "Teleportation",
+        "Status": "Done",
+        "Over Time": "Status: n/a"
       },
       {
-        "CustomFields": "N/A",
-        "Over Time": "Status: idle",
-        "Over Time.runStatus": "Idle",
-        "Over Time.totalElapsed": "0",
         "DueDate": "Thu, 18 Apr 2019 16:16:48 IDT",
         "Name": "33333",
         "Occurred": "Mon, 08 Apr 2019 16:16:48 IDT",
         "Owner": "nolan",
-        "Resolve Time": "Status: idle",
-        "Resolve Time.runStatus": "Idle",
-        "Resolve Time.totalElapsed": "0",
         "level": "High",
-        "Status": "Assigned",
-        "Time to Start": "Status: idle",
-        "Time to Start.runStatus": "Idle",
-        "Time to Start.totalElapsed": "0",
         "Type": "Teleportation",
-        "account": "N/A",
-        "activated": "N/A",
-        "attachment": "N/A",
-        "autime": "1554729408908520000",
-        "sandboxes": "N/A",
-        "category": "N/A",
-        "closeNotes": "N/A",
-        "closeReason": "N/A",
-        "closed": "N/A",
-        "closingUserId": "N/A",
-        "created": "Mon, 08 Apr 2019 16:16:48 IDT",
-        "details": "N/A",
-        "droppedCount": "0",
-        "hasRole": "N/A",
-        "id": "3",
-        "entryId": "3",
-        "isSandbox": "N/A",
-        "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
-        "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
-        "linkedCount": "0",
-        "linkedproblems": "N/A",
-        "modified": "2019-04-08 16:17:51.271564 +0300 IDT",
-        "notifyTime": "2019-04-08 16:16:50.6746 +0300 IDT",
-        "openDuration": "0h 0m 0s",
-        "parent": "N/A",
-        "phase": "N/A",
-        "bookId": "Default",
-        "previousRoles": "N/A",
-        "rawCategory": "N/A",
-        "rawCloseReason": "N/A",
-        "rawJSON": "N/A",
-        "rawName": "33333",
-        "rawPhase": "N/A",
-        "rawType": "Teleportation",
-        "reason": "N/A",
-        "reminder": "N/A",
-        "roles": "N/A",
-        "runStatus": "waiting",
-        "Time": "0",
-        "sourceBrand": "Manual",
-        "sourceInstance": "admin",
-        "version": "8"
+        "Status": "Done",
+        "Over Time": "Status: idle"
       }
     ],
     "layout": {
@@ -1179,7 +873,7 @@
       ],
       "w": 12
     },
-  "title": "Critical and High problems"
+  "title": "High problems"
   },
   {
     "type": "markdown",
@@ -1194,7 +888,7 @@
       "w": 12
     },
     "fromDate": "2019-04-22T18:38:13+03:00",
-    "title": "Active problems - Line chart"
+    "title": "Things - Line chart"
   },
   {
         "type": "image",
@@ -1227,7 +921,7 @@
       "w": 4
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "Active problems - Line chart"
+    "title": "Things - Line chart"
   },
   {
     "type": "trend",
@@ -1246,12 +940,12 @@
       "w": 3
     },
     "fromDate": "2019-04-15T14:10:59+03:00",
-    "title": "problems By Close Reason"
+    "title": "By Someone"
   },
   {
     "type": "markdown",
     "data": {
-      "text": "# **Critical and High problems**\n\nTue, 30 Apr 2019 10:43:38 IDT\n\n---",
+      "text": "# **Some text here**\n\nTue, 30 Apr 2019 10:43:38 IDT\n\n---",
       "groups": [
         {
           "name": "",
@@ -1268,7 +962,7 @@
       "rowPos": 0,
       "w": 12
     },
-    "title": "CriticalAndHighProblems Headline"
+    "title": "Headline"
   },
   {
     "type": "chart",
@@ -1324,7 +1018,7 @@
       "rowPos": 3,
       "w": 6
     },
-    "title": "Active problems - Pie chart"
+    "title": "Things - Pie chart"
   },
   {
     "type": "chart",
@@ -1364,7 +1058,7 @@
       "rowPos": 1,
       "w": 6
     },
-    "title": "problems by Phase"
+    "title": "by Phase"
   },
   {
     "type": "chart",
@@ -1420,132 +1114,30 @@
       "rowPos": 1,
       "w": 3
     },
-    "title": "Active problems - Pie chart"
+    "title": "Things - Pie chart"
   },
   {
     "type": "table",
     "data": [
       {
-        "CustomFields": "N/A",
-        "Over Time": "Status: idle",
-        "Over Time.runStatus": "Idle",
-        "Over Time.totalElapsed": "0",
-        "DueDate": "Thu, 18 Apr 2019 16:16:46 IDT",
-        "Name": "2223",
-        "Occurred": "Mon, 08 Apr 2019 16:16:46 IDT",
-        "Owner": "nolan",
-        "Resolve Time": "Status: idle",
-        "Resolve Time.runStatus": "Idle",
-        "Resolve Time.totalElapsed": "0",
-        "level": "High",
-        "Status": "Assigned",
-        "Time to Start": "Status: idle",
-        "Time to Start.runStatus": "Idle",
-        "Time to Start.totalElapsed": "0",
-        "Type": "Orks",
-        "account": "N/A",
-        "activated": "N/A",
-        "attachment": "N/A",
-        "autime": "1554729406316395000",
-        "sandboxes": "N/A",
-        "category": "N/A",
-        "closeNotes": "N/A",
-        "closeReason": "N/A",
-        "closed": "N/A",
-        "closingUserId": "N/A",
-        "created": "Mon, 08 Apr 2019 16:16:46 IDT",
-        "details": "N/A",
-        "droppedCount": "0",
-        "hasRole": "N/A",
-        "id": "2",
-        "entryId": "2",
-        "isSandbox": "N/A",
-        "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
-        "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
-        "linkedCount": "0",
-        "linkedproblems": "N/A",
-        "modified": "2019-04-08 16:17:43.461913 +0300 IDT",
-        "notifyTime": "2019-04-08 16:16:47.95437 +0300 IDT",
-        "openDuration": "0h 0m 0s",
-        "parent": "N/A",
-        "phase": "N/A",
-        "bookId": "Default",
-        "previousRoles": "N/A",
-        "rawCategory": "N/A",
-        "rawCloseReason": "N/A",
-        "rawJSON": "N/A",
-        "rawName": "2223",
-        "rawPhase": "N/A",
-        "rawType": "Orks",
-        "reason": "N/A",
-        "reminder": "N/A",
-        "roles": "N/A",
-        "runStatus": "waiting",
-        "Time": "0",
-        "sourceBrand": "Manual",
-        "sourceInstance": "admin",
-        "version": "8"
+        "DueDate": "Thu, 18 Apr 2019 16:16:48 IDT",
+        "Name": "4444",
+        "Occurred": "Mon, 08 Apr 2019 16:16:48 IDT",
+        "Owner": "molan",
+        "level": "Low",
+        "Type": "Teleportation",
+        "Status": "Done",
+        "Over Time": "Status: n/a"
       },
       {
-        "CustomFields": "N/A",
-        "Over Time": "Status: idle",
-        "Over Time.runStatus": "Idle",
-        "Over Time.totalElapsed": "0",
         "DueDate": "Thu, 18 Apr 2019 16:16:48 IDT",
         "Name": "33333",
         "Occurred": "Mon, 08 Apr 2019 16:16:48 IDT",
         "Owner": "nolan",
-        "Resolve Time": "Status: idle",
-        "Resolve Time.runStatus": "Idle",
-        "Resolve Time.totalElapsed": "0",
         "level": "High",
-        "Status": "Assigned",
-        "Time to Start": "Status: idle",
-        "Time to Start.runStatus": "Idle",
-        "Time to Start.totalElapsed": "0",
         "Type": "Teleportation",
-        "account": "N/A",
-        "activated": "N/A",
-        "attachment": "N/A",
-        "autime": "1554729408908520000",
-        "sandboxes": "N/A",
-        "category": "N/A",
-        "closeNotes": "N/A",
-        "closeReason": "N/A",
-        "closed": "N/A",
-        "closingUserId": "N/A",
-        "created": "Mon, 08 Apr 2019 16:16:48 IDT",
-        "details": "N/A",
-        "droppedCount": "0",
-        "hasRole": "N/A",
-        "id": "3",
-        "entryId": "3",
-        "isSandbox": "N/A",
-        "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
-        "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
-        "linkedCount": "0",
-        "linkedproblems": "N/A",
-        "modified": "2019-04-08 16:17:51.271564 +0300 IDT",
-        "notifyTime": "2019-04-08 16:16:50.6746 +0300 IDT",
-        "openDuration": "0h 0m 0s",
-        "parent": "N/A",
-        "phase": "N/A",
-        "bookId": "Default",
-        "previousRoles": "N/A",
-        "rawCategory": "N/A",
-        "rawCloseReason": "N/A",
-        "rawJSON": "N/A",
-        "rawName": "33333",
-        "rawPhase": "N/A",
-        "rawType": "Teleportation",
-        "reason": "N/A",
-        "reminder": "N/A",
-        "roles": "N/A",
-        "runStatus": "waiting",
-        "Time": "0",
-        "sourceBrand": "Manual",
-        "sourceInstance": "admin",
-        "version": "8"
+        "Status": "Done",
+        "Over Time": "Status: idle"
       }
     ],
     "layout": {
@@ -1573,7 +1165,7 @@
       ],
       "w": 12
     },
-    "title": "Critical and High problems"
+    "title": "High problems"
   },
   {
     "type": "markdown",
@@ -1588,6 +1180,6 @@
       "w": 12
     },
     "fromDate": "2019-04-22T18:38:13+03:00",
-    "title": "Active problems - Line chart"
+    "title": "Things - Line chart"
   }
 ]

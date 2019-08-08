@@ -22,7 +22,7 @@
       "rowPos": 0,
       "w": 12
     },
-    "title": "CriticalAndHighIssues Headline"
+    "title": "Headline"
   },
   {
     "type": "markdown",
@@ -44,7 +44,7 @@
       "rowPos": 1,
       "w": 12
     },
-    "title": "CriticalAndHighIssues Headline"
+    "title": "Headline"
   },
   {
     "type": "markdown",
@@ -66,7 +66,7 @@
       "rowPos": 2,
       "w": 12
     },
-    "title": "CriticalAndHighIssues Headline"
+    "title": "Headline"
   },
   {
     "type": "markdown",
@@ -91,7 +91,7 @@
       "rowPos": 3,
       "w": 12
     },
-    "title": "CriticalAndHighIssues Headline"
+    "title": "Headline"
   }
   ,
   {
@@ -116,6 +116,6 @@
       "rowPos": 4,
       "w": 12
     },
-    "title": "CriticalAndHighIssues Headline"
+    "title": "Headline"
   }
 ]

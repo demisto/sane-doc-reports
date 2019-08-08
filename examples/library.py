@@ -104,7 +104,7 @@ def example_all():
 
 
 def run():
-    example_paged_complex()
+    example_all()
 
 
 if __name__ == '__main__':

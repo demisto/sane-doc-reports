@@ -42,13 +42,13 @@ $ pytest --cov=sane_doc_reports # For coverage
 8) SaneJson - holds the raw sane-json sections.
 
 
-### Generating JSON files
+### Generating JSON files (in demisto)
 1) Start a new demisto server with: `report.remove.data=false`
 2) Go to the reports, generate a desired report
 3) Get the json from `<demisto_path>/debug/lib/temp`
 
 To check how it looks in the sane-reports:
-1) Change the `incidentDailyReportTempalte.json` file with the json from the last step (in `lib/temp`)
+1) Change the `DailyReportTempalte.json` file with the json from the last step (in `lib/temp`)
 2) `npm run start`
 3) To mark the tables there you can open the console and add this:
 ```js

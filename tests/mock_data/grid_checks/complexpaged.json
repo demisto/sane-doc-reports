@@ -19,11 +19,10 @@
       },
       "columnPos": 0,
       "h": 1,
-      "i": "8cdc9e20-005c-11e8-831f-e7429aff1c69",
       "rowPos": 0,
       "w": 12
     },
-    "title": "criticalAndHighIncidents Headline"
+    "title": "Headline"
   },
   {
     "type": "markdown",
@@ -42,11 +41,10 @@
     "layout": {
       "columnPos": 0,
       "h": 1,
-      "i": "8cdc9e20-005c-11e8-831f-e7429aff1c69",
       "rowPos": 1,
       "w": 12
     },
-    "title": "criticalAndHighIncidents Headline"
+    "title": "Headline"
   },
   {
     "type": "markdown",
@@ -65,11 +63,10 @@
     "layout": {
       "columnPos": 0,
       "h": 1,
-      "i": "8cdc9e20-005c-11e8-831f-e7429aff1c69",
       "rowPos": 2,
       "w": 12
     },
-    "title": "criticalAndHighIncidents Headline"
+    "title": "Headline"
   },
   {
     "type": "markdown",
@@ -91,11 +88,10 @@
       },
       "columnPos": 0,
       "h": 1,
-      "i": "8cdc9e20-005c-11e8-831f-e7429aff1c69",
       "rowPos": 3,
       "w": 12
     },
-    "title": "criticalAndHighIncidents Headline"
+    "title": "Headline"
   }
   ,
   {
@@ -117,10 +113,9 @@
       },
       "columnPos": 0,
       "h": 1,
-      "i": "8cdc9e20-005c-11e8-831f-e7429aff1c69",
       "rowPos": 4,
       "w": 12
     },
-    "title": "criticalAndHighIncidents Headline"
+    "title": "Headline"
   }
 ]

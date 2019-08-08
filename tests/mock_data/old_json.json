@@ -168,7 +168,7 @@
   },
   {
     "type": "text",
-    "data": "Dbot Status",
+    "data": "Status",
     "layout": {
       "columnPos": 100,
       "rowPos": 8,
@@ -246,7 +246,7 @@
   },
   {
     "type": "text",
-    "data": "Playbook",
+    "data": "Book",
     "layout": {
       "columnPos": 100,
       "rowPos": 10,
@@ -324,7 +324,7 @@
   },
   {
     "type": "header",
-    "data": "Work Plan",
+    "data": "Instructions",
     "layout": {
       "columnPos": 100,
       "rowPos": 10011,
@@ -333,7 +333,7 @@
   },
   {
     "type": "text",
-    "data": "Erroneous Tasks",
+    "data": "Erroneous Action Items",
     "layout": {
       "columnPos": 100,
       "rowPos": 10012,
@@ -346,7 +346,7 @@
   },
   {
     "type": "text",
-    "data": "Waiting Tasks",
+    "data": "Waiting Action Items",
     "layout": {
       "columnPos": 100,
       "rowPos": 10063,
@@ -362,7 +362,7 @@
     "data": [
       {
         "type": "text",
-        "data": "Manually review the problems (#7)",
+        "data": "Manually reject the problems (#7)",
         "layout": {
           "columnPos": 100,
           "rowPos": 10014,
@@ -399,7 +399,7 @@
   },
   {
     "type": "text",
-    "data": "All tasks completed.",
+    "data": "All Action Items completed.",
     "layout": {
       "columnPos": 100,
       "rowPos": 10064,
@@ -421,7 +421,7 @@
   },
   {
     "type": "text",
-    "data": "Dbot Created",
+    "data": "Created",
     "layout": {
       "columnPos": 100,
       "rowPos": 20065,
@@ -499,7 +499,7 @@
   },
   {
     "type": "text",
-    "data": "Dbot Modified",
+    "data": "Modified",
     "layout": {
       "columnPos": 100,
       "rowPos": 20067,
@@ -525,7 +525,7 @@
   },
   {
     "type": "text",
-    "data": "Dbot Total Time",
+    "data": "Total Time",
     "layout": {
       "columnPos": 101,
       "rowPos": 20067,
@@ -551,7 +551,7 @@
   },
   {
     "type": "header",
-    "data": "Custom Fields",
+    "data": "Custom",
     "layout": {
       "columnPos": 100,
       "rowPos": 30068,
@@ -586,7 +586,7 @@
   },
   {
     "type": "text",
-    "data": "Resolve Time",
+    "data": "Time Took",
     "layout": {
       "columnPos": 101,
       "rowPos": 30069,
@@ -842,7 +842,7 @@
       },
       {
         "type": "text",
-        "data": "DBot",
+        "data": "User",
         "layout": {
           "columnPos": 300,
           "rowPos": 70084,
@@ -913,7 +913,7 @@
       },
       {
         "type": "text",
-        "data": "DBot",
+        "data": "User",
         "layout": {
           "columnPos": 300,
           "rowPos": 70086,
@@ -984,7 +984,7 @@
       },
       {
         "type": "text",
-        "data": "DBot",
+        "data": "User",
         "layout": {
           "columnPos": 300,
           "rowPos": 70089,
@@ -1000,7 +1000,7 @@
       },
       {
         "type": "markdown",
-        "data": "|Field| Value |\n|---|---|\n|problems Name|1123|\n|Occurred|2019-04-08 16:16:43.496536 +0300 IDT|\n|Owner|admin|\n|Type|Unknown|\n|level|Unknown|\n|Playbook|Default|\n|Phase||\n|Over Time|Status: idle|\n|Time to Start|Status: idle|\n|Resolve Time|Status: idle|\n",
+        "data": "|Field| Value |\n|---|---|\n|Problem Name|1123|\n|Occurred|2019-04-08 16:16:43.496536 +0300 IDT|\n|Owner|admin|\n|Type|Unknown|\n|level|Unknown|\n|Book|Default|\n|Phase||\n|Over Time|Status: idle|\n|Time to Start|Status: idle|\n|Time Took|Status: idle|\n",
         "layout": {
           "columnPos": 100,
           "rowPos": 70090,
@@ -1055,7 +1055,7 @@
       },
       {
         "type": "text",
-        "data": "DBot",
+        "data": "User",
         "layout": {
           "columnPos": 300,
           "rowPos": 70093,

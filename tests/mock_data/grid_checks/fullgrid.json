@@ -210,17 +210,19 @@
     "data": [
       {
         "Owner": "boris",
+        "Name":"JDoe",
         "Occurred": "Mon, 08 Apr 2018 16:16:48 IDT",
         "level": "1337",
-        "status": "zero",
+        "Status": "zero",
         "Type": "Oak Tree",
         "DueDate": "Thu, 18 Apr 2019 17:16:46 IDT"
       },
       {
         "Owner": "nolan",
+        "Name":"JDoe 2",
         "Occurred": "Mon, 08 Apr 2019 16:16:48 IDT",
         "level": "9000",
-        "status": "nada",
+        "Status": "nada",
         "Type": "Teleportation",
         "DueDate": "Thu, 18 Apr 2019 16:16:46 IDT"
       }

@@ -12,13 +12,10 @@
     ],
     "layout": {
       "chartProperties": {
-        "dayTimebel": "DAYS",
-        "hourTimebel": "HOURS",
         "minuteTimebel": "MIN"
       },
       "columnPos": 0,
       "h": 1,
-      "i": "756b53d0-7d29-11e9-ac33-dbeb1078424e",
       "rowPos": 4,
       "w": 12
     },

@@ -16,11 +16,10 @@
     "layout": {
       "columnPos": 0,
       "h": 1,
-      "i": "8cdc9e20-005c-11e8-831f-e7429aff1c69",
       "rowPos": 0,
       "w": 12
     },
-    "title": "criticalAndHighproblems Headline"
+    "title": "CriticalAndHighProblems Headline"
   },
   {
     "type": "chart",
@@ -56,7 +55,6 @@
         "width": 343
       },
       "h": 2,
-      "i": "5f201d60-6b1b-11e9-ace3-491277003bdb",
       "legend": [
         {
           "color": "#C5C5C5",
@@ -106,7 +104,6 @@
         "width": 343
       },
       "h": 4,
-      "i": "6b31ddf0-6b1b-11e9-ace3-491277003bdb",
       "legend": null,
       "legendStyle": {
         "align": "center",
@@ -154,7 +151,6 @@
         "width": 146
       },
       "h": 2,
-      "i": "83712470-6b1b-11e9-ace3-491277003bdb",
       "legend": [
         {
           "color": "#C5C5C5",

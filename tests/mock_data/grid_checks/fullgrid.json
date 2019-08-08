@@ -16,11 +16,10 @@
     "layout": {
       "columnPos": 0,
       "h": 1,
-      "i": "8cdc9e20-005c-11e8-831f-e7429aff1c69",
       "rowPos": 0,
       "w": 12
     },
-    "title": "criticalAndHighproblems Headline"
+    "title": "CriticalAndHighProblems Headline"
   },
   {
     "type": "chart",
@@ -49,7 +48,6 @@
         "width": 343
       },
       "h": 2,
-      "i": "91323ca0-005c-11e8-831f-e7429aff1c69",
       "legend": null,
       "legendStyle": {
         "align": "left",
@@ -97,7 +95,6 @@
         "width": 343
       },
       "h": 2,
-      "i": "921a79c0-005c-11e8-831f-e7429aff1c69",
       "legend": [
         {
           "color": "#ADE901",
@@ -145,7 +142,6 @@
         "width": 343
       },
       "h": 2,
-      "i": "b1a51f20-005c-11e8-831f-e7429aff1c69",
       "legend": null,
       "legendStyle": {
         "align": "center",
@@ -191,7 +187,6 @@
         "width": 343
       },
       "h": 2,
-      "i": "b4738160-005c-11e8-831f-e7429aff1c69",
       "legend": [
         {
           "color": "#FF1744",
@@ -215,9 +210,9 @@
     "data": [
       {
         "CustomFields": "N/A",
-        "Detection Time": "Status: idle",
-        "Detection Time.runStatus": "Idle",
-        "Detection Time.totalElapsed": "0",
+        "Over Time": "Status: idle",
+        "Over Time.runStatus": "Idle",
+        "Over Time.totalElapsed": "0",
         "DueDate": "Thu, 18 Apr 2019 16:16:46 IDT",
         "Name": "2223",
         "Occurred": "Mon, 08 Apr 2019 16:16:46 IDT",
@@ -227,15 +222,15 @@
         "Resolve Time.totalElapsed": "0",
         "level": "High",
         "Status": "Assigned",
-        "Time to Assignment": "Status: idle",
-        "Time to Assignment.runStatus": "Idle",
-        "Time to Assignment.totalElapsed": "0",
+        "Time to Start": "Status: idle",
+        "Time to Start.runStatus": "Idle",
+        "Time to Start.totalElapsed": "0",
         "Type": "Orks",
         "account": "N/A",
         "activated": "N/A",
         "attachment": "N/A",
         "autime": "1554729406316395000",
-        "canvases": "N/A",
+        "sandboxes": "N/A",
         "category": "N/A",
         "closeNotes": "N/A",
         "closeReason": "N/A",
@@ -247,7 +242,7 @@
         "hasRole": "N/A",
         "id": "2",
         "entryId": "2",
-        "isPlayground": "N/A",
+        "isSandbox": "N/A",
         "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
         "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
         "linkedCount": "0",
@@ -257,7 +252,7 @@
         "openDuration": "0h 0m 0s",
         "parent": "N/A",
         "phase": "N/A",
-        "playbookId": "Default",
+        "bookId": "Default",
         "previousRoles": "N/A",
         "rawCategory": "N/A",
         "rawCloseReason": "N/A",
@@ -276,9 +271,9 @@
       },
       {
         "CustomFields": "N/A",
-        "Detection Time": "Status: idle",
-        "Detection Time.runStatus": "Idle",
-        "Detection Time.totalElapsed": "0",
+        "Over Time": "Status: idle",
+        "Over Time.runStatus": "Idle",
+        "Over Time.totalElapsed": "0",
         "DueDate": "Thu, 18 Apr 2019 16:16:48 IDT",
         "Name": "33333",
         "Occurred": "Mon, 08 Apr 2019 16:16:48 IDT",
@@ -288,15 +283,15 @@
         "Resolve Time.totalElapsed": "0",
         "level": "High",
         "Status": "Assigned",
-        "Time to Assignment": "Status: idle",
-        "Time to Assignment.runStatus": "Idle",
-        "Time to Assignment.totalElapsed": "0",
+        "Time to Start": "Status: idle",
+        "Time to Start.runStatus": "Idle",
+        "Time to Start.totalElapsed": "0",
         "Type": "Teleportation",
         "account": "N/A",
         "activated": "N/A",
         "attachment": "N/A",
         "autime": "1554729408908520000",
-        "canvases": "N/A",
+        "sandboxes": "N/A",
         "category": "N/A",
         "closeNotes": "N/A",
         "closeReason": "N/A",
@@ -308,7 +303,7 @@
         "hasRole": "N/A",
         "id": "3",
         "entryId": "3",
-        "isPlayground": "N/A",
+        "isSandbox": "N/A",
         "labels": "map[type:Instance value:admin], map[type:Brand value:Manual]",
         "lastOpen": "0001-01-01 00:00:00 +0000 UTC",
         "linkedCount": "0",
@@ -318,7 +313,7 @@
         "openDuration": "0h 0m 0s",
         "parent": "N/A",
         "phase": "N/A",
-        "playbookId": "Default",
+        "bookId": "Default",
         "previousRoles": "N/A",
         "rawCategory": "N/A",
         "rawCloseReason": "N/A",
@@ -340,7 +335,6 @@
       "classes": "striped stackable small very compact",
       "columnPos": 0,
       "h": 2,
-      "i": "14558e70-005d-11e8-831f-e7429aff1c69",
       "readableHeaders": {
         "dueDate": "DueDate",
         "name": "Name",
@@ -381,11 +375,10 @@
     "layout": {
       "columnPos": 0,
       "h": 1,
-      "i": "ab2a8d40-00ea-11e8-9b6f-436025e19450",
       "rowPos": 1,
       "w": 12
     },
-    "title": "criticalAndHighproblems Headline"
+    "title": "CriticalAndHighProblems Headline"
   },
   {
     "type": "chart",
@@ -447,7 +440,6 @@
         "width": 277
       },
       "h": 3,
-      "i": "4ac99f10-5ec0-11e9-9acd-3bc8a2ec7d76",
       "legend": [
         {
           "color": "#03B0FF",
@@ -515,7 +507,6 @@
         "width": 211
       },
       "h": 3,
-      "i": "4e6dc7e0-5ec0-11e9-9acd-3bc8a2ec7d76",
       "legend": [
         {
           "color": "#C5C5C5",
@@ -584,7 +575,6 @@
         "width": 146
       },
       "h": 3,
-      "i": "523d4670-5ec0-11e9-9acd-3bc8a2ec7d76",
       "legend": null,
       "legendStyle": {
         "align": "center",
@@ -620,10 +610,9 @@
     "layout": {
       "columnPos": 0,
       "h": 1,
-      "i": "ab2a8d40-00ea-11e8-9b6f-436025e19452",
       "rowPos": 11,
       "w": 12
     },
-    "title": "criticalAndHighproblems Headline"
+    "title": "CriticalAndHighProblems Headline"
   }
 ]

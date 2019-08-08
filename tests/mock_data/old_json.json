@@ -560,7 +560,7 @@
   },
   {
     "type": "text",
-    "data": "Detection Time",
+    "data": "Over Time",
     "layout": {
       "columnPos": 100,
       "rowPos": 30069,
@@ -612,7 +612,7 @@
   },
   {
     "type": "text",
-    "data": "Time to Assignment",
+    "data": "Time to Start",
     "layout": {
       "columnPos": 102,
       "rowPos": 30069,
@@ -1000,7 +1000,7 @@
       },
       {
         "type": "markdown",
-        "data": "|Field| Value |\n|---|---|\n|problems Name|1123|\n|Occurred|2019-04-08 16:16:43.496536 +0300 IDT|\n|Owner|admin|\n|Type|Unclassified|\n|level|Unknown|\n|Playbook|Default|\n|Phase||\n|Detection Time|Status: idle|\n|Time to Assignment|Status: idle|\n|Resolve Time|Status: idle|\n",
+        "data": "|Field| Value |\n|---|---|\n|problems Name|1123|\n|Occurred|2019-04-08 16:16:43.496536 +0300 IDT|\n|Owner|admin|\n|Type|Unclassified|\n|level|Unknown|\n|Playbook|Default|\n|Phase||\n|Over Time|Status: idle|\n|Time to Start|Status: idle|\n|Resolve Time|Status: idle|\n",
         "layout": {
           "columnPos": 100,
           "rowPos": 70090,

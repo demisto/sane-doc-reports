@@ -52,7 +52,6 @@ class Report:
         self.sane_json = sane_json
 
         self.options = options
-
         self.page_width = A4_MM_WIDTH
         self.page_height = A4_MM_HEIGHT
 

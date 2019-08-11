@@ -78,7 +78,7 @@ def example_unimplemented(out_file_name='example.docx'):
 
 
 def example_orientation_landscape(out_file_name='example.docx'):
-    main.run(get_mock('example.json', ret_dict=False),
+    main.run(get_mock('grid_checks/fullgrid.json', ret_dict=False),
              out_file_name, {'orientation': 'landscape'})
 
 

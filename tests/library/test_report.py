@@ -166,6 +166,8 @@ def test_creation_of_report_layout_full_landscape():
     assert get_vtable_merged(table) == vtable
 
     # Check the page breaks
+    assert len(d.element.xpath('//w:br')) == 0
+    
     assert len(d.element.xpath('//w:pgSz[@w:orient="landscape"]')) == 1
 
     # Check page size

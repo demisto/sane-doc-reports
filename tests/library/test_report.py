@@ -55,10 +55,12 @@ def test_creation_of_report_layout_full():
     page_sz = d.element.xpath('//w:pgSz[@w:w]')
     assert len(page_sz) == 1
     page_sz = page_sz[0]
-    dw, dh = int(page_sz.w.mm), int(page_sz.h.mm)
-    w, h = A4_MM_WIDTH.mm, A4_MM_HEIGHT.mm
-    assert abs(w - dw) < 2
-    assert abs(h - dh) < 2
+    width, height = int(page_sz.w.mm), int(page_sz.h.mm)
+    expected_width, expected_height = A4_MM_WIDTH.mm, A4_MM_HEIGHT.mm
+
+    # Conversions aren't exact, so we are looking for a close enough difference.
+    assert abs(expected_width - width) < 2
+    assert abs(expected_height - height) < 2
 
 
 def test_creation_of_report_layout_full_a3():
@@ -92,10 +94,12 @@ def test_creation_of_report_layout_full_a3():
     page_sz = d.element.xpath('//w:pgSz[@w:w]')
     assert len(page_sz) == 1
     page_sz = page_sz[0]
-    dw, dh = int(page_sz.w.mm), int(page_sz.h.mm)
-    w, h = A3_MM_WIDTH.mm, A3_MM_HEIGHT.mm
-    assert abs(w - dw) < 2
-    assert abs(h - dh) < 2
+    width, height = int(page_sz.w.mm), int(page_sz.h.mm)
+    expected_width, expected_height = A3_MM_WIDTH.mm, A3_MM_HEIGHT.mm
+
+    # Conversions aren't exact, so we are looking for a close enough difference.
+    assert abs(expected_width - width) < 2
+    assert abs(expected_height - height) < 2
 
 
 def test_creation_of_report_layout_full_letter():
@@ -129,10 +133,12 @@ def test_creation_of_report_layout_full_letter():
     page_sz = d.element.xpath('//w:pgSz[@w:w]')
     assert len(page_sz) == 1
     page_sz = page_sz[0]
-    dw, dh = int(page_sz.w.mm), int(page_sz.h.mm)
-    w, h = LETTER_MM_WIDTH.mm, LETTER_MM_HEIGHT.mm
-    assert abs(w - dw) < 2
-    assert abs(h - dh) < 2
+    expected_width, expected_height = int(page_sz.w.mm), int(page_sz.h.mm)
+    width, height = LETTER_MM_WIDTH.mm, LETTER_MM_HEIGHT.mm
+
+    # Conversions aren't exact, so we are looking for a close enough difference.
+    assert abs(expected_width - width) < 2
+    assert abs(expected_height - height) < 2
 
 
 def test_creation_of_report_layout_full_landscape():
@@ -166,10 +172,12 @@ def test_creation_of_report_layout_full_landscape():
     page_sz = d.element.xpath('//w:pgSz[@w:w]')
     assert len(page_sz) == 1
     page_sz = page_sz[0]
-    dw, dh = int(page_sz.w.mm), int(page_sz.h.mm)
-    h, w = A4_MM_WIDTH.mm, A4_MM_HEIGHT.mm  # orientation
-    assert abs(w - dw) < 2
-    assert abs(h - dh) < 2
+    width, height = int(page_sz.w.mm), int(page_sz.h.mm)
+    expected_height, expected_width = A4_MM_WIDTH.mm, A4_MM_HEIGHT.mm  # orientation
+
+    # Conversions aren't exact, so we are looking for a close enough difference.
+    assert abs(expected_width - width) < 2
+    assert abs(expected_height - height) < 2
 
 
 def test_creation_of_report_layout_full_paged():

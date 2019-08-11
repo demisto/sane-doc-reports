@@ -13,7 +13,8 @@ from sane_doc_reports.domain import SaneJson
 from sane_doc_reports.utils import insert_by_type
 from sane_doc_reports.conf import DEBUG, A4_MM_HEIGHT, A4_MM_WIDTH, \
     TOP_MARGIN_PT, BOTTOM_MARGIN_PT, LEFT_MARGIN_PT, RIGHT_MARGIN_PT, \
-    A3_MM_WIDTH, A3_MM_HEIGHT, LETTER_MM_WIDTH, LETTER_MM_HEIGHT
+    A3_MM_WIDTH, A3_MM_HEIGHT, LETTER_MM_WIDTH, LETTER_MM_HEIGHT, PAPER_A4, \
+    PAPER_A3, PAPER_LETTER
 from sane_doc_reports.populate.grid import get_cell, merge_cells
 from docx.enum.style import WD_STYLE_TYPE
 from docx.enum.section import WD_ORIENT
@@ -126,15 +127,15 @@ class Report:
         if DEBUG:
             print("Paper size:", paper_size)
 
-        if paper_size == 'A4':
+        if paper_size == PAPER_A4:
             self.page_width = A4_MM_WIDTH
             self.page_height = A4_MM_HEIGHT
 
-        elif paper_size == 'A3':
+        elif paper_size == PAPER_A3:
             self.page_width = A3_MM_WIDTH
             self.page_height = A3_MM_HEIGHT
 
-        elif paper_size == 'letter':
+        elif paper_size == PAPER_LETTER:
             self.page_width = LETTER_MM_WIDTH
             self.page_height = LETTER_MM_HEIGHT
 

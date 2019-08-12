@@ -89,6 +89,7 @@ class BarChartElement(Element):
             colors = get_colors(self.section.layout, objects)
 
             y_axis = [i for i in range(len(objects))]
+            print("***", data)
             x_axis = [i['data'][0] for i in data]
 
             rects = plt.barh(y_axis, width=x_axis, align='center',

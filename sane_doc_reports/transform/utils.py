@@ -59,12 +59,18 @@ def general_json_fixes(json_data: List[dict]) -> List[dict]:
         if not json_data[i][LAYOUT_KEY][COL_POSITION_KEY]:
             json_data[i][LAYOUT_KEY][COL_POSITION_KEY] = 0
 
+        # Element types
+        if json_data[i]['type'] == 'chart':
+            for data_index, data_item in enumerate(json_data[i]['data']):
+                if 'data' not in data_item and 'value' in data_item:
+                    json_data[i]['data'][data_index]['data'] = data_item.pop('value')
+
     return json_data
 
 
 def transform_old_json_format(json_data: List[dict]) -> List[dict]:
     """ Fixes all of the old json format, trying to convert
-        it to the new json format.
+        it to the new json format. Great code.
     """
 
     # Fix the first element

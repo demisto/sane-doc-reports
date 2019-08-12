@@ -70,10 +70,13 @@ class Report:
             if DEBUG:
                 print(f'Creating a layout grid of size ({rows},{cols})' +
                       f' for page: {page_num}')
-            grid = self.document.add_table(rows=rows, cols=cols)
+
             if orientation == 'landscape':
-                grid.alignment = WD_TABLE_ALIGNMENT.CENTER
-                
+                if DEBUG:
+                    print("Changing orientation to landscape.")
+                self.orient_landscape()
+
+            grid = self.document.add_table(rows=rows, cols=cols)
             if DEBUG:
                 grid.style = 'Table Grid'
 
@@ -98,11 +101,6 @@ class Report:
                 if DEBUG:
                     r.text = f'Page break ({page_num})'
                 r.add_break(WD_BREAK.PAGE)
-
-        if orientation == 'landscape':
-            if DEBUG:
-                print("Changing orientation to landscape.")
-            self.orient_landscape()
 
     @staticmethod
     def _insert_section(cell_object: CellObject, section: Section) -> None:

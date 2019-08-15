@@ -49,6 +49,9 @@ class TableElement(Element):
             print("Adding table...")
 
         table_data = self.section.contents
+        if 'tableColumns' not in self.section.layout:
+            return
+
         if 'readableHeaders' in self.section.layout:
             ordered = self.section.layout['tableColumns']
             readable_headers = self.section.layout['readableHeaders'].values()
@@ -74,6 +77,10 @@ class TableElement(Element):
             hdr_cells = table.rows[0].cells
 
         table.style = DEFAULT_TABLE_STYLE
+
+        if 'list_style' in self.section.extra and self.section.extra['list_style']:
+            table.style = None
+
         for i, header_text in enumerate(table_columns):
             insert_text(hdr_cells[i], header_text, self.style['text'])
 

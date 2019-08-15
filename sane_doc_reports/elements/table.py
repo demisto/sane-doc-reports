@@ -1,6 +1,6 @@
 from sane_doc_reports.domain.CellObject import CellObject
 from sane_doc_reports.domain.Element import Element
-from sane_doc_reports.conf import DEBUG, PYDOCX_FONT_SIZE, STYLE_KEY, \
+from sane_doc_reports.conf import DEBUG, PYDOCX_FONT_SIZE, \
     DEFAULT_TABLE_FONT_SIZE, DEFAULT_TABLE_STYLE, PYDOCX_FONT_NAME, \
     PYDOCX_FONT_COLOR, DEFAULT_FONT_COLOR, DEFAULT_TITLE_FONT_SIZE, \
     PYDOCX_FONT_BOLD, DEFAULT_TITLE_COLOR
@@ -16,7 +16,7 @@ def fix_order(ordered, readable_headers) -> list:
                      **{i.lower(): i for i in readable_headers}}
     temp_readable = {k.replace(" ", ""): v for k, v in temp_readable.items()}
 
-    # Old json format table columns are not lowercased
+    # Old json format table columns are not lowercase
     inv_fix = {i: i for i in readable_headers}
     temp_readable = {**temp_readable, **inv_fix}
 

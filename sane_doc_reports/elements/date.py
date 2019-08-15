@@ -16,7 +16,9 @@ class DateElement(Element):
         default_date_format = '%m %b %Y %H:%M:%S %SZ'
 
         formatted_date = "N/A"
-        date = moment.date(self.section.contents)
+        date = moment.now()
+        if self.section.contents:
+            date = moment.date(self.section.contents)
 
         if self.section.contents == '':
             formatted_date = moment.now().strftime(default_date_format)

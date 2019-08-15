@@ -87,6 +87,10 @@ def example_paper_size_a3(out_file_name='example.docx'):
              out_file_name, {'paper_size': 'A3'})
 
 
+def example_list(out_file_name='example.docx'):
+    main.run(get_mock('elements/list.json', ret_dict=False), out_file_name)
+
+
 def example():
     main.run(get_mock('example.json', ret_dict=False), 'example.docx')
 
@@ -114,7 +118,7 @@ def example_all():
 
 
 def run():
-    example()
+    example_list()
 
 
 if __name__ == '__main__':

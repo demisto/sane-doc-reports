@@ -1,4 +1,4 @@
-{
+[{
     "type": "list",
     "data": [
       {
@@ -37,4 +37,4 @@
     "title": "Unassigned Notes",
     "emptyNotification": "No results found",
     "titleStyle": null
-  }
+  }]

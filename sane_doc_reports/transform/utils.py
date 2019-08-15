@@ -58,6 +58,8 @@ def general_json_fixes(json_data: List[dict]) -> List[dict]:
             json_data[i][LAYOUT_KEY][ROW_POSITION_KEY] = 0
         if not json_data[i][LAYOUT_KEY][COL_POSITION_KEY]:
             json_data[i][LAYOUT_KEY][COL_POSITION_KEY] = 0
+        if not json_data[i]['data']:
+            json_data[i]['data'] = []
 
     return json_data
 

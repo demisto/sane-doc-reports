@@ -113,7 +113,7 @@ def example_all():
 
 
 def run():
-    example_paper_size_a3()
+    example()
 
 
 if __name__ == '__main__':

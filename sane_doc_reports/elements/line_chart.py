@@ -110,7 +110,6 @@ class LineChartElement(Element):
         ax = plt.gca()
 
         # Auto rotate the labels
-        plt.gcf().autofmt_xdate()
         remove_plot_borders(ax)
         legend_location = 'upper center'
         legend_location_relative_to_graph = (0.5, -0.35)

@@ -221,6 +221,7 @@ def set_axis_font(ax):
 
 
 def set_legend_style(legend, options=None):
+    plt.gcf().autofmt_xdate()
     if options:
         if 'hideLegend' in options and options['hideLegend']:
             plt.gca().legend().set_visible(False)

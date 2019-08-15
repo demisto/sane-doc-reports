@@ -54,6 +54,7 @@ def general_json_fixes(json_data: List[dict]) -> List[dict]:
 
     # Fix null values in the col / row positions
     for i in range(len(json_data)):
+        print(json_data[i][LAYOUT_KEY])
         if not json_data[i][LAYOUT_KEY][ROW_POSITION_KEY]:
             json_data[i][LAYOUT_KEY][ROW_POSITION_KEY] = 0
         if not json_data[i][LAYOUT_KEY][COL_POSITION_KEY]:

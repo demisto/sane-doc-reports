@@ -59,7 +59,8 @@ class CellObject(object):
 
     # current_width - width of the element currently in pt
     # Returns - bool (should resize), int (with in Pt to resize to)
-    def get_cell_width_resize(self, current_width=None) -> (bool, int):
+    def get_cell_width_resize(self, current_width=None,
+                              should_shrink=False) -> (bool, int):
         if not self.grid_position:
             return False, 0
 
@@ -67,8 +68,11 @@ class CellObject(object):
         #  this cell in Pt via it's grid position.
         col = 1 if self.grid_position["width"] == 0 else self.grid_position[
             "width"]
-        resize_pt = (600 * col // self.grid_position["global_cols"])
-        # resize_pt *= 0.9
+
+        resize_pt = int(612 * col / self.grid_position["global_cols"])
+
+        if should_shrink:
+            resize_pt *= 0.8
 
         # We don't want to scale images to be bigger (hurts resolution)
         if current_width < resize_pt:

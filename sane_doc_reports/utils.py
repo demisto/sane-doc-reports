@@ -236,6 +236,7 @@ def set_legend_style(legend, options=None):
     for text in legend.get_texts():
         text.set_fontproperties(font)
         text.set_color(DEFAULT_FONT_COLOR)
+        text.set_position((0, 3))
 
 
 def get_chart_font():

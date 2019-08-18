@@ -61,6 +61,7 @@ class ColumnChartElement(Element):
                       bbox_to_anchor=legend_location_relative_to_graph,
                       handlelength=0.7)
 
+        self.section.layout[LEGEND_STYLE]['valign'] = 3
         set_legend_style(a, self.section.layout[LEGEND_STYLE])
 
         ax.set_xlim(-len(objects), len(objects))

@@ -115,6 +115,7 @@ class BarChartElement(Element):
             ax.set_yticklabels([])
 
         # Style the axis and labels
+        self.section.layout[LEGEND_STYLE]['valign'] = 1
         set_legend_style(a, self.section.layout[LEGEND_STYLE])
 
         # Fix the axises

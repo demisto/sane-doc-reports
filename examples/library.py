@@ -114,7 +114,7 @@ def example_all():
 
 
 def run():
-    example_duration()
+    example()
 
 
 if __name__ == '__main__':

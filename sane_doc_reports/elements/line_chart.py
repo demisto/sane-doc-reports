@@ -10,7 +10,8 @@ from sane_doc_reports.domain.Section import Section
 from sane_doc_reports.elements import error, image
 from sane_doc_reports.styles.colors import get_colors
 from sane_doc_reports.utils import remove_plot_borders, \
-    set_legend_style, get_chart_font, set_axis_font
+    set_legend_style, get_chart_font, set_axis_font, \
+    change_legend_vertical_alignment
 
 
 def fix_data(data):
@@ -121,7 +122,7 @@ class LineChartElement(Element):
                            bbox_to_anchor=legend_location_relative_to_graph,
                            handlelength=0.7, handleheight=0.7)
 
-        self.section.layout[LEGEND_STYLE]['valign'] = 1
+        self.section = change_legend_vertical_alignment(self.section, top=1)
         set_legend_style(legend, self.section.layout[LEGEND_STYLE])
         set_axis_font(ax)
         ax.set_title(self.section.extra['title'], **self.style['title'])

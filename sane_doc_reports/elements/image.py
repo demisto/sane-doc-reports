@@ -2,7 +2,7 @@ import struct
 
 from docx.shared import Pt
 from sane_doc_reports.domain.Element import Element
-from sane_doc_reports.conf import DEBUG
+from sane_doc_reports.conf import DEBUG, DEFAULT_RESIZE, SMALL_RESIZE_FIX
 from sane_doc_reports.elements import error
 from sane_doc_reports.utils import open_b64_image, has_run
 

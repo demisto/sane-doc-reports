@@ -67,7 +67,8 @@ class CellObject(object):
         #  this cell in Pt via it's grid position.
         col = 1 if self.grid_position["width"] == 0 else self.grid_position[
             "width"]
-        resize_pt = (612 * col // self.grid_position["global_cols"])
+        resize_pt = (600 * col // self.grid_position["global_cols"])
+        # resize_pt *= 0.9
 
         # We don't want to scale images to be bigger (hurts resolution)
         if current_width < resize_pt:

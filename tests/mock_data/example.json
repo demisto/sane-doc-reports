@@ -1,1 +1,1246 @@
-{}
+[
+  {
+    "type": "chart",
+    "data": [
+      {
+        "name": "#585664 FW: zeus",
+        "data": [
+          43091
+        ],
+        "groups": null
+      },
+      {
+        "name": "#1235090 new line test 2",
+        "data": [
+          1135
+        ],
+        "groups": null
+      },
+      {
+        "name": "#1242282 Phishing attempt",
+        "data": [
+          1052
+        ],
+        "groups": null
+      },
+      {
+        "name": "#1132729 Hadas test",
+        "data": [
+          529
+        ],
+        "groups": null
+      },
+      {
+        "name": "#1238350 test phishing - noa",
+        "data": [
+          379
+        ],
+        "groups": null
+      }
+    ],
+    "layout": {
+      "chartProperties": {
+        "barSize": 15,
+        "format": "DD MMM Y",
+        "isDatesChart": false,
+        "layout": "vertical"
+      },
+      "chartType": "bar",
+      "columnPos": 0,
+      "dimensions": {
+        "height": 246,
+        "width": 226
+      },
+      "h": 3,
+      "i": "6b0bfa40-21e3-11e8-a93d-9d3f16cc014e",
+      "legend": null,
+      "legendStyle": {
+        "align": "center",
+        "hideLegend": false,
+        "iconType": "square",
+        "layout": "horizontal",
+        "verticalAlign": "top",
+        "wrapperStyle": {
+          "maxHeight": 96,
+          "top": 5,
+          "width": "100%"
+        }
+      },
+      "rowPos": 0,
+      "w": 3
+    },
+    "query": {
+      "type": "entries",
+      "groupBy": [
+        "investigation"
+      ],
+      "filter": {
+        "query": "",
+        "period": {
+          "byFrom": "days",
+          "fromValue": 30,
+          "by": "day"
+        }
+      }
+    },
+    "automation": {
+      "name": "",
+      "id": "",
+      "args": null,
+      "noEvent": false
+    },
+    "fromDate": "2019-07-14T11:17:13Z",
+    "title": "Most Active Investigations",
+    "emptyNotification": "No results found",
+    "titleStyle": null
+  },
+  {
+    "type": "number",
+    "data": 58,
+    "layout": {
+      "columnPos": 6,
+      "h": 1,
+      "i": "bfdc0380-21e3-11e8-a93d-9d3f16cc014e",
+      "layout": "horizontal",
+      "rowPos": 0,
+      "sign": "%",
+      "signAlignment": "right",
+      "style": {},
+      "w": 3
+    },
+    "query": {
+      "type": "system",
+      "filter": {
+        "query": "disk.usedPercent",
+        "period": {
+          "byFrom": "days",
+          "fromValue": 30,
+          "by": "day"
+        }
+      }
+    },
+    "automation": {
+      "name": "",
+      "id": "",
+      "args": null,
+      "noEvent": false
+    },
+    "fromDate": "2019-07-14T11:17:13Z",
+    "title": "Disk Current Usage",
+    "emptyNotification": "No results found",
+    "titleStyle": null
+  },
+  {
+    "type": "number",
+    "data": 10,
+    "layout": {
+      "columnPos": 3,
+      "h": 1,
+      "i": "c4e51380-21e3-11e8-a93d-9d3f16cc014e",
+      "layout": "horizontal",
+      "rowPos": 0,
+      "sign": "%",
+      "signAlignment": "right",
+      "style": {},
+      "w": 3
+    },
+    "query": {
+      "type": "system",
+      "filter": {
+        "query": "memory.usedPercent",
+        "fromDate": "0001-01-01T00:00:00Z",
+        "toDate": "0001-01-01T00:00:00Z",
+        "period": {
+          "by": "",
+          "byTo": "",
+          "byFrom": "",
+          "toValue": null,
+          "fromValue": null,
+          "field": ""
+        },
+        "fromDateLicense": "0001-01-01T00:00:00Z"
+      }
+    },
+    "automation": {
+      "name": "",
+      "id": "",
+      "args": null,
+      "noEvent": false
+    },
+    "title": "Memory Current Usage",
+    "emptyNotification": "No results found",
+    "titleStyle": null
+  },
+  {
+    "type": "number",
+    "data": 2,
+    "layout": {
+      "columnPos": 9,
+      "h": 1,
+      "i": "cfb81280-21e3-11e8-a93d-9d3f16cc014e",
+      "layout": "horizontal",
+      "rowPos": 0,
+      "sign": "%",
+      "signAlignment": "right",
+      "style": {},
+      "w": 3
+    },
+    "query": {
+      "type": "system",
+      "filter": {
+        "query": "cpu.usedPercent",
+        "period": {
+          "byFrom": "days",
+          "fromValue": 30,
+          "by": "day"
+        }
+      }
+    },
+    "automation": {
+      "name": "",
+      "id": "",
+      "args": null,
+      "noEvent": false
+    },
+    "fromDate": "2019-07-14T11:17:13Z",
+    "title": "CPU Current Usage",
+    "emptyNotification": "No results found",
+    "titleStyle": null
+  },
+  {
+    "type": "chart",
+    "data": [
+      {
+        "name": "willnotbeexecuted",
+        "data": [
+          1099
+        ],
+        "groups": null
+      },
+      {
+        "name": "completed",
+        "data": [
+          452
+        ],
+        "groups": null
+      },
+      {
+        "name": "",
+        "data": [
+          435
+        ],
+        "groups": null
+      },
+      {
+        "name": "error",
+        "data": [
+          20
+        ],
+        "groups": null
+      },
+      {
+        "name": "inprogress",
+        "data": [
+          7
+        ],
+        "groups": null
+      },
+      {
+        "name": "waiting",
+        "data": [
+          4
+        ],
+        "groups": null
+      }
+    ],
+    "layout": {
+      "chartProperties": {
+        "barSize": 35,
+        "format": "DD MMM Y",
+        "isDatesChart": false,
+        "layout": "horizontal"
+      },
+      "chartType": "column",
+      "columnPos": 3,
+      "dimensions": {
+        "height": 180,
+        "width": 411
+      },
+      "h": 2,
+      "i": "ea045fb0-21e6-11e8-a93d-9d3f16cc014e",
+      "legend": null,
+      "legendStyle": {
+        "align": "right",
+        "hideLegend": false,
+        "iconType": "circle",
+        "layout": "vertical",
+        "verticalAlign": "top",
+        "wrapperStyle": {
+          "top": 5
+        }
+      },
+      "rowPos": 1,
+      "w": 5
+    },
+    "query": {
+      "type": "tasks",
+      "groupBy": [
+        "state"
+      ],
+      "filter": {
+        "query": "replaced:f",
+        "period": {
+          "byFrom": "days",
+          "fromValue": 30,
+          "by": "day"
+        }
+      }
+    },
+    "automation": {
+      "name": "",
+      "id": "",
+      "args": null,
+      "noEvent": false
+    },
+    "fromDate": "2019-07-14T11:17:13Z",
+    "title": "Tasks By State",
+    "emptyNotification": "No results found",
+    "titleStyle": null
+  },
+  {
+    "type": "chart",
+    "data": [
+      {
+        "name": "2019-08-06",
+        "data": [
+          621
+        ],
+        "groups": [
+          {
+            "name": "Email",
+            "data": [
+              4
+            ],
+            "groups": null
+          },
+          {
+            "name": "IP",
+            "data": [
+              14
+            ],
+            "groups": null
+          },
+          {
+            "name": "IPv4",
+            "data": [
+              4
+            ],
+            "groups": null
+          },
+          {
+            "name": "File SHA256 v2",
+            "data": [
+              136
+            ],
+            "groups": null
+          },
+          {
+            "name": "URL",
+            "data": [
+              307
+            ],
+            "groups": null
+          },
+          {
+            "name": "Domain",
+            "data": [
+              156
+            ],
+            "groups": null
+          }
+        ]
+      },
+      {
+        "name": "2019-08-07",
+        "data": [
+          13
+        ],
+        "groups": [
+          {
+            "name": "Email",
+            "data": [
+              1
+            ],
+            "groups": null
+          },
+          {
+            "name": "URL",
+            "data": [
+              7
+            ],
+            "groups": null
+          },
+          {
+            "name": "Domain",
+            "data": [
+              4
+            ],
+            "groups": null
+          },
+          {
+            "name": "File SHA256 v2",
+            "data": [
+              1
+            ],
+            "groups": null
+          }
+        ]
+      },
+      {
+        "name": "2019-08-08",
+        "data": [
+          199
+        ],
+        "groups": [
+          {
+            "name": "Email",
+            "data": [
+              4
+            ],
+            "groups": null
+          },
+          {
+            "name": "Domain",
+            "data": [
+              2
+            ],
+            "groups": null
+          },
+          {
+            "name": "Registry Path Reputation",
+            "data": [
+              186
+            ],
+            "groups": null
+          },
+          {
+            "name": "File SHA256 v2",
+            "data": [
+              1
+            ],
+            "groups": null
+          },
+          {
+            "name": "File",
+            "data": [
+              1
+            ],
+            "groups": null
+          },
+          {
+            "name": "IP",
+            "data": [
+              4
+            ],
+            "groups": null
+          },
+          {
+            "name": "URL",
+            "data": [
+              1
+            ],
+            "groups": null
+          }
+        ]
+      },
+      {
+        "name": "2019-08-09",
+        "data": [
+          7
+        ],
+        "groups": [
+          {
+            "name": "IP",
+            "data": [
+              2
+            ],
+            "groups": null
+          },
+          {
+            "name": "Email",
+            "data": [
+              2
+            ],
+            "groups": null
+          },
+          {
+            "name": "URL",
+            "data": [
+              2
+            ],
+            "groups": null
+          },
+          {
+            "name": "Domain",
+            "data": [
+              1
+            ],
+            "groups": null
+          }
+        ]
+      },
+      {
+        "name": "2019-08-10",
+        "data": [
+          1
+        ],
+        "groups": [
+          {
+            "name": "File",
+            "data": [
+              1
+            ],
+            "groups": null
+          }
+        ]
+      },
+      {
+        "name": "2019-08-11",
+        "data": [
+          12
+        ],
+        "groups": [
+          {
+            "name": "Email",
+            "data": [
+              6
+            ],
+            "groups": null
+          },
+          {
+            "name": "IP",
+            "data": [
+              5
+            ],
+            "groups": null
+          },
+          {
+            "name": "File SHA256 v2",
+            "data": [
+              1
+            ],
+            "groups": null
+          }
+        ]
+      },
+      {
+        "name": "2019-08-12",
+        "data": [
+          95
+        ],
+        "groups": [
+          {
+            "name": "Email",
+            "data": [
+              24
+            ],
+            "groups": null
+          },
+          {
+            "name": "File SHA256 v2",
+            "data": [
+              1
+            ],
+            "groups": null
+          },
+          {
+            "name": "IP",
+            "data": [
+              14
+            ],
+            "groups": null
+          },
+          {
+            "name": "URL",
+            "data": [
+              30
+            ],
+            "groups": null
+          },
+          {
+            "name": "Domain",
+            "data": [
+              7
+            ],
+            "groups": null
+          },
+          {
+            "name": "IPv4",
+            "data": [
+              2
+            ],
+            "groups": null
+          },
+          {
+            "name": "File",
+            "data": [
+              17
+            ],
+            "groups": null
+          }
+        ]
+      },
+      {
+        "name": "2019-08-13",
+        "data": [
+          2
+        ],
+        "groups": [
+          {
+            "name": "Email",
+            "data": [
+              1
+            ],
+            "groups": null
+          },
+          {
+            "name": "Domain",
+            "data": [
+              1
+            ],
+            "groups": null
+          }
+        ]
+      }
+    ],
+    "layout": {
+      "chartProperties": {
+        "format": "DD MMM Y",
+        "isDatesChart": true,
+        "layout": "vertical",
+        "margin": {
+          "bottom": 0,
+          "left": -20,
+          "right": 0,
+          "top": 5
+        },
+        "timeFrame": "days"
+      },
+      "chartType": "line",
+      "columnPos": 8,
+      "dimensions": {
+        "height": 168,
+        "width": 319
+      },
+      "h": 2,
+      "i": "1f61df70-21e7-11e8-a93d-9d3f16cc014e",
+      "legend": [],
+      "legendStyle": {
+        "align": "center",
+        "iconSize": 8,
+        "iconType": "square",
+        "verticalAlign": "top",
+        "width": 319,
+        "wrapperStyle": {
+          "maxHeight": 48
+        }
+      },
+      "rowPos": 1,
+      "w": 4
+    },
+    "query": {
+      "type": "indicators",
+      "groupBy": [
+        "calculatedTime(d)",
+        "type"
+      ],
+      "filter": {
+        "query": "",
+        "fromDate": "0001-01-01T00:00:00Z",
+        "toDate": "0001-01-01T00:00:00Z",
+        "period": {
+          "by": "day",
+          "byTo": "",
+          "byFrom": "days",
+          "toValue": null,
+          "fromValue": 7,
+          "field": ""
+        },
+        "fromDateLicense": "0001-01-01T00:00:00Z"
+      }
+    },
+    "automation": {
+      "name": "",
+      "id": "",
+      "args": null,
+      "noEvent": false
+    },
+    "fromDate": "2019-08-06T11:17:13Z",
+    "title": "Indicators Activity by Type",
+    "emptyNotification": "No results found",
+    "titleStyle": null
+  },
+  {
+    "type": "chart",
+    "data": [
+      {
+        "name": "adsimon@paloaltonetworks.com",
+        "data": [
+          1
+        ],
+        "groups": null
+      }
+    ],
+    "layout": {
+      "chartProperties": {
+        "barSize": 15,
+        "format": "DD MMM Y",
+        "isDatesChart": false,
+        "layout": "vertical"
+      },
+      "chartType": "bar",
+      "columnPos": 0,
+      "dimensions": {
+        "height": 78,
+        "width": 1060
+      },
+      "h": 2,
+      "i": "4c478e40-21e7-11e8-a93d-9d3f16cc014e",
+      "legend": null,
+      "legendStyle": {
+        "align": "center",
+        "hideLegend": false,
+        "iconType": "square",
+        "layout": "horizontal",
+        "verticalAlign": "top",
+        "wrapperStyle": {
+          "maxHeight": 48,
+          "top": 5,
+          "width": "100%"
+        }
+      },
+      "rowPos": 3,
+      "w": 12
+    },
+    "query": {
+      "type": "indicators",
+      "groupBy": [
+        "setBy"
+      ],
+      "filter": {
+        "query": "manualScore:T",
+        "fromDate": "0001-01-01T00:00:00Z",
+        "toDate": "0001-01-01T00:00:00Z",
+        "period": {
+          "by": "day",
+          "byTo": "",
+          "byFrom": "days",
+          "toValue": null,
+          "fromValue": 7,
+          "field": ""
+        },
+        "fromDateLicense": "0001-01-01T00:00:00Z"
+      }
+    },
+    "automation": {
+      "name": "",
+      "id": "",
+      "args": null,
+      "noEvent": false
+    },
+    "fromDate": "2019-08-06T11:17:13Z",
+    "title": "Manual Reputation Indicators by User",
+    "emptyNotification": "No results found",
+    "titleStyle": null
+  },
+  {
+    "type": "chart",
+    "data": [
+      {
+        "name": "High",
+        "data": [
+          1168
+        ],
+        "groups": null
+      }
+    ],
+    "layout": {
+      "chartProperties": {
+        "cx": 127.685,
+        "cy": 69,
+        "innerRadius": 60.48223306075616,
+        "layout": "horizontal",
+        "maxRadius": 161.2859548286831,
+        "outerRadius": 80.64297741434154
+      },
+      "chartType": "pie",
+      "columnPos": 0,
+      "dimensions": {
+        "height": 168,
+        "width": 411
+      },
+      "h": 2,
+      "i": "5cece0b0-21e7-11e8-a93d-9d3f16cc014e",
+      "legend": [
+        {
+          "color": "#FF1744",
+          "name": "High"
+        }
+      ],
+      "legendStyle": {
+        "align": "left",
+        "hideLegend": false,
+        "iconType": "circle",
+        "layout": "vertical",
+        "verticalAlign": "top",
+        "width": 135.63
+      },
+      "rowPos": 5,
+      "w": 5
+    },
+    "query": {
+      "type": "incident",
+      "groupBy": [
+        "severity"
+      ],
+      "filter": {
+        "query": "-category:job and -status:archived and -status:closed",
+        "fromDate": "0001-01-01T00:00:00Z",
+        "toDate": "0001-01-01T00:00:00Z",
+        "period": {
+          "by": "day",
+          "byTo": "",
+          "byFrom": "days",
+          "toValue": null,
+          "fromValue": 7,
+          "field": ""
+        },
+        "fromDateLicense": "0001-01-01T00:00:00Z"
+      }
+    },
+    "automation": {
+      "name": "",
+      "id": "",
+      "args": null,
+      "noEvent": false
+    },
+    "fromDate": "2019-08-06T11:17:13Z",
+    "title": "Active Incidents by Severity",
+    "emptyNotification": "No results found",
+    "titleStyle": null
+  },
+  {
+    "type": "chart",
+    "data": [
+      {
+        "name": "",
+        "data": [
+          7472
+        ],
+        "groups": null
+      },
+      {
+        "name": "Amichay Spivak",
+        "data": [
+          4
+        ],
+        "groups": null
+      },
+      {
+        "name": "Hadas Beja",
+        "data": [
+          3
+        ],
+        "groups": null
+      },
+      {
+        "name": "Mark Shleifer",
+        "data": [
+          3
+        ],
+        "groups": null
+      },
+      {
+        "name": "Alex Fiedler",
+        "data": [
+          2
+        ],
+        "groups": null
+      },
+      {
+        "name": "Amir Simon",
+        "data": [
+          2
+        ],
+        "groups": null
+      },
+      {
+        "name": "Gavriel Filippov",
+        "data": [
+          2
+        ],
+        "groups": null
+      },
+      {
+        "name": "Itai Cantor",
+        "data": [
+          2
+        ],
+        "groups": null
+      },
+      {
+        "name": "June Peng",
+        "data": [
+          2
+        ],
+        "groups": null
+      },
+      {
+        "name": "Neela Jorapur",
+        "data": [
+          2
+        ],
+        "groups": null
+      },
+      {
+        "name": "Other",
+        "data": [
+          19
+        ],
+        "groups": null
+      }
+    ],
+    "layout": {
+      "chartProperties": {
+        "barSize": 15,
+        "format": "DD MMM Y",
+        "isDatesChart": false,
+        "layout": "vertical"
+      },
+      "chartType": "bar",
+      "columnPos": 5,
+      "dimensions": {
+        "height": 180,
+        "width": 597
+      },
+      "h": 2,
+      "i": "9e696770-21e7-11e8-a93d-9d3f16cc014e",
+      "legend": null,
+      "legendStyle": {
+        "align": "center",
+        "hideLegend": false,
+        "iconType": "square",
+        "layout": "horizontal",
+        "verticalAlign": "top",
+        "wrapperStyle": {
+          "maxHeight": 48,
+          "top": 5,
+          "width": "100%"
+        }
+      },
+      "rowPos": 5,
+      "w": 7
+    },
+    "query": {
+      "type": "incident",
+      "groupBy": [
+        "owner"
+      ],
+      "filter": {
+        "query": "-category:job and -status:archived and -status:closed",
+        "period": {
+          "byFrom": "days",
+          "fromValue": 30,
+          "by": "day"
+        }
+      }
+    },
+    "automation": {
+      "name": "",
+      "id": "",
+      "args": null,
+      "noEvent": false
+    },
+    "fromDate": "2019-07-14T11:17:13Z",
+    "title": "Incidents Assigned by User",
+    "emptyNotification": "No results found",
+    "titleStyle": null
+  },
+  {
+    "type": "chart",
+    "data": [
+      {
+        "name": "",
+        "data": [
+          7486
+        ],
+        "groups": null
+      },
+      {
+        "name": "test-map-from-task",
+        "data": [
+          5
+        ],
+        "groups": null
+      },
+      {
+        "name": "My first playbook",
+        "data": [
+          3
+        ],
+        "groups": null
+      },
+      {
+        "name": "Alex_Field_Mapping",
+        "data": [
+          2
+        ],
+        "groups": null
+      },
+      {
+        "name": "June_6966_pb",
+        "data": [
+          1
+        ],
+        "groups": null
+      },
+      {
+        "name": "Other",
+        "data": [
+          16
+        ],
+        "groups": null
+      }
+    ],
+    "layout": {
+      "chartProperties": {
+        "barSize": 35,
+        "format": "DD MMM Y",
+        "isDatesChart": false,
+        "layout": "horizontal"
+      },
+      "chartType": "column",
+      "columnPos": 3,
+      "dimensions": {
+        "height": 180,
+        "width": 319
+      },
+      "h": 2,
+      "i": "f79c2e90-21e7-11e8-a93d-9d3f16cc014e",
+      "legend": null,
+      "legendStyle": {
+        "align": "right",
+        "hideLegend": false,
+        "iconType": "circle",
+        "layout": "vertical",
+        "verticalAlign": "top",
+        "wrapperStyle": {
+          "top": 5
+        }
+      },
+      "rowPos": 7,
+      "w": 4
+    },
+    "query": {
+      "type": "incident",
+      "groupBy": [
+        "playbookId"
+      ],
+      "filter": {
+        "query": "-status:done -category:job",
+        "period": {
+          "byFrom": "days",
+          "fromValue": 30,
+          "by": "day"
+        }
+      }
+    },
+    "automation": {
+      "name": "",
+      "id": "",
+      "args": null,
+      "noEvent": false
+    },
+    "fromDate": "2019-07-14T11:17:13Z",
+    "title": "Top Active Playbooks",
+    "emptyNotification": "No results found",
+    "titleStyle": null
+  },
+  {
+    "type": "chart",
+    "data": [
+      {
+        "name": "Unclassified",
+        "data": [
+          1156
+        ],
+        "groups": [
+          {
+            "name": "2019-08",
+            "data": [
+              1156
+            ],
+            "groups": null
+          }
+        ]
+      },
+      {
+        "name": "Phishing",
+        "data": [
+          2
+        ],
+        "groups": [
+          {
+            "name": "2019-08",
+            "data": [
+              2
+            ],
+            "groups": null
+          }
+        ]
+      },
+      {
+        "name": "Redlock",
+        "data": [
+          9
+        ],
+        "groups": [
+          {
+            "name": "",
+            "data": [
+              9
+            ],
+            "groups": null
+          }
+        ]
+      },
+      {
+        "name": "benzi",
+        "data": [
+          1
+        ],
+        "groups": [
+          {
+            "name": "",
+            "data": [
+              1
+            ],
+            "groups": null
+          }
+        ]
+      }
+    ],
+    "layout": {
+      "chartProperties": {
+        "barSize": 15,
+        "format": "DD MMM Y",
+        "isDatesChart": false,
+        "layout": "vertical"
+      },
+      "chartType": "bar",
+      "columnPos": 7,
+      "dimensions": {
+        "height": 168,
+        "width": 411
+      },
+      "h": 2,
+      "i": "0f368280-21e8-11e8-a93d-9d3f16cc014e",
+      "legend": null,
+      "legendStyle": {
+        "align": "center",
+        "hideLegend": false,
+        "iconType": "square",
+        "layout": "horizontal",
+        "verticalAlign": "top",
+        "wrapperStyle": {
+          "maxHeight": 48,
+          "top": 5,
+          "width": "100%"
+        }
+      },
+      "rowPos": 7,
+      "w": 5
+    },
+    "query": {
+      "type": "incident",
+      "groupBy": [
+        "type",
+        "dbotDueDate"
+      ],
+      "filter": {
+        "query": "-category:job and -status:closed and -status:archived",
+        "fromDate": "0001-01-01T00:00:00Z",
+        "toDate": "0001-01-01T00:00:00Z",
+        "period": {
+          "by": "day",
+          "byTo": "",
+          "byFrom": "days",
+          "toValue": null,
+          "fromValue": 7,
+          "field": ""
+        },
+        "fromDateLicense": "0001-01-01T00:00:00Z"
+      }
+    },
+    "automation": {
+      "name": "",
+      "id": "",
+      "args": null,
+      "noEvent": false
+    },
+    "fromDate": "2019-08-06T11:17:13Z",
+    "title": "SLA by Incident Type",
+    "emptyNotification": "No results found",
+    "titleStyle": null
+  },
+  {
+    "type": "duration",
+    "data": [
+      {
+        "name": "",
+        "data": [
+          12,
+          3
+        ],
+        "groups": null
+      }
+    ],
+    "layout": {
+      "chartProperties": {
+        "daysLabel": "DAYS",
+        "hoursLabel": "HOURS",
+        "minutesLabel": "MIN"
+      },
+      "columnPos": 0,
+      "h": 2,
+      "i": "dcaf2d30-21e7-11e8-a93d-9d3f16cc014e",
+      "rowPos": 7,
+      "w": 3
+    },
+    "query": {
+      "type": "incident",
+      "filter": {
+        "query": "-category:job and status:closed",
+        "period": {
+          "byFrom": "days",
+          "fromValue": 30,
+          "by": "day"
+        }
+      },
+      "keys": [
+        "avg|openDuration",
+        "count|1"
+      ]
+    },
+    "automation": {
+      "name": "",
+      "id": "",
+      "args": null,
+      "noEvent": false
+    },
+    "fromDate": "2019-07-14T11:17:13Z",
+    "title": "Mean Time To Resolution",
+    "emptyNotification": "No results found",
+    "titleStyle": null
+  }
+]

@@ -91,6 +91,9 @@ def example_list(out_file_name='example.docx'):
     main.run(get_mock('elements/list.json', ret_dict=False), out_file_name)
 
 
+def example_date(out_file_name='example.docx'):
+    main.run(get_mock('elements/date.json', ret_dict=False), out_file_name)
+
 def example():
     main.run(get_mock('example.json', ret_dict=False), 'example.docx')
 
@@ -118,7 +121,7 @@ def example_all():
 
 
 def run():
-    example_list()
+    example_date()
 
 
 if __name__ == '__main__':

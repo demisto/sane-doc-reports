@@ -1,4 +1,3 @@
-import moment
 from arrow.parser import ParserError
 
 from sane_doc_reports.domain.Element import Element
@@ -13,7 +12,7 @@ class DateElement(Element):
 
     def insert(self):
         if DEBUG:
-            print('Adding text...')
+            print('Adding date...')
 
         try:
             formatted_date = get_formatted_date(self.section.contents,

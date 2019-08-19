@@ -417,12 +417,6 @@
             "index": "pypi",
             "version": "==0.8.4"
         },
-        "moment": {
-            "hashes": [
-                "sha256:7d74b4e2200e195f1e15fb70271da23aa69f0b9a8f9177e00a313e0f98089099"
-            ],
-            "version": "==0.8.2"
-        },
         "more-itertools": {
             "hashes": [
                 "sha256:409cd48d4db7052af495b09dec721011634af3753ae1ef92d2b32f73a745f832",

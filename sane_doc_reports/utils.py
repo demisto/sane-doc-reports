@@ -15,7 +15,7 @@ from sane_doc_reports.domain import CellObject, Section
 from sane_doc_reports.conf import SIZE_H_INCHES, SIZE_W_INCHES, \
     DEFAULT_DPI, DEFAULT_LEGEND_FONT_SIZE, DEFAULT_WORD_FONT, \
     DEFAULT_ALPHA, DEFAULT_FONT_COLOR, DEFAULT_WORD_FONT_FALLBACK, \
-    DEFAULT_FONT_AXIS_COLOR
+    DEFAULT_FONT_AXIS_COLOR, LEGEND_STYLE
 
 
 def open_b64_image(image_base64):
@@ -221,6 +221,7 @@ def set_axis_font(ax):
 
 
 def set_legend_style(legend, options=None):
+    plt.gcf().autofmt_xdate()
     if options:
         if 'hideLegend' in options and options['hideLegend']:
             plt.gca().legend().set_visible(False)
@@ -235,6 +236,13 @@ def set_legend_style(legend, options=None):
     for text in legend.get_texts():
         text.set_fontproperties(font)
         text.set_color(DEFAULT_FONT_COLOR)
+        if 'valign' in options:
+            text.set_position((0, options['valign']))
+
+
+def change_legend_vertical_alignment(section: Section, top = 0):
+    section.layout[LEGEND_STYLE]['valign'] = top
+    return section
 
 
 def get_chart_font():

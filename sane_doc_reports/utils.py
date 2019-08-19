@@ -4,7 +4,9 @@ import tempfile
 from io import BytesIO
 import importlib
 from pathlib import Path
+from time import gmtime
 
+import arrow
 from docx.oxml import OxmlElement
 import matplotlib
 from docx.text.paragraph import Paragraph
@@ -240,7 +242,7 @@ def set_legend_style(legend, options=None):
             text.set_position((0, options['valign']))
 
 
-def change_legend_vertical_alignment(section: Section, top = 0):
+def change_legend_vertical_alignment(section: Section, top=0):
     section.layout[LEGEND_STYLE]['valign'] = top
     return section
 
@@ -251,3 +253,26 @@ def get_chart_font():
     if DEFAULT_WORD_FONT not in names:
         return DEFAULT_WORD_FONT_FALLBACK
     return DEFAULT_WORD_FONT
+
+
+def get_formatted_date(input_date,
+                       layout=None) -> str:
+    """ Returns the formatted date string
+            input_date - date we want to format
+            layout - custom formats from the sane JSONs
+
+        Note: ParserError is raised and should be catched if used.
+    """
+    date = arrow.now()
+
+    # Use the date if supplied, and not now()
+    if input_date:
+        date = arrow.get(input_date)
+
+    formatted_date = date.isoformat()
+
+    # Use the user supplied format
+    if layout and 'format' in layout:
+        formatted_date = date.format(layout['format'])
+
+    return formatted_date

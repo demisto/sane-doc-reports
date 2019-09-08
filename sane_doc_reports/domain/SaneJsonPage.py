@@ -82,8 +82,6 @@ class SaneJsonPage:
             print(f'There are {cols} columns which is going to take'
                   f' a very long time to generate a DOCX.')
 
-        print(cols, rows)
-
         return cols, rows
 
     def get_sections(self) -> List:

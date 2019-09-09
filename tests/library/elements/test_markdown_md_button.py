@@ -9,7 +9,7 @@ def test_markdown_md_button():
 
     d = report.document
 
-    # Find 6 headings
+    # Don't find the %%% sings, but do find the message contents
     assert len(d.element.xpath("//w:t[contains(text(), '%')]")) == 0
     assert len(d.element.xpath("//w:t[contains(text(), 'hi 1')]")) == 1
 

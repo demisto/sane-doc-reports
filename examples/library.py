@@ -121,7 +121,7 @@ def example_all():
 
 
 def run():
-    example_date()
+    example()
 
 
 if __name__ == '__main__':

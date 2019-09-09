@@ -167,8 +167,10 @@ def transform_old_json_format(json_data: List[dict]) -> List[dict]:
             continue
 
         # Fix the markdown/text/header types
-        if json_data[i]['type'] in ['markdown', 'text', 'header']:
+        if json_data[i]['type'] in ['markdown', 'text', 'header'] \
+                and 'text' not in json_data[i][DATA_KEY]:
             json_data[i][DATA_KEY] = {
                 'text': json_data[i][DATA_KEY]}
+
 
     return json_data

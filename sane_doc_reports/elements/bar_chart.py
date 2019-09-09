@@ -135,7 +135,7 @@ class BarChartElement(Element):
 
         plt_b64 = utils.plt_t0_b64(plt)
 
-        s = Section('image', plt_b64, {}, {})
+        s = Section('image', plt_b64, {}, {'should_shrink': True})
         image.invoke(self.cell_object, s)
 
 

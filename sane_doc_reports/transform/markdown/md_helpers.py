@@ -21,7 +21,14 @@ def markdown_convert(markdown_string) -> str:
         return contents
 
     class ButtonRenderer(mistune.Renderer):
-        ''' Aviad's specical %%% syntax for MD buttons '''
+        '''
+        Syntax for MD buttons
+            %%%{JSON.message}%%%
+        For example:
+            %%%%{"message": "Something here"}%%%%
+        Output:
+            Something here
+        '''
 
         def paragraph(self, text):
             text = _get_contents(text)

@@ -95,10 +95,7 @@ class TableElement(Element):
 
         # Quick fix, word crashes on more than 64 columns.
         table_columns = table_columns[0:63]
-        if len(table_columns) > 63:
-            section = Section('error')
-            section.contents = f'Table has too many columns for MS Word ({len(table_columns)}'
-            return error.invoke(self.cell_object, section)
+
 
         for i, header_text in enumerate(table_columns):
             if not isinstance(header_text, str):
@@ -126,6 +123,9 @@ class TableElement(Element):
         for i, header_text in enumerate(table_columns):
             insert_text(hdr_cells[i], header_text, self.style['text'])
 
+        if len(table_columns) > 63:
+            # TODO: add error.
+            pass
 
         for r in table_data:
             row_cells = table.add_row().cells

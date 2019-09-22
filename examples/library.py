@@ -128,7 +128,7 @@ def example_all():
 
 
 def run():
-    example()
+    example_old_json()
 
 
 if __name__ == '__main__':

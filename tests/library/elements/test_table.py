@@ -43,9 +43,16 @@ def test_table_63_cols():
     d = report.document
     table = next(utils.iter_block_items(d))
     assert isinstance(table, Table)
-    assert len(table.columns) == 12
-    assert len(table.rows) == 2
 
-    # Check we have the max amount of table columns.
     assert len(d.element.xpath('//w:tbl//w:tbl')) == 1
     assert int(d.element.xpath('count(//w:t)')) == 64  # 63 + title
+
+
+def test_table_new_json():
+    report = Report(*_transform('elements/table_new_json.json'))
+    report.populate_report()
+    d = report.document
+    table = next(utils.iter_block_items(d))
+    assert isinstance(table, Table)
+
+    assert int(d.element.xpath('count(//w:tbl)')) == 7  # grid + 5 tables

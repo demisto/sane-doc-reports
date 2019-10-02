@@ -30,7 +30,7 @@ def fix_order(ordered, readable_headers) -> list:
             if isinstance(k, dict):
                 key = k.get('key')
                 key = readable_headers.get(key, key)
-                if key not in ret:
+                if key not in ret and not k.get('hidden', False):
                     ret.append(key)
             else:
                 ret.append(temp_readable[k])

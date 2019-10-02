@@ -21,6 +21,10 @@ def example_table(out_file_name='example.docx'):
     main.run(get_mock('elements/table.json', ret_dict=False), out_file_name)
 
 
+def example_table_new(out_file_name='example.docx'):
+    main.run(get_mock('elements/table_new_json.json', ret_dict=False), out_file_name)
+
+
 def example_number(out_file_name='example.docx'):
     main.run(get_mock('elements/number_and_trend.json', ret_dict=False),
              out_file_name)
@@ -109,6 +113,7 @@ def example_all():
         example_basic,
         example_paged,
         example_table,
+        example_table_new,
         example_number,
         example_text,
         example_pie_chart,
@@ -128,7 +133,7 @@ def example_all():
 
 
 def run():
-    example_table()
+    example_table_new()
 
 
 if __name__ == '__main__':

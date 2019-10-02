@@ -18,7 +18,7 @@ def test_table_in_report():
     assert len(d.element.xpath('//w:tbl//w:tbl')) == 1
 
     # Check that it has the right amount of rows
-    assert len(d.element.xpath('//w:tbl//w:tbl//w:t')) == 23 # Avatar isn't hidden
+    assert len(d.element.xpath('//w:tbl//w:tbl//w:t')) == 22  # avatar is hidden
 
 
 def test_table_in_report_widget():
@@ -48,4 +48,4 @@ def test_table_63_cols():
 
     # Check we have the max amount of table columns.
     assert len(d.element.xpath('//w:tbl//w:tbl')) == 1
-    assert int(d.element.xpath('count(//w:t)')) == 64 # 63 + title
+    assert int(d.element.xpath('count(//w:t)')) == 64  # 63 + title

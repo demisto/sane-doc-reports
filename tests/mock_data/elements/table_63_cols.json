@@ -4,88 +4,74 @@
     "layout": {
       "columnPos": 0,
       "h": 2,
-      "i": "7ce69dd0-a07f-11e9-936c-5395a1acf11e",
+      "i": "aaa-aaa-aaaa-aaa-aaaa",
       "readableHeaders": {
-        "ASN": "ASN",
+        "AAA": "AAA",
         "Account Type": "Account Type",
-        "Actor": "Actor",
-        "Admin Country": "Admin Country",
-        "Admin Email": "Admin Email",
-        "Admin Name": "Admin Name",
-        "Admin Phone": "Admin Phone",
+        "Title": "Title",
+        "Info Country": "Info Country",
+        "Info Email": "Info Email",
+        "Info Name": "Info Name",
+        "Info Phone": "Info Phone",
         "Associated File Names": "Associated File Names",
         "BIOS Version": "BIOS Version",
-        "CVE Description": "CVE Description",
+        "Core Description": "Core Description",
         "Creation Date": "Creation Date",
-        "DHCP Server": "DHCP Server",
-        "DNS": "DNS",
+        "Origin Address": "Origin Address",
+        "POP": "POP",
         "Description": "Description",
-        "Detection Engines": "Detection Engines",
+        "Generation Engines": "Generation Engines",
         "Device Model": "Device Model",
         "Display Name": "Display Name",
         "Domain Name": "Domain Name",
         "Domain Status": "Domain Status",
         "Email Address": "Email Address",
-        "Entry ID": "Entry ID",
+        "Bag ID": "Bag ID",
         "Expiration Date": "Expiration Date",
-        "File Extension": "File Extension",
-        "File Type": "File Type",
+        "Bag Extension": "Bag Extension",
+        "Bag Type": "Bag Type",
         "Geo Country": "Geo Country",
         "Geo Location": "Geo Location",
         "Groups": "Groups",
         "Hostname": "Hostname",
         "ID": "ID",
-        "IP Address": "IP Address",
+        "Address": "Address",
         "Internal": "Internal",
         "MAC Address": "MAC Address",
         "MD5": "MD5",
         "Memory": "Memory",
         "Modified": "Modified",
         "Name": "Name",
-        "Name Servers": "Name Servers",
+        "Name Address": "Name Address",
         "OS Version": "OS Version",
-        "Operating System": "Operating System",
-        "Operating System Version": "Operating System Version",
+        "Operating Manifesto": "Operating Manifesto",
+        "Operating Manifesto Version": "Operating Manifesto Version",
         "Organization": "Organization",
-        "Organizational Unit (OU)": "Organizational Unit (OU)",
+        "Organizational Group": "Organizational Group",
         "Path": "Path",
-        "Positive Detections": "Positive Detections",
+        "Positive Hires": "Positive Hires",
         "Processor": "Processor",
         "Processors": "Processors",
         "Published": "Published",
-        "Registrant Country": "Registrant Country",
-        "Registrant Email": "Registrant Email",
-        "Registrant Name": "Registrant Name",
-        "Registrant Phone": "Registrant Phone",
-        "Registrar Abuse Email": "Registrar Abuse Email",
-        "Registrar Abuse Phone": "Registrar Abuse Phone",
+        "User Country": "User Country",
+        "User Email": "User Email",
+        "User Name": "User Name",
+        "User Phone": "User Phone",
+        "Registrar Info Email": "Registrar Info Email",
+        "Registrar Info Phone": "Registrar Info Phone",
         "Registrar Name": "Registrar Name",
-        "SHA1": "SHA1",
-        "SHA256": "SHA256",
-        "SHA512": "SHA512",
-        "SSDeep": "SSDeep",
-        "Signature Authentihash": "Signature Authentihash",
+        "BIT1": "BIT1",
+        "BIT256": "BIT256",
+        "BIT512": "BIT512",
+        "SSD": "SSD",
+        "Signature": "Signature",
         "Signature Copyright": "Signature Copyright",
         "Signature Description": "Signature Description",
-        "Signature File Version": "Signature File Version",
+        "Signature Bag Version": "Signature Bag Version",
         "Signature Internal Name": "Signature Internal Name",
-        "Signed": "Signed",
+        "Moved": "Moved",
         "Size": "Size",
-        "Subdomains": "Subdomains",
-        "Tags": "Tags",
-        "Updated Date": "Updated Date",
-        "Username": "Username",
-        "comment": "Comment",
-        "firstSeen": "First Seen",
-        "id": "ID",
-        "indicator_type": "Type",
-        "panelIDs": "Related Incidents",
-        "lastSeen": "Last Seen",
-        "score": "Reputation",
-        "setBy": "Manually Set by",
-        "source": "Source",
-        "timestamp": "Source Time Stamp",
-        "value": "Value"
+        "Articles": "Articles"
       },
       "rowPos": 10,
       "tableColumns": [
@@ -163,43 +149,43 @@
         },
         {
           "hidden": false,
-          "key": "Actor",
+          "key": "Title",
           "position": 201,
           "width": 200
         },
         {
           "hidden": false,
-          "key": "Admin Country",
+          "key": "Info Country",
           "position": 202,
           "width": 200
         },
         {
           "hidden": false,
-          "key": "Admin Email",
+          "key": "Info Email",
           "position": 203,
           "width": 200
         },
         {
           "hidden": false,
-          "key": "Admin Name",
+          "key": "Info Name",
           "position": 204,
           "width": 200
         },
         {
           "hidden": false,
-          "key": "Admin Phone",
+          "key": "Info Phone",
           "position": 205,
           "width": 200
         },
         {
           "hidden": false,
-          "key": "ASN",
+          "key": "AAA",
           "position": 206,
           "width": 200
         },
         {
           "hidden": false,
-          "key": "Associated File Names",
+          "key": "Associated Bag Names",
           "position": 207,
           "width": 200
         },
@@ -217,7 +203,7 @@
         },
         {
           "hidden": false,
-          "key": "CVE Description",
+          "key": "Core Description",
           "position": 210,
           "width": 200
         },
@@ -229,7 +215,7 @@
         },
         {
           "hidden": false,
-          "key": "Detection Engines",
+          "key": "Generation Engines",
           "position": 212,
           "width": 200
         },
@@ -241,7 +227,7 @@
         },
         {
           "hidden": false,
-          "key": "DHCP Server",
+          "key": "Origin Address",
           "position": 214,
           "width": 200
         },
@@ -253,7 +239,7 @@
         },
         {
           "hidden": false,
-          "key": "DNS",
+          "key": "POP",
           "position": 216,
           "width": 200
         },
@@ -277,7 +263,7 @@
         },
         {
           "hidden": false,
-          "key": "Entry ID",
+          "key": "Bag ID",
           "position": 220,
           "width": 200
         },
@@ -289,13 +275,13 @@
         },
         {
           "hidden": false,
-          "key": "File Extension",
+          "key": "Bag Extension",
           "position": 222,
           "width": 200
         },
         {
           "hidden": false,
-          "key": "File Type",
+          "key": "Bag Type",
           "position": 223,
           "width": 200
         },
@@ -337,7 +323,7 @@
         },
         {
           "hidden": false,
-          "key": "IP Address",
+          "key": "Address",
           "position": 230,
           "width": 200
         },
@@ -373,19 +359,19 @@
         },
         {
           "hidden": false,
-          "key": "Name Servers",
+          "key": "Name Address",
           "position": 236,
           "width": 200
         },
         {
           "hidden": false,
-          "key": "Operating System",
+          "key": "Operating Manifesto",
           "position": 237,
           "width": 200
         },
         {
           "hidden": false,
-          "key": "Operating System Version",
+          "key": "Operating Manifesto Version",
           "position": 238,
           "width": 200
         },
@@ -397,7 +383,7 @@
         },
         {
           "hidden": false,
-          "key": "Organizational Unit (OU)",
+          "key": "Organizational Group",
           "position": 240,
           "width": 200
         },
@@ -415,7 +401,7 @@
         },
         {
           "hidden": false,
-          "key": "Positive Detections",
+          "key": "Positive Hires",
           "position": 243,
           "width": 200
         },
@@ -439,37 +425,37 @@
         },
         {
           "hidden": false,
-          "key": "Registrant Country",
+          "key": "User Country",
           "position": 247,
           "width": 200
         },
         {
           "hidden": false,
-          "key": "Registrant Email",
+          "key": "User Email",
           "position": 248,
           "width": 200
         },
         {
           "hidden": false,
-          "key": "Registrant Name",
+          "key": "User Name",
           "position": 249,
           "width": 200
         },
         {
           "hidden": false,
-          "key": "Registrant Phone",
+          "key": "User Phone",
           "position": 250,
           "width": 200
         },
         {
           "hidden": false,
-          "key": "Registrar Abuse Email",
+          "key": "Registrar Info Email",
           "position": 251,
           "width": 200
         },
         {
           "hidden": false,
-          "key": "Registrar Abuse Phone",
+          "key": "Registrar Info Phone",
           "position": 252,
           "width": 200
         },
@@ -481,25 +467,25 @@
         },
         {
           "hidden": false,
-          "key": "SHA1",
+          "key": "BIT1",
           "position": 254,
           "width": 200
         },
         {
           "hidden": false,
-          "key": "SHA256",
+          "key": "BIT256",
           "position": 255,
           "width": 200
         },
         {
           "hidden": false,
-          "key": "SHA512",
+          "key": "BIT512",
           "position": 256,
           "width": 200
         },
         {
           "hidden": false,
-          "key": "Signature Authentihash",
+          "key": "Signature",
           "position": 257,
           "width": 200
         },
@@ -517,7 +503,7 @@
         },
         {
           "hidden": false,
-          "key": "Signature File Version",
+          "key": "Signature Bag Version",
           "position": 260,
           "width": 200
         },
@@ -529,7 +515,7 @@
         },
         {
           "hidden": false,
-          "key": "Signed",
+          "key": "Moved",
           "position": 262,
           "width": 200
         },
@@ -541,13 +527,13 @@
         },
         {
           "hidden": false,
-          "key": "SSDeep",
+          "key": "SSD",
           "position": 264,
           "width": 200
         },
         {
           "hidden": false,
-          "key": "Subdomains",
+          "key": "Articles",
           "position": 265,
           "width": 200
         },
@@ -570,10 +556,10 @@
           "width": 200
         }
       ],
-      "w": 8
+      "w": 12
     },
-    "title": "Panels",
-    "emptyNotification": "This incident does not contain any panels that apply to the following filter: \"\".",
+    "title": "Information",
+    "emptyNotification": "This info does not contain any data that apply.",
     "displayType": "row",
     "titleStyle": {
       "borderBottom": "1px solid rgba(64, 65, 66, 0.16)",

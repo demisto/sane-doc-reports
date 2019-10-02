@@ -18,7 +18,7 @@ def example_paged_complex(out_file_name='example.docx'):
 
 
 def example_table(out_file_name='example.docx'):
-    main.run(get_mock('elements/table.json', ret_dict=False), out_file_name, options={'trace': True})
+    main.run(get_mock('elements/table.json', ret_dict=False), out_file_name)
 
 
 def example_number(out_file_name='example.docx'):

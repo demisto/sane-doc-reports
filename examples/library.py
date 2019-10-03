@@ -128,7 +128,7 @@ def example_all():
 
 
 def run():
-    example_table()
+    example()
 
 
 if __name__ == '__main__':

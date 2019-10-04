@@ -30,7 +30,7 @@ def fix_order(ordered, readable_headers) -> list:
             if isinstance(k, dict):
                 key = k.get('key')
                 key = readable_headers.get(key, key)
-                if key not in ret:
+                if key not in ret and not k.get('hidden', False):
                     ret.append(key)
             else:
                 ret.append(temp_readable[k])
@@ -65,11 +65,13 @@ class TableElement(Element):
             print("Adding table...")
 
         table_data = self.section.contents
-        if 'tableColumns' not in self.section.layout:
-            return
 
         if isinstance(table_data, dict):
             table_data = table_data.get('data', table_data)
+
+        if 'tableColumns' not in self.section.layout:
+            # Quick dirty fix for test - will be refactored in upcoming PR
+            self.section.layout['tableColumns'] = list(table_data[0].keys())
 
         # Fix new lists
         if isinstance(table_data, dict):
@@ -95,6 +97,7 @@ class TableElement(Element):
             table_columns = fix_order(ordered, readable_headers)
         else:
             table_columns = self.section.layout['tableColumns']
+
 
         # Quick fix, word crashes on more than 64 columns.
         # See: https://stackoverflow.com/questions/36921010/docx-does-not-support-more-than-63-columns-in-a-table

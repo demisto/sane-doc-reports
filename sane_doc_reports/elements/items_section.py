@@ -18,9 +18,13 @@ class ItemsSectionWrapper(Wrapper):
         }
     }
 
+    display_types = {
+        'CARD': 'card',
+        'ROW': 'row'
+    }
+
     def wrap(self, invoked_from_wrapper=False):
         # Handle called from another wrapper.
-        # if isinstance(self.section.contents, list):
         items = self.section.contents
 
         if not isinstance(items, list):
@@ -37,19 +41,20 @@ class ItemsSectionWrapper(Wrapper):
             item_table.style = DEFAULT_TABLE_STYLE
 
         for item in items:
-            row, col, merged = item.get('index', 0), item.get(
+            row, col, col_to_merge = item.get('index', 0), item.get(
                 'startCol'), item.get('endCol')
             current_cell = item_table.cell(row, col)
-            current_cell.merge(item_table.cell(row, merged - 1))
+            current_cell.merge(item_table.cell(row, col_to_merge - 1))
 
-            filedName = item.get("fieldName", "")
-            filedName = filedName[0].upper() + filedName[1:]
-            filedName = f'{filedName}: '
+            field_name = item.get("fieldName", "")
+            field_name = field_name[0].upper() + field_name[1:]
+            field_name = f'{field_name}: '
 
-            if item.get('displayType', 'row') == 'card':
-                filedName += '\n'
+            if item.get('displayType', self.display_types['ROW']) == \
+                    self.display_types['CARD']:
+                field_name += '\n'
 
-            insert_text(current_cell, filedName, self.style['key'])
+            insert_text(current_cell, field_name, self.style['key'])
             insert_text(current_cell, item.get("data", ""), self.style['value'])
 
 

@@ -1127,7 +1127,7 @@
     "data": [
       {
         "fieldId": "occurred",
-        "fieldName": "occurred",
+        "fieldName": "occurred longtextherelongtextherelongtextherelongtexthere",
         "fieldType": "date",
         "data": "Wed, 25 Sep 2019 17:48:38 IDT",
         "headerStyle": {
@@ -1285,7 +1285,7 @@
         "fieldId": "details",
         "fieldName": "details",
         "fieldType": "longText",
-        "data": "Working during weekend",
+        "data": "Working during weekend longtextherelongtextherelongtextherelongtextherelongtexthere",
         "headerStyle": {
           "color": "rgba(64, 65, 66, 0.7)",
           "fontSize": "12px",

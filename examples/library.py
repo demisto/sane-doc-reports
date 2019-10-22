@@ -140,7 +140,7 @@ def example_all():
 
 
 def run():
-    example_items_section()
+    example()
 
 
 if __name__ == '__main__':

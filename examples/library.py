@@ -140,7 +140,8 @@ def example_all():
 
 
 def run():
-    example_number_and_trend()
+    example()
+
 
 
 if __name__ == '__main__':

@@ -63,7 +63,6 @@ def general_json_fixes(json_data: List[dict]) -> List[dict]:
         if json_data[i]['type'] in ['markdown', 'text', 'header'] \
                 and ('text' not in json_data[i][DATA_KEY] or isinstance(
             json_data[i][DATA_KEY], str)):
-
             json_data[i][DATA_KEY] = {
                 'text': json_data[i][DATA_KEY]}
         if json_data[i]['type'] == 'globalSection':

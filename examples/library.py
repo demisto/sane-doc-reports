@@ -140,7 +140,9 @@ def example_all():
 
 
 def run():
-    example_items_section()
+    # example_table("e1.docx")
+    # example_table_new("e2.docx")
+    example_list("e3.docx")
 
 
 if __name__ == '__main__':

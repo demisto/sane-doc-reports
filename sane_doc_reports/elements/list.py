@@ -53,21 +53,9 @@ class ListElement(Element):
 
         else:
             table.invoke(self.cell_object,
-                         Section('table', self.section.contents, self.section.layout,
+                         Section('table', self.section.contents,
+                                 self.section.layout,
                                  {'list_style': True}))
-
-        # Add the wrapping headers
-        # i = 0
-        # for title, table_contents in self.table_data.items():
-        #     hdr = wrapper_table.cell(0, i)
-        #     print("Row:", title, table_contents)
-        #     insert_text(hdr, title,
-        #                 self.style['title'])
-        #     body = wrapper_table.cell(1, i)
-        #     # c = CellObject(body)
-        #     # # Hacky but will do the job - use the table element for lists, basically the same thing.
-        #     # table.invoke(c, Section('table', table_contents, {}, {}))
-        #     i += 1
 
 
 def invoke(cell_object, section):

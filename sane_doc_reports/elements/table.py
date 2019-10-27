@@ -89,7 +89,8 @@ class TableElement(Element):
         else:
             table_columns = self.section.layout['tableColumns']
 
-        # Quick fix, word crashes on more than 64 columns.
+        # Quick fix, word crashes on more than MAX_MS_TABLE_COLS_LIMIT
+        #   (64 right now) columns.
         # See: https://stackoverflow.com/questions/36921010/docx-does-not-support-more-than-63-columns-in-a-table
         table_columns = table_columns[0:MAX_MS_TABLE_COLS_LIMIT]
 

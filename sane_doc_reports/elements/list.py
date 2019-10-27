@@ -41,7 +41,6 @@ class ListElement(Element):
             wrapper_table = self.cell_object.cell.add_table(rows=2, cols=1)
             title_cell = wrapper_table.cell(0, 0)
             title_text = list(list_data.keys())[0]
-            print("Title:", title_text)
             insert_text(title_cell, title_text,
                         self.style['title'])
 

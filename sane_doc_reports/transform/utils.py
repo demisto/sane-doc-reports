@@ -82,6 +82,9 @@ def transform_old_json_format(json_data: List[dict]) -> List[dict]:
         it to the new json format.
     """
 
+    if isinstance(json_data, str):
+        return []
+
     # Fix the first element
     json_data[0][LAYOUT_KEY][ROW_POSITION_KEY] = 0
     json_data[0][LAYOUT_KEY][COL_POSITION_KEY] = 0

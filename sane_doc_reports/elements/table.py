@@ -79,6 +79,7 @@ class TableElement(Element):
         # If table columns isn't present, use the dict values of the table data
         # as table columns (kind of like list).
         if 'tableColumns' not in self.section.layout:
+            print("*", table_data)
             self.section.layout['tableColumns'] = list(table_data[0].keys())
 
         # Use and order according to readableHeaders if present.
@@ -131,7 +132,7 @@ class TableElement(Element):
                         row_item[row_title]['type'] == 'image':
                     insert_table_image(row_item, row_title, row_cells[i])
                 else:
-                    insert_text(row_cells[i], row_item[row_title],
+                    insert_text(row_cells[i], str(row_item[row_title]),
                                 self.style['text'])
 
 

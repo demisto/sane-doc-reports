@@ -54,9 +54,10 @@ DEFAULT_DPI = 100.0
 DEFAULT_DOC_PORTRAIT_WIDTH = 612
 SMALL_RESIZE_FIX = 0.8
 
-# List constants
+# List/Table constants
 ORDERED_LIST_NAME = 'List Number'
 UNORDERED_LIST_NAME = 'List Bullet'
+MAX_MS_TABLE_COLS_LIMIT = 63
 
 # Element constants
 DEFAULT_ALPHA = 0.5

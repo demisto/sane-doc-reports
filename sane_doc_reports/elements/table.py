@@ -79,7 +79,6 @@ class TableElement(Element):
         # If table columns isn't present, use the dict values of the table data
         # as table columns (kind of like list).
         if 'tableColumns' not in self.section.layout:
-            print("*", table_data)
             self.section.layout['tableColumns'] = list(table_data[0].keys())
 
         # Use and order according to readableHeaders if present.

@@ -57,7 +57,8 @@ class LineChartElement(Element):
             print("Adding line chart...")
 
             # Fix sizing
-        size_w, size_h, dpi = utils.convert_plt_size(self.section)
+        size_w, size_h, dpi = utils.convert_plt_size(self.section,
+                                                     self.cell_object)
         figure(num=2, figsize=(size_w, size_h), dpi=dpi,
                constrained_layout=False)
 
@@ -122,7 +123,7 @@ class LineChartElement(Element):
         legend = ax.legend(handles, [i for i in groups.keys()],
                            loc=legend_location,
                            bbox_to_anchor=legend_location_relative_to_graph,
-                           handlelength=0.7, handleheight=0.7)
+                           handlelength=0.7, handleheight=0.7, ncol=2)
 
         self.section = change_legend_vertical_alignment(self.section, top=1)
 
@@ -135,7 +136,7 @@ class LineChartElement(Element):
         ax.set_title(self.section.extra['title'], **self.style['title'])
 
         # Add to docx as image
-        plt_b64 = utils.plt_t0_b64(plt)
+        plt_b64 = utils.plt_t0_b64(plt, (size_w, size_h), dpi)
         s = Section('image', plt_b64, {}, {'should_shrink': True})
         image.invoke(self.cell_object, s)
 

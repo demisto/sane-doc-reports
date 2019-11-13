@@ -81,7 +81,7 @@ class PieChartElement(Element):
         circle = plt.Circle((0, 0), 0.7, fc='white')
         ax.add_artist(circle)
 
-        plt_b64 = utils.plt_t0_b64(plt)
+        plt_b64 = utils.plt_t0_b64(plt, (size_w, size_h), dpi)
 
         s = Section('image', plt_b64, {}, {'should_shrink': True})
         image.invoke(self.cell_object, s)

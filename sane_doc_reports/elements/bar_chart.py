@@ -133,7 +133,7 @@ class BarChartElement(Element):
         plt.tick_params(bottom='off')
         plt.title(self.section.extra['title'], **self.style['title'])
 
-        plt_b64 = utils.plt_t0_b64(plt)
+        plt_b64 = utils.plt_t0_b64(plt, (size_w, size_h), dpi)
 
         s = Section('image', plt_b64, {}, {'should_shrink': True})
         image.invoke(self.cell_object, s)

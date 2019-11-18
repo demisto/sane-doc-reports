@@ -12,6 +12,7 @@ import matplotlib
 from docx.text.paragraph import Paragraph
 from matplotlib import pyplot as plt
 import matplotlib.font_manager as fm
+import matplotlib.ticker as mticker
 
 from sane_doc_reports.domain import CellObject, Section
 from sane_doc_reports.domain.Section import Section as SectionFactory
@@ -20,7 +21,7 @@ from sane_doc_reports.conf import SIZE_H_INCHES, SIZE_W_INCHES, \
     DEFAULT_ALPHA, DEFAULT_FONT_COLOR, DEFAULT_WORD_FONT_FALLBACK, \
     DEFAULT_FONT_AXIS_COLOR, LEGEND_STYLE, DEBUG, WIDTH_POSITION_KEY, \
     HEIGHT_POSITION_KEY, A3_MM_WIDTH, A4_MM_WIDTH, A4_MM_HEIGHT, \
-    LETTER_MM_HEIGHT, LETTER_MM_WIDTH, A3_MM_HEIGHT
+    LETTER_MM_HEIGHT, LETTER_MM_WIDTH, A3_MM_HEIGHT, MAX_AXIS_LABELS
 
 
 def open_b64_image(image_base64):
@@ -275,6 +276,19 @@ def set_axis_font(ax):
 
     for label in ax.get_yticklabels():
         label.set_fontproperties(font)
+
+
+def set_legend_max_count(ax, cell_object: CellObject):
+    g_pos = cell_object.grid_position
+    width_ratio = g_pos['width'] / g_pos['global_cols']
+    axis_count = MAX_AXIS_LABELS
+    if width_ratio <= 0.2:
+        axis_count = MAX_AXIS_LABELS / 4
+    elif width_ratio < 0.6:
+        axis_count = MAX_AXIS_LABELS / 2
+
+    myLocator = mticker.MaxNLocator(axis_count)
+    ax.xaxis.set_major_locator(myLocator)
 
 
 def set_legend_style(legend, options=None):

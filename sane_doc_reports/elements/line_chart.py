@@ -1,6 +1,5 @@
 import matplotlib.pyplot as plt
 from matplotlib.pyplot import figure
-import matplotlib.ticker as mticker
 
 from sane_doc_reports import utils
 from sane_doc_reports.domain.Element import Element
@@ -12,7 +11,7 @@ from sane_doc_reports.elements import image
 from sane_doc_reports.styles.colors import get_colors
 from sane_doc_reports.utils import remove_plot_borders, \
     set_legend_style, get_chart_font, set_axis_font, \
-    change_legend_vertical_alignment
+    change_legend_vertical_alignment, set_legend_max_count
 
 
 def fix_data(data):
@@ -128,8 +127,7 @@ class LineChartElement(Element):
         self.section = change_legend_vertical_alignment(self.section, top=1)
 
         # Set max ticks in xaxis to be MAX_AXIS_LABELS
-        myLocator = mticker.MaxNLocator(MAX_AXIS_LABELS)
-        ax.xaxis.set_major_locator(myLocator)
+        set_legend_max_count(ax, self.cell_object)
 
         set_legend_style(legend, self.section.layout[LEGEND_STYLE])
         set_axis_font(ax)

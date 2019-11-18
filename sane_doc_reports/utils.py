@@ -110,7 +110,6 @@ def plt_t0_b64(plt: matplotlib.pyplot, figsize=None, dpi=None):
     dpi = dpi if dpi else DEFAULT_DPI
 
     # Remove paddings
-    # plt.subplots_adjust(left=0.1, right=1, bottom=0.3, top=0.9)
     plt.tight_layout()
 
     plt.savefig(str(path), format='png', figsize=figsize,
@@ -134,7 +133,6 @@ def convert_plt_size(section: Section, cell_object: CellObject):
         # to inches.
         # ratio in inches: (width_size_in_inches / 12)
         #   Width in inches: w * ratio_in_inches
-        # ratio in inches: (height_size_in_inches /
 
         sizes = {
             'A4': {

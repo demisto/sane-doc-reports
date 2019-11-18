@@ -30,7 +30,8 @@ class ColumnChartElement(Element):
             print("Adding a column chart!")
 
         # Fix sizing
-        size_w, size_h, dpi = utils.convert_plt_size(self.section)
+        size_w, size_h, dpi = utils.convert_plt_size(self.section,
+                                                     self.cell_object)
         plt.figure(figsize=(size_w, size_h), dpi=dpi)
 
         data = self.section.contents

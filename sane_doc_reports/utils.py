@@ -158,6 +158,7 @@ def convert_plt_size(section: Section, cell_object: CellObject):
         ratio_w = width_size_in_inches / 12
         w = int(section.layout[WIDTH_POSITION_KEY])
         size_w = (ratio_w * w)
+
     return size_w, size_h, dpi
 
 

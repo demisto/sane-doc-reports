@@ -5,7 +5,6 @@ from io import BytesIO
 import importlib
 from pathlib import Path
 import traceback
-import statistics
 from typing import List
 
 import arrow

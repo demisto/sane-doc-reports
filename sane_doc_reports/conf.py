@@ -124,3 +124,4 @@ MD_PAGE_BREAK = '\\pagebreak'
 
 # Misc.
 DOCX_TEMAPLTE_FILE = 'template.docx'
+RESIZE_PLOT_ITEMS_AMOUNT_THRESHOLD = 8.0

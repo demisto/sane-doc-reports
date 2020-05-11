@@ -48,6 +48,25 @@ def _font_transformations(json_item: dict) -> dict:
     return json_item
 
 
+def get_customer_logo(json_data: List[dict]) ->List[dict]:
+    if isinstance(json_data, str):
+        return []
+
+    # The customer logo can be one of the first itmes in the json
+    for i in range(min(len(json_data), 3)):
+        is_logo = json_data[i]['type'] == 'logo'
+        is_customer_right = False
+        if 'layout' in json_data[i] and \
+                'style' in json_data[i]['layout'] and \
+                'float' in json_data[i]['layout']['style']:
+            is_customer_right = json_data[i]['layout']['style'][
+                                    'float'] == 'right'
+
+        if is_logo and is_customer_right:
+            return json_data[i]['data']
+    return []
+
+
 def general_json_fixes(json_data: List[dict]) -> List[dict]:
     """ Fixes general problems that may arise in the json
     (not necessarily related to the old format) """
@@ -92,8 +111,6 @@ def transform_old_json_format(json_data: List[dict]) -> List[dict]:
     # Remove unnecessary first elements (logo/side image)
     # We need to do this before we calculate the rowPos
     if json_data[0]['type'] == 'image':
-        del json_data[0]
-    if json_data[0]['type'] == 'logo':
         del json_data[0]
     if json_data[0]['type'] == 'logo':
         del json_data[0]

@@ -6,7 +6,7 @@ from sane_doc_reports.conf import LAYOUT_KEY, \
 from sane_doc_reports.domain.SaneJson import SaneJson
 from sane_doc_reports.domain.Page import Page
 from sane_doc_reports.transform.utils import transform_old_json_format, \
-    general_json_fixes
+    general_json_fixes, get_customer_logo
 
 
 class Transform:
@@ -20,6 +20,7 @@ class Transform:
         if self.is_old_json_format():
             self.json_data = transform_old_json_format(self.json_data)
 
+        self.customer_logo = get_customer_logo(self.json_data)
         self.json_data = general_json_fixes(self.json_data)
         self.sane_json = SaneJson(self.json_data)
 

@@ -17,6 +17,7 @@ pyquery = "*"
 mistune = "==0.8.4"
 requests = "*"
 arrow = "*"
+sane-doc-reports = {editable = true,path = "."}
 
 [requires]
 python_version = "3.7"

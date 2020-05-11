@@ -54,6 +54,8 @@ class Report:
         self.page_height = A4_MM_HEIGHT
 
     def populate_report(self) -> None:
+        if 'customer_logo' in self.options and self.options['customer_logo']:
+            self.add_customer_logo()
         paper_size = self.options.get('paper_size', 'A4')
         self.change_page_size(paper_size)
         self._decrease_layout_margins()
@@ -152,3 +154,7 @@ class Report:
             section.bottom_margin = Pt(BOTTOM_MARGIN_PT)
             section.left_margin = Pt(LEFT_MARGIN_PT)
             section.right_margin = Pt(RIGHT_MARGIN_PT)
+
+    def add_customer_logo(self):
+        cusomter_logo = self.options['customer_logo']
+        print("insert logo to header", cusomter_logo)

@@ -78,7 +78,7 @@ def test_markdown_paged():
     assert len(d.element.xpath('//w:br')) == 0
 
 
-def test_markdown_paged():
+def test_markdown_paged2():
     report = Report(*_transform('elements/markdown_paged2.json'))
     report.populate_report()
 

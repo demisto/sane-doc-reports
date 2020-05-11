@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "6ede29070f05def03acfd2841e021914c17a692566d9bd4d50dd1eb9e062729b"
+            "sha256": "99e55e494ebd230e455d5a87a105a7c63965c71c15e5bf0cb8cefaf3c93abf9d"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -210,10 +210,6 @@
             ],
             "index": "pypi",
             "version": "==2.23.0"
-        },
-        "sane-doc-reports": {
-            "editable": true,
-            "path": "."
         },
         "six": {
             "hashes": [

@@ -71,7 +71,7 @@ def test_markdown_paged():
 
     d = report.document
 
-    # Find 6 headings
+    # Find 2 headings
     assert len(d.element.xpath("//w:t[contains(text(), 'Heading')]")) == 2
 
     # Page break (none because it is the first and only element)
@@ -84,7 +84,7 @@ def test_markdown_paged2():
 
     d = report.document
 
-    # Find 6 headings
+    # Find 2 headings
     assert len(d.element.xpath("//w:t[contains(text(), 'Heading')]")) == 2
 
     # Page break

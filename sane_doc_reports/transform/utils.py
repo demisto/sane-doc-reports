@@ -48,7 +48,27 @@ def _font_transformations(json_item: dict) -> dict:
     return json_item
 
 
-def get_customer_logo(json_data: List[dict]) ->List[dict]:
+def remove_logo_and_badge(json_data: List[dict]) -> List[dict]:
+    if isinstance(json_data, str):
+        return []
+
+    # Remove the top badge
+    new_json = []
+    for i in range(len(json_data)):
+        data = str(json_data[i]['data'])
+        is_badge = 'data' in json_data[i] and json_data[i]['data'] and \
+                   'PSIzNCIgdmlld0JveD0iMCAwIDM0IDM0Ij4' in data
+        is_old_logo = 'data' in json_data[i] and json_data[i]['data'] and \
+                   'TF7ZmlsbDojMzczODNkO30uY2xzLTJ7Zmls' in data
+        if is_old_logo or is_badge:
+            continue
+
+        new_json.append(json_data[i])
+
+    return new_json
+
+
+def get_customer_logo(json_data: List[dict]) -> List[dict]:
     if isinstance(json_data, str):
         return []
 

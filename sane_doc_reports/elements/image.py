@@ -5,7 +5,7 @@ from docx.shared import Inches
 from sane_doc_reports import utils
 from sane_doc_reports.domain.Element import Element
 from sane_doc_reports.conf import DEBUG, DEFAULT_DPI
-from sane_doc_reports.utils import open_b64_image, has_run
+from sane_doc_reports.utils import open_b64_image, has_run, fix_svg_to_png
 
 
 def pixels_to_inches(pixels) -> int:
@@ -22,19 +22,19 @@ class ImageElement(Element):
         if self.section.contents == '':
             return
 
-        # TODO: Temp fix for SVG, try to convert it to png somehow (currently
-        # blocked because of license)
+        image = None
+        should_shrink = False
         if self.section.contents.startswith('data:image/svg+xml'):
-            return
+            image = fix_svg_to_png(self.section.contents)
+        else:
+            image = open_b64_image(self.section.contents)
 
-        image = open_b64_image(self.section.contents)
+            # Some dark magic here to determine the image width (png)
+            w_px, h_px = struct.unpack(">LL", image.read(26)[16:24])
+            width_inch = pixels_to_inches(int(w_px))
+            height_inch = pixels_to_inches(int(h_px))
 
-        # Some dark magic here to determine the image width (png)
-        w_px, h_px = struct.unpack(">LL", image.read(26)[16:24])
-        width_inch = pixels_to_inches(int(w_px))
-        height_inch = pixels_to_inches(int(h_px))
-
-        should_shrink = self.section.extra.get('should_shrink', False)
+            should_shrink = self.section.extra.get('should_shrink', False)
 
         if should_shrink:
             width_inch *= 0.91  # (the size that was calculated was without-

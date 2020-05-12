@@ -50,6 +50,10 @@ def example_markdown_md_button(out_file_name='example.docx'):
 
 
 def example_markdown_paged(out_file_name='example.docx'):
+    main.run(get_mock('elements/markdown_paged.json', ret_dict=False),
+             out_file_name)
+
+def example_markdown_paged2(out_file_name='example.docx'):
     main.run(get_mock('elements/markdown_paged2.json', ret_dict=False),
              out_file_name)
 
@@ -140,8 +144,8 @@ def example_all():
 
 
 def run():
-    example_markdown()
+    example_markdown_paged()
 
 
 if __name__ == '__main__':
-    example_items_section()
+    run()

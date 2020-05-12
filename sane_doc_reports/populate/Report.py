@@ -57,8 +57,7 @@ class Report:
         self.page_height = A4_MM_HEIGHT
 
     def populate_report(self) -> None:
-        if 'customer_logo' in self.options and self.options['customer_logo']:
-            self.add_customer_logo()
+        self.add_header_logos()
         paper_size = self.options.get('paper_size', 'A4')
         self.change_page_size(paper_size)
         self._decrease_layout_margins()
@@ -158,10 +157,8 @@ class Report:
             section.left_margin = Pt(LEFT_MARGIN_PT)
             section.right_margin = Pt(RIGHT_MARGIN_PT)
 
-    def add_customer_logo(self):
-        cusomter_logo = self.options['customer_logo']
+    def add_header_logos(self):
         section = self.document.sections[0]
-        section.top_margin = Pt(0)
         section.header_distance = Pt(0)
         header = section.header
         table = header.add_table(rows=1, cols=2, width=Inches(24))
@@ -182,5 +179,7 @@ class Report:
         s = Section('image', XSOAR_LOGO_BASE64, {}, {})
         image.invoke(left_image, s)
 
-        s = Section('image', cusomter_logo, {}, {})
-        image.invoke(right_image, s)
+        if 'customer_logo' in self.options and self.options['customer_logo']:
+            cusomter_logo = self.options['customer_logo']
+            s = Section('image', cusomter_logo, {}, {})
+            image.invoke(right_image, s)

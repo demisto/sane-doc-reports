@@ -1,21 +1,24 @@
 import os
+from docx.enum.table import WD_TABLE_ALIGNMENT
 
-from docx.enum.text import WD_BREAK
+
+from docx.enum.text import WD_BREAK, WD_PARAGRAPH_ALIGNMENT
 from pathlib import Path
 from typing import List
 
 from docx import Document
-from docx.shared import Pt
+from docx.shared import Pt, Inches
 
 from sane_doc_reports.domain.CellObject import CellObject
 from sane_doc_reports.domain.Page import Page
 from sane_doc_reports.domain.Section import Section
 from sane_doc_reports.domain import SaneJson
+from sane_doc_reports.elements import image
 from sane_doc_reports.utils import insert_by_type
 from sane_doc_reports.conf import DEBUG, A4_MM_HEIGHT, A4_MM_WIDTH, \
     TOP_MARGIN_PT, BOTTOM_MARGIN_PT, LEFT_MARGIN_PT, RIGHT_MARGIN_PT, \
     A3_MM_WIDTH, A3_MM_HEIGHT, LETTER_MM_WIDTH, LETTER_MM_HEIGHT, PAPER_A4, \
-    PAPER_A3, PAPER_LETTER, DOCX_TEMAPLTE_FILE
+    PAPER_A3, PAPER_LETTER, DOCX_TEMAPLTE_FILE, XSOAR_LOGO_BASE64
 from sane_doc_reports.populate.grid import get_cell, merge_cells
 from docx.enum.style import WD_STYLE_TYPE
 from docx.enum.section import WD_ORIENT
@@ -157,4 +160,27 @@ class Report:
 
     def add_customer_logo(self):
         cusomter_logo = self.options['customer_logo']
-        print("insert logo to header", cusomter_logo)
+        section = self.document.sections[0]
+        section.top_margin = Pt(0)
+        section.header_distance = Pt(0)
+        header = section.header
+        table = header.add_table(rows=1, cols=2, width=Inches(24))
+        table.alignment = WD_TABLE_ALIGNMENT.CENTER
+        table.autofit = True
+
+        left_cell = table.cell(0, 0)
+        right_cell = table.cell(0, 1)
+
+        left_image = CellObject(left_cell)
+        left_cell.paragraphs[-1].alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
+        left_cell.vertical_alignment = 1
+
+        right_image = CellObject(right_cell)
+        right_cell.paragraphs[-1].alignment = WD_PARAGRAPH_ALIGNMENT.RIGHT
+        right_cell.vertical_alignment = 1
+
+        s = Section('image', XSOAR_LOGO_BASE64, {}, {})
+        image.invoke(left_image, s)
+
+        s = Section('image', cusomter_logo, {}, {})
+        image.invoke(right_image, s)

@@ -144,4 +144,4 @@ def run():
 
 
 if __name__ == '__main__':
-    run()
+    example_items_section()

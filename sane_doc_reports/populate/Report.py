@@ -157,6 +157,7 @@ class Report:
             section.right_margin = Pt(RIGHT_MARGIN_PT)
 
     def add_header_logos(self):
+        # Find the headers
         section = self.document.sections[0]
         section.header_distance = Pt(0)
         header = section.header
@@ -167,17 +168,21 @@ class Report:
         left_cell = table.cell(0, 0)
         right_cell = table.cell(0, 1)
 
+        # Add the left cell to the header
         left_image = CellObject(left_cell)
         left_cell.paragraphs[-1].alignment = WD_PARAGRAPH_ALIGNMENT.LEFT
         left_cell.vertical_alignment = 1
 
+        # Add the right cell to the header
         right_image = CellObject(right_cell)
         right_cell.paragraphs[-1].alignment = WD_PARAGRAPH_ALIGNMENT.RIGHT
         right_cell.vertical_alignment = 1
 
+        # Add the main logo
         s = Section('image', XSOAR_LOGO_BASE64, {}, {})
         image.invoke(left_image, s)
 
+        # Add the customer logo
         if 'customer_logo' in self.options and self.options['customer_logo']:
             cusomter_logo = self.options['customer_logo']
             s = Section('image', cusomter_logo, {}, {})

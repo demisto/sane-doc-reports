@@ -16,3 +16,13 @@ def test_sane_json_no_text_in_data():
 def test_sane_json_json_parse_not_list_table():
     json = _transform('invalid/json_parse_becomes_not_list.json')
     assert isinstance(json[1].json_data[0]['data'], list)
+
+
+def test_sane_json_no_old_logo_and_badge():
+    json = _transform('elements/items_section.json')
+    assert 'vXFNR9MceWKm7g2FgwASeuax2lNJUJQ1zRG/isu' in json[2]['customer_logo']
+    for item in json[1].json_data:
+        data = str(item['data'])
+        is_badge = 'PSIzNCIgdmlld0JveD0iMCAwIDM0IDM0Ij4' in data
+        is_old_logo = 'TF7ZmlsbDojMzczODNkO30uY2xzLTJ7Zmls' in data
+        assert not is_badge and not is_old_logo

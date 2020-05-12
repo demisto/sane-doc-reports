@@ -13,6 +13,10 @@ def test_items_section_in_report():
     table = next(utils.iter_block_items(d))
     assert isinstance(table, Table)
 
+
+    # Check headers for 2 images
+    assert len(d.sections[0].header._element.xpath('.//w:drawing')) == 2
+
     # Check there are enough itemsSections
     assert len(d.element.xpath('//w:tbl//w:tbl[not(*/w:tblStyle) and .//w:sz['
                                '@w:val="18"]]')) == 5

@@ -52,14 +52,12 @@ def remove_logo_and_badge(json_data: List[dict]) -> List[dict]:
     if isinstance(json_data, str):
         return []
 
-    # Remove the top badge
+    # Remove the top badge and the old logo
     new_json = []
     for i in range(len(json_data)):
         data = str(json_data[i]['data'])
-        is_badge = 'data' in json_data[i] and json_data[i]['data'] and \
-                   'PSIzNCIgdmlld0JveD0iMCAwIDM0IDM0Ij4' in data
-        is_old_logo = 'data' in json_data[i] and json_data[i]['data'] and \
-                   'TF7ZmlsbDojMzczODNkO30uY2xzLTJ7Zmls' in data
+        is_badge = 'PSIzNCIgdmlld0JveD0iMCAwIDM0IDM0Ij4' in data
+        is_old_logo = 'TF7ZmlsbDojMzczODNkO30uY2xzLTJ7Zmls' in data
         if is_old_logo or is_badge:
             continue
 

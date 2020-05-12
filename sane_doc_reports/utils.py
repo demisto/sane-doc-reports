@@ -59,8 +59,8 @@ def fix_svg_to_png(contents):
     with open(out_path, 'rb') as of:
         outf.write(of.read())
 
-    # os.remove(tmp_path)
-    # os.remove(out_path)
+    os.remove(tmp_path)
+    os.remove(out_path)
     return outf
 
 

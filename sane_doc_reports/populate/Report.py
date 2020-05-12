@@ -1,7 +1,6 @@
 import os
+
 from docx.enum.table import WD_TABLE_ALIGNMENT
-
-
 from docx.enum.text import WD_BREAK, WD_PARAGRAPH_ALIGNMENT
 from pathlib import Path
 from typing import List

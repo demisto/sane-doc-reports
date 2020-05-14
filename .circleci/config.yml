@@ -13,7 +13,7 @@ jobs:
       - run: curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
       - run: sudo apt install -y nodejs
       - run: sudo npm install svgexport -g  --unsafe-perm=true
-      - run: svgexport --help
+      - run: svgexport --help && which svgexport
       - restore_cache:
       # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}

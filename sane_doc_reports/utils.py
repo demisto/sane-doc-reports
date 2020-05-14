@@ -5,6 +5,7 @@ from io import BytesIO
 import importlib
 from pathlib import Path
 import traceback
+from typing import List
 
 import arrow
 from docx.oxml import OxmlElement
@@ -21,7 +22,8 @@ from sane_doc_reports.conf import SIZE_H_INCHES, SIZE_W_INCHES, \
     DEFAULT_ALPHA, DEFAULT_FONT_COLOR, DEFAULT_WORD_FONT_FALLBACK, \
     DEFAULT_FONT_AXIS_COLOR, LEGEND_STYLE, DEBUG, WIDTH_POSITION_KEY, \
     HEIGHT_POSITION_KEY, A3_MM_WIDTH, A4_MM_WIDTH, A4_MM_HEIGHT, \
-    LETTER_MM_HEIGHT, LETTER_MM_WIDTH, A3_MM_HEIGHT, MAX_AXIS_LABELS
+    LETTER_MM_HEIGHT, LETTER_MM_WIDTH, A3_MM_HEIGHT, MAX_AXIS_LABELS, \
+    RESIZE_PLOT_ITEMS_AMOUNT_THRESHOLD
 
 
 def open_b64_image(image_base64):
@@ -123,7 +125,12 @@ def plt_t0_b64(plt: matplotlib.pyplot, figsize=None, dpi=None):
     return b64
 
 
-def convert_plt_size(section: Section, cell_object: CellObject):
+def has_anomalies(items: List):
+    return max(items) / min(items) > RESIZE_PLOT_ITEMS_AMOUNT_THRESHOLD
+
+
+def convert_plt_size(section: Section, cell_object: CellObject,
+                     has_anomalies=False):
     """ Convert the plot size from pixels to word """
     size_w, size_h, dpi = (SIZE_W_INCHES, SIZE_H_INCHES, DEFAULT_DPI)
 
@@ -157,6 +164,10 @@ def convert_plt_size(section: Section, cell_object: CellObject):
         ratio_w = width_size_in_inches / 12
         w = int(section.layout[WIDTH_POSITION_KEY])
         size_w = (ratio_w * w)
+
+    if has_anomalies:
+        size_w += 1
+        size_h += 1
 
     return size_w, size_h, dpi
 

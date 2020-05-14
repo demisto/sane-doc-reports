@@ -12,6 +12,7 @@ jobs:
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
       - run: curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
       - run: sudo apt install -y nodejs
+      - run: sudo chown -R $USER /usr/local/lib/node_modules
       - run: npm install svgexport -g
       - restore_cache:
       # Read about caching dependencies: https://circleci.com/docs/2.0/caching/

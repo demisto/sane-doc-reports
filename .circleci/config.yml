@@ -12,8 +12,8 @@ jobs:
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
       - run: curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
       - run: sudo apt install -y nodejs
-      - run: npm install --prefix=$HOME/.local svgexport -g
-      - run: sudo ln -s /home/circleci/.local/bin/svgexport /usr/local/bin/svgexport
+      - run: sudo npm install svgexport -g
+      - run: svgexport --help
       - restore_cache:
       # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}

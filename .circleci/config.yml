@@ -4,6 +4,7 @@ jobs:
     working_directory: ~/circleci-python
     environment:
       BASH_ENV: ~/.bashrc
+      PATH: ~/.npm-global/bin:$PATH
     docker:
       - image: circleci/python:3.7.3
         environment:

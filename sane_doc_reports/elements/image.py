@@ -32,7 +32,7 @@ class ImageElement(Element):
 
         image = None
         should_shrink = False
-        if self.section.contents.startswith('data:image/svg+xml'):
+        if self.section.contents.startswith('data:image/svg+xml;base64'):
             image = fix_svg_to_png(self.section.contents)
         else:
             image = open_b64_image(self.section.contents)

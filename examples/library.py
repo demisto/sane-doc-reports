@@ -118,6 +118,9 @@ def example_items_section(out_file_name='example.docx'):
 def example_image_remote(out_file_name='example.docx'):
     main.run(get_mock('elements/image-remote.json', ret_dict=False), out_file_name)
 
+def example_image_svg(out_file_name='example.docx'):
+    main.run(get_mock('elements/image-svg.json', ret_dict=False), out_file_name)
+
 
 def example():
     main.run(get_mock('example.json', ret_dict=False), 'example.docx')
@@ -149,7 +152,7 @@ def example_all():
 
 
 def run():
-    example_image_remote()
+    example_image_svg()
 
 
 if __name__ == '__main__':

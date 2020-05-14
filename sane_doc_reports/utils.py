@@ -52,7 +52,7 @@ def fix_svg_to_png(contents):
         out.write(tmp_image.read())
 
     out_path = '/tmp/_out.png'
-    subprocess.run(['svgexport', tmp_path, out_path], stdout=DEVNULL,
+    subprocess.run(['svgexport', tmp_path, out_path], 
                    stderr=subprocess.STDOUT)
 
     outf = BytesIO()

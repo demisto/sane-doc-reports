@@ -4,7 +4,8 @@ from docx.shared import Inches
 
 from sane_doc_reports import utils
 from sane_doc_reports.domain.Element import Element
-from sane_doc_reports.conf import DEBUG, DEFAULT_DPI
+from sane_doc_reports.conf import DEBUG, DEFAULT_DPI, MD_TYPE_IMAGE
+from sane_doc_reports.elements import md_image
 from sane_doc_reports.utils import open_b64_image, has_run, fix_svg_to_png
 
 
@@ -20,6 +21,13 @@ class ImageElement(Element):
 
         # Fix empty images
         if self.section.contents == '':
+            return
+
+        if self.section.contents.startswith('http://') or \
+           self.section.contents.startswith('https://'):
+            self.section.type = MD_TYPE_IMAGE
+            self.section.extra['src'] = self.section.contents
+            md_image.invoke(self.cell_object, self.section)
             return
 
         image = None

@@ -22,3 +22,15 @@ def test_picture_in_report():
 
     # Check that there is indeed an image
     assert len(d.element.xpath('//pic:pic')) == 1
+
+def test_svg_image():
+    report = Report(*_transform('elements/image-svg.json'))
+    report.populate_report()
+    d = report.document
+    assert len(d.element.xpath('//pic:pic')) == 1
+
+def test_remote_image():
+    report = Report(*_transform('elements/image-remote.json'))
+    report.populate_report()
+    d = report.document
+    assert len(d.element.xpath('//pic:pic')) == 1

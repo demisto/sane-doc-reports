@@ -39,3 +39,10 @@ def test_remote_image():
     report.populate_report()
     d = report.document
     assert len(d.element.xpath('//pic:pic')) == 1
+
+
+def test_remote_image_svg():
+    report = Report(*_transform('elements/image-remote-svg.json'))
+    report.populate_report()
+    d = report.document
+    assert len(d.element.xpath('//pic:pic')) == 1

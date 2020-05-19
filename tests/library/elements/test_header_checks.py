@@ -75,3 +75,17 @@ def test_empty_customer_logo():
 
     # Check headers for 2 images (customer logo)
     assert len(d.sections[0].header._element.xpath('.//w:drawing')) == 1
+
+
+def test_empty_demisto_logo():
+    report = Report(*_transform('grid_checks/fullgrid.json'), options={
+        'customerLogo': '',
+        'demistoLogo': '',
+    })
+    report.populate_report()
+    d = report.document
+    table = next(utils.iter_block_items(d))
+    assert isinstance(table, Table)
+
+    # Check headers for 2 images (customer logo)
+    assert len(d.sections[0].header._element.xpath('.//w:drawing')) == 0

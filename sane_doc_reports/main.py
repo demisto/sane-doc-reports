@@ -13,7 +13,6 @@ def run(sane_json_path: str, docx_output_path: str, options={}) -> None:
 
     # Transform
     transformer = Transform(sane_json_path)
-    options['customer_logo'] = transformer.customer_logo
     pages = transformer.get_pages()
     transformed_sane_json = transformer.get_sane_json()
 

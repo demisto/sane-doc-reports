@@ -11,7 +11,6 @@ from typing import List
 from shutil import which
 
 import arrow
-from subprocess import DEVNULL
 from docx.oxml import OxmlElement
 import matplotlib
 from docx.text.paragraph import Paragraph

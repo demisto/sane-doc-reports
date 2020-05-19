@@ -147,7 +147,7 @@ def example_all():
         example_pie_chart,
         example_markdown,
         example_markdown_md_button,
-        example_markdown_paged,
+        example_markdown_paged2,
         example_hr,
         example_old_json,
         example_bar_chart,
@@ -162,7 +162,7 @@ def example_all():
 
 
 def run():
-    example_header_logo()
+    example()
 
 
 if __name__ == '__main__':

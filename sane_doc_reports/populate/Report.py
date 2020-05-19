@@ -56,7 +56,9 @@ class Report:
         self.page_height = A4_MM_HEIGHT
 
     def populate_report(self) -> None:
-        self.add_header_logos()
+        if not self.options.get('disableHeaders', False):
+            self.add_header_logos()
+
         paper_size = self.options.get('paper_size', 'A4')
         self.change_page_size(paper_size)
         self._decrease_layout_margins()
@@ -179,11 +181,12 @@ class Report:
         right_cell.vertical_alignment = 1
 
         # Add the main logo
-        s = Section('image', XSOAR_LOGO_BASE64, {}, {})
+        left_logo_b64 = self.options.get('demistoLogo', XSOAR_LOGO_BASE64)
+        s = Section('image', left_logo_b64, {}, {})
         image.invoke(left_image, s)
 
         # Add the customer logo
-        if 'customer_logo' in self.options and self.options['customer_logo']:
-            cusomter_logo = self.options['customer_logo']
-            s = Section('image', cusomter_logo, {}, {})
+        right_logo_b64 = self.options.get('customerLogo', False)
+        if right_logo_b64:
+            s = Section('image', right_logo_b64, {}, {})
             image.invoke(right_image, s)

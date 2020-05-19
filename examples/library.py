@@ -1,4 +1,5 @@
 from sane_doc_reports import main
+from sane_doc_reports.conf import XSOAR_LOGO_BASE64
 from tests.utils import get_mock
 
 
@@ -116,10 +117,19 @@ def example_items_section(out_file_name='example.docx'):
 
 
 def example_image_remote(out_file_name='example.docx'):
-    main.run(get_mock('elements/image-remote.json', ret_dict=False), out_file_name)
+    main.run(get_mock('elements/image-remote.json', ret_dict=False),
+             out_file_name)
+
 
 def example_image_svg(out_file_name='example.docx'):
     main.run(get_mock('elements/image-svg.json', ret_dict=False), out_file_name)
+
+
+def example_header_logo(out_file_name='example.docx'):
+    main.run(get_mock('grid_checks/fullgrid.json', ret_dict=False), out_file_name, options={
+        'customerLogo': XSOAR_LOGO_BASE64,
+        'demistoLogo': XSOAR_LOGO_BASE64
+    }) # TODO: add customer logo and demistologo
 
 
 def example():
@@ -152,7 +162,7 @@ def example_all():
 
 
 def run():
-    example_image_svg()
+    example_header_logo()
 
 
 if __name__ == '__main__':

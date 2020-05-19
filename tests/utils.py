@@ -25,13 +25,12 @@ def get_mock(file_name, ret_dict=True):
     return path
 
 
-def _transform(mock_file) -> Tuple[List[Page], SaneJson, dict]:
+def _transform(mock_file) -> Tuple[List[Page], SaneJson]:
     """ Prepare the data as sections before calling report """
     transformer = Transform(get_mock(mock_file, ret_dict=False))
     sane_json = transformer.get_sane_json()
     pages = transformer.get_pages()
-    customer_logo = transformer.customer_logo
-    return pages, sane_json, {'customer_logo': customer_logo}
+    return pages, sane_json
 
 
 def iter_block_items(parent):

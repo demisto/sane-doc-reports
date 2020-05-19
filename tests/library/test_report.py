@@ -66,7 +66,7 @@ def test_creation_of_report_layout_full():
 
 
 def test_creation_of_report_layout_full_a3():
-    report = Report(*_transform('grid_checks/fullgrid.json')[:-1], options={
+    report = Report(*_transform('grid_checks/fullgrid.json'), options={
         'paper_size': 'A3'
     })
     report.populate_report()
@@ -105,7 +105,7 @@ def test_creation_of_report_layout_full_a3():
 
 
 def test_creation_of_report_layout_full_letter():
-    report = Report(*_transform('grid_checks/fullgrid.json')[:-1], options={
+    report = Report(*_transform('grid_checks/fullgrid.json'), options={
         'paper_size': 'letter'
     })
     report.populate_report()
@@ -144,7 +144,7 @@ def test_creation_of_report_layout_full_letter():
 
 
 def test_creation_of_report_layout_full_landscape():
-    report = Report(*_transform('grid_checks/fullgrid.json')[:-1], options={
+    report = Report(*_transform('grid_checks/fullgrid.json'), options={
         'orientation': 'landscape'
     })
     report.populate_report()
@@ -249,7 +249,7 @@ def test_creation_of_report_with_exception_with_stack():
     # Mock an error generating the json
     with patch('sane_doc_reports.elements.table.invoke',
                side_effect=KeyError('mocked error')):
-        report = Report(*_transform('elements/table.json')[:-1],
+        report = Report(*_transform('elements/table.json'),
                         options={'trace': True})
         report.populate_report()
         assert len(report.document.element.xpath(

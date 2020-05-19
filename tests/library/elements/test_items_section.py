@@ -14,8 +14,8 @@ def test_items_section_in_report():
     assert isinstance(table, Table)
 
 
-    # Check headers for 2 images (customer logo)
-    assert len(d.sections[0].header._element.xpath('.//w:drawing')) == 2
+    # Check headers for 1 images (customer logo) - default
+    assert len(d.sections[0].header._element.xpath('.//w:drawing')) == 1
 
     # Check there are enough itemsSections
     assert len(d.element.xpath('//w:tbl//w:tbl[not(*/w:tblStyle) and .//w:sz['

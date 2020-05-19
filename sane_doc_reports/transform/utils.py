@@ -48,43 +48,6 @@ def _font_transformations(json_item: dict) -> dict:
     return json_item
 
 
-def remove_logo_and_badge(json_data: List[dict]) -> List[dict]:
-    if isinstance(json_data, str):
-        return []
-
-    # Remove the top badge and the old logo
-    new_json = []
-    for i in range(len(json_data)):
-        data = str(json_data[i]['data'])
-        is_badge = 'PSIzNCIgdmlld0JveD0iMCAwIDM0IDM0Ij4' in data
-        is_old_logo = 'TF7ZmlsbDojMzczODNkO30uY2xzLTJ7Zmls' in data
-        if is_old_logo or is_badge:
-            continue
-
-        new_json.append(json_data[i])
-
-    return new_json
-
-
-def get_customer_logo(json_data: List[dict]) -> List[dict]:
-    if isinstance(json_data, str):
-        return []
-
-    # The customer logo can be one of the first itmes in the json
-    for i in range(min(len(json_data), 3)):
-        is_logo = json_data[i]['type'] == 'logo'
-        is_customer_right = False
-        if 'layout' in json_data[i] and \
-                'style' in json_data[i]['layout'] and \
-                'float' in json_data[i]['layout']['style']:
-            is_customer_right = json_data[i]['layout']['style'][
-                                    'float'] == 'right'
-
-        if is_logo and is_customer_right:
-            return json_data[i]['data']
-    return []
-
-
 def general_json_fixes(json_data: List[dict]) -> List[dict]:
     """ Fixes general problems that may arise in the json
     (not necessarily related to the old format) """
@@ -109,6 +72,9 @@ def general_json_fixes(json_data: List[dict]) -> List[dict]:
             continue
         if json_data[i]['type'] == 'itemsSection':
             json_data[i]['type'] = 'items_section'
+            continue
+        if json_data[i]['type'] == 'logo':
+            json_data[i]['type'] = 'image'
             continue
 
     return json_data

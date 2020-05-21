@@ -28,6 +28,9 @@ class PieChartElement(Element):
             print('Adding pie chart: ...')
 
         data = [int(i['data'][0]) for i in self.section.contents]
+        if len(data) == 0:
+            return
+
         objects = [i['name'] for i in self.section.contents]
 
         has_anoms = has_anomalies(data)

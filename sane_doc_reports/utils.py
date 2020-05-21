@@ -1,11 +1,14 @@
 import base64
 import re
+import subprocess
+import os
 import tempfile
 from io import BytesIO
 import importlib
 from pathlib import Path
 import traceback
 from typing import List
+from shutil import which
 
 import arrow
 from docx.oxml import OxmlElement
@@ -36,6 +39,29 @@ def open_b64_image(image_base64):
     f.write(base64.b64decode(raw_base64))
     f.seek(0)
     return f
+
+
+def fix_svg_to_png(contents):
+    if which('svgexport') is None:
+        raise Exception('svgexport is not found!')
+
+    tmp_image = open_b64_image(contents)
+    tmp_path = '/tmp/_tmp.svg'
+    with open(tmp_path, 'wb') as out:
+        out.write(tmp_image.read())
+
+    out_path = '/tmp/_out.png'
+    out = subprocess.run(['svgexport', tmp_path, out_path],
+                         stderr=subprocess.STDOUT, check=True)
+    print("[Sane-doc-reports] Svg conversion output: ", out)
+
+    outf = BytesIO()
+    with open(out_path, 'rb') as of:
+        outf.write(of.read())
+
+    os.remove(tmp_path)
+    os.remove(out_path)
+    return outf
 
 
 def insert_by_type(type: str, cell_object: CellObject,

@@ -126,10 +126,11 @@ def example_image_svg(out_file_name='example.docx'):
 
 
 def example_header_logo(out_file_name='example.docx'):
-    main.run(get_mock('grid_checks/fullgrid.json', ret_dict=False), out_file_name, options={
-        'customerLogo': XSOAR_LOGO_BASE64,
-        'demistoLogo': XSOAR_LOGO_BASE64
-    }) # TODO: add customer logo and demistologo
+    main.run(get_mock('grid_checks/fullgrid.json', ret_dict=False),
+             out_file_name, options={
+            'customerLogo': XSOAR_LOGO_BASE64,
+            'demistoLogo': XSOAR_LOGO_BASE64
+        })
 
 
 def example():

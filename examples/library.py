@@ -55,11 +55,6 @@ def example_markdown_paged(out_file_name='example.docx'):
              out_file_name)
 
 
-def example_markdown_paged2(out_file_name='example.docx'):
-    main.run(get_mock('elements/markdown_paged2.json', ret_dict=False),
-             out_file_name)
-
-
 def example_hr(out_file_name='example.docx'):
     main.run(get_mock('elements/hr.json', ret_dict=False), out_file_name)
 
@@ -148,7 +143,7 @@ def example_all():
         example_pie_chart,
         example_markdown,
         example_markdown_md_button,
-        example_markdown_paged2,
+        example_markdown_paged,
         example_hr,
         example_old_json,
         example_bar_chart,

@@ -58,8 +58,11 @@ class ImageElement(Element):
             width_inch = min(width_inch, max_width)
             height_inch = min(height_inch, max_height)
 
-        self.cell_object.run.add_picture(image, width=Inches(width_inch),
-                                         height=Inches(height_inch))
+        width_inch = Inches(width_inch) if width_inch else None
+        height_inch = Inches(height_inch) if width_inch else None
+        
+        self.cell_object.run.add_picture(image, width=width_inch,
+                                         height=height_inch)
 
 
 def invoke(cell_object, section):

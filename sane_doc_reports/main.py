@@ -1,3 +1,5 @@
+import json
+
 from sane_doc_reports.populate.Report import Report
 from sane_doc_reports.transform.Transform import Transform
 
@@ -10,6 +12,8 @@ def run(sane_json_path: str, docx_output_path: str, options={}) -> None:
     2) Populate: Send the Sections and Wrappers to Report, and populate it.
     3) Save: Save the generated file on disk.
     """
+
+    print(f"[Sane-doc-reports] Parameters: {json.dumps(options, indent=2)}")
 
     # Transform
     transformer = Transform(sane_json_path)

@@ -189,6 +189,6 @@ class Report:
         right_logo_b64 = self.options.get('customerLogo', False)
         if right_logo_b64:
             s = Section('image', right_logo_b64, {}, {
-                'max_size': {'height': 1.5,
+                'max_size': {'height': 1.5, # max size in inches
                              'width': 2}})
             image.invoke(right_image, s)

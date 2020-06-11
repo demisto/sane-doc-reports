@@ -13,6 +13,7 @@ def run(sane_json_path: str, docx_output_path: str, options={}) -> None:
     3) Save: Save the generated file on disk.
     """
 
+    # debugging when running as a cmd
     print(f"[Sane-doc-reports] Parameters: {json.dumps(options, indent=2)}")
 
     # Transform

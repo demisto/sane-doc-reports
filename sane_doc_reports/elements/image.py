@@ -55,11 +55,8 @@ class ImageElement(Element):
             max_size = self.section.extra.get('max_size', {})
             max_width = max_size.get('width', None)
             max_height = max_size.get('height', None)
-
-            if width_inch > max_width:
-                width_inch = max_width
-            if height_inch > max_height:
-                height_inch = max_height
+            width_inch = min(width_inch, max_width)
+            height_inch = min(height_inch, max_height)
 
         self.cell_object.run.add_picture(image, width=Inches(width_inch),
                                          height=Inches(height_inch))

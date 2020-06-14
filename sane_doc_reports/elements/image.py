@@ -60,7 +60,7 @@ class ImageElement(Element):
 
         width_inch = Inches(width_inch) if width_inch else None
         height_inch = Inches(height_inch) if width_inch else None
-        
+
         self.cell_object.run.add_picture(image, width=width_inch,
                                          height=height_inch)
 

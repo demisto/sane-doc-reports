@@ -1,5 +1,3 @@
-import json
-
 from sane_doc_reports.populate.Report import Report
 from sane_doc_reports.transform.Transform import Transform
 

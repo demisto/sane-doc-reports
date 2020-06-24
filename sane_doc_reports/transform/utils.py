@@ -86,9 +86,7 @@ def general_json_fixes(json_data: List[dict]) -> List[dict]:
                 headers = list(table_data[0].keys())
                 json_data[i][LAYOUT_KEY]['tableColumns'] = headers
                 continue
-        if json_data[i]['type'] == 'chart':
-            if 'title' not in json_data[i]:
-                json_data[i]['title'] = ''
+
 
     return json_data
 

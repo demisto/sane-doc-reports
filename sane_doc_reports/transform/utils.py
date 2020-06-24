@@ -76,6 +76,19 @@ def general_json_fixes(json_data: List[dict]) -> List[dict]:
         if json_data[i]['type'] == 'logo':
             json_data[i]['type'] = 'image'
             continue
+        if json_data[i]['type'] == 'table':
+            if 'tableColumns' not in json_data[i]['layout'] and isinstance(
+                    json_data[i]['data'], str):
+                table_data = json.loads(json_data[i]['data'])
+                if isinstance(table_data, dict):
+                    table_data = [table_data]
+                json_data[i][DATA_KEY] = table_data
+                headers = list(table_data[0].keys())
+                json_data[i][LAYOUT_KEY]['tableColumns'] = headers
+                continue
+        if json_data[i]['type'] == 'chart':
+            if 'title' not in json_data[i]:
+                json_data[i]['title'] = ''
 
     return json_data
 

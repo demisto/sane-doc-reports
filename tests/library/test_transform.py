@@ -1,5 +1,6 @@
 from sane_doc_reports.conf import ROW_POSITION_KEY, COL_POSITION_KEY, LAYOUT_KEY
-from tests.utils import _transform
+from sane_doc_reports.transform.utils import remove_first_images
+from tests.utils import _transform, get_mock
 
 
 def test_sane_json_null_values():
@@ -17,3 +18,7 @@ def test_sane_json_json_parse_not_list_table():
     json = _transform('invalid/json_parse_becomes_not_list.json')
     assert isinstance(json[1].json_data[0]['data'], list)
 
+
+def test_remove_first_images():
+    json = get_mock('logo_removal.json')
+    assert remove_first_images(json) == []

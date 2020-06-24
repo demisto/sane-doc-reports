@@ -80,6 +80,32 @@ def general_json_fixes(json_data: List[dict]) -> List[dict]:
     return json_data
 
 
+def remove_first_images(json_data: List[dict]) -> List[dict]:
+    """ Removes the first images (usualy the logo that the pdf uses)
+    """
+
+    if isinstance(json_data, str):
+        return []
+
+    if len(json_data) == 0:
+        return []
+
+    # Remove unnecessary first elements (logo/side image)
+    # We need to do this before we calculate the rowPos
+    rm_logo = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcm'
+    has_green_logo_arrow = rm_logo in str(json_data[0][DATA_KEY])
+    if json_data[0]['type'] == 'image' and has_green_logo_arrow:
+        del json_data[0]
+
+    if len(json_data) == 0:
+        return []
+
+    if json_data[0]['type'] == 'logo':
+        del json_data[0]
+
+    return json_data
+
+
 def transform_old_json_format(json_data: List[dict]) -> List[dict]:
     """ Fixes all of the old json format, trying to convert
         it to the new json format.
@@ -91,13 +117,6 @@ def transform_old_json_format(json_data: List[dict]) -> List[dict]:
     # Fix the first element
     json_data[0][LAYOUT_KEY][ROW_POSITION_KEY] = 0
     json_data[0][LAYOUT_KEY][COL_POSITION_KEY] = 0
-
-    # Remove unnecessary first elements (logo/side image)
-    # We need to do this before we calculate the rowPos
-    if json_data[0]['type'] == 'image':
-        del json_data[0]
-    if json_data[0]['type'] == 'logo':
-        del json_data[0]
 
     # Normalize the rowPos
     json_data.sort(key=lambda item: item[LAYOUT_KEY][ROW_POSITION_KEY])

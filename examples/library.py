@@ -159,7 +159,7 @@ def example_all():
 
 
 def run():
-    example()
+    example_all()
 
 
 if __name__ == '__main__':

@@ -91,8 +91,8 @@ def general_json_fixes(json_data: List[dict]) -> List[dict]:
     return json_data
 
 
-def remove_first_images(json_data: List[dict]) -> List[dict]:
-    """ Removes the first images (usualy the logo that the pdf uses)
+def remove_first_logos(json_data: List[dict]) -> List[dict]:
+    """ Removes the first images (usually the logo that the pdf uses)
     """
 
     if isinstance(json_data, str):
@@ -102,17 +102,17 @@ def remove_first_images(json_data: List[dict]) -> List[dict]:
         return []
 
     # Remove the green arrow present
-    rm_logo = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcm'
-    has_green_logo_arrow = rm_logo in str(json_data[0][DATA_KEY])
-    if json_data[0]['type'] == 'image' and has_green_logo_arrow:
-        del json_data[0]
+    del_index = 0
 
-    # Make sure we haven't removed all elements
-    if len(json_data) == 0:
-        return []
-
-    if json_data[0]['type'] == 'logo':
-        del json_data[0]
+    # Check the first elements for logo types
+    for i in range(4):
+        if len(json_data) == 0:
+            return []
+        if len(json_data) > (i - del_index) and \
+                json_data[i-del_index]['type'] == 'logo':
+            del json_data[i - del_index]
+            # we removed one to it is used to decrease the next time.
+            del_index += 1
 
     return json_data
 

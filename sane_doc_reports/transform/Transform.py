@@ -6,7 +6,7 @@ from sane_doc_reports.conf import LAYOUT_KEY, \
 from sane_doc_reports.domain.SaneJson import SaneJson
 from sane_doc_reports.domain.Page import Page
 from sane_doc_reports.transform.utils import transform_old_json_format, \
-    general_json_fixes, remove_first_images
+    general_json_fixes, remove_first_logos
 
 
 class Transform:
@@ -18,7 +18,7 @@ class Transform:
 
 
         # Remove the logos
-        self.json_data = remove_first_images(self.json_data)
+        self.json_data = remove_first_logos(self.json_data)
 
         # Transform the json if it is an old json's json
         if self.is_old_json_format():

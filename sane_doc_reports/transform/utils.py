@@ -93,6 +93,8 @@ def general_json_fixes(json_data: List[dict]) -> List[dict]:
 
 def remove_first_logos(json_data: List[dict]) -> List[dict]:
     """ Removes the first images (usually the logo that the pdf uses)
+        The logos are sent via the options (sane_doc_reports/main.py:5)
+        So there is no need for them to appear twice.
     """
 
     if isinstance(json_data, str):

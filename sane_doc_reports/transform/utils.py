@@ -101,13 +101,13 @@ def remove_first_images(json_data: List[dict]) -> List[dict]:
     if len(json_data) == 0:
         return []
 
-    # Remove unnecessary first elements (logo/side image)
-    # We need to do this before we calculate the rowPos
+    # Remove the green arrow present
     rm_logo = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcm'
     has_green_logo_arrow = rm_logo in str(json_data[0][DATA_KEY])
     if json_data[0]['type'] == 'image' and has_green_logo_arrow:
         del json_data[0]
 
+    # Make sure we haven't removed all elements
     if len(json_data) == 0:
         return []
 

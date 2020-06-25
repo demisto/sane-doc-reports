@@ -31,9 +31,9 @@ def test_remove_first_logos_no_removal():
 
 def test_remove_first_logos_all_removal():
     json = get_mock('logo_removal3.json')
-    assert len(remove_first_logos(json)) == 1
+    assert len(remove_first_logos(json)) == 0
 
 
 def test_remove_first_logos_initial_logo():
     json = get_mock('logo_removal4.json')
-    assert len(remove_first_logos(json)) == 4
+    assert len(remove_first_logos(json)) == 3

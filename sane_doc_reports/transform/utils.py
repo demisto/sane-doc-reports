@@ -5,7 +5,7 @@ from typing import List
 from sane_doc_reports.conf import LAYOUT_KEY, ROW_POSITION_KEY, \
     COL_POSITION_KEY, HEIGHT_POSITION_KEY, WIDTH_POSITION_KEY, DATA_KEY, \
     OLD_JSON_FORMAT_GRID_MAX, BASE_FONT_SIZE, DEFAULT_COLORED_CELL_COLOR, \
-    PYDOCX_BACKGROUND_COLOR
+    PYDOCX_BACKGROUND_COLOR, LOGO_INDEX_RANGE
 from sane_doc_reports.domain.Section import sane_to_section
 from sane_doc_reports.transform.markdown.md_helpers import \
     markdown_to_section_list
@@ -106,8 +106,11 @@ def remove_first_logos(json_data: List[dict]) -> List[dict]:
     # Remove the green arrow present
     del_index = 0
 
-    # Check the first elements for logo types
-    for i in range(4):
+    # We pass though LOGO_INDEX_RANGE elements, and try to remove all of the
+    # logo types we encounter. It is capped by LOGO_INDEX_RANGE because the
+    # logo type usually appears in the start of the document,
+    # no need to go though all of it.
+    for i in range(LOGO_INDEX_RANGE):
         if len(json_data) == 0:
             return []
         if len(json_data) > (i - del_index) and \

@@ -200,7 +200,8 @@ def transform_old_json_format(json_data: List[dict]) -> List[dict]:
                 json_data[i]['title'] = ''
 
         if json_data[i]['type'] == 'table':
-            if 'tableColumns' not in json_data[i]['layout']:
+            if 'tableColumns' not in json_data[i]['layout'] and isinstance(
+                    json_data[i]['data'], str):
                 table_data = json.loads(json_data[i]['data'])
                 if isinstance(table_data, dict):
                     table_data = [table_data]

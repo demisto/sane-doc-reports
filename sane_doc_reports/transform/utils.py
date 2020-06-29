@@ -79,6 +79,8 @@ def general_json_fixes(json_data: List[dict]) -> List[dict]:
         if json_data[i]['type'] == 'table':
             if 'tableColumns' not in json_data[i]['layout'] and isinstance(
                     json_data[i]['data'], str):
+                if json_data[i]['data'] == "":
+                    json_data[i]['data'] = "[{\"Empty\":\"\"}]"
                 table_data = json.loads(json_data[i]['data'])
                 if isinstance(table_data, dict):
                     table_data = [table_data]
@@ -207,6 +209,8 @@ def transform_old_json_format(json_data: List[dict]) -> List[dict]:
         if json_data[i]['type'] == 'table':
             if 'tableColumns' not in json_data[i]['layout'] and isinstance(
                     json_data[i]['data'], str):
+                if json_data[i]['data'] == "":
+                    json_data[i]['data'] = "[{\"Empty\":\"\"}]"
                 table_data = json.loads(json_data[i]['data'])
                 if isinstance(table_data, dict):
                     table_data = [table_data]

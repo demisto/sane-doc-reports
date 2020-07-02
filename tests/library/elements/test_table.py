@@ -79,4 +79,4 @@ def test_table_empty_in_report():
     assert len(d.element.xpath('//w:tbl//w:tbl')) == 1
 
     # Check that it has the right amount of rows
-    assert len(d.element.xpath('//w:tbl//w:tbl//w:t')) == 1
+    assert len(d.element.xpath('//w:tbl//w:tbl//w:tr')) == 2

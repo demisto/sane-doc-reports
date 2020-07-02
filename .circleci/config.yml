@@ -3,13 +3,13 @@ jobs:
   build:
     working_directory: ~/circleci-python
     docker:
-      - image: circleci/python:3.7.3
+      - image: circleci/python:3.8.2
         environment:
           PIPENV_VENV_IN_PROJECT: true
     steps:
       - checkout # check out source code to working directory
       - run: sudo chown -R circleci:circleci /usr/local/bin
-      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.7/site-packages
+      - run: sudo chown -R circleci:circleci /usr/local/lib/python3.8/site-packages
       - run: curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
       - run: sudo apt install -y nodejs
       - run:
@@ -35,7 +35,7 @@ jobs:
           paths:
             - ".venv"
             - "/usr/local/bin"
-            - "/usr/local/lib/python3.7/site-packages"
+            - "/usr/local/lib/python3.8/site-packages"
       - run:
           command: |
 

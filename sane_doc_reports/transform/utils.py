@@ -218,6 +218,7 @@ def transform_old_json_format(json_data: List[dict]) -> List[dict]:
                     title = json_data[i].get("title", "")
                     json_data[i][
                         'data'] = f'[{{"{title}":"{empty_notification}"}}]'
+
                 table_data = json.loads(json_data[i]['data'])
                 if isinstance(table_data, dict):
                     table_data = [table_data]

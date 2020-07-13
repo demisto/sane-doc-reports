@@ -60,6 +60,8 @@ def markdown_to_html(markdown_string: str) -> str:
         return '<span> </span>'
     if not isinstance(markdown_string, str):
         raise ValueError('Called markdown_to_html without a markdown string.')
+    if markdown_string.strip() == "":
+        return '<span> </span>'
     html = markdown_convert(markdown_string)
     html = html.replace('\n', '')  # mistune adds unnecessary newlines
     return html

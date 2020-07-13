@@ -11,6 +11,18 @@ def test_markdown_to_html_none():
     assert markdown_to_html(md_input) == ex_output
 
 
+def test_markdown_to_html_empty_string():
+    md_input = ' '
+    ex_output = '<span> </span>'
+    assert markdown_to_html(md_input) == ex_output
+
+
+def test_markdown_to_html_multiple_empty_string():
+    md_input = '   '
+    ex_output = '<span> </span>'
+    assert markdown_to_html(md_input) == ex_output
+
+
 def test_markdown_to_html_default():
     md_input = 'test'
     ex_output = '<p>test</p>'
@@ -102,6 +114,7 @@ def test_markdown_to_html_md_button():
     md_input = f'%%%{inner}%%%'
     ex_output = f'<p><p>{inner}</p></p>'
     assert markdown_to_html(md_input) == ex_output
+
 
 def test_fix_unwrapped_no_tags():
     html = 'test'

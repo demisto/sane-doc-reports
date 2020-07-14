@@ -7,19 +7,19 @@ from sane_doc_reports.transform.markdown.md_helpers import \
 
 def test_markdown_to_html_none():
     md_input = None
-    ex_output = '<span> </span>'
+    ex_output = MD_EMPTY
     assert markdown_to_html(md_input) == ex_output
 
 
 def test_markdown_to_html_empty_string():
     md_input = ' '
-    ex_output = '<span> </span>'
+    ex_output = MD_EMPTY
     assert markdown_to_html(md_input) == ex_output
 
 
 def test_markdown_to_html_multiple_empty_string():
     md_input = '   '
-    ex_output = '<span> </span>'
+    ex_output = MD_EMPTY
     assert markdown_to_html(md_input) == ex_output
 
 

@@ -91,5 +91,27 @@ def test_markdown_paged2():
     assert len(d.element.xpath('//w:br')) == 1
 
     # Structure sanity check (heading -> break -> heading)
-    assert len(d.element.xpath("//w:t[contains(text(),'page 1')]/following::w:br")) == 1
-    assert len(d.element.xpath("//w:t[contains(text(),'page 2')]/preceding::w:br")) == 1
+    assert len(d.element.xpath(
+        "//w:t[contains(text(),'page 1')]/following::w:br")) == 1
+    assert len(d.element.xpath(
+        "//w:t[contains(text(),'page 2')]/preceding::w:br")) == 1
+
+
+def test_markdown_paged_single_pagebreak():
+    report = Report(
+        *_transform('elements/markdown_paged_single_pagebreak.json'))
+    report.populate_report()
+
+    d = report.document
+
+    # Find 2 headings
+    assert len(d.element.xpath("//w:t[contains(text(), 'Heading')]")) == 2
+
+    # Page break
+    assert len(d.element.xpath('//w:br')) == 2
+
+    # Structure sanity check (heading -> break -> heading)
+    assert len(d.element.xpath(
+        "//w:t[contains(text(),'page 1')]/following::w:br")) == 2
+    assert len(d.element.xpath(
+        "//w:t[contains(text(),'page 2')]/preceding::w:br")) == 2

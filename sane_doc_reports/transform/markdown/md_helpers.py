@@ -5,7 +5,7 @@ from typing import List, Union
 import mistune
 from pyquery import PyQuery
 
-from sane_doc_reports.conf import HTML_NOT_WRAPABLES, DEBUG
+from sane_doc_reports.conf import HTML_NOT_WRAPABLES, DEBUG, MD_EMPTY
 from sane_doc_reports.domain.Section import Section
 
 
@@ -57,9 +57,11 @@ def markdown_convert(markdown_string) -> str:
 def markdown_to_html(markdown_string: str) -> str:
     """ Convert markdown string to html string """
     if markdown_string is None:
-        return '<span> </span>'
+        return MD_EMPTY
     if not isinstance(markdown_string, str):
         raise ValueError('Called markdown_to_html without a markdown string.')
+    if markdown_string.strip() == "":
+        return MD_EMPTY
     html = markdown_convert(markdown_string)
     html = html.replace('\n', '')  # mistune adds unnecessary newlines
     return html

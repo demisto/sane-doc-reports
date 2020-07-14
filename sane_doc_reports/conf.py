@@ -102,6 +102,7 @@ PYDOCX_TEXT_ALIGN = 'textAlign'
 PYDOCX_BACKGROUND_COLOR = 'backgroundColor'
 
 # Markdown section types constants
+MD_EMPTY = '<span> </span>'
 MD_TYPE_DIV = 'div'
 MD_TYPE_CODE = 'code'
 MD_TYPE_QUOTE = 'blockquote'

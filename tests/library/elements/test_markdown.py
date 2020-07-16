@@ -115,3 +115,11 @@ def test_markdown_paged_single_pagebreak():
         "//w:t[contains(text(),'page 1')]/following::w:br")) == 2
     assert len(d.element.xpath(
         "//w:t[contains(text(),'page 2')]/preceding::w:br")) == 2
+
+
+def test_markdown_no_werid_html():
+    report = Report(*_transform('elements/markdown_bad_html.json'))
+    report.populate_report()
+
+    d = report.document
+    assert len(d.element.xpath("//w:t[contains(text(), 'asd')]")) == 0

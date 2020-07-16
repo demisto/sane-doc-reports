@@ -8,6 +8,7 @@ sane-doc-reports = {editable = true,path = "."}
 pytest = "*"
 pytest-clarity = "*"
 pytest-cov = "*"
+pythonfuzz = "*"
 
 [packages]
 python-docx = "*"

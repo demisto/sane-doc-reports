@@ -5,7 +5,8 @@ from typing import List, Union
 import mistune
 from pyquery import PyQuery
 
-from sane_doc_reports.conf import HTML_NOT_WRAPABLES, DEBUG, MD_EMPTY
+from sane_doc_reports.conf import HTML_NOT_WRAPABLES, DEBUG, MD_EMPTY, \
+    PRE_TAG_MATCH, PRE_CONTENTS_MATCH
 from sane_doc_reports.domain.Section import Section
 
 
@@ -172,8 +173,11 @@ def build_dict_from_sane_json(elem: PyQuery, already_wrapped=False) -> dict:
     if 'href' in elem[0].attrib:
         extra['href'] = elem.attr('href')
 
-    return {'type': list(elem)[0].tag, 'attrs': [], 'layout': {},
-            'contents': contents,
+    tag_type = list(elem)[0].tag
+    tag_type_mapped = PRE_TAG_MATCH.get(tag_type, tag_type)
+    contents = PRE_CONTENTS_MATCH.get(tag_type, contents)
+
+    return {'type': tag_type_mapped, 'attrs': [], 'layout': {}, 'contents': contents,
             'extra': extra}
 
 

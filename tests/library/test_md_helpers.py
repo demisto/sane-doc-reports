@@ -706,3 +706,78 @@ def test_markdown_to_section_list_quote():
         ], 'attrs': [], 'extra': {}, 'layout': {}
     }]
     assert res == expected
+
+
+def test_build_dict_mdhtml_br():
+    markdown_string = '<span>123<br>456<br />789</span>'
+    html = markdown_to_html(markdown_string).strip()
+    root_elem = PyQuery(html)
+    res = build_dict_from_sane_json(root_elem)
+    expected = {'attrs': [],
+                'contents': [{'attrs': [],
+                              'contents': [{'attrs': [],
+                                            'contents': '123',
+                                            'extra': {},
+                                            'layout': {},
+                                            'type': 'span'},
+                                           {'attrs': [],
+                                            'contents': '\n',
+                                            'extra': {},
+                                            'layout': {},
+                                            'type': 'span'},
+                                           {'attrs': [],
+                                            'contents': '456',
+                                            'extra': {},
+                                            'layout': {},
+                                            'type': 'span'},
+                                           {'attrs': [],
+                                            'contents': '\n',
+                                            'extra': {},
+                                            'layout': {},
+                                            'type': 'span'},
+                                           {'attrs': [],
+                                            'contents': '789',
+                                            'extra': {},
+                                            'layout': {},
+                                            'type': 'span'}],
+                              'extra': {},
+                              'layout': {},
+                              'type': 'span'}],
+                'extra': {},
+                'layout': {},
+                'type': 'p'}
+    assert res == expected
+
+
+def test_build_dict_mdhtml():
+    markdown_string = '<span><b>one</b><strong>two</stong></span>'
+    html = markdown_to_html(markdown_string).strip()
+    root_elem = PyQuery(html)
+    res = build_dict_from_sane_json(root_elem)
+    expected = {'attrs': [],
+                'contents': [{'attrs': [],
+                              'contents': [{'attrs': [],
+                                            'contents': [{'attrs': [],
+                                                          'contents': 'one',
+                                                          'extra': {},
+                                                          'layout': {},
+                                                          'type': 'strong'}],
+                                            'extra': {},
+                                            'layout': {},
+                                            'type': 'span'},
+                                           {'attrs': [],
+                                            'contents': [{'attrs': [],
+                                                          'contents': 'two',
+                                                          'extra': {},
+                                                          'layout': {},
+                                                          'type': 'strong'}],
+                                            'extra': {},
+                                            'layout': {},
+                                            'type': 'span'}],
+                              'extra': {},
+                              'layout': {},
+                              'type': 'span'}],
+                'extra': {},
+                'layout': {}, 'type': 'p'}
+    assert res == expected
+

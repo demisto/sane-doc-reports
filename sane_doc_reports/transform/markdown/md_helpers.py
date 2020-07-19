@@ -177,11 +177,12 @@ def build_dict_from_sane_json(elem: PyQuery, already_wrapped=False) -> dict:
     tag_type_mapped = PRE_TAG_MATCH.get(tag_type, tag_type)
     contents = PRE_CONTENTS_MATCH.get(tag_type, contents)
 
-    return {'type': tag_type_mapped, 'attrs': [], 'layout': {}, 'contents': contents,
+    return {'type': tag_type_mapped, 'attrs': [], 'layout': {},
+            'contents': contents,
             'extra': extra}
 
 
-def collapse_attrs(section_list: List[Union[Section, dict]]) -> list:
+def collapse_attrs(section_list: List[Union[Section, dict]]) -> List[Section]:
     """ Collapse all of the sections
     (moving em as attributes or removing redundant elements like <p>) """
     from sane_doc_reports.transform.markdown.MarkdownSection import \
@@ -200,7 +201,17 @@ def collapse_attrs(section_list: List[Union[Section, dict]]) -> list:
     return ret
 
 
-def markdown_to_section_list(markdown_string) -> List[Section]:
+def add_style_recursively(markdown_elems: List[Section], style={}):
+    if not markdown_elems:
+        return
+    for me in markdown_elems:
+        me.add_style(style, is_new=True)
+        if isinstance(me.contents, list):
+            add_style_recursively(me.contents, style)
+
+
+def markdown_to_section_list(markdown_string: Union[str, Section],
+                             style={}) -> List[Section]:
     """ Convert markdown to HTML->Python list,
         This will be a readable list of dicts containing:
             - Type: type of html element
@@ -224,6 +235,10 @@ def markdown_to_section_list(markdown_string) -> List[Section]:
     html_list = list(
         map(build_dict_from_sane_json, [c for c in list(etree_root)]))
     collapsed = collapse_attrs(html_list)
+
+    # Add the missing styles (when creating the html tags no styles are added)
+    if style:
+        add_style_recursively(collapsed, style)
 
     if DEBUG:
         print("markdown_to_section list: ",

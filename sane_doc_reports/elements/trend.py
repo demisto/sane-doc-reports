@@ -52,7 +52,9 @@ class TrendElement(Element):
             direction = '▲'  # Up arrow
 
         if change > 999.0:
-            change = '>999'
+            change = '> 999'
+        elif change < -999.0:
+            change = '< -999'
         else:
             change = "{0:.2f}".format(change)
         value_percent = f'{direction}{change}%'

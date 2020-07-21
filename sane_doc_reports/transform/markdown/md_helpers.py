@@ -201,13 +201,13 @@ def collapse_attrs(section_list: List[Union[Section, dict]]) -> List[Section]:
     return ret
 
 
-def add_style_recursively(markdown_elems: List[Section], style={}):
-    if not markdown_elems:
+def add_style_recursively(markdown_elements: List[Section], style={}):
+    if not markdown_elements:
         return
-    for me in markdown_elems:
-        me.add_style(style, is_new=True)
-        if isinstance(me.contents, list):
-            add_style_recursively(me.contents, style)
+    for markdown_element in markdown_elements:
+        markdown_element.add_style(style, is_new=True)
+        if isinstance(markdown_element.contents, list):
+            add_style_recursively(markdown_element.contents, style)
 
 
 def markdown_to_section_list(markdown_string: Union[str, Section],

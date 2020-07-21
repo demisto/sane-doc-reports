@@ -106,7 +106,6 @@ class MarkdownWrapper(Wrapper):
                 continue
 
             # === Elements ===
-
             if section.type in SHOULD_NEW_LINE and section.get_extra(
                     'check_newline'):
                 self.cell_object.add_paragraph()
@@ -123,7 +122,7 @@ class MarkdownWrapper(Wrapper):
             if section.type in MD_TYPES_HEADERS:
                 # We want to keep the h{1...6} for styling
                 insert_header(self.cell_object, section.contents,
-                              header=section.type)
+                              header=section.type, style=section.get_style())
 
                 continue
 

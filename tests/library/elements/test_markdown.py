@@ -123,3 +123,25 @@ def test_markdown_no_werid_html():
 
     d = report.document
     assert len(d.element.xpath("//w:t[contains(text(), 'asd')]")) == 0
+
+
+def test_markdown_placeholder_styled():
+    report = Report(*_transform('elements/markdown_placeholder.json'))
+    report.populate_report()
+
+    d = report.document
+    base_textval = "//w:t[contains(text(), '1 Incident Summary')]"
+    assert len(
+        d.element.xpath(base_textval)) == 1
+    style_color = 'w:color[@w:val="FFC421"]'
+    assert len(
+        d.element.xpath(
+            f"{base_textval}/preceding::{style_color}")) == 1
+    style_fontsize = 'w:sz[@w:val="50"]'
+    assert len(
+        d.element.xpath(
+            f"{base_textval}/preceding::{style_fontsize}")) == 1
+    style_font = 'w:rFonts[@w:ascii="Arial"]'
+    assert len(
+        d.element.xpath(
+            f"{base_textval}/preceding::{style_font}")) == 1

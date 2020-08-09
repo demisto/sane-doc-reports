@@ -38,6 +38,6 @@ jobs:
             - "/usr/local/lib/python3.8/site-packages"
       - run:
           command: |
-
+            svgexport --help
             echo "$PATH"
             pipenv run pytest

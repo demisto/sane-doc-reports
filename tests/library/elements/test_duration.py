@@ -31,6 +31,9 @@ def test_duration():
     assert len(d.element.xpath(
         "//w:t[contains(text(), 'Mean Time to Resolution (Occurred)')]")) == 1
 
+    # Check duration value
+    assert len(d.element.xpath("//w:t[contains(text(), '38')]")) == 1
+
     # Check that it has the right values of labels
     days = DURATION_DAYS_LABEL.strip()
     hours = DURATION_HOURS_LABEL.strip()

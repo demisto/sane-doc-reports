@@ -1,7 +1,15 @@
 [
   {
     "type": "duration",
-    "data": [],
+    "data": [
+      {
+        "name": "",
+        "data": [
+          -1558442290
+        ],
+        "groups": null
+      }
+    ],
     "layout": {
       "chartProperties": {
         "daysLabel": "DAYS",

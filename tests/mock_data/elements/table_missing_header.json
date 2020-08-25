@@ -1,0 +1,83 @@
+[
+  {
+    "type": "table",
+    "data": [
+      {
+        "ID": "1",
+        "Name": "aaa",
+        "Occurred": "Mon, 03 Aug 2020 15:38:57 IDT",
+        "Owner": "admin",
+        "Playbook": "Account Enrichment - Generic v2.1",
+        "Roles": "Administrator",
+        "SLA": "Thu, 13 Aug 2020 15:39:08 IDT",
+        "Severity": "Unknown",
+        "Status": "Active",
+        "Type": "Unclassified"
+      },
+      {
+        "ID": "2",
+        "Name": "aaaa",
+        "Occurred": "Mon, 03 Aug 2020 15:39:21 IDT",
+        "Owner": "admin",
+        "Playbook": "Account Enrichment - Generic v2.1",
+        "Roles": "Unassigned",
+        "SLA": "Thu, 13 Aug 2020 15:39:21 IDT",
+        "Severity": "Unknown",
+        "Status": "Active",
+        "Type": "Unclassified"
+      }
+    ],
+    "layout": {
+      "classes": "striped stackable small compact",
+      "columnPos": 0,
+      "h": 3,
+      "i": "17eb2430-d7da-11ea-9ca3-dfbbbad34fb1",
+      "readableHeaders": {
+        "dueDate": "SLA",
+        "id": "ID",
+        "name": "Name",
+        "occurred": "Occurred",
+        "owner": "Owner",
+        "playbookId": "Playbook",
+        "roles": "Roles",
+        "severity": "Severity",
+        "status": "Status",
+        "type": "Type"
+      },
+      "rowPos": 0,
+      "tableColumns": [
+        "id",
+        "name",
+        "type",
+        "severity",
+        "status",
+        "owner",
+        "roles",
+        "playbookId",
+        "occurred",
+        "dueDate"
+      ],
+      "w": 12
+    },
+    "query": {
+      "type": "incident",
+      "filter": {
+        "query": "-category:job and -status:archived and -status:closed",
+        "period": {
+          "byFrom": "days",
+          "fromValue": 7
+        }
+      }
+    },
+    "automation": {
+      "name": "",
+      "id": "",
+      "args": null,
+      "noEvent": false
+    },
+    "fromDate": "2020-07-30T14:52:37+03:00",
+    "title": "Active Incidents - Line chart",
+    "emptyNotification": "No results found",
+    "titleStyle": null
+  }
+]

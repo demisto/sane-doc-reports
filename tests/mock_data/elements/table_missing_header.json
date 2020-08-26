@@ -7,10 +7,10 @@
         "Name": "aaa",
         "Occurred": "Mon, 03 Aug 2020 15:38:57 IDT",
         "Owner": "admin",
-        "Playbook": "Account Enrichment - Generic v2.1",
-        "Roles": "Administrator",
-        "SLA": "Thu, 13 Aug 2020 15:39:08 IDT",
-        "Severity": "Unknown",
+        "Play": "gghhhhh",
+        "Roles": "Admin",
+        "Slice": "Thu, 13 Aug 2020 15:39:08 IDT",
+        "Seret": "Unknown",
         "Status": "Active",
         "Type": "Unclassified"
       },
@@ -19,10 +19,10 @@
         "Name": "aaaa",
         "Occurred": "Mon, 03 Aug 2020 15:39:21 IDT",
         "Owner": "admin",
-        "Playbook": "Account Enrichment - Generic v2.1",
+        "Play": "lolo",
         "Roles": "Unassigned",
-        "SLA": "Thu, 13 Aug 2020 15:39:21 IDT",
-        "Severity": "Unknown",
+        "Slice": "Thu, 13 Aug 2020 15:39:21 IDT",
+        "Seret": "Unknown",
         "Status": "Active",
         "Type": "Unclassified"
       }
@@ -33,14 +33,14 @@
       "h": 3,
       "i": "17eb2430-d7da-11ea-9ca3-dfbbbad34fb1",
       "readableHeaders": {
-        "dueDate": "SLA",
+        "dueDate": "Slice",
         "id": "ID",
         "name": "Name",
         "occurred": "Occurred",
         "owner": "Owner",
-        "playbookId": "Playbook",
+        "playId": "Play",
         "roles": "Roles",
-        "severity": "Severity",
+        "seret": "Seret",
         "status": "Status",
         "type": "Type"
       },
@@ -49,18 +49,18 @@
         "id",
         "name",
         "type",
-        "severity",
+        "seret",
         "status",
         "owner",
         "roles",
-        "playbookId",
+        "playId",
         "occurred",
         "dueDate"
       ],
       "w": 12
     },
     "query": {
-      "type": "incident",
+      "type": "kuku",
       "filter": {
         "query": "-category:job and -status:archived and -status:closed",
         "period": {
@@ -76,7 +76,7 @@
       "noEvent": false
     },
     "fromDate": "2020-07-30T14:52:37+03:00",
-    "title": "Active Incidents - Line chart",
+    "title": "Kuku Active",
     "emptyNotification": "No results found",
     "titleStyle": null
   }

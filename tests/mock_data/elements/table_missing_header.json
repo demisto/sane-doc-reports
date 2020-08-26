@@ -31,7 +31,7 @@
       "classes": "striped stackable small compact",
       "columnPos": 0,
       "h": 3,
-      "i": "17eb2430-d7da-11ea-9ca3-dfbbbad34fb1",
+      "i": "17eb2430",
       "readableHeaders": {
         "dueDate": "Slice",
         "id": "ID",
@@ -62,7 +62,7 @@
     "query": {
       "type": "kuku",
       "filter": {
-        "query": "-category:job and -status:archived and -status:closed",
+        "query": "-category:job",
         "period": {
           "byFrom": "days",
           "fromValue": 7

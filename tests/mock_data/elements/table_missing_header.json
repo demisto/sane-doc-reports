@@ -1,0 +1,83 @@
+[
+  {
+    "type": "table",
+    "data": [
+      {
+        "ID": "1",
+        "Name": "aaa",
+        "Occurred": "Mon, 03 Aug 2020 15:38:57 IDT",
+        "Owner": "admin",
+        "Play": "gghhhhh",
+        "Roles": "Admin",
+        "Slice": "Thu, 13 Aug 2020 15:39:08 IDT",
+        "Seret": "Unknown",
+        "Status": "Active",
+        "Type": "Unclassified"
+      },
+      {
+        "ID": "2",
+        "Name": "aaaa",
+        "Occurred": "Mon, 03 Aug 2020 15:39:21 IDT",
+        "Owner": "admin",
+        "Play": "lolo",
+        "Roles": "Unassigned",
+        "Slice": "Thu, 13 Aug 2020 15:39:21 IDT",
+        "Seret": "Unknown",
+        "Status": "Active",
+        "Type": "Unclassified"
+      }
+    ],
+    "layout": {
+      "classes": "striped stackable small compact",
+      "columnPos": 0,
+      "h": 3,
+      "i": "17eb2430",
+      "readableHeaders": {
+        "dueDate": "Slice",
+        "id": "ID",
+        "name": "Name",
+        "occurred": "Occurred",
+        "owner": "Owner",
+        "playId": "Play",
+        "roles": "Roles",
+        "seret": "Seret",
+        "status": "Status",
+        "type": "Type"
+      },
+      "rowPos": 0,
+      "tableColumns": [
+        "id",
+        "name",
+        "type",
+        "seret",
+        "status",
+        "owner",
+        "roles",
+        "playId",
+        "occurred",
+        "dueDate"
+      ],
+      "w": 12
+    },
+    "query": {
+      "type": "kuku",
+      "filter": {
+        "query": "-category:job",
+        "period": {
+          "byFrom": "days",
+          "fromValue": 7
+        }
+      }
+    },
+    "automation": {
+      "name": "",
+      "id": "",
+      "args": null,
+      "noEvent": false
+    },
+    "fromDate": "2020-07-30T14:52:37+03:00",
+    "title": "Kuku Active",
+    "emptyNotification": "No results found",
+    "titleStyle": null
+  }
+]

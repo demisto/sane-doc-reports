@@ -62,7 +62,7 @@ class TrendElement(Element):
             change = "{0:.2f}".format(change)
         value_percent = f'{direction}{change}%'
         inner_cell = table.cell(0, 2)
-        style_cell(inner_cell)
+        style_cell(inner_cell, color_hex=background_color)
         trend_number = CellObject(inner_cell)
         insert_text(trend_number, value_percent, self.style['trend'])
 

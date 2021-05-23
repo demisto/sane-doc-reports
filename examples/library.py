@@ -129,7 +129,7 @@ def example_header_logo(out_file_name='example.docx'):
 
 
 def example():
-    main.run(get_mock('example.json', ret_dict=False), 'example.docx')
+    main.run('example.json', 'example.docx')
 
 
 def example_all():

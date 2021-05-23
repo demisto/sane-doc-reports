@@ -69,7 +69,7 @@ def get_colors(section_layout, objects):
     defined_colors = [i['name'] for i in legend_colors]
     ret_colors = []
     for name in objects:
-        if name in defined_colors:
+        if name != '' and name in defined_colors:
             ret_colors.append(
                 legend_colors[defined_colors.index(name)]['color'])
         else:

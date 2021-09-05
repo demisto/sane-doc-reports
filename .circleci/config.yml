@@ -41,6 +41,7 @@ jobs:
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
       - run:
           command: |
+            sudo apt install python3-pip
             sudo pip install pipenv
             pipenv install --dev
       - save_cache: # cache Python dependencies using checksum of Pipfile as the cache-key

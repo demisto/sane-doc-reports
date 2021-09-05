@@ -19,7 +19,9 @@ jobs:
           name: Install node
           command: |
             curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash;
-            nvm install 12 && nvm use node && node --version && npm --version
+            echo 'export NVM_DIR=$HOME/.nvm' >> $BASH_ENV
+            echo 'source $NVM_DIR/nvm.sh' >> $BASH_ENV
+            nvm install 12 && nvm use node && node -v && npm -v
       - run:
           name: Install Headless Chrome dependencies
           command: |

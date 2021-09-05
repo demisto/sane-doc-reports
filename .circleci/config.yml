@@ -13,7 +13,7 @@ jobs:
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.8/site-packages
       # - run: TERM=xterm curl -sL https://deb.nodesource.com/setup_12.x | TERM=xterm sudo -E bash -
-      - run: curl -fsSL https://fnm.vercel.app/install | bash && eval "$(fnm env)"
+      - run: curl -fsSL https://fnm.vercel.app/install | bash && echo $PATH
       # - run: sudo apt install -y nodejs
       - run:  eval "$(fnm env)" && fnm install 12.13.0 && fnm use 12.13.0 && node --version
       - run:

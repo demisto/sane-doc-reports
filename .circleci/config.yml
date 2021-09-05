@@ -7,6 +7,7 @@ jobs:
         environment:
           PIPENV_VENV_IN_PROJECT: true
           TERM: xterm
+          PATH: /home/circleci/.fnm:$PATH
     steps:
       - checkout # check out source code to working directory
       - run: sudo chown -R circleci:circleci /usr/local/bin
@@ -14,7 +15,7 @@ jobs:
       # - run: TERM=xterm curl -sL https://deb.nodesource.com/setup_12.x | TERM=xterm sudo -E bash -
       - run: curl -fsSL https://fnm.vercel.app/install | bash && eval "$(fnm env)"
       # - run: sudo apt install -y nodejs
-      - run:  fnm install 12.13.0 && fnm use 12.13.0 && node --version
+      - run:  eval "$(fnm env)" && fnm install 12.13.0 && fnm use 12.13.0 && node --version
       - run:
           name: Install Headless Chrome dependencies
           command: |

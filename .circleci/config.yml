@@ -35,7 +35,7 @@ jobs:
             libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates \
             fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
       - run: sudo npm install -g https://github.com/shakiba/svgexport#4c144c589050c039cbfc83a37d8e6d1f6f35bd27 --unsafe-perm=true
-      - run: svgexport --help && which svgexport && ls -la /usr/bin/svgexport && sudo chmod 777 /usr/bin/svgexport
+      - run: svgexport --help && which svgexport && ls -la /usr/local/svgexport && sudo ln -s /usr/local/svgexport /usr/bin/svgexport && sudo chmod 777 /usr/bin/svgexport /usr/local/svgexport
       - restore_cache:
           # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}

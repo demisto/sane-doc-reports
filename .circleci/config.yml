@@ -10,6 +10,7 @@ jobs:
       - checkout # check out source code to working directory
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.8/site-packages
+      - run: export TERMINFO=/usr/lib/terminfo
       - run: curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
       - run: sudo apt install -y nodejs
       - run:

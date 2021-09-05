@@ -15,9 +15,11 @@ jobs:
       # - run:  export PATH=/home/circleci/.fnm:$PATH && eval "$(fnm env)" && fnm install 12.13.0 && fnm use 12.13.0 && node --version && npm --version
       # - run: TERM=xterm curl -sL https://deb.nodesource.com/setup_12.x | TERM=xterm sudo -E bash -
       # - run: sudo apt install -y nodejs
-      - run: |
-        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash;
-        nvm install 12 && nvm use node && node --version && npm --version
+      - run: 
+          name: Install node
+          command: |
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash;
+            nvm install 12 && nvm use node && node --version && npm --version
       - run:
           name: Install Headless Chrome dependencies
           command: |

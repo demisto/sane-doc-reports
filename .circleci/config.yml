@@ -3,10 +3,10 @@ jobs:
   build:
     working_directory: ~/circleci-python
     docker:
-      - image: circleci/python:3.8.2
+      - image: cimg/python:3.8.2
         environment:
           PIPENV_VENV_IN_PROJECT: true
-          TERM: xterm
+          # TERM: xterm
     steps:
       - checkout # check out source code to working directory
       - run: sudo chown -R circleci:circleci /usr/local/bin
@@ -36,7 +36,7 @@ jobs:
       - run: source $BASH_ENV && sudo npm install -g https://github.com/shakiba/svgexport#4c144c589050c039cbfc83a37d8e6d1f6f35bd27 --unsafe-perm=true
       - run: source $BASH_ENV && svgexport --help && which svgexport && ls -la /usr/bin/svgexport && sudo chmod 777 /usr/bin/svgexport
       - restore_cache:
-      # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
+          # Read about caching dependencies: https://circleci.com/docs/2.0/caching/
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}
       - run:
           command: |

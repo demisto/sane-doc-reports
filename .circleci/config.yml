@@ -3,7 +3,8 @@ jobs:
   build:
     working_directory: ~/circleci-python
     docker:
-      - image: cimg/python:3.8.2
+      # - image: cimg/python:3.8.2
+      - image: cimg-node/12.22
         environment:
           PIPENV_VENV_IN_PROJECT: true
           # TERM: xterm
@@ -15,14 +16,14 @@ jobs:
       # - run:  export PATH=/home/circleci/.fnm:$PATH && eval "$(fnm env)" && fnm install 12.13.0 && fnm use 12.13.0 && node --version && npm --version
       # - run: TERM=xterm curl -sL https://deb.nodesource.com/setup_12.x | TERM=xterm sudo -E bash -
       # - run: sudo apt install -y nodejs
-      - run: 
-          name: Install node
-          command: |
-            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash;
-            echo 'export NVM_DIR=$HOME/.nvm' >> $BASH_ENV
-            echo 'source $NVM_DIR/nvm.sh' >> $BASH_ENV
-            source $BASH_ENV
-            nvm install 12 && nvm use node && node -v && npm -v
+      # - run: 
+      #     name: Install node
+      #     command: |
+      #       curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash;
+      #       echo 'export NVM_DIR=$HOME/.nvm' >> $BASH_ENV
+      #       echo 'source $NVM_DIR/nvm.sh' >> $BASH_ENV
+      #       source $BASH_ENV
+      #       nvm install 12 && nvm use node && node -v && npm -v
       - run:
           name: Install Headless Chrome dependencies
           command: |

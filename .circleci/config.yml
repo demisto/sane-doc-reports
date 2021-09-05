@@ -25,7 +25,7 @@ jobs:
             libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 \
             libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates \
             fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
-      - run: sudo npm install -g https://github.com/shakiba/svgexport#4c144c589050c039cbfc83a37d8e6d1f6f35bd27 --unsafe-perm=true
+      - run: export PATH=/home/circleci/.fnm:$PATH && sudo npm install -g https://github.com/shakiba/svgexport#4c144c589050c039cbfc83a37d8e6d1f6f35bd27 --unsafe-perm=true
       - run: svgexport --help && which svgexport && ls -la /usr/bin/svgexport && sudo chmod 777 /usr/bin/svgexport
       - restore_cache:
       # Read about caching dependencies: https://circleci.com/docs/2.0/caching/

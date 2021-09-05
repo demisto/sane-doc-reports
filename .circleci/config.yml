@@ -11,10 +11,13 @@ jobs:
       - checkout # check out source code to working directory
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.8/site-packages
+      # - run: curl -fsSL https://fnm.vercel.app/install | bash && echo $PATH
+      # - run:  export PATH=/home/circleci/.fnm:$PATH && eval "$(fnm env)" && fnm install 12.13.0 && fnm use 12.13.0 && node --version && npm --version
       # - run: TERM=xterm curl -sL https://deb.nodesource.com/setup_12.x | TERM=xterm sudo -E bash -
-      - run: curl -fsSL https://fnm.vercel.app/install | bash && echo $PATH
       # - run: sudo apt install -y nodejs
-      - run:  export PATH=/home/circleci/.fnm:$PATH && eval "$(fnm env)" && fnm install 12.13.0 && fnm use 12.13.0 && node --version && npm --version
+      - run: |
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash;
+        nvm install 12 && nvm use node && node --version && npm --version
       - run:
           name: Install Headless Chrome dependencies
           command: |

@@ -12,10 +12,9 @@ jobs:
       - run: sudo chown -R circleci:circleci /usr/local/bin
       - run: sudo chown -R circleci:circleci /usr/local/lib/python3.8/site-packages
       # - run: TERM=xterm curl -sL https://deb.nodesource.com/setup_12.x | TERM=xterm sudo -E bash -
-      - run: curl https://deb.nodesource.com/gpgkey/nodesource.gpg.key | sudo apt-key add -
-      - run: sudo apt-add-repository "deb https://deb.nodesource.com/node_12.x $(lsb_release -sc) main"
-      - run: sudo apt-get update
-      - run: sudo apt install -y nodejs
+      - run: curl -fsSL https://fnm.vercel.app/install | bash && eval "$(fnm env)"
+      # - run: sudo apt install -y nodejs
+      - run:  fnm install 12.13.0 && fnm use 12.13.0 && node --version
       - run:
           name: Install Headless Chrome dependencies
           command: |

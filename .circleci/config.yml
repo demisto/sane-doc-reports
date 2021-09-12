@@ -51,4 +51,5 @@ jobs:
           command: |
             echo "$PATH"
             pipenv --help
+            svgexport --help
             SANE_DEBUG=True pipenv run pytest 2>&1

@@ -51,4 +51,4 @@ jobs:
           command: |
             echo "$PATH"
             pipenv --help
-            pipenv run pytest 2>&1
+            SANE_DEBUG=True pipenv run pytest 2>&1

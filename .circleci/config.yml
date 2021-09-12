@@ -52,6 +52,7 @@ jobs:
             echo "$PATH"
             #python --version
             #pip --version
+            pipenv shell
             pytest --version
             svgexport --help
-            SANE_DEBUG=True pipenv run pytest 2>&1
+            SANE_DEBUG=True pytest 2>&1

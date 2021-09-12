@@ -120,6 +120,10 @@ def example_image_svg(out_file_name='example.docx'):
     main.run(get_mock('elements/image-svg.json', ret_dict=False), out_file_name)
 
 
+def example_image_svg_remote(out_file_name='example.docx'):
+    main.run(get_mock('elements/image-remote-svg.json', ret_dict=False),
+             out_file_name)
+
 def example_header_logo(out_file_name='example.docx'):
     main.run(get_mock('grid_checks/fullgrid.json', ret_dict=False),
              out_file_name, options={
@@ -160,7 +164,6 @@ def example_all():
 
 def run():
     example()
-
 
 if __name__ == '__main__':
     run()

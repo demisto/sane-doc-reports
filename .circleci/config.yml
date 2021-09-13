@@ -54,6 +54,7 @@ jobs:
             #pip --version
             #pipenv run pytest --version
             wget -O /tmp/a.svg https://upload.wikimedia.org/wikipedia/commons/4/4f/SVG_Logo.svg
+            sudo apt install --assume-yes libx11-xcb1 libasound2 x11-apps libice6 libsm6 libxaw7 libxft2 libxmu6 libxpm4 libxt6 x11-apps xbitmaps
             svgexport /tmp/a.svg /tmp/o.png 2>&1
             ls -la /tmp
             pipenv run pytest

@@ -4,7 +4,7 @@ jobs:
     working_directory: ~/circleci-python
     docker:
       # - image: cimg/python:3.8.2
-      - image: cimg/node:12.22.6
+      - image: circleci/node:12.22.6
         environment:
           PIPENV_VENV_IN_PROJECT: true
           # TERM: xterm

@@ -53,5 +53,7 @@ jobs:
             #python --version
             #pip --version
             #pipenv run pytest --version
-            pipenv run svgexport --help
+            wget -O /tmp/a.svg https://upload.wikimedia.org/wikipedia/commons/4/4f/SVG_Logo.svg
+            svgexport /tmp/a.svg /tmp/o.png 2>&1
+            ls -la /tmp
             pipenv run pytest

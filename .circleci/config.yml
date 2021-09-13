@@ -38,8 +38,17 @@ jobs:
       - run: svgexport --help && which svgexport && ls -la /usr/local/bin/svgexport && sudo ln -s /usr/local/bin/svgexport /usr/bin/svgexport && sudo chmod 777 /usr/bin/svgexport /usr/local/bin/svgexport
       - run:
           command: |
-            sudo apt install python3-pip
-            sudo pip install pipenv
+            # sudo apt install python3-pip
+            # sudo pip install pipenv
+            sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
+              libreadline-dev libsqlite3-dev wget curl llvm libncurses5-dev libncursesw5-dev \
+              xz-utils tk-dev libffi-dev liblzma-dev
+            curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
+            pyenv install 3.8.2
+            pyenv global 3.8.2
+            python --version
+            pip --version
+            pip install pipenv
             pipenv install --dev
       - save_cache: # cache Python dependencies using checksum of Pipfile as the cache-key
           key: deps9-{{ .Branch }}-{{ checksum "Pipfile.lock" }}

@@ -57,5 +57,5 @@ jobs:
             ls -la /tmp
             pwd
             python --version
-            SANE_DEBUG=True pipenv run pytest -s
+            pipenv run pytest
            

@@ -18,7 +18,7 @@ class PieChartElement(Element):
         'title': {
             PYDOCX_FONT_NAME: get_chart_font(),
             PYDOCX_FONT_COLOR: DEFAULT_FONT_COLOR,
-            PYDOCX_FONT_SIZE: DEFAULT_TITLE_FONT_SIZE
+            'fontsize': DEFAULT_TITLE_FONT_SIZE
         }
     }
 

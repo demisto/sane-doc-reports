@@ -14,7 +14,7 @@ python-docx = "*"
 fastjsonschema = "*"
 matplotlib = "*"
 pyquery = "*"
-mistune = "==0.8.4"
+mistune = "==2.0.3"
 requests = "*"
 arrow = "*"
 

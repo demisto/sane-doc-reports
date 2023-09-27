@@ -1,7 +1,9 @@
 import arrow
 import pytest
 from arrow.parser import ParserError
+from docx.shared import RGBColor
 
+from sane_doc_reports.styles.colors import parse_color_string
 from sane_doc_reports.utils import get_formatted_date, has_anomalies
 
 
@@ -61,3 +63,43 @@ def test_has_anomalies():
     assert has_anomalies(yes_anoms) is True
     yes_anoms = [1, 200, 100, 200, 1]
     assert has_anomalies(yes_anoms) is True
+
+def test_parse_rgb():
+    """
+        Given: rgb string to parse to RGB object
+        When: styling a cell.
+        Then: assert the correct object is returned.
+    """
+    # Test parsing an RGB color string
+    rgb_color_string = "rgb(55,56,57)"
+    parsed_color = parse_color_string(rgb_color_string)
+
+    # Expected RGBColor object
+    expected_color = RGBColor(55, 56, 57)
+
+    assert parsed_color == expected_color
+
+def test_parse_rgba():
+    """
+        Given: rgba string to parse to RGB object
+        When: styling a cell.
+        Then: assert the correct object is returned.
+    """
+    rgba_color_string = "rgba(55,56,57,0.5)"
+    parsed_color = parse_color_string(rgba_color_string)
+
+    # Expected combined RGBColor object (based on combine_rgba_with_white_background)
+    expected_color = RGBColor(155, 155, 156)
+
+    assert parsed_color == expected_color
+
+def test_invalid_format():
+    """
+        Given: rgb string to parse to RGB object
+        When: styling a cell.
+        Then: assert the correct object is returned.
+    """
+    invalid_color_string = "invalid_color_format"
+
+    with pytest.raises(ValueError):
+        parse_color_string(invalid_color_string)

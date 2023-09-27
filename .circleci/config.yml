@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/circleci-python
     docker:
-      - image: circleci/node:12.22.6
+      - image: cimg/node:12.22.6
         environment:
           PIPENV_VENV_IN_PROJECT: true
     steps:

@@ -5,7 +5,7 @@ from docx.oxml.ns import nsdecls, qn
 
 from sane_doc_reports.domain import CellObject
 from sane_doc_reports.domain.Section import Section
-from sane_doc_reports.styles.colors import name_to_rgb, hex_to_rgb, name_to_hex
+from sane_doc_reports.styles.colors import name_to_rgb, hex_to_rgb, name_to_hex, parse_color_string
 from sane_doc_reports.conf import PYDOCX_FONT_SIZE, PYDOCX_FONT, \
     PYDOCX_FONT_BOLD, PYDOCX_FONT_STRIKE, PYDOCX_FONT_UNDERLINE, \
     PYDOCX_FONT_ITALIC, PYDOCX_FONT_COLOR, PYDOCX_TEXT_ALIGN, \
@@ -40,7 +40,10 @@ def _apply_cell_styling(cell_object: CellObject, section: Section):
 
     # Font color
     if PYDOCX_FONT_COLOR in style:
-        if style[PYDOCX_FONT_COLOR][0] != '#':
+        if style[PYDOCX_FONT_COLOR][:3] == 'rgb':
+            cell_object.run.font.color.rgb = parse_color_string(
+                style[PYDOCX_FONT_COLOR])
+        elif style[PYDOCX_FONT_COLOR][0] != '#':
             cell_object.run.font.color.rgb = name_to_rgb(
                 style[PYDOCX_FONT_COLOR])
         else:
